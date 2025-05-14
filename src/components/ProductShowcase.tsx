@@ -1,45 +1,17 @@
-
 import React from 'react';
 import { treatments } from '../utils/data';
 import { Card, CardContent } from "@/components/ui/card";
 import { Package, Grid3X3, PackageCheck } from 'lucide-react';
-
 const categories = [...new Set(treatments.map(item => item.category))].slice(0, 3);
 
 // Get a few more treatments for the bento box
 const bentoTreatments = treatments.slice(3, 6);
-
 const ProductShowcase = () => {
-  return (
-    <section className="section bg-white">
+  return <section className="section bg-white">
       <div className="container-custom">
-        <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">
-          Find Your Perfect Match from Our Selections
-        </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {categories.map((category, index) => {
-            const treatment = treatments.find(t => t.category === category);
-            return (
-              <div key={index} className={`relative overflow-hidden rounded-lg ${
-                index === 0 ? "md:col-span-2" : ""
-              }`}>
-                <img 
-                  src={treatment?.image || "/placeholder.svg"} 
-                  alt={category}
-                  className="w-full h-64 md:h-80 object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black/40 text-white p-4">
-                  <h3 className="text-xl font-medium">{category}</h3>
-                  <p className="text-sm opacity-90 mb-2">Discover our solutions</p>
-                  <a href="#" className="text-skin-green text-sm font-medium hover:underline">
-                    Explore &rarr;
-                  </a>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        
+        
 
         {/* Bento Box Section */}
         <div className="mt-16">
@@ -75,11 +47,7 @@ const ProductShowcase = () => {
             {/* Treatment Card */}
             <Card className="overflow-hidden">
               <div className="relative h-48">
-                <img 
-                  src="/placeholder.svg" 
-                  alt="Featured treatment"
-                  className="w-full h-full object-cover" 
-                />
+                <img src="/placeholder.svg" alt="Featured treatment" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                   <span className="bg-skin-green px-3 py-1 rounded-full text-sm font-medium">
                     Most Popular
@@ -122,14 +90,9 @@ const ProductShowcase = () => {
             </Card>
             
             {/* Treatment Cards */}
-            {bentoTreatments.slice(1).map((treatment, index) => (
-              <Card key={index} className="overflow-hidden">
+            {bentoTreatments.slice(1).map((treatment, index) => <Card key={index} className="overflow-hidden">
                 <div className="relative h-48">
-                  <img 
-                    src={treatment.image || "/placeholder.svg"} 
-                    alt={treatment.name}
-                    className="w-full h-full object-cover" 
-                  />
+                  <img src={treatment.image || "/placeholder.svg"} alt={treatment.name} className="w-full h-full object-cover" />
                 </div>
                 <CardContent className="p-4">
                   <h4 className="font-medium">{treatment.name}</h4>
@@ -141,13 +104,10 @@ const ProductShowcase = () => {
                     <a href="#" className="text-skin-green text-sm hover:underline">View details</a>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProductShowcase;

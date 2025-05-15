@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { treatments } from '../utils/data';
-import { Droplet, Syringe, Calendar } from 'lucide-react';
+import { Droplet, Syringe, Calendar, Star } from 'lucide-react';
 
 const Treatments = () => {
   return (
@@ -106,47 +106,122 @@ const Treatments = () => {
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* Customer Reviews Section */}
         <section className="py-16 bg-white">
           <div className="container-custom">
-            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Frequently Asked Questions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">What Our Clients Say</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <h3 className="font-medium text-lg mb-2">How often should I get a facial?</h3>
-                  <p className="text-muted-foreground">
-                    We recommend a professional facial every 4-6 weeks as this is how long it takes your skin to regenerate. 
-                    Regular treatments will help maintain optimal skin health.
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-skin-green">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">
+                    "Really good service received from Sharon. Great initial consultation, very informative & detailed to ensure I knew what to expect throughout the laser hair removal treatment. Sharon is always professional, friendly & approachable..."
                   </p>
+                  <div className="flex items-center">
+                    <div className="font-medium">AC Fletcher</div>
+                  </div>
                 </CardContent>
               </Card>
+              
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <h3 className="font-medium text-lg mb-2">How do I know which treatment is right for me?</h3>
-                  <p className="text-muted-foreground">
-                    We offer complimentary skin consultations to help determine the best treatment plan for your specific 
-                    skin concerns and goals.
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-skin-green">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">
+                    "You won't regret going to Sharon for any treatment. She's friendly, professional and cares about each individual and how the course of treatment is going, and is willing to tailor to your specific needs. Sharon will always make you feel comfortable and relaxed, I'd highly recommend!"
                   </p>
+                  <div className="flex items-center">
+                    <div className="font-medium">Megan Coulson</div>
+                  </div>
                 </CardContent>
               </Card>
+              
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <h3 className="font-medium text-lg mb-2">How long do results last?</h3>
-                  <p className="text-muted-foreground">
-                    Results vary by treatment type and individual skin condition. Some treatments provide 
-                    immediate results, while others build over time with repeated sessions.
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-skin-green">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">
+                    "I had the pleasure of experiencing a Hifu facial, Hydrafacial, and laser skin rejuvenation treatment from Sharon, and I must say, the results were absolutely incredible! Sharon is a true magician when it comes to skincare."
                   </p>
+                  <div className="flex items-center">
+                    <div className="font-medium">Tracey Thornton-Clark (TTC)</div>
+                  </div>
                 </CardContent>
               </Card>
+              
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <h3 className="font-medium text-lg mb-2">Is there any downtime after treatments?</h3>
-                  <p className="text-muted-foreground">
-                    Most of our treatments have minimal to no downtime. Any potential side effects or aftercare 
-                    instructions will be thoroughly explained before your treatment.
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-skin-green">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">
+                    "I've been going to STW Aesthetic Clinic for my Hydrofacials and my skin has never been better. I no longer have breakouts or dry patches. Sharon is so lovely and really professional. I can't recommend visiting STW Aesthetic Clinic enough."
                   </p>
+                  <div className="flex items-center">
+                    <div className="font-medium">Leanne Wears</div>
+                  </div>
                 </CardContent>
               </Card>
+              
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-skin-green">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">
+                    "Great service. Sharon is so professional and friendly. I love the hydrafacial skin treatment and cool sculpting treatment. Fabulous business. Great prices. Highly recommend."
+                  </p>
+                  <div className="flex items-center">
+                    <div className="font-medium">Danielle Cullen</div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-skin-green">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-4 italic">
+                    "Had a gorgeous hydrafacial off Sharon at STW aesthetics, very calming and professional experience. The hydrafacial helped clear my skin lovely after having congested skin and ache from wearing the face masks! Would highly recommend"
+                  </p>
+                  <div className="flex items-center">
+                    <div className="font-medium">Lizzy Coulson</div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="mt-10 text-center">
+              <Button variant="outline">View All Reviews</Button>
             </div>
           </div>
         </section>

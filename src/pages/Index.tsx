@@ -5,7 +5,7 @@ import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
 import ProductShowcase from '@/components/ProductShowcase';
 import { FeaturedSection, BannerSection, ProductGrid } from '@/components/FeaturedSection';
-import ValuesBanner from '@/components/ValuesBanner';
+import CustomerReviews from '@/components/CustomerReviews';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -19,7 +19,7 @@ const Index = () => {
         <FeaturedSection />
         <BannerSection />
         <ProductGrid />
-        <ValuesBanner />
+        <CustomerReviews />
       </main>
       <Footer />
     </div>

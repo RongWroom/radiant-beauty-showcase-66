@@ -1,9 +1,15 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Search, ShoppingCart, User } from 'lucide-react';
 
 const Navbar = () => {
+  const location = useLocation();
+  
+  const isActive = (path: string) => {
+    return location.pathname === path ? "text-skin-teal font-medium" : "text-gray-800 hover:text-skin-teal";
+  };
+
   return (
     <nav className="bg-white py-4 sticky top-0 z-50 shadow-sm">
       <div className="container-custom flex justify-between items-center">
@@ -12,10 +18,10 @@ const Navbar = () => {
             STW Clinic
           </Link>
           <div className="hidden md:flex space-x-6">
-            <Link to="/" className="text-gray-800 hover:text-skin-teal transition-colors">Home</Link>
-            <Link to="/treatments" className="text-gray-800 hover:text-skin-teal transition-colors">Treatments</Link>
+            <Link to="/" className={`${isActive('/')} transition-colors`}>Home</Link>
+            <Link to="/treatments" className={`${isActive('/treatments')} transition-colors`}>Treatments</Link>
+            <Link to="/about" className={`${isActive('/about')} transition-colors`}>About</Link>
             <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">Products</a>
-            <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">About</a>
             <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">Contact</a>
           </div>
         </div>

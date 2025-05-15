@@ -1,0 +1,170 @@
+
+import React from 'react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { treatments } from '../utils/data';
+import { Droplet, Syringe, Calendar } from 'lucide-react';
+
+const Treatments = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="bg-skin-lightgreen py-16 md:py-24">
+          <div className="container-custom">
+            <div className="text-center max-w-3xl mx-auto">
+              <h1 className="text-3xl md:text-5xl font-serif mb-6">Our Skincare Treatments</h1>
+              <p className="text-lg mb-8">
+                Discover our range of professional treatments tailored to your unique skin needs.
+                Each treatment is performed by our expert estheticians using premium products.
+              </p>
+              <div className="flex justify-center space-x-4">
+                <Button className="bg-skin-green hover:bg-opacity-90">
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Book Consultation
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Treatment Categories */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Treatment Categories</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="rounded-full bg-skin-green p-4 mb-4">
+                    <Droplet className="w-8 h-8 text-black" />
+                  </div>
+                  <h3 className="font-serif text-xl mb-2">Facial Treatments</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Revitalize and nourish your skin with our specialized facial treatments
+                  </p>
+                  <Button variant="outline" className="mt-auto">Explore Facials</Button>
+                </CardContent>
+              </Card>
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="rounded-full bg-skin-yellow p-4 mb-4">
+                    <Syringe className="w-8 h-8 text-black" />
+                  </div>
+                  <h3 className="font-serif text-xl mb-2">Anti-Aging Solutions</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Turn back the clock with our effective anti-aging treatments
+                  </p>
+                  <Button variant="outline" className="mt-auto">Explore Anti-Aging</Button>
+                </CardContent>
+              </Card>
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="rounded-full bg-skin-teal p-4 mb-4">
+                    <Droplet className="w-8 h-8 text-black" />
+                  </div>
+                  <h3 className="font-serif text-xl mb-2">Skin Rejuvenation</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Refresh and renew your skin with our rejuvenating treatments
+                  </p>
+                  <Button variant="outline" className="mt-auto">Explore Rejuvenation</Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* All Treatments Grid */}
+        <section className="py-16 bg-skin-gray">
+          <div className="container-custom">
+            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">All Treatments</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {treatments.map((treatment) => (
+                <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="relative h-48">
+                    <img 
+                      src={treatment.image} 
+                      alt={treatment.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardContent className="p-4">
+                    <h3 className="font-serif text-lg font-medium">{treatment.name}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mt-1 mb-3">
+                      {treatment.description}
+                    </p>
+                    <div className="flex items-center justify-between mt-4">
+                      <span className="text-lg font-medium">{treatment.price}</span>
+                      <Button size="sm">Add to Cart</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-white">
+          <div className="container-custom">
+            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Frequently Asked Questions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="font-medium text-lg mb-2">How often should I get a facial?</h3>
+                  <p className="text-muted-foreground">
+                    We recommend a professional facial every 4-6 weeks as this is how long it takes your skin to regenerate. 
+                    Regular treatments will help maintain optimal skin health.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="font-medium text-lg mb-2">How do I know which treatment is right for me?</h3>
+                  <p className="text-muted-foreground">
+                    We offer complimentary skin consultations to help determine the best treatment plan for your specific 
+                    skin concerns and goals.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="font-medium text-lg mb-2">How long do results last?</h3>
+                  <p className="text-muted-foreground">
+                    Results vary by treatment type and individual skin condition. Some treatments provide 
+                    immediate results, while others build over time with repeated sessions.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="font-medium text-lg mb-2">Is there any downtime after treatments?</h3>
+                  <p className="text-muted-foreground">
+                    Most of our treatments have minimal to no downtime. Any potential side effects or aftercare 
+                    instructions will be thoroughly explained before your treatment.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Booking Section */}
+        <section className="py-16 bg-skin-lightgreen">
+          <div className="container-custom">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-serif mb-4">Ready to Book Your Treatment?</h2>
+              <p className="mb-8">Schedule your appointment today and take the first step towards healthier, more radiant skin.</p>
+              <Button className="bg-skin-green hover:bg-opacity-90">Book Now</Button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Treatments;

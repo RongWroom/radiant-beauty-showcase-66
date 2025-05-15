@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Search, ShoppingCart, User } from 'lucide-react';
 
 const Navbar = () => {
@@ -7,12 +8,12 @@ const Navbar = () => {
     <nav className="bg-white py-4 sticky top-0 z-50 shadow-sm">
       <div className="container-custom flex justify-between items-center">
         <div className="flex items-center space-x-8">
-          <a href="/" className="text-2xl font-serif font-bold">
+          <Link to="/" className="text-2xl font-serif font-bold">
             STW Clinic
-          </a>
+          </Link>
           <div className="hidden md:flex space-x-6">
-            <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">Home</a>
-            <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">Treatments</a>
+            <Link to="/" className="text-gray-800 hover:text-skin-teal transition-colors">Home</Link>
+            <Link to="/treatments" className="text-gray-800 hover:text-skin-teal transition-colors">Treatments</Link>
             <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">Products</a>
             <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">About</a>
             <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">Contact</a>

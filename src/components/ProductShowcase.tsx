@@ -1,17 +1,32 @@
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { treatments } from '../utils/data';
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Package, Grid3X3, PackageCheck } from 'lucide-react';
+
 const categories = [...new Set(treatments.map(item => item.category))].slice(0, 3);
 
 // Get a few more treatments for the bento box
 const bentoTreatments = treatments.slice(3, 6);
+
 const ProductShowcase = () => {
   return <section className="section bg-white">
       <div className="container-custom">
-        
-        
-        
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-serif mb-4">Featured Treatments</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Experience our most popular treatments designed to rejuvenate and transform your skin
+          </p>
+          <div className="mt-4">
+            <Link to="/treatments">
+              <Button variant="outline" className="mt-2">
+                View All Treatments
+              </Button>
+            </Link>
+          </div>
+        </div>
 
         {/* Bento Box Section */}
         <div className="mt-16">
@@ -33,12 +48,12 @@ const ProductShowcase = () => {
                       Our treatments are tailored to your unique skin needs and goals. 
                       Experience personalized care that delivers real results.
                     </p>
-                    <a href="#" className="inline-flex items-center text-sm font-medium hover:underline">
+                    <Link to="/treatments" className="inline-flex items-center text-sm font-medium hover:underline">
                       Learn more about our approach
                       <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </CardContent>
@@ -68,29 +83,30 @@ const ProductShowcase = () => {
                 <h4 className="font-medium mb-4">Quick Navigation</h4>
                 <ul className="space-y-3">
                   <li>
-                    <a href="#" className="flex items-center text-sm hover:underline">
+                    <Link to="/treatments" className="flex items-center text-sm hover:underline">
                       <Package className="mr-2 h-4 w-4" />
                       <span>Facial Treatments</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center text-sm hover:underline">
+                    <Link to="/treatments" className="flex items-center text-sm hover:underline">
                       <Grid3X3 className="mr-2 h-4 w-4" />
                       <span>Anti-Aging Solutions</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center text-sm hover:underline">
+                    <Link to="/treatments" className="flex items-center text-sm hover:underline">
                       <Package className="mr-2 h-4 w-4" />
                       <span>Skin Rejuvenation</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </CardContent>
             </Card>
             
             {/* Treatment Cards */}
-            {bentoTreatments.slice(1).map((treatment, index) => <Card key={index} className="overflow-hidden">
+            {bentoTreatments.slice(1).map((treatment, index) => (
+              <Card key={index} className="overflow-hidden">
                 <div className="relative h-48">
                   <img src={treatment.image || "/placeholder.svg"} alt={treatment.name} className="w-full h-full object-cover" />
                 </div>
@@ -101,13 +117,15 @@ const ProductShowcase = () => {
                   </p>
                   <div className="mt-3 flex items-center justify-between">
                     <span className="text-sm font-medium">{treatment.price}</span>
-                    <a href="#" className="text-skin-green text-sm hover:underline">View details</a>
+                    <Link to="/treatments" className="text-skin-green text-sm hover:underline">View details</Link>
                   </div>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </div>
     </section>;
 };
+
 export default ProductShowcase;

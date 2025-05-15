@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
 import ProductShowcase from '@/components/ProductShowcase';
-import { FeaturedSection, BannerSection, ProductGrid } from '@/components/FeaturedSection';
+import { FeaturedSection, BannerSection } from '@/components/FeaturedSection';
 import CustomerReviews from '@/components/CustomerReviews';
 import Footer from '@/components/Footer';
 
@@ -18,7 +18,6 @@ const Index = () => {
         <ProductShowcase />
         <FeaturedSection />
         <BannerSection />
-        <ProductGrid />
         <CustomerReviews />
       </main>
       <Footer />

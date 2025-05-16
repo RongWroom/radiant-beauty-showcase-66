@@ -58,7 +58,7 @@ export const treatments: Treatment[] = [
     id: 6,
     name: "Post Treatment",
     description: "Restore volume and smooth away deep lines with our dermal filler treatments",
-    price: "£0",
+    price: "Included",
     image: "/placeholder.svg",
     category: "Aftercare"
   }

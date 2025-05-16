@@ -53,14 +53,6 @@ export const treatments: Treatment[] = [
     price: "from £20",
     image: "/placeholder.svg",
     category: "Laser Therapy"
-  },
-  {
-    id: 6,
-    name: "Post Treatment",
-    description: "Restore volume and smooth away deep lines with our dermal filler treatments",
-    price: "Included",
-    image: "/placeholder.svg",
-    category: "Aftercare"
   }
 ];
 

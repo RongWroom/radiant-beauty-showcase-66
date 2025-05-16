@@ -97,7 +97,7 @@ const Treatments = () => {
                     </p>
                     <div className="flex items-center justify-between mt-4">
                       <span className="text-lg font-medium">{treatment.price}</span>
-                      <Button size="sm">Add to Cart</Button>
+                      <Button size="sm">Read More</Button>
                     </div>
                   </CardContent>
                 </Card>

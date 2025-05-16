@@ -53,7 +53,7 @@ export const FeaturedSection = () => {
                 <p className="text-gray-600 mb-4">{treatment.description}</p>
                 <div className="flex justify-between items-center">
                   <span className="font-bold">{treatment.price}</span>
-                  <Button variant="outline" size="sm">Add to Cart</Button>
+                  <Button variant="outline" size="sm">Read More</Button>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ export const BannerSection = () => {
               unlock the secret to your inner beauty and energy with our natural skincare products
             </p>
             <Button className="bg-white text-skin-teal hover:bg-skin-yellow hover:text-black transition-colors">
-              SHOP NOW
+              LEARN MORE
             </Button>
           </div>
         </div>
@@ -115,7 +115,7 @@ export const ProductGrid = () => {
               <div className="flex justify-between items-center">
                 <span className="font-bold">{treatment.price}</span>
                 <Button variant="outline" size="sm" className="text-xs px-2 py-1">
-                  Add to Cart
+                  Read More
                 </Button>
               </div>
             </div>

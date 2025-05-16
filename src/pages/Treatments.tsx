@@ -4,10 +4,16 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { treatments } from '../utils/data';
 import { Droplet, Syringe, Calendar, Star } from 'lucide-react';
 
 const Treatments = () => {
+  // Find the featured treatment
+  const featuredTreatment = treatments.find(treatment => treatment.featured) || treatments[0];
+  // Get the remaining treatments (excluding the featured one)
+  const remainingTreatments = treatments.filter(treatment => treatment.id !== featuredTreatment.id);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -76,32 +82,66 @@ const Treatments = () => {
           </div>
         </section>
 
-        {/* All Treatments Grid */}
+        {/* All Treatments Grid - Updated Layout */}
         <section className="py-16 bg-skin-gray">
           <div className="container-custom">
             <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">All Treatments</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {treatments.map((treatment) => (
-                <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="relative h-48">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Featured Treatment - Large Square on Left */}
+              <div className="lg:col-span-1">
+                <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
+                  <div className="relative h-96 lg:h-full">
                     <img 
-                      src={treatment.image} 
-                      alt={treatment.name} 
+                      src={featuredTreatment.image} 
+                      alt={featuredTreatment.name} 
                       className="w-full h-full object-cover"
                     />
-                  </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-serif text-lg font-medium">{treatment.name}</h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2 mt-1 mb-3">
-                      {treatment.description}
-                    </p>
-                    <div className="flex items-center justify-between mt-4">
-                      <span className="text-lg font-medium">{treatment.price}</span>
-                      <Button size="sm">Read More</Button>
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-skin-green text-black font-medium px-3 py-1">
+                        <Star className="w-4 h-4 mr-1" />
+                        Most Popular
+                      </Badge>
                     </div>
-                  </CardContent>
+                    <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 p-4 text-white">
+                      <h3 className="font-serif text-xl font-medium">{featuredTreatment.name}</h3>
+                      <p className="text-sm mt-1 mb-2 line-clamp-2">
+                        {featuredTreatment.description}
+                      </p>
+                      <div className="flex items-center justify-between mt-2">
+                        <span className="text-lg font-medium">{featuredTreatment.price}</span>
+                        <Button size="sm">Read More</Button>
+                      </div>
+                    </div>
+                  </div>
                 </Card>
-              ))}
+              </div>
+              
+              {/* Right Column with 2x2 Grid */}
+              <div className="lg:col-span-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {remainingTreatments.map((treatment) => (
+                    <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                      <div className="relative h-48">
+                        <img 
+                          src={treatment.image} 
+                          alt={treatment.name} 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <CardContent className="p-4">
+                        <h3 className="font-serif text-lg font-medium">{treatment.name}</h3>
+                        <p className="text-sm text-muted-foreground line-clamp-2 mt-1 mb-3">
+                          {treatment.description}
+                        </p>
+                        <div className="flex items-center justify-between mt-4">
+                          <span className="text-lg font-medium">{treatment.price}</span>
+                          <Button size="sm">Read More</Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>

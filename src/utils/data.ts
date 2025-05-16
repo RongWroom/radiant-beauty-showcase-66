@@ -6,6 +6,7 @@ export interface Treatment {
   price: string;
   image: string;
   category: string;
+  featured?: boolean;
 }
 
 export interface Stat {
@@ -20,7 +21,8 @@ export const treatments: Treatment[] = [
     description: "Replenish and revitalize dry skin with our intensive hydrating treatment",
     price: "£150",
     image: "/placeholder.svg",
-    category: "Facial"
+    category: "Facial",
+    featured: true
   },
   {
     id: 2,

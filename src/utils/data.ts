@@ -16,67 +16,51 @@ export interface Stat {
 export const treatments: Treatment[] = [
   {
     id: 1,
-    name: "Hydrating Facial",
+    name: "Cyrolipolysis (Fat Freeze)",
     description: "Replenish and revitalize dry skin with our intensive hydrating treatment",
-    price: "£90",
+    price: "£150",
     image: "/placeholder.svg",
     category: "Facial"
   },
   {
     id: 2,
-    name: "Anti-Aging Treatment",
+    name: "Ultra 4D HIFU",
     description: "Reduce fine lines and wrinkles with our advanced anti-aging procedure",
-    price: "£120",
+    price: "£180",
     image: "/placeholder.svg",
     category: "Anti-Aging"
   },
   {
     id: 3,
-    name: "Acne Treatment",
+    name: "Skin Tightening (Fibroblast)",
     description: "Clear your skin and prevent future breakouts with our specialized acne treatment",
-    price: "£85",
+    price: "£180",
     image: "/placeholder.svg",
-    category: "Acne"
+    category: "Refresh"
   },
   {
     id: 4,
-    name: "Microdermabrasion",
+    name: "HydraFacial",
     description: "Exfoliate your skin for a smoother, clearer complexion",
-    price: "£75",
+    price: "£85",
     image: "/placeholder.svg",
     category: "Exfoliation"
   },
   {
     id: 5,
-    name: "LED Light Therapy",
+    name: "Laser Hair Removal",
     description: "Enhance your skin's natural healing process with targeted light therapy",
-    price: "£95",
+    price: "from £20",
     image: "/placeholder.svg",
-    category: "Light Therapy"
+    category: "Laser Therapy"
   },
   {
     id: 6,
-    name: "Dermal Fillers",
+    name: "Post Treatment",
     description: "Restore volume and smooth away deep lines with our dermal filler treatments",
-    price: "£250",
+    price: "£0",
     image: "/placeholder.svg",
-    category: "Fillers"
-  },
-  {
-    id: 7,
-    name: "Chemical Peel",
-    description: "Reveal fresh, new skin with our clinical-grade chemical peels",
-    price: "£110",
-    image: "/placeholder.svg",
-    category: "Peels"
-  },
-  {
-    id: 8,
-    name: "Vitamin C Infusion",
-    description: "Brighten your complexion with our powerful vitamin C treatment",
-    price: "£85",
-    image: "/placeholder.svg",
-    category: "Vitamin Treatments"
+    category: "Aftercare"
   }
 ];
 

@@ -146,7 +146,7 @@ const TreatmentDetail = () => {
                   <h3 className="text-xl font-serif mb-4 text-gray-900">Treatment Pricing</h3>
                   <div className="space-y-4">
                     <div className="text-center">
-                      <span className="text-3xl font-bold text-skin-green">{treatment.price}</span>
+                      <span className="text-3xl font-bold text-skin-teal">{treatment.price}</span>
                       <p className="text-sm text-gray-600 mt-1">Single session</p>
                     </div>
                     <div className="space-y-2">

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,14 +7,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { treatments } from '../utils/data';
 import { ArrowLeft, Clock, MapPin, Star, Phone, Calendar } from 'lucide-react';
-
 const TreatmentDetail = () => {
-  const { id } = useParams();
+  const {
+    id
+  } = useParams();
   const treatment = treatments.find(t => t.id === parseInt(id || '0'));
-  
   if (!treatment) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
@@ -26,17 +24,12 @@ const TreatmentDetail = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
 
   // Get related treatments (excluding current one)
-  const relatedTreatments = treatments
-    .filter(t => t.id !== treatment.id && t.category === treatment.category)
-    .slice(0, 2);
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  const relatedTreatments = treatments.filter(t => t.id !== treatment.id && t.category === treatment.category).slice(0, 2);
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -49,12 +42,10 @@ const TreatmentDetail = () => {
                   Back to Treatments
                 </Button>
               </Link>
-              {treatment.featured && (
-                <Badge className="bg-skin-green text-black">
+              {treatment.featured && <Badge className="bg-skin-green text-black">
                   <Star className="w-4 h-4 mr-1" />
                   Most Popular
-                </Badge>
-              )}
+                </Badge>}
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -73,19 +64,15 @@ const TreatmentDetail = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-3xl font-bold text-skin-green">{treatment.price}</span>
-                  <Button className="bg-skin-green hover:bg-opacity-90">
+                  <span className="text-3xl font-bold text-skin-teal">{treatment.price}</span>
+                  <Button className="hover:bg-opacity-90 bg-skin-teal">
                     <Calendar className="mr-2 h-4 w-4" />
                     Book Treatment
                   </Button>
                 </div>
               </div>
               <div className="relative">
-                <img 
-                  src={treatment.image} 
-                  alt={treatment.name}
-                  className="w-full h-96 object-cover rounded-lg shadow-lg"
-                />
+                <img src={treatment.image} alt={treatment.name} className="w-full h-96 object-cover rounded-lg shadow-lg" />
               </div>
             </div>
           </div>
@@ -201,19 +188,13 @@ const TreatmentDetail = () => {
         </section>
 
         {/* Related Treatments */}
-        {relatedTreatments.length > 0 && (
-          <section className="py-16 bg-skin-gray">
+        {relatedTreatments.length > 0 && <section className="py-16 bg-skin-gray">
             <div className="container-custom">
               <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Related Treatments</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                {relatedTreatments.map((relatedTreatment) => (
-                  <Card key={relatedTreatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                {relatedTreatments.map(relatedTreatment => <Card key={relatedTreatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                     <div className="relative h-48">
-                      <img 
-                        src={relatedTreatment.image} 
-                        alt={relatedTreatment.name} 
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={relatedTreatment.image} alt={relatedTreatment.name} className="w-full h-full object-cover" />
                     </div>
                     <CardContent className="p-4">
                       <h3 className="font-serif text-lg font-medium">{relatedTreatment.name}</h3>
@@ -227,16 +208,12 @@ const TreatmentDetail = () => {
                         </Link>
                       </div>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
             </div>
-          </section>
-        )}
+          </section>}
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default TreatmentDetail;

@@ -97,30 +97,30 @@ const TreatmentDetail = () => {
             <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Treatment Details</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Large feature card */}
-              <Card className="md:col-span-2 bg-skin-yellow/20 hover:shadow-lg transition-shadow">
+              <Card className="md:col-span-2 bg-gray-50 hover:shadow-lg transition-shadow">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-serif mb-4">What to Expect</h3>
+                  <h3 className="text-2xl font-serif mb-4 text-gray-900">What to Expect</h3>
                   <div className="space-y-4">
-                    <p className="text-gray-600">
+                    <p className="text-gray-700">
                       Our {treatment.name.toLowerCase()} treatment is designed to deliver exceptional results 
                       through advanced techniques and premium products. During your session, our expert 
                       practitioners will customize the treatment to your specific skin needs.
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                      <div className="bg-white p-4 rounded-lg">
-                        <h4 className="font-medium mb-2">Before Treatment</h4>
+                      <div className="bg-white p-4 rounded-lg border">
+                        <h4 className="font-medium mb-2 text-gray-900">Before Treatment</h4>
                         <p className="text-sm text-gray-600">Consultation and skin analysis</p>
                       </div>
-                      <div className="bg-white p-4 rounded-lg">
-                        <h4 className="font-medium mb-2">During Treatment</h4>
+                      <div className="bg-white p-4 rounded-lg border">
+                        <h4 className="font-medium mb-2 text-gray-900">During Treatment</h4>
                         <p className="text-sm text-gray-600">Relaxing and professional care</p>
                       </div>
-                      <div className="bg-white p-4 rounded-lg">
-                        <h4 className="font-medium mb-2">After Treatment</h4>
+                      <div className="bg-white p-4 rounded-lg border">
+                        <h4 className="font-medium mb-2 text-gray-900">After Treatment</h4>
                         <p className="text-sm text-gray-600">Aftercare guidance and tips</p>
                       </div>
-                      <div className="bg-white p-4 rounded-lg">
-                        <h4 className="font-medium mb-2">Results</h4>
+                      <div className="bg-white p-4 rounded-lg border">
+                        <h4 className="font-medium mb-2 text-gray-900">Results</h4>
                         <p className="text-sm text-gray-600">Visible improvements within days</p>
                       </div>
                     </div>
@@ -129,24 +129,24 @@ const TreatmentDetail = () => {
               </Card>
 
               {/* Benefits card */}
-              <Card className="bg-skin-teal/20">
+              <Card className="bg-skin-green">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-serif mb-4 text-white">Key Benefits</h3>
-                  <ul className="space-y-3 text-white">
+                  <h3 className="text-xl font-serif mb-4 text-black">Key Benefits</h3>
+                  <ul className="space-y-3 text-black">
                     <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-skin-green rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
                       <span className="text-sm">Improves skin texture and tone</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-skin-green rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
                       <span className="text-sm">Reduces signs of aging</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-skin-green rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
                       <span className="text-sm">Enhances natural radiance</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-skin-green rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
                       <span className="text-sm">Long-lasting results</span>
                     </li>
                   </ul>
@@ -154,9 +154,9 @@ const TreatmentDetail = () => {
               </Card>
 
               {/* Pricing card */}
-              <Card className="bg-skin-green/20">
+              <Card className="bg-gray-50">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-serif mb-4">Treatment Pricing</h3>
+                  <h3 className="text-xl font-serif mb-4 text-gray-900">Treatment Pricing</h3>
                   <div className="space-y-4">
                     <div className="text-center">
                       <span className="text-3xl font-bold text-skin-green">{treatment.price}</span>
@@ -164,12 +164,12 @@ const TreatmentDetail = () => {
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span>Consultation</span>
-                        <span>Included</span>
+                        <span className="text-gray-700">Consultation</span>
+                        <span className="text-gray-900">Included</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span>Aftercare kit</span>
-                        <span>Included</span>
+                        <span className="text-gray-700">Aftercare kit</span>
+                        <span className="text-gray-900">Included</span>
                       </div>
                     </div>
                   </div>
@@ -177,15 +177,15 @@ const TreatmentDetail = () => {
               </Card>
 
               {/* Contact card */}
-              <Card className="md:col-span-2 bg-skin-lightgreen">
+              <Card className="md:col-span-2 bg-white border-2">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-serif mb-4">Ready to Book?</h3>
-                  <p className="text-gray-600 mb-6">
+                  <h3 className="text-xl font-serif mb-4 text-gray-900">Ready to Book?</h3>
+                  <p className="text-gray-700 mb-6">
                     Contact us today to schedule your {treatment.name.toLowerCase()} treatment. 
                     Our expert team is here to help you achieve your skincare goals.
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    <Button className="bg-skin-green hover:bg-opacity-90">
+                    <Button className="bg-skin-green hover:bg-opacity-90 text-black">
                       <Phone className="mr-2 h-4 w-4" />
                       Call Now
                     </Button>

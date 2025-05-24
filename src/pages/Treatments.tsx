@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,15 +7,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { treatments } from '../utils/data';
 import { Droplet, Syringe, Calendar, Star } from 'lucide-react';
-
 const Treatments = () => {
   // Find the featured treatment
   const featuredTreatment = treatments.find(treatment => treatment.featured) || treatments[0];
   // Get the remaining treatments (excluding the featured one)
   const remainingTreatments = treatments.filter(treatment => treatment.id !== featuredTreatment.id);
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -29,7 +25,7 @@ const Treatments = () => {
                 Each treatment is performed by our expert estheticians using premium products.
               </p>
               <div className="flex justify-center space-x-4">
-                <Button className="bg-skin-green hover:bg-opacity-90">
+                <Button className="hover:bg-opacity-90 bg-skin-teal">
                   <Calendar className="mr-2 h-4 w-4" />
                   Book Consultation
                 </Button>
@@ -92,11 +88,7 @@ const Treatments = () => {
               <div className="lg:col-span-1">
                 <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
                   <div className="relative h-96 lg:h-full">
-                    <img 
-                      src={featuredTreatment.image} 
-                      alt={featuredTreatment.name} 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={featuredTreatment.image} alt={featuredTreatment.name} className="w-full h-full object-cover" />
                     <div className="absolute top-4 left-4">
                       <Badge className="bg-skin-green text-black font-medium px-3 py-1">
                         <Star className="w-4 h-4 mr-1" />
@@ -111,7 +103,7 @@ const Treatments = () => {
                       <div className="flex items-center justify-between mt-2">
                         <span className="text-lg font-medium">{featuredTreatment.price}</span>
                         <Link to={`/treatments/${featuredTreatment.id}`}>
-                          <Button size="sm">Read More</Button>
+                          <Button size="sm" className="bg-skin-teal">Read More</Button>
                         </Link>
                       </div>
                     </div>
@@ -122,14 +114,9 @@ const Treatments = () => {
               {/* Right Column with 2x2 Grid */}
               <div className="lg:col-span-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {remainingTreatments.map((treatment) => (
-                    <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                  {remainingTreatments.map(treatment => <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative h-48">
-                        <img 
-                          src={treatment.image} 
-                          alt={treatment.name} 
-                          className="w-full h-full object-cover"
-                        />
+                        <img src={treatment.image} alt={treatment.name} className="w-full h-full object-cover" />
                       </div>
                       <CardContent className="p-4">
                         <h3 className="font-serif text-lg font-medium">{treatment.name}</h3>
@@ -139,12 +126,11 @@ const Treatments = () => {
                         <div className="flex items-center justify-between mt-4">
                           <span className="text-lg font-medium">{treatment.price}</span>
                           <Link to={`/treatments/${treatment.id}`}>
-                            <Button size="sm">Read More</Button>
+                            <Button size="sm" className="bg-skin-teal">Read More</Button>
                           </Link>
                         </div>
                       </CardContent>
-                    </Card>
-                  ))}
+                    </Card>)}
                 </div>
               </div>
             </div>
@@ -157,14 +143,12 @@ const Treatments = () => {
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-serif mb-4">Ready to Book Your Treatment?</h2>
               <p className="mb-8">Schedule your appointment today and take the first step towards healthier, more radiant skin.</p>
-              <Button className="bg-skin-green hover:bg-opacity-90">Book Now</Button>
+              <Button className="hover:bg-opacity-90 bg-skin-teal">Book Now</Button>
             </div>
           </div>
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Treatments;

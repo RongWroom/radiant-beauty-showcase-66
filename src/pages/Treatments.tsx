@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
@@ -109,7 +110,9 @@ const Treatments = () => {
                       </p>
                       <div className="flex items-center justify-between mt-2">
                         <span className="text-lg font-medium">{featuredTreatment.price}</span>
-                        <Button size="sm">Read More</Button>
+                        <Link to={`/treatments/${featuredTreatment.id}`}>
+                          <Button size="sm">Read More</Button>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -135,7 +138,9 @@ const Treatments = () => {
                         </p>
                         <div className="flex items-center justify-between mt-4">
                           <span className="text-lg font-medium">{treatment.price}</span>
-                          <Button size="sm">Read More</Button>
+                          <Link to={`/treatments/${treatment.id}`}>
+                            <Button size="sm">Read More</Button>
+                          </Link>
                         </div>
                       </CardContent>
                     </Card>

@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { featuredTreatments, treatments } from '../utils/data';
 
@@ -53,7 +53,9 @@ export const FeaturedSection = () => {
                 <p className="text-gray-600 mb-4">{treatment.description}</p>
                 <div className="flex justify-between items-center">
                   <span className="font-bold">{treatment.price}</span>
-                  <Button variant="outline" size="sm">Read More</Button>
+                  <Link to={`/treatments/${treatment.id}`}>
+                    <Button variant="outline" size="sm">Read More</Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -114,9 +116,11 @@ export const ProductGrid = () => {
               <p className="text-gray-600 text-sm mb-2 line-clamp-2">{treatment.description}</p>
               <div className="flex justify-between items-center">
                 <span className="font-bold">{treatment.price}</span>
-                <Button variant="outline" size="sm" className="text-xs px-2 py-1">
-                  Read More
-                </Button>
+                <Link to={`/treatments/${treatment.id}`}>
+                  <Button variant="outline" size="sm" className="text-xs px-2 py-1">
+                    Read More
+                  </Button>
+                </Link>
               </div>
             </div>
           ))}

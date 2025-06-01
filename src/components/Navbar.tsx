@@ -20,8 +20,8 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-6">
             <Link to="/" className={`${isActive('/')} transition-colors`}>Home</Link>
             <Link to="/treatments" className={`${isActive('/treatments')} transition-colors`}>Treatments</Link>
+            <Link to="/products" className={`${isActive('/products')} transition-colors`}>Products</Link>
             <Link to="/about" className={`${isActive('/about')} transition-colors`}>About</Link>
-            <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">Products</a>
             <a href="#" className="text-gray-800 hover:text-skin-teal transition-colors">Contact</a>
           </div>
         </div>
@@ -32,9 +32,9 @@ const Navbar = () => {
           <button className="p-2 hover:bg-skin-lightgreen rounded-full transition-colors">
             <User className="h-5 w-5" />
           </button>
-          <button className="p-2 hover:bg-skin-lightgreen rounded-full transition-colors">
+          <button className="p-2 hover:bg-skin-lightgreen rounded-full transition-colors relative">
             <ShoppingCart className="h-5 w-5" />
-            <span className="absolute top-1 right-1 bg-skin-green text-xs rounded-full h-4 w-4 flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 bg-skin-green text-xs rounded-full h-4 w-4 flex items-center justify-center text-black">
               0
             </span>
           </button>

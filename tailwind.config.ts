@@ -63,12 +63,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom brand colors
+				// Updated brand colors inspired by the green-orange gradient
 				skin: {
-					green: '#B9EF84',
-					lightgreen: '#F2FCE2',
-					yellow: '#FEF7CD',
-					teal: '#82C9B7',
+					green: '#D4F4B8', // Light sage green
+					lightgreen: '#F0F9E8', // Very light green background
+					yellow: '#F5E6A8', // Warm yellow
+					orange: '#F4C27A', // Soft orange
+					lightorange: '#FDF4E8', // Very light orange background
+					teal: '#8BC4A0', // Muted teal
 					gray: '#F6F6F7'
 				}
 			},
@@ -113,6 +115,10 @@ export default {
 			fontFamily: {
 				sans: ['Poppins', 'sans-serif'],
 				serif: ['Playfair Display', 'serif']
+			},
+			backgroundImage: {
+				'gradient-primary': 'linear-gradient(135deg, #D4F4B8 0%, #F4C27A 100%)',
+				'gradient-soft': 'linear-gradient(135deg, #F0F9E8 0%, #FDF4E8 100%)',
 			}
 		}
 	},

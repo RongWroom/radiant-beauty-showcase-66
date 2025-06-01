@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 
 const Hero = () => {
   return (
-    <section className="bg-white relative overflow-hidden">
+    <section className="bg-gradient-soft relative overflow-hidden">
       <div className="container-custom min-h-[80vh] flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 pt-20 md:pt-0 z-10">
-          <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 leading-tight text-gray-800">
             Skincare That Let's Your Inner Glow Shine Through
           </h1>
           <p className="text-gray-600 mb-8 max-w-lg">
@@ -15,11 +15,11 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button className="btn-primary px-8 py-3">SHOP NOW</Button>
-            <Button variant="outline" className="px-8 py-3">OUR SERVICES</Button>
+            <Button className="btn-secondary px-8 py-3">OUR SERVICES</Button>
           </div>
         </div>
         <div className="md:w-1/2 mt-12 md:mt-0 relative">
-          <div className="bg-skin-lightgreen absolute top-0 right-0 bottom-0 left-1/4 rounded-l-full -z-10"></div>
+          <div className="bg-gradient-primary absolute top-0 right-0 bottom-0 left-1/4 rounded-l-full -z-10 opacity-60"></div>
           <img 
             src="/placeholder.svg" 
             alt="Woman with glowing skin"

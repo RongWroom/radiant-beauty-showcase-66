@@ -85,11 +85,15 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
   }
   
   .btn-primary {
-    @apply bg-skin-green text-black hover:bg-opacity-90;
+    @apply bg-gradient-primary text-gray-800 hover:shadow-lg hover:scale-105 font-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-800 border border-skin-green hover:bg-skin-lightgreen hover:border-skin-orange transition-all duration-300;
   }
   
   .section {
@@ -102,5 +106,13 @@
   
   .fade-in {
     @apply animate-fade-in;
+  }
+  
+  .gradient-card {
+    @apply bg-gradient-soft border border-skin-green/20 hover:border-skin-orange/40 transition-all duration-300;
+  }
+  
+  .product-card {
+    @apply bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
   }
 }

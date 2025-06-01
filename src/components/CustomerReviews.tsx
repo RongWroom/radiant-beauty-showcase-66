@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
@@ -44,52 +43,52 @@ const reviews = [
 
 const CustomerReviews = () => {
   return (
-    <section className="bg-skin-lightgreen py-16">
+    <section className="bg-gradient-to-br from-skin-lightgreen/40 to-white py-32">
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif mb-4">What Our Clients Say</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl lg:text-5xl font-serif mb-6 text-gray-800">What Our Clients Say</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
             Don't just take our word for it. Here's what our satisfied clients have to say about their experience at STW Aesthetic Clinic.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {reviews.map((review) => (
             <div 
               key={review.id} 
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col h-full"
+              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1"
             >
-              <div className="flex mb-3">
+              <div className="flex mb-4">
                 {Array.from({ length: review.stars }).map((_, index) => (
-                  <Star key={index} className="h-4 w-4 fill-skin-teal text-skin-teal" />
+                  <Star key={index} className="h-5 w-5 fill-skin-orange text-skin-orange" />
                 ))}
               </div>
               <blockquote className="flex-grow">
-                <p className="text-gray-600 italic mb-4">"{review.text}"</p>
+                <p className="text-gray-600 italic mb-6 leading-relaxed">"{review.text}"</p>
               </blockquote>
-              <footer className="mt-4 pt-4 border-t border-gray-100">
-                <p className="font-medium">{review.name}</p>
+              <footer className="mt-auto pt-6 border-t border-gray-100">
+                <p className="font-medium text-gray-800">{review.name}</p>
               </footer>
             </div>
           ))}
         </div>
         
-        <div className="text-center">
-          <Button className="bg-skin-teal text-white hover:bg-skin-teal/90">
+        <div className="text-center mb-20">
+          <Button className="bg-gradient-primary text-gray-800 hover:shadow-lg hover:scale-105 transition-all duration-300 px-10 py-4 text-lg font-medium">
             View All Reviews
           </Button>
         </div>
 
-        <div className="flex justify-center mt-16">
-          <div className="bg-white px-6 py-4 rounded-lg shadow-sm flex items-center max-w-md">
+        <div className="flex justify-center">
+          <div className="bg-white px-8 py-6 rounded-2xl shadow-sm flex items-center max-w-md hover:shadow-md transition-shadow duration-300">
             <img 
               src="/placeholder.svg"
               alt="Google Reviews" 
-              className="w-10 h-10 mr-3" 
+              className="w-12 h-12 mr-4" 
             />
             <div>
-              <p className="font-medium">4.9 on Google Reviews</p>
-              <p className="text-sm text-gray-600">Based on 50+ reviews</p>
+              <p className="font-medium text-lg text-gray-800">4.9 on Google Reviews</p>
+              <p className="text-gray-600">Based on 50+ reviews</p>
             </div>
           </div>
         </div>

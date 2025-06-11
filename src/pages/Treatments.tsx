@@ -126,7 +126,7 @@ const Treatments = () => {
                         <div className="flex items-center justify-between mt-4">
                           <span className="text-lg font-medium">{treatment.price}</span>
                           <Link to={`/treatments/${treatment.id}`}>
-                            <Button size="sm" className="bg-skin-teal">Read More</Button>
+                            <Button size="sm" className="bg-skin-teal text-[brand-neutral-600] bg-[brand-sage-dark] bg-brand-sage text-white">Read More</Button>
                           </Link>
                         </div>
                       </CardContent>

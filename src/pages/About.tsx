@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -6,10 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Circle } from 'lucide-react';
-
 const About = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section with Image */}
@@ -31,12 +28,8 @@ const About = () => {
                 </div>
               </div>
               <div className="rounded-lg overflow-hidden shadow-lg">
-                <AspectRatio ratio={4/3}>
-                  <img 
-                    src="/lovable-uploads/8ba11e7a-85dd-4fad-8b15-798fdcfedda6.png" 
-                    alt="STW Aesthetic Clinic Professional" 
-                    className="object-cover w-full h-full"
-                  />
+                <AspectRatio ratio={4 / 3}>
+                  <img src="/lovable-uploads/8ba11e7a-85dd-4fad-8b15-798fdcfedda6.png" alt="STW Aesthetic Clinic Professional" className="object-cover w-full h-full" />
                 </AspectRatio>
               </div>
             </div>
@@ -120,14 +113,14 @@ const About = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="py-16 bg-skin-teal text-white">
+        <section className="py-16 bg-skin-teal text-white bg-[brand-sage-dark] bg-brand-lime">
           <div className="container-custom text-center max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-serif mb-6">Ready to Transform Your Look?</h2>
-            <p className="text-lg mb-8">
+            <p className="text-lg mb-8 text-black">
               Experience the STW difference with our professional, personalized aesthetic treatments.
             </p>
             <div className="flex justify-center space-x-4">
-              <Button className="bg-white text-skin-teal hover:bg-gray-100">
+              <Button className="text-skin-teal text-black bg-white">
                 Contact Us Today
               </Button>
             </div>
@@ -135,8 +128,6 @@ const About = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;

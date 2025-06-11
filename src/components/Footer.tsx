@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-white border-t border-brand-neutral-200">
+  return <footer className="bg-white border-t border-brand-neutral-200">
       <div className="container-custom py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
@@ -42,12 +39,8 @@ const Footer = () => {
             <h3 className="font-serif text-lg font-medium mb-4 text-hierarchy-primary">Join Our Newsletter</h3>
             <p className="text-hierarchy-secondary mb-4">Get skincare tips and exclusive offers direct to your inbox.</p>
             <div className="flex mb-4">
-              <input 
-                type="email" 
-                placeholder="Your email" 
-                className="px-4 py-2 border border-brand-neutral-200 rounded-l-md w-full focus:outline-none focus:ring-1 focus:ring-brand-sage"
-              />
-              <Button className="rounded-l-none">
+              <input type="email" placeholder="Your email" className="px-4 py-2 border border-brand-neutral-200 rounded-l-md w-full focus:outline-none focus:ring-1 focus:ring-brand-sage" />
+              <Button className="rounded-l-none bg-brand-lime">
                 Join
               </Button>
             </div>
@@ -68,8 +61,6 @@ const Footer = () => {
           <p>© {new Date().getFullYear()} STW Aesthetic Clinic. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

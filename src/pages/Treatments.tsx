@@ -40,39 +40,39 @@ const Treatments = () => {
             <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Treatment Categories</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 flex flex-col items-center text-center">
+                <CardContent className="p-6 flex flex-col items-center text-center bg-[brand-sage-dark] bg-brand-lime">
                   <div className="rounded-full bg-skin-green p-4 mb-4">
-                    <Droplet className="w-8 h-8 text-black" />
+                    <Droplet className="w-8 h-8 text-black bg-transparent" />
                   </div>
                   <h3 className="font-serif text-xl mb-2">Facial Treatments</h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="mb-4 text-[brand-neutral-200] text-white">
                     Revitalize and nourish your skin with our specialized facial treatments
                   </p>
-                  <Button variant="outline" className="mt-auto">Explore Facials</Button>
+                  <Button variant="outline" className="mt-auto text-black rounded-bl-sm ">Explore Facials</Button>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 flex flex-col items-center text-center">
+                <CardContent className="p-6 flex flex-col items-center text-center bg-brand-lime">
                   <div className="rounded-full bg-skin-yellow p-4 mb-4">
                     <Syringe className="w-8 h-8 text-black" />
                   </div>
                   <h3 className="font-serif text-xl mb-2">Anti-Aging Solutions</h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="mb-4 text-white">
                     Turn back the clock with our effective anti-aging treatments
                   </p>
-                  <Button variant="outline" className="mt-auto">Explore Anti-Aging</Button>
+                  <Button variant="outline" className="mt-auto text-black">Explore Anti-Aging</Button>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 flex flex-col items-center text-center">
+                <CardContent className="p-6 flex flex-col items-center text-center bg-brand-lime">
                   <div className="rounded-full bg-skin-teal p-4 mb-4">
                     <Droplet className="w-8 h-8 text-black" />
                   </div>
                   <h3 className="font-serif text-xl mb-2">Skin Rejuvenation</h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="mb-4 text-white">
                     Refresh and renew your skin with our rejuvenating treatments
                   </p>
-                  <Button variant="outline" className="mt-auto">Explore Rejuvenation</Button>
+                  <Button variant="outline" className="mt-auto text-black">Explore Rejuvenation</Button>
                 </CardContent>
               </Card>
             </div>

@@ -103,7 +103,7 @@ const Treatments = () => {
                       <div className="flex items-center justify-between mt-2">
                         <span className="text-lg font-medium">{featuredTreatment.price}</span>
                         <Link to={`/treatments/${featuredTreatment.id}`}>
-                          <Button size="sm" className="bg-skin-teal">Read More</Button>
+                          <Button size="sm" className="bg-skin-teal bg-[brand-sage-light] bg-brand-sage">Read More</Button>
                         </Link>
                       </div>
                     </div>

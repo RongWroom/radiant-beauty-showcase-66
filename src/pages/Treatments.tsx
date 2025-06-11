@@ -96,12 +96,12 @@ const Treatments = () => {
                       </Badge>
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 p-4 text-white">
-                      <h3 className="font-serif text-xl font-medium">{featuredTreatment.name}</h3>
+                      <h3 className="font-serif text-xl font-medium text-white">{featuredTreatment.name}</h3>
                       <p className="text-sm mt-1 mb-2 line-clamp-2">
                         {featuredTreatment.description}
                       </p>
                       <div className="flex items-center justify-between mt-2">
-                        <span className="text-lg font-medium">{featuredTreatment.price}</span>
+                        <span className="font-medium text-[brand-neutral-50] text-white">{featuredTreatment.price}</span>
                         <Link to={`/treatments/${featuredTreatment.id}`}>
                           <Button size="sm" className="bg-skin-teal bg-[brand-sage-light] bg-brand-sage">Read More</Button>
                         </Link>

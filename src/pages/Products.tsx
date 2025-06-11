@@ -18,11 +18,11 @@ const Products = () => {
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-skin-lightgreen py-16 md:py-24">
+        <section className="bg-brand-neutral-50 py-16 md:py-24">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-3xl md:text-5xl font-serif mb-6">Our Products</h1>
-              <p className="text-lg mb-8">
+              <h1 className="text-3xl md:text-5xl font-serif mb-6 text-hierarchy-primary">Our Products</h1>
+              <p className="text-lg mb-8 text-hierarchy-secondary">
                 Discover our range of premium skincare products, scientifically formulated 
                 to deliver exceptional results for all skin types.
               </p>
@@ -33,11 +33,11 @@ const Products = () => {
         {/* Products Grid */}
         <section className="py-16 bg-white">
           <div className="container-custom">
-            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">All Products</h2>
+            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center text-hierarchy-primary">All Products</h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Featured Product - Large Square on Left */}
               <div className="lg:col-span-1">
-                <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
+                <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-full">
                   <div className="relative h-96 lg:h-full">
                     <img 
                       src={featuredProduct.image} 
@@ -45,7 +45,7 @@ const Products = () => {
                       className="w-full h-full object-cover" 
                     />
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-skin-green text-black font-medium px-3 py-1">
+                      <Badge className="badge-featured">
                         <Star className="w-4 h-4 mr-1" />
                         Featured
                       </Badge>
@@ -58,7 +58,7 @@ const Products = () => {
                       <div className="flex items-center justify-between mt-2">
                         <span className="text-lg font-medium">{featuredProduct.price}</span>
                         <Link to={`/products/${featuredProduct.id}`}>
-                          <Button size="sm" className="bg-skin-teal">View Product</Button>
+                          <Button size="sm">View Product</Button>
                         </Link>
                       </div>
                     </div>
@@ -70,7 +70,7 @@ const Products = () => {
               <div className="lg:col-span-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {remainingProducts.map(product => (
-                    <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                    <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative h-48">
                         <img 
                           src={product.image} 
@@ -79,14 +79,14 @@ const Products = () => {
                         />
                       </div>
                       <CardContent className="p-4">
-                        <h3 className="font-serif text-lg font-medium">{product.name}</h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2 mt-1 mb-3">
+                        <h3 className="font-serif text-lg font-medium text-hierarchy-primary">{product.name}</h3>
+                        <p className="text-sm text-hierarchy-secondary line-clamp-2 mt-1 mb-3">
                           {product.description}
                         </p>
                         <div className="flex items-center justify-between mt-4">
-                          <span className="text-lg font-medium">{product.price}</span>
+                          <span className="text-lg font-medium text-hierarchy-primary">{product.price}</span>
                           <Link to={`/products/${product.id}`}>
-                            <Button size="sm" className="bg-skin-teal">View Product</Button>
+                            <Button size="sm">View Product</Button>
                           </Link>
                         </div>
                       </CardContent>

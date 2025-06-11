@@ -63,20 +63,20 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Professional color palette based on reference image
+				// Professional color palette with defined roles
 				brand: {
-					sage: '#8BA896', // Muted sage green - primary brand color
-					'sage-light': '#B8C9BE', // Lighter sage for hover states
-					'sage-dark': '#6B8B73', // Darker sage for active states
-					lime: '#C8D681', // Warm lime accent
-					'lime-light': '#D9E3A1', // Light lime for subtle highlights
-					cream: '#F8F7F4', // Warm off-white background
-					'neutral-50': '#FAFAFA', // Pure background
-					'neutral-100': '#F5F5F5', // Section backgrounds
-					'neutral-200': '#E5E5E5', // Borders
-					'neutral-600': '#525252', // Secondary text
-					'neutral-800': '#262626', // Primary text
-					'neutral-900': '#171717' // Headings
+					sage: '#8BA896', // PRIMARY BUTTONS - main brand color
+					'sage-light': '#B8C9BE', // CARD HOVER BORDERS
+					'sage-dark': '#6B8B73', // BUTTON HOVER STATES
+					lime: '#C8D681', // ACCENT ELEMENTS - badges, highlights
+					'lime-light': '#D9E3A1', // LIME HOVER STATES
+					cream: '#F8F7F4', // SUBTLE SECTION BACKGROUNDS
+					'neutral-50': '#FAFAFA', // MAIN BACKGROUNDS
+					'neutral-100': '#F5F5F5', // LIGHT SECTION BACKGROUNDS
+					'neutral-200': '#E5E5E5', // BORDERS AND DIVIDERS
+					'neutral-600': '#525252', // SECONDARY TEXT
+					'neutral-800': '#262626', // PRIMARY TEXT
+					'neutral-900': '#171717' // HEADINGS
 				}
 			},
 			borderRadius: {

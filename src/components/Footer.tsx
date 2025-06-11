@@ -1,69 +1,70 @@
 
 import React from 'react';
+import { Button } from '@/components/ui/button';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t">
+    <footer className="bg-white border-t border-brand-neutral-200">
       <div className="container-custom py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-serif text-lg font-medium mb-4">Shop Now</h3>
+            <h3 className="font-serif text-lg font-medium mb-4 text-hierarchy-primary">Shop Now</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-black">New Arrivals</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Bestsellers</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Skincare</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Gift Sets</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Sale</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">New Arrivals</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Bestsellers</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Skincare</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Gift Sets</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Sale</a></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-serif text-lg font-medium mb-4">Company</h3>
+            <h3 className="font-serif text-lg font-medium mb-4 text-hierarchy-primary">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-black">About Us</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Clinic Locations</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Sustainability</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Careers</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Press</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">About Us</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Clinic Locations</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Sustainability</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Careers</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Press</a></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-serif text-lg font-medium mb-4">Customer Care</h3>
+            <h3 className="font-serif text-lg font-medium mb-4 text-hierarchy-primary">Customer Care</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-600 hover:text-black">Contact Us</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">FAQs</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Book Appointment</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Treatment Guide</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-black">Privacy Policy</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Contact Us</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">FAQs</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Book Appointment</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Treatment Guide</a></li>
+              <li><a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-serif text-lg font-medium mb-4">Join Our Newsletter</h3>
-            <p className="text-gray-600 mb-4">Get skincare tips and exclusive offers direct to your inbox.</p>
+            <h3 className="font-serif text-lg font-medium mb-4 text-hierarchy-primary">Join Our Newsletter</h3>
+            <p className="text-hierarchy-secondary mb-4">Get skincare tips and exclusive offers direct to your inbox.</p>
             <div className="flex mb-4">
               <input 
                 type="email" 
                 placeholder="Your email" 
-                className="px-4 py-2 border rounded-l-md w-full focus:outline-none focus:ring-1 focus:ring-skin-green"
+                className="px-4 py-2 border border-brand-neutral-200 rounded-l-md w-full focus:outline-none focus:ring-1 focus:ring-brand-sage"
               />
-              <button className="bg-skin-green px-4 py-2 rounded-r-md hover:bg-opacity-90 transition-colors">
+              <Button className="rounded-l-none">
                 Join
-              </button>
+              </Button>
             </div>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-600 hover:text-black">
+              <a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-600 hover:text-black">
+              <a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-600 hover:text-black">
+              <a href="#" className="text-hierarchy-secondary hover:text-brand-sage transition-colors">
                 <Twitter className="h-5 w-5" />
               </a>
             </div>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t text-center text-gray-500 text-sm">
+        <div className="mt-12 pt-8 border-t border-brand-neutral-200 text-center text-hierarchy-secondary text-sm">
           <p>© {new Date().getFullYear()} STW Aesthetic Clinic. All rights reserved.</p>
         </div>
       </div>

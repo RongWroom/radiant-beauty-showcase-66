@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,13 +7,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { products } from '../utils/products';
 import { Star, ShoppingCart } from 'lucide-react';
-
 const Products = () => {
   const featuredProduct = products.find(product => product.featured) || products[0];
   const remainingProducts = products.filter(product => product.id !== featuredProduct.id);
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -39,11 +35,7 @@ const Products = () => {
               <div className="lg:col-span-1">
                 <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-full">
                   <div className="relative h-96 lg:h-full">
-                    <img 
-                      src={featuredProduct.image} 
-                      alt={featuredProduct.name} 
-                      className="w-full h-full object-cover" 
-                    />
+                    <img src={featuredProduct.image} alt={featuredProduct.name} className="w-full h-full object-cover" />
                     <div className="absolute top-4 left-4">
                       <Badge className="badge-featured">
                         <Star className="w-4 h-4 mr-1" />
@@ -51,7 +43,7 @@ const Products = () => {
                       </Badge>
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 p-4 text-white">
-                      <h3 className="font-serif text-xl font-medium">{featuredProduct.name}</h3>
+                      <h3 className="font-serif font-medium text-[brand-neutral-50] text-white">{featuredProduct.name}</h3>
                       <p className="text-sm mt-1 mb-2 line-clamp-2">
                         {featuredProduct.description}
                       </p>
@@ -69,14 +61,9 @@ const Products = () => {
               {/* Right Column with 2x3 Grid */}
               <div className="lg:col-span-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {remainingProducts.map(product => (
-                    <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow">
+                  {remainingProducts.map(product => <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative h-48">
-                        <img 
-                          src={product.image} 
-                          alt={product.name} 
-                          className="w-full h-full object-cover" 
-                        />
+                        <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                       </div>
                       <CardContent className="p-4">
                         <h3 className="font-serif text-lg font-medium text-hierarchy-primary">{product.name}</h3>
@@ -90,8 +77,7 @@ const Products = () => {
                           </Link>
                         </div>
                       </CardContent>
-                    </Card>
-                  ))}
+                    </Card>)}
                 </div>
               </div>
             </div>
@@ -99,8 +85,6 @@ const Products = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Products;

@@ -16,8 +16,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 90 85% 73%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 160 24% 64%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -75,44 +75,64 @@
   }
   
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-brand-neutral-50 text-brand-neutral-800 font-sans;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-serif text-brand-neutral-900;
   }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center rounded-lg px-8 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
   }
   
   .btn-primary {
-    @apply bg-gradient-primary text-gray-800 hover:shadow-lg hover:scale-105 font-medium;
+    @apply bg-brand-sage text-white hover:bg-brand-sage-dark hover:shadow-lg font-medium;
   }
   
   .btn-secondary {
-    @apply bg-white text-gray-800 border border-skin-green hover:bg-skin-lightgreen hover:border-skin-orange transition-all duration-300;
+    @apply bg-white text-brand-sage border-2 border-brand-sage hover:bg-brand-sage hover:text-white transition-all duration-300;
+  }
+  
+  .btn-accent {
+    @apply bg-brand-lime text-brand-neutral-900 hover:bg-brand-lime-light hover:shadow-lg font-medium;
   }
   
   .section {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
   }
   
   .container-custom {
-    @apply px-4 md:px-8 max-w-7xl mx-auto;
+    @apply px-6 md:px-8 max-w-7xl mx-auto;
   }
   
   .fade-in {
     @apply animate-fade-in;
   }
   
-  .gradient-card {
-    @apply bg-gradient-soft border border-skin-green/20 hover:border-skin-orange/40 transition-all duration-300;
+  .card-clean {
+    @apply bg-white border border-brand-neutral-200 hover:border-brand-sage-light hover:shadow-lg transition-all duration-300;
   }
   
-  .product-card {
-    @apply bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+  .card-featured {
+    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  .text-hierarchy-primary {
+    @apply text-brand-neutral-900 font-serif;
+  }
+  
+  .text-hierarchy-secondary {
+    @apply text-brand-neutral-600;
+  }
+  
+  .bg-section-light {
+    @apply bg-brand-neutral-50;
+  }
+  
+  .bg-section-subtle {
+    @apply bg-brand-cream;
   }
 }

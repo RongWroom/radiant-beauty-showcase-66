@@ -23,7 +23,7 @@ const CtaSection = () => {
           <Button 
             variant="secondary" 
             size="lg"
-            className="text-lg px-8 py-4 bg-white text-brand-sage hover:bg-brand-neutral-100"
+            className="text-lg px-8 py-4 bg-white text-black hover:bg-brand-neutral-100"
           >
             View Treatments
           </Button>

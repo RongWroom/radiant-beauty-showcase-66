@@ -2,7 +2,6 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Stats from '@/components/Stats';
 import { FeaturedSection, BannerSection } from '@/components/FeaturedSection';
 import CustomerReviews from '@/components/CustomerReviews';
 import Footer from '@/components/Footer';
@@ -13,7 +12,6 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <Stats />
         <FeaturedSection />
         <BannerSection />
         <CustomerReviews />

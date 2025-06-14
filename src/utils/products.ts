@@ -1,4 +1,3 @@
-
 export interface Product {
   id: number;
   name: string;
@@ -100,7 +99,7 @@ export const products: Product[] = [
       "Enhances hydration",
       "Provides multi-level protection"
     ],
-    image: "https://images.pexels.com/photos/5710255/pexels-photo-5710255.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.pexels.com/photos/4465831/pexels-photo-4465831.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Serum"
   }
 ];

@@ -1,3 +1,4 @@
+
 export interface Product {
   id: number;
   name: string;
@@ -71,7 +72,7 @@ export const products: Product[] = [
       "Reduces the appearance of fine lines and wrinkles",
       "Smooths and softens"
     ],
-    image: "https://images.pexels.com/photos/7262898/pexels-photo-7262898.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.pexels.com/photos/7262459/pexels-photo-7262459.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Moisturizer"
   },
   {

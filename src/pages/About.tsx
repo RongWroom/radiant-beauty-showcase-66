@@ -122,22 +122,17 @@ const About = () => {
           </div>
         </section>
 
-        {/* Testimonial Section - Enhanced design */}
+        {/* Our Commitment - Simple text section without box */}
         <section className="py-20 bg-white">
           <div className="container-custom">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-brand-warm-ivory to-brand-champagne p-12 md:p-16 rounded-2xl text-center shadow-lg">
-                <h2 className="text-3xl md:text-4xl font-serif mb-6 text-brand-charcoal font-bold">Our Commitment</h2>
-                <div className="flex justify-center mb-8">
-                  <span className="block h-1 w-16 rounded-full bg-brand-rose-gold"></span>
-                </div>
-                <blockquote className="text-xl md:text-2xl italic mb-10 text-brand-warm-gray-600 leading-relaxed">
-                  "Contact us today and rediscover the confidence that comes with having beautiful, rejuvenated skin."
-                </blockquote>
-                <Button className="bg-brand-plum hover:bg-brand-plum-light text-white px-8 py-4 text-lg font-semibold shadow-lg">
-                  Book Your Consultation
-                </Button>
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-brand-charcoal font-bold">Our Commitment</h2>
+              <div className="flex justify-center mb-8">
+                <span className="block h-1 w-16 rounded-full bg-brand-rose-gold"></span>
               </div>
+              <blockquote className="text-xl md:text-2xl italic mb-10 text-brand-warm-gray-600 leading-relaxed">
+                "Contact us today and rediscover the confidence that comes with having beautiful, rejuvenated skin."
+              </blockquote>
             </div>
           </div>
         </section>

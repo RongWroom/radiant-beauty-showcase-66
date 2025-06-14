@@ -17,10 +17,14 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
             <Link to="/products">
-              <Button className="btn-primary text-lg py-4 px-10 shadow-lg">SHOP NOW</Button>
+              <Button className="bg-brand-slate-blue hover:bg-brand-slate-blue-light text-white text-lg py-4 px-10 shadow-lg hover:shadow-xl transition-all duration-300">
+                SHOP NOW
+              </Button>
             </Link>
             <Link to="/treatments">
-              <Button variant="outline" className="text-lg py-4 px-10">OUR SERVICES</Button>
+              <Button variant="outline" className="border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white text-lg py-4 px-10 transition-all duration-300">
+                OUR SERVICES
+              </Button>
             </Link>
           </div>
         </div>
@@ -33,9 +37,10 @@ const Hero = () => {
           />
         </div>
       </div>
-      {/* Flowing gradient overlay */}
+      {/* Enhanced flowing gradient overlays */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brand-slate-blue/10 to-transparent"></div>
       <div className="absolute top-1/2 right-0 w-1/3 h-1/2 bg-gradient-to-l from-brand-silver/20 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute top-1/4 left-0 w-1/4 h-1/4 bg-gradient-to-r from-brand-slate-blue/5 to-transparent rounded-full blur-2xl"></div>
     </section>
   );
 };

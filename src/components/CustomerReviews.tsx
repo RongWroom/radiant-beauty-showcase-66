@@ -64,7 +64,7 @@ const CustomerReviews = () => {
   const visibleReviews = showAll ? reviews : reviews.slice(0, defaultCount);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray section pb-12">
+    <section className="relative overflow-hidden bg-gradient-to-b from-brand-off-white to-brand-white section pb-12">
       <div className="container-custom relative z-10">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-6 text-brand-charcoal">What Our Clients Say</h2>
@@ -77,7 +77,7 @@ const CustomerReviews = () => {
           {visibleReviews.map((review) => (
             <div 
               key={review.id} 
-              className="bg-white/80 backdrop-blur-sm p-6 md:p-7 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1 border border-brand-silver/30 animate-fade-in"
+              className="bg-white/90 backdrop-blur-sm p-6 md:p-7 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1 border border-brand-silver/30 animate-fade-in"
             >
               <div className="flex mb-5">
                 {Array.from({ length: review.stars }).map((_, index) => (
@@ -97,7 +97,7 @@ const CustomerReviews = () => {
         <div className="text-center mb-8">
           {reviews.length > defaultCount && (
             <Button
-              className="btn-primary text-base py-3 px-8"
+              className="bg-brand-slate-blue hover:bg-brand-slate-blue-light text-white text-base py-3 px-8 shadow-md hover:shadow-lg transition-all duration-300"
               variant="default"
               onClick={() => setShowAll((s) => !s)}
               aria-expanded={showAll}
@@ -108,7 +108,7 @@ const CustomerReviews = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className="bg-white/90 backdrop-blur-sm px-8 py-7 rounded-xl shadow-sm flex items-center max-w-md hover:shadow-md transition-shadow duration-300 border border-brand-silver/30">
+          <div className="bg-white/95 backdrop-blur-sm px-8 py-7 rounded-xl shadow-sm flex items-center max-w-md hover:shadow-md transition-shadow duration-300 border border-brand-silver/30">
             <img 
               src="/placeholder.svg"
               alt="Google Reviews" 
@@ -122,9 +122,10 @@ const CustomerReviews = () => {
         </div>
       </div>
       
-      {/* Flowing gradient overlays */}
-      <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-brand-slate-blue/5 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-brand-silver/10 to-transparent rounded-full blur-2xl"></div>
+      {/* Enhanced flowing gradient overlays */}
+      <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-brand-slate-blue/8 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-brand-silver/15 to-transparent rounded-full blur-2xl"></div>
+      <div className="absolute top-1/2 left-1/4 w-1/4 h-1/4 bg-gradient-to-r from-brand-slate-blue/5 to-transparent rounded-full blur-xl"></div>
     </section>
   );
 };

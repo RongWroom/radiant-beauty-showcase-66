@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,7 +12,7 @@ const About = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        {/* Hero Section with Image - Updated for fresh look */}
+        {/* Hero Section with Image */}
         <section className="py-16 md:py-24 bg-brand-warm-ivory animate-fade-in">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -21,7 +22,6 @@ const About = () => {
                   <br />
                   STW Aesthetic Clinic
                 </h1>
-                {/* Decorative Rose Gold Line */}
                 <div className="flex mb-6">
                   <span className="block h-1 w-24 rounded-full bg-brand-rose-gold"></span>
                 </div>
@@ -49,15 +49,15 @@ const About = () => {
           </div>
         </section>
 
-        {/* Our Mission - Enhanced with better contrast */}
-        <section className="py-20 bg-white">
+        {/* Our Mission - Consistent with hero styling */}
+        <section className="py-16 md:py-20 bg-white">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-serif mb-4 text-brand-charcoal font-bold">Our Mission</h2>
               <div className="flex justify-center mb-8">
                 <span className="block h-1 w-16 rounded-full bg-brand-rose-gold"></span>
               </div>
-              <p className="text-xl leading-relaxed text-brand-warm-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl leading-relaxed text-brand-warm-gray-600 max-w-3xl mx-auto">
                 At STW Aesthetic Clinic, your safety and satisfaction are our top priorities. 
                 Our experienced and certified technicians will guide you through every step of your treatment, 
                 ensuring a seamless and enjoyable experience that enhances your natural beauty.
@@ -66,10 +66,10 @@ const About = () => {
           </div>
         </section>
 
-        {/* Values Section - Changed background to yellow */}
-        <section className="py-20 bg-brand-warm-ivory">
+        {/* Values Section - Consistent spacing and typography */}
+        <section className="py-16 md:py-20 bg-brand-warm-ivory">
           <div className="container-custom">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-serif mb-4 text-brand-charcoal font-bold">Our Values</h2>
               <div className="flex justify-center mb-6">
                 <span className="block h-1 w-16 rounded-full bg-brand-rose-gold"></span>
@@ -122,31 +122,31 @@ const About = () => {
           </div>
         </section>
 
-        {/* Our Commitment - Simple text section without box */}
-        <section className="py-20 bg-white">
+        {/* Our Commitment - Consistent with mission section */}
+        <section className="py-16 md:py-20 bg-white">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 text-brand-charcoal font-bold">Our Commitment</h2>
+              <h2 className="text-3xl md:text-4xl font-serif mb-4 text-brand-charcoal font-bold">Our Commitment</h2>
               <div className="flex justify-center mb-8">
                 <span className="block h-1 w-16 rounded-full bg-brand-rose-gold"></span>
               </div>
-              <blockquote className="text-xl md:text-2xl italic mb-10 text-brand-warm-gray-600 leading-relaxed">
+              <blockquote className="text-lg md:text-xl italic leading-relaxed text-brand-warm-gray-600 max-w-3xl mx-auto">
                 "Contact us today and rediscover the confidence that comes with having beautiful, rejuvenated skin."
               </blockquote>
             </div>
           </div>
         </section>
 
-        {/* Call to Action - Final section with strong contrast */}
-        <section className="py-20 bg-brand-plum">
+        {/* Call to Action - Consistent spacing */}
+        <section className="py-16 md:py-20 bg-brand-plum">
           <div className="container-custom text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-serif mb-6 text-white font-bold">
+            <h2 className="text-3xl md:text-4xl font-serif mb-4 text-white font-bold">
               Ready to Transform Your Look?
             </h2>
             <div className="flex justify-center mb-8">
               <span className="block h-1 w-16 rounded-full bg-brand-rose-gold"></span>
             </div>
-            <p className="text-xl mb-10 text-white/90 font-medium leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl mb-10 text-white/90 leading-relaxed max-w-3xl mx-auto">
               Experience the STW difference with our professional, personalized aesthetic treatments. 
               Join hundreds of satisfied clients who have discovered their confidence with us.
             </p>

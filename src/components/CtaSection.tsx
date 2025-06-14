@@ -21,9 +21,9 @@ const CtaSection = () => {
             Book Consultation
           </Button>
           <Button 
-            variant="outline" 
+            variant="secondary" 
             size="lg"
-            className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-brand-sage"
+            className="text-lg px-8 py-4 bg-white text-brand-sage hover:bg-brand-neutral-100"
           >
             View Treatments
           </Button>

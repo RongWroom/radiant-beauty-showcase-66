@@ -22,7 +22,7 @@ const Navbar = () => {
             <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-lg`}>Treatments</Link>
             <Link to="/products" className={`${isActive('/products')} transition-colors text-lg`}>Products</Link>
             <Link to="/about" className={`${isActive('/about')} transition-colors text-lg`}>About</Link>
-            <a href="#" className="text-brand-neutral-800 hover:text-brand-sage transition-colors text-lg">Contact</a>
+            <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg`}>Contact</Link>
           </div>
         </div>
         <div className="flex items-center space-x-4">

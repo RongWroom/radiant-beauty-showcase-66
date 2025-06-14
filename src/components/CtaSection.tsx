@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const CtaSection = () => {
   return (
@@ -13,20 +14,24 @@ const CtaSection = () => {
           Book your consultation today and discover personalized treatments designed to help you achieve your best skin yet.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            variant="accent" 
-            size="lg"
-            className="text-lg px-8 py-4"
-          >
-            Book Consultation
-          </Button>
-          <Button 
-            variant="secondary" 
-            size="lg"
-            className="text-lg px-8 py-4 bg-white text-black hover:bg-brand-neutral-100"
-          >
-            View Treatments
-          </Button>
+          <Link to="/contact">
+            <Button 
+              variant="accent" 
+              size="lg"
+              className="text-lg px-8 py-4"
+            >
+              Book Consultation
+            </Button>
+          </Link>
+          <Link to="/treatments">
+            <Button 
+              variant="secondary" 
+              size="lg"
+              className="text-lg px-8 py-4 bg-white text-black hover:bg-brand-neutral-100"
+            >
+              View Treatments
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

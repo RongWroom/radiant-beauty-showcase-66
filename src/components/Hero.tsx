@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -14,8 +14,12 @@ const Hero = () => {
             At STW Aesthetic Clinic, your safety and satisfaction are our top priorities. Our experienced and certified technicians will guide you through every step of your treatment.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            <Button className="btn-primary text-lg py-4 px-10 shadow-lg">SHOP NOW</Button>
-            <Button className="btn-secondary text-lg py-4 px-10">OUR SERVICES</Button>
+            <Link to="/products">
+              <Button className="btn-primary text-lg py-4 px-10 shadow-lg">SHOP NOW</Button>
+            </Link>
+            <Link to="/treatments">
+              <Button className="btn-secondary text-lg py-4 px-10">OUR SERVICES</Button>
+            </Link>
           </div>
         </div>
         <div className="md:w-1/2 mt-16 md:mt-0 relative">

@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const isActive = (path: string) => {
-    return location.pathname === path ? "text-brand-sage font-medium" : "text-brand-neutral-800 hover:text-brand-sage";
+    return location.pathname === path ? "text-brand-plum font-medium" : "text-brand-charcoal hover:text-brand-plum";
   };
 
   const toggleMobileMenu = () => {
@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white py-6 sticky top-0 z-50 shadow-sm border-b border-brand-neutral-200">
+    <nav className="bg-white py-6 sticky top-0 z-50 shadow-sm border-b border-brand-warm-gray-200">
       <div className="container-custom flex justify-between items-center">
         <div className="flex items-center space-x-12">
           <Link to="/" className="text-3xl font-serif font-bold text-hierarchy-primary">
@@ -37,15 +37,15 @@ const Navbar = () => {
         
         {/* Desktop Icons */}
         <div className="hidden md:flex items-center space-x-4">
-          <button className="p-3 hover:bg-brand-cream rounded-full transition-colors">
-            <Search className="h-5 w-5 text-brand-neutral-600" />
+          <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
+            <Search className="h-5 w-5 text-brand-warm-gray-600" />
           </button>
-          <button className="p-3 hover:bg-brand-cream rounded-full transition-colors">
-            <User className="h-5 w-5 text-brand-neutral-600" />
+          <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
+            <User className="h-5 w-5 text-brand-warm-gray-600" />
           </button>
-          <button className="p-3 hover:bg-brand-cream rounded-full transition-colors relative">
-            <ShoppingCart className="h-5 w-5 text-brand-neutral-600" />
-            <span className="absolute -top-1 -right-1 bg-brand-lime text-xs rounded-full h-5 w-5 flex items-center justify-center text-brand-neutral-900 font-medium">
+          <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors relative">
+            <ShoppingCart className="h-5 w-5 text-brand-warm-gray-600" />
+            <span className="absolute -top-1 -right-1 bg-brand-rose-gold text-xs rounded-full h-5 w-5 flex items-center justify-center text-brand-charcoal font-medium">
               0
             </span>
           </button>
@@ -53,20 +53,20 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-2">
-          <button className="p-2 hover:bg-brand-cream rounded-full transition-colors relative">
-            <ShoppingCart className="h-5 w-5 text-brand-neutral-600" />
-            <span className="absolute -top-1 -right-1 bg-brand-lime text-xs rounded-full h-4 w-4 flex items-center justify-center text-brand-neutral-900 font-medium text-xs">
+          <button className="p-2 hover:bg-brand-champagne rounded-full transition-colors relative">
+            <ShoppingCart className="h-5 w-5 text-brand-warm-gray-600" />
+            <span className="absolute -top-1 -right-1 bg-brand-rose-gold text-xs rounded-full h-4 w-4 flex items-center justify-center text-brand-charcoal font-medium text-xs">
               0
             </span>
           </button>
           <button 
             onClick={toggleMobileMenu}
-            className="p-2 hover:bg-brand-cream rounded-full transition-colors"
+            className="p-2 hover:bg-brand-champagne rounded-full transition-colors"
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-brand-neutral-600" />
+              <X className="h-6 w-6 text-brand-warm-gray-600" />
             ) : (
-              <Menu className="h-6 w-6 text-brand-neutral-600" />
+              <Menu className="h-6 w-6 text-brand-warm-gray-600" />
             )}
           </button>
         </div>
@@ -88,9 +88,9 @@ const Navbar = () => {
             </Link>
             <button 
               onClick={closeMobileMenu}
-              className="p-2 hover:bg-brand-cream rounded-full transition-colors"
+              className="p-2 hover:bg-brand-champagne rounded-full transition-colors"
             >
-              <X className="h-6 w-6 text-brand-neutral-600" />
+              <X className="h-6 w-6 text-brand-warm-gray-600" />
             </button>
           </div>
           
@@ -112,12 +112,12 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4 mt-8 pt-8 border-t border-brand-neutral-200">
-            <button className="p-3 hover:bg-brand-cream rounded-full transition-colors">
-              <Search className="h-5 w-5 text-brand-neutral-600" />
+          <div className="flex items-center space-x-4 mt-8 pt-8 border-t border-brand-warm-gray-200">
+            <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
+              <Search className="h-5 w-5 text-brand-warm-gray-600" />
             </button>
-            <button className="p-3 hover:bg-brand-cream rounded-full transition-colors">
-              <User className="h-5 w-5 text-brand-neutral-600" />
+            <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
+              <User className="h-5 w-5 text-brand-warm-gray-600" />
             </button>
           </div>
         </div>

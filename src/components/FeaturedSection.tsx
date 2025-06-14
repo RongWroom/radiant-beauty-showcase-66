@@ -27,7 +27,7 @@ export const FeaturedSection = () => {
             </div>
           </div>
           <div className="lg:w-1/2">
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-brand-neutral-200">
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-brand-warm-gray-200">
               <iframe 
                 width="100%" 
                 height="350" 
@@ -51,7 +51,7 @@ export const FeaturedSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {featuredTreatments.map(treatment => (
-            <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-neutral-200">
+            <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-warm-gray-200">
               <div className="relative overflow-hidden">
                 <img src={treatment.image} alt={treatment.name} className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -60,7 +60,7 @@ export const FeaturedSection = () => {
                 <h3 className="text-2xl font-serif mb-4 text-hierarchy-primary">{treatment.name}</h3>
                 <p className="text-hierarchy-secondary mb-8 leading-relaxed text-lg">{treatment.description}</p>
                 <div className="flex justify-between items-center">
-                  <span className="font-bold text-2xl text-brand-sage">{treatment.price}</span>
+                  <span className="font-bold text-2xl text-brand-plum">{treatment.price}</span>
                   <Link to={`/treatments/${treatment.id}`}>
                     <Button className="btn-secondary">
                       Read More
@@ -78,7 +78,7 @@ export const FeaturedSection = () => {
 
 export const BannerSection = () => {
   return (
-    <section className="section bg-brand-sage relative overflow-hidden">
+    <section className="section bg-brand-plum relative overflow-hidden">
       <div className="container-custom relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-20">
           <div className="lg:w-1/3">
@@ -90,7 +90,7 @@ export const BannerSection = () => {
           <div className="lg:w-2/3 text-white space-y-10">
             <h2 className="text-5xl lg:text-6xl font-serif leading-tight">Skin Care Meets Nature</h2>
             <p className="text-xl leading-relaxed opacity-95 max-w-2xl">Unlock the secret to your inner beauty and energy with our natural skincare products</p>
-            <Button className="bg-white text-brand-sage hover:bg-brand-cream transition-all duration-300 shadow-lg px-12 py-4 text-lg font-medium">
+            <Button className="bg-white text-brand-plum hover:bg-brand-champagne transition-all duration-300 shadow-lg px-12 py-4 text-lg font-medium">
               LEARN MORE
             </Button>
           </div>

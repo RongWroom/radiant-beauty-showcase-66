@@ -75,33 +75,33 @@
   }
   
   body {
-    @apply bg-brand-neutral-50 text-brand-neutral-800 font-sans;
+    @apply bg-brand-warm-ivory text-brand-charcoal font-sans;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif text-brand-neutral-900;
+    @apply font-serif text-brand-charcoal;
   }
 }
 
 @layer components {
-  /* BUTTON SYSTEM - Consistent across entire site */
+  /* SOPHISTICATED BUTTON SYSTEM */
   .btn {
     @apply inline-flex items-center justify-center rounded-lg px-8 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
   }
   
   .btn-primary {
-    @apply bg-brand-sage text-white hover:bg-brand-sage-dark hover:shadow-lg font-medium;
+    @apply bg-brand-plum text-white hover:bg-brand-plum-light hover:shadow-lg font-medium;
   }
   
   .btn-secondary {
-    @apply bg-white text-brand-sage border-2 border-brand-sage hover:bg-brand-sage hover:text-white transition-all duration-300;
+    @apply bg-white text-brand-plum border-2 border-brand-plum hover:bg-brand-plum hover:text-white transition-all duration-300;
   }
   
   .btn-accent {
-    @apply bg-brand-lime text-brand-neutral-900 hover:bg-brand-lime-light hover:shadow-lg font-medium;
+    @apply bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light hover:shadow-lg font-medium;
   }
   
-  /* LAYOUT SYSTEM */
+  /* ENHANCED LAYOUT SYSTEM */
   .section {
     @apply py-20 md:py-28;
   }
@@ -110,48 +110,52 @@
     @apply px-6 md:px-8 max-w-7xl mx-auto;
   }
   
-  /* CARD SYSTEM - Consistent hover states and styling */
+  /* SOPHISTICATED CARD SYSTEM */
   .card-clean {
-    @apply bg-white border border-brand-neutral-200 hover:border-brand-sage-light hover:shadow-lg transition-all duration-300;
+    @apply bg-white border border-brand-warm-gray-200 hover:border-brand-rose-gold hover:shadow-lg transition-all duration-300;
   }
   
   .card-featured {
-    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-neutral-200;
+    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-warm-gray-200 hover:border-brand-rose-gold;
   }
   
   .card-product {
-    @apply bg-white border border-brand-neutral-200 hover:border-brand-sage-light hover:shadow-md transition-all duration-300;
+    @apply bg-white border border-brand-warm-gray-200 hover:border-brand-rose-gold hover:shadow-md transition-all duration-300;
   }
   
-  /* TEXT HIERARCHY */
+  /* REFINED TEXT HIERARCHY */
   .text-hierarchy-primary {
-    @apply text-brand-neutral-900 font-serif;
+    @apply text-brand-charcoal font-serif;
   }
   
   .text-hierarchy-secondary {
-    @apply text-brand-neutral-600;
+    @apply text-brand-warm-gray-600;
   }
   
-  /* BACKGROUND SYSTEM */
+  .text-hierarchy-accent {
+    @apply text-brand-plum;
+  }
+  
+  /* SOPHISTICATED BACKGROUND SYSTEM */
   .bg-section-light {
-    @apply bg-brand-neutral-100;
+    @apply bg-brand-soft-blush;
   }
   
   .bg-section-subtle {
-    @apply bg-brand-cream;
+    @apply bg-brand-champagne;
   }
   
-  .bg-section-sage {
-    @apply bg-brand-sage;
+  .bg-section-primary {
+    @apply bg-brand-plum;
   }
   
-  /* BADGE SYSTEM */
+  /* ELEGANT BADGE SYSTEM */
   .badge-featured {
-    @apply bg-brand-lime text-brand-neutral-900 font-medium px-3 py-1 rounded-full;
+    @apply bg-brand-plum text-white font-medium px-3 py-1 rounded-full;
   }
   
   .badge-accent {
-    @apply bg-brand-sage text-white font-medium px-3 py-1 rounded-full;
+    @apply bg-brand-rose-gold text-brand-charcoal font-medium px-3 py-1 rounded-full;
   }
   
   /* UTILITY CLASSES */

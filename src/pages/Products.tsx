@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -7,14 +8,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { products } from '../utils/products';
 import { Star, ShoppingCart } from 'lucide-react';
+
 const Products = () => {
   const featuredProduct = products.find(product => product.featured) || products[0];
   const remainingProducts = products.filter(product => product.id !== featuredProduct.id);
-  return <div className="min-h-screen flex flex-col">
+  
+  return (
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-brand-neutral-50 py-16 md:py-24">
+        <section className="bg-brand-soft-blush py-16 md:py-24">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-3xl md:text-5xl font-serif mb-6 text-hierarchy-primary">Our Products</h1>
@@ -43,14 +47,16 @@ const Products = () => {
                       </Badge>
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 p-4 text-white">
-                      <h3 className="font-serif font-medium text-[brand-neutral-50] text-white">{featuredProduct.name}</h3>
+                      <h3 className="font-serif font-medium text-white">{featuredProduct.name}</h3>
                       <p className="text-sm mt-1 mb-2 line-clamp-2">
                         {featuredProduct.description}
                       </p>
                       <div className="flex items-center justify-between mt-2">
                         <span className="text-lg font-medium">{featuredProduct.price}</span>
                         <Link to={`/products/${featuredProduct.id}`}>
-                          <Button size="sm">View Product</Button>
+                          <Button size="sm" className="bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light">
+                            View Product
+                          </Button>
                         </Link>
                       </div>
                     </div>
@@ -61,7 +67,8 @@ const Products = () => {
               {/* Right Column with 2x3 Grid */}
               <div className="lg:col-span-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {remainingProducts.map(product => <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow">
+                  {remainingProducts.map(product => (
+                    <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative h-48">
                         <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                       </div>
@@ -71,13 +78,14 @@ const Products = () => {
                           {product.description}
                         </p>
                         <div className="flex items-center justify-between mt-4">
-                          <span className="text-lg font-medium text-hierarchy-primary">{product.price}</span>
+                          <span className="text-lg font-medium text-hierarchy-accent">{product.price}</span>
                           <Link to={`/products/${product.id}`}>
                             <Button size="sm">View Product</Button>
                           </Link>
                         </div>
                       </CardContent>
-                    </Card>)}
+                    </Card>
+                  ))}
                 </div>
               </div>
             </div>
@@ -85,6 +93,8 @@ const Products = () => {
         </section>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Products;

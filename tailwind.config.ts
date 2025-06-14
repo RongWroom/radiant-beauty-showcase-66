@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -62,20 +63,22 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Professional color palette with defined roles
+				// New sophisticated beauty brand palette
 				brand: {
-					sage: '#8BA896', // PRIMARY BUTTONS - main brand color
-					'sage-light': '#B8C9BE', // CARD HOVER BORDERS
-					'sage-dark': '#6B8B73', // BUTTON HOVER STATES
-					lime: '#C8D681', // ACCENT ELEMENTS - badges, highlights
-					'lime-light': '#D9E3A1', // LIME HOVER STATES
-					cream: '#F8F7F4', // SUBTLE SECTION BACKGROUNDS
-					'neutral-50': '#FAFAFA', // MAIN BACKGROUNDS
-					'neutral-100': '#F5F5F5', // LIGHT SECTION BACKGROUNDS
-					'neutral-200': '#E5E5E5', // BORDERS AND DIVIDERS
-					'neutral-600': '#525252', // SECONDARY TEXT
-					'neutral-800': '#262626', // PRIMARY TEXT
-					'neutral-900': '#171717' // HEADINGS
+					plum: '#6B4C57', // PRIMARY BUTTONS - sophisticated main brand color
+					'plum-light': '#8A6B76', // BUTTON HOVER STATES
+					'plum-dark': '#4A3340', // DEEP ACCENTS
+					'rose-gold': '#E8B4B8', // ACCENT ELEMENTS - badges, highlights
+					'rose-gold-light': '#F0C8CB', // ROSE GOLD HOVER STATES
+					'rose-gold-dark': '#D49BA0', // ROSE GOLD ACTIVE STATES
+					champagne: '#F7F3E9', // SUBTLE SECTION BACKGROUNDS
+					'warm-ivory': '#FDFCF8', // MAIN BACKGROUNDS
+					'soft-blush': '#FBF8F5', // LIGHT SECTION BACKGROUNDS
+					'warm-gray-100': '#F5F3F0', // BORDERS AND DIVIDERS
+					'warm-gray-200': '#E8E4E0', // SUBTLE BORDERS
+					'charcoal': '#2C2C2C', // PRIMARY TEXT
+					'warm-gray-600': '#6B6562', // SECONDARY TEXT
+					'warm-gray-800': '#4A453F' // SUPPORTING TEXT
 				}
 			},
 			borderRadius: {

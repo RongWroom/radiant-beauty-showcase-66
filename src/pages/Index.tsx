@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import InfiniteScrollBanner from '@/components/InfiniteScrollBanner';
 import { FeaturedSection, BannerSection } from '@/components/FeaturedSection';
 import CustomerReviews from '@/components/CustomerReviews';
 import Footer from '@/components/Footer';
@@ -12,6 +13,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <InfiniteScrollBanner />
         <FeaturedSection />
         <BannerSection />
         <CustomerReviews />

@@ -5,6 +5,7 @@ import Hero from '@/components/Hero';
 import InfiniteScrollBanner from '@/components/InfiniteScrollBanner';
 import { FeaturedSection, BannerSection } from '@/components/FeaturedSection';
 import CustomerReviews from '@/components/CustomerReviews';
+import CtaSection from '@/components/CtaSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
         <FeaturedSection />
         <BannerSection />
         <CustomerReviews />
+        <CtaSection />
       </main>
       <Footer />
     </div>

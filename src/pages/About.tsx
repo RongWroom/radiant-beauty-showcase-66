@@ -14,7 +14,7 @@ const About = () => {
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div className="text-left">
-                <h1 className="text-3xl md:text-5xl font-serif mb-6 text-hierarchy-primary">Welcome to 
+                <h1 className="text-3xl md:text-5xl font-serif mb-6 text-hierarchy-primary">Welcome to
 STW Aesthetic Clinic</h1>
                 <p className="text-lg mb-8 text-hierarchy-secondary">
                   Non-Surgical Beauty Treatments in County Durham

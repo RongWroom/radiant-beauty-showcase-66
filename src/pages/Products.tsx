@@ -35,11 +35,7 @@ const Products = () => {
               <div className="lg:col-span-1">
                 <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-full">
                   <div className="relative h-96 lg:h-full">
-                    <img 
-                      src={featuredProduct.image} 
-                      alt={featuredProduct.name} 
-                      className="w-full h-full object-cover" 
-                    />
+                    <img src={featuredProduct.image} alt={featuredProduct.name} className="w-full h-full object-cover" />
                     <div className="absolute top-4 left-4">
                       <Badge className="badge-featured">
                         <Star className="w-4 h-4 mr-1" />

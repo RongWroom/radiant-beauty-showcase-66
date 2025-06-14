@@ -21,7 +21,7 @@ const InfiniteScrollBanner = () => {
   const duplicatedKeywords = [...keywords, ...keywords, ...keywords];
 
   return (
-    <div className="bg-brand-sage overflow-hidden py-4 border-y border-brand-sage-dark/20">
+    <div className="bg-brand-plum overflow-hidden py-4 border-y border-brand-plum/20">
       <div className="flex animate-scroll-left whitespace-nowrap" style={{ minWidth: "200%" }}>
         {duplicatedKeywords.map((keyword, index) => (
           <span
@@ -29,7 +29,7 @@ const InfiniteScrollBanner = () => {
             className="inline-flex items-center text-white font-medium text-lg mx-8 opacity-90"
           >
             {keyword}
-            <span className="mx-8 text-brand-lime">•</span>
+            <span className="mx-8 text-brand-rose-gold">•</span>
           </span>
         ))}
       </div>

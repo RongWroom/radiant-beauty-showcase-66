@@ -1,14 +1,11 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-
 const Contact = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section - Updated to match About page styling */}
@@ -21,7 +18,7 @@ const Contact = () => {
               <div className="flex justify-center mb-6">
                 <span className="block h-1 w-24 rounded-full bg-brand-rose-gold"></span>
               </div>
-              <p className="text-lg mb-8 text-hierarchy-secondary">
+              <p className="text-lg mb-8 text-hierarchy-secondary px-0 mx-[40px]">
                 Ready to start your skincare journey? Get in touch with our expert team to 
                 <span className="bg-brand-rose-gold/30 px-2 py-0.5 rounded font-medium text-brand-charcoal ml-1">
                   book your consultation
@@ -116,36 +113,20 @@ const Contact = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-brand-charcoal mb-2">First Name</label>
-                        <input 
-                          type="text" 
-                          className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200"
-                          placeholder="Enter your first name"
-                        />
+                        <input type="text" className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200" placeholder="Enter your first name" />
                       </div>
                       <div>
                         <label className="block text-sm font-semibold text-brand-charcoal mb-2">Last Name</label>
-                        <input 
-                          type="text" 
-                          className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200"
-                          placeholder="Enter your last name"
-                        />
+                        <input type="text" className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200" placeholder="Enter your last name" />
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-brand-charcoal mb-2">Email</label>
-                      <input 
-                        type="email" 
-                        className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200"
-                        placeholder="Enter your email"
-                      />
+                      <input type="email" className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200" placeholder="Enter your email" />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-brand-charcoal mb-2">Phone</label>
-                      <input 
-                        type="tel" 
-                        className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200"
-                        placeholder="Enter your phone number"
-                      />
+                      <input type="tel" className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200" placeholder="Enter your phone number" />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-brand-charcoal mb-2">Service of Interest</label>
@@ -159,17 +140,10 @@ const Contact = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-brand-charcoal mb-2">Message</label>
-                      <textarea 
-                        rows={4}
-                        className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200 resize-none"
-                        placeholder="Tell us about your skincare goals or any questions you have"
-                      ></textarea>
+                      <textarea rows={4} className="w-full px-4 py-3 border border-brand-warm-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-plum focus:border-transparent transition-all duration-200 resize-none" placeholder="Tell us about your skincare goals or any questions you have"></textarea>
                     </div>
                     <div className="text-center pt-4">
-                      <Button 
-                        className="bg-brand-plum hover:bg-brand-plum-light text-white font-semibold px-10 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                        size="lg"
-                      >
+                      <Button className="bg-brand-plum hover:bg-brand-plum-light text-white font-semibold px-10 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300" size="lg">
                         Send Message
                       </Button>
                     </div>
@@ -181,8 +155,6 @@ const Contact = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;

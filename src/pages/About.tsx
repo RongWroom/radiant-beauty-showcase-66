@@ -127,14 +127,21 @@ const About = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="py-16 bg-brand-sage text-white">
+        <section className="py-16 bg-brand-plum">
           <div className="container-custom text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-serif mb-6">Ready to Transform Your Look?</h2>
-            <p className="text-lg mb-8 text-white/90">
-              Experience the STW difference with our professional, personalized aesthetic treatments.
+            <h2 className="text-2xl md:text-3xl font-serif mb-6 text-white font-bold">
+              Ready to Transform Your Look?
+            </h2>
+            <p className="text-lg mb-8 text-white/90 font-medium">
+              <span className="bg-white/10 px-2 py-0.5 rounded">
+                Experience the STW difference with our professional, personalized aesthetic treatments.
+              </span>
             </p>
-            <div className="flex justify-center space-x-4">
-              <Button variant="accent" className="bg-brand-lime text-brand-neutral-900 hover:bg-brand-lime/90">
+            <div className="flex justify-center">
+              <Button 
+                variant="accent"
+                className="bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light font-semibold px-8 py-3 text-base shadow-lg"
+              >
                 Contact Us Today
               </Button>
             </div>

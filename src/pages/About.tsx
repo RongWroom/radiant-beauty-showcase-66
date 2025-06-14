@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -5,19 +6,31 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Heart, Shield, Sparkles } from 'lucide-react';
+
 const About = () => {
-  return <div className="min-h-screen flex flex-col">
+  return (
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        {/* Hero Section with Image */}
-        <section className="py-16 md:py-24 bg-brand-cream">
+        {/* Hero Section with Image - Updated for fresh look */}
+        <section className="py-16 md:py-24 bg-brand-warm-ivory animate-fade-in">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div className="text-left">
-                <h1 className="text-3xl md:text-5xl font-serif mb-6 text-hierarchy-primary">Welcome to
-STW Aesthetic Clinic</h1>
+                <h1 className="text-3xl md:text-5xl font-serif mb-3 font-bold text-hierarchy-primary">
+                  Welcome to
+                  <br />
+                  STW Aesthetic Clinic
+                </h1>
+                {/* Decorative Rose Gold Line */}
+                <div className="flex mb-6">
+                  <span className="block h-1 w-24 rounded-full bg-brand-rose-gold"></span>
+                </div>
                 <p className="text-lg mb-8 text-hierarchy-secondary">
-                  Non-Surgical Beauty Treatments in County Durham
+                  <span className="bg-brand-rose-gold/30 px-2 py-0.5 rounded font-medium text-brand-charcoal">
+                    Non-Surgical Beauty Treatments
+                  </span>{" "}
+                  in County Durham
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="bg-brand-sage hover:bg-brand-sage-dark text-white">
@@ -129,6 +142,8 @@ STW Aesthetic Clinic</h1>
         </section>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default About;

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -6,10 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Heart, Shield, Sparkles } from 'lucide-react';
-
 const About = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section with Image */}
@@ -17,9 +14,8 @@ const About = () => {
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div className="text-left">
-                <h1 className="text-3xl md:text-5xl font-serif mb-6 text-hierarchy-primary">
-                  Welcome to STW Aesthetic Clinic
-                </h1>
+                <h1 className="text-3xl md:text-5xl font-serif mb-6 text-hierarchy-primary">Welcome to 
+STW Aesthetic Clinic</h1>
                 <p className="text-lg mb-8 text-hierarchy-secondary">
                   Non-Surgical Beauty Treatments in County Durham
                 </p>
@@ -34,11 +30,7 @@ const About = () => {
               </div>
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <AspectRatio ratio={4 / 3}>
-                  <img 
-                    src="/lovable-uploads/8ba11e7a-85dd-4fad-8b15-798fdcfedda6.png" 
-                    alt="STW Aesthetic Clinic Professional" 
-                    className="object-cover w-full h-full" 
-                  />
+                  <img src="/lovable-uploads/8ba11e7a-85dd-4fad-8b15-798fdcfedda6.png" alt="STW Aesthetic Clinic Professional" className="object-cover w-full h-full" />
                 </AspectRatio>
               </div>
             </div>
@@ -137,8 +129,6 @@ const About = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;

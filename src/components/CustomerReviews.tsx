@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
@@ -64,7 +63,7 @@ const CustomerReviews = () => {
   const visibleReviews = showAll ? reviews : reviews.slice(0, defaultCount);
 
   return (
-    <section className="bg-section-subtle section pb-12">
+    <section className="bg-brand-warm-ivory section pb-12">
       <div className="container-custom">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-6 text-hierarchy-primary">What Our Clients Say</h2>
@@ -126,4 +125,3 @@ const CustomerReviews = () => {
 };
 
 export default CustomerReviews;
-

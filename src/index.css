@@ -146,13 +146,11 @@
   
   /* SOPHISTICATED BACKGROUND SYSTEM */
   .bg-section-light {
-    @apply bg-brand-soft-blush;
+    @apply bg-brand-warm-ivory; /* Updated: use the same yellow as Hero */
   }
-  
   .bg-section-subtle {
-    @apply bg-brand-champagne;
+    @apply bg-brand-champagne; /* still available if needed elsewhere */
   }
-  
   .bg-section-primary {
     @apply bg-brand-plum;
   }

@@ -71,7 +71,7 @@ export const products: Product[] = [
       "Reduces the appearance of fine lines and wrinkles",
       "Smooths and softens"
     ],
-    image: "https://images.pexels.com/photos/7262459/pexels-photo-7262459.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.pexels.com/photos/932577/pexels-photo-932577.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Moisturizer"
   },
   {

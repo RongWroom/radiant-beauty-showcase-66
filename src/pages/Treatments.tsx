@@ -55,10 +55,10 @@ const Treatments = () => {
                     <Droplet className="w-8 h-8 text-brand-charcoal" />
                   </div>
                   <h3 className="font-serif text-xl mb-2 text-white">Facial Treatments</h3>
-                  <p className="mb-4 text-brand-light-gray">
+                  <p className="mb-4 text-brand-silver">
                     Revitalize and nourish your skin with our specialized facial treatments
                   </p>
-                  <Button variant="outline" className="mt-auto text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Facials</Button>
+                  <Button variant="outline" className="mt-auto bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Facials</Button>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
@@ -67,10 +67,10 @@ const Treatments = () => {
                     <Syringe className="w-8 h-8 text-brand-charcoal" />
                   </div>
                   <h3 className="font-serif text-xl mb-2 text-white">Anti-Aging Solutions</h3>
-                  <p className="mb-4 text-brand-light-gray">
+                  <p className="mb-4 text-brand-silver">
                     Turn back the clock with our effective anti-aging treatments
                   </p>
-                  <Button variant="outline" className="mt-auto text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Anti-Aging</Button>
+                  <Button variant="outline" className="mt-auto bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Anti-Aging</Button>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
@@ -79,10 +79,10 @@ const Treatments = () => {
                     <Droplet className="w-8 h-8 text-brand-charcoal" />
                   </div>
                   <h3 className="font-serif text-xl mb-2 text-white">Skin Rejuvenation</h3>
-                  <p className="mb-4 text-brand-light-gray">
+                  <p className="mb-4 text-brand-silver">
                     Refresh and renew your skin with our rejuvenating treatments
                   </p>
-                  <Button variant="outline" className="mt-auto text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Rejuvenation</Button>
+                  <Button variant="outline" className="mt-auto bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Rejuvenation</Button>
                 </CardContent>
               </Card>
             </div>

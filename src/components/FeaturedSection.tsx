@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { featuredTreatments, treatments } from '../utils/data';
-
 export const FeaturedSection = () => {
-  return (
-    <section className="section bg-white">
+  return <section className="section bg-white">
       <div className="container-custom">
         <div className="flex flex-col lg:flex-row gap-24 items-center mb-32">
           <div className="lg:w-1/2 space-y-10">
@@ -28,17 +25,7 @@ export const FeaturedSection = () => {
           </div>
           <div className="lg:w-1/2">
             <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-brand-warm-gray-200">
-              <iframe 
-                width="100%" 
-                height="350" 
-                src="https://www.youtube.com/embed/BNGa9tXr2No?si=Bc_2U5ZqHnEbfjtj" 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
-                allowFullScreen 
-                className="rounded-2xl" 
-              />
+              <iframe width="100%" height="350" src="https://www.youtube.com/embed/BNGa9tXr2No?si=Bc_2U5ZqHnEbfjtj" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="rounded-2xl" />
             </div>
           </div>
         </div>
@@ -50,8 +37,7 @@ export const FeaturedSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {featuredTreatments.map(treatment => (
-            <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-warm-gray-200">
+          {featuredTreatments.map(treatment => <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-warm-gray-200">
               <div className="relative overflow-hidden">
                 <img src={treatment.image} alt={treatment.name} className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -68,19 +54,15 @@ export const FeaturedSection = () => {
                   </Link>
                 </div>
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export const BannerSection = () => {
-  return (
-    <section className="section bg-brand-plum relative overflow-hidden">
+  return <section className="section bg-brand-plum relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-20 bg-[brand-soft-blush]">
           <div className="lg:w-1/3">
             <div className="relative">
               <img src="/placeholder.svg" alt="Skincare serum" className="w-full h-96 object-cover rounded-3xl shadow-lg" />
@@ -88,7 +70,7 @@ export const BannerSection = () => {
             </div>
           </div>
           <div className="lg:w-2/3 text-white space-y-10">
-            <h2 className="text-5xl lg:text-6xl font-serif leading-tight">Skin Care Meets Nature</h2>
+            <h2 className="text-5xl lg:text-6xl font-serif leading-tight text-white">Skin Care Meets Nature</h2>
             <p className="text-xl leading-relaxed opacity-95 max-w-2xl">Unlock the secret to your inner beauty and energy with our natural skincare products</p>
             <Button className="bg-white text-brand-plum hover:bg-brand-champagne transition-all duration-300 shadow-lg px-12 py-4 text-lg font-medium">
               LEARN MORE
@@ -99,17 +81,13 @@ export const BannerSection = () => {
       <div className="absolute top-0 right-0 h-full w-1/4 opacity-10">
         <img src="/placeholder.svg" alt="Decorative leaves" className="h-full object-cover" />
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export const ProductGrid = () => {
-  return (
-    <section className="section bg-section-light">
+  return <section className="section bg-section-light">
       <div className="container-custom">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {treatments.map(treatment => (
-            <div key={treatment.id} className="bg-white rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group border border-brand-neutral-200">
+          {treatments.map(treatment => <div key={treatment.id} className="bg-white rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group border border-brand-neutral-200">
               <img src={treatment.image} alt={treatment.name} className="w-full h-48 object-cover rounded-xl mb-6 group-hover:scale-105 transition-transform duration-300" />
               <h3 className="text-lg font-serif font-medium mb-2 text-hierarchy-primary">{treatment.name}</h3>
               <p className="text-hierarchy-secondary text-sm mb-4 line-clamp-2">{treatment.description}</p>
@@ -121,14 +99,11 @@ export const ProductGrid = () => {
                   </Button>
                 </Link>
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default {
   FeaturedSection,
   BannerSection,

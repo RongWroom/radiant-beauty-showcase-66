@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -16,12 +17,18 @@ const Treatments = () => {
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-skin-lightgreen py-16 md:py-24">
+        <section className="bg-brand-warm-ivory py-12 md:py-20 animate-fade-in">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-3xl md:text-5xl font-serif mb-6">Our Skincare Treatments</h1>
-              <p className="text-lg mb-8">
-                Discover our range of professional treatments tailored to your unique skin needs.
+              <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
+                Our Skincare Treatments
+              </h1>
+              {/* Decorative Rose Gold Line */}
+              <div className="flex justify-center mb-5">
+                <span className="block h-1 w-24 rounded-full bg-brand-rose-gold"></span>
+              </div>
+              <p className="text-lg mb-6 font-medium text-brand-charcoal">
+                Discover our range of <span className="px-2 py-0.5 rounded bg-brand-rose-gold/60 text-brand-charcoal font-semibold">professional</span> treatments tailored to your unique skin needs.
                 Each treatment is performed by our expert estheticians using premium products.
               </p>
               <div className="flex justify-center space-x-4">
@@ -35,9 +42,9 @@ const Treatments = () => {
         </section>
 
         {/* Treatment Categories */}
-        <section className="py-12 bg-white">
+        <section className="py-9 bg-white">
           <div className="container-custom">
-            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Treatment Categories</h2>
+            <h2 className="text-2xl md:text-3xl font-serif mb-7 text-brand-charcoal font-bold">Treatment Categories</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6 flex flex-col items-center text-center bg-[brand-sage-dark] bg-brand-lime">
@@ -80,9 +87,9 @@ const Treatments = () => {
         </section>
 
         {/* All Treatments Grid - Updated Layout */}
-        <section className="py-16 bg-skin-gray">
+        <section className="py-14 bg-skin-gray">
           <div className="container-custom">
-            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">All Treatments</h2>
+            <h2 className="text-2xl md:text-3xl font-serif mb-7 text-brand-charcoal font-bold text-center">All Treatments</h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Featured Treatment - Large Square on Left */}
               <div className="lg:col-span-1">
@@ -138,11 +145,11 @@ const Treatments = () => {
         </section>
 
         {/* Booking Section */}
-        <section className="py-16 bg-skin-lightgreen">
+        <section className="py-12 bg-skin-lightgreen">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-serif mb-4">Ready to Book Your Treatment?</h2>
-              <p className="mb-8">Schedule your appointment today and take the first step towards healthier, more radiant skin.</p>
+              <h2 className="text-2xl md:text-3xl font-serif mb-3 font-semibold text-brand-charcoal">Ready to Book Your Treatment?</h2>
+              <p className="mb-6 text-brand-charcoal">Schedule your appointment today and take the first step towards healthier, more radiant skin.</p>
               <Button className="hover:bg-opacity-90 bg-skin-teal">Book Now</Button>
             </div>
           </div>

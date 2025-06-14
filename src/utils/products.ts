@@ -23,7 +23,7 @@ export const products: Product[] = [
       "Helps reduce the appearance of fine lines and wrinkles",
       "Helps revitalise the appearance of aging and sensitive skin"
     ],
-    image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.pexels.com/photos/286951/pexels-photo-286951.jpeg?auto=compress&cs=tinysrgb&w=600",
     category: "Serum",
     size: "30ml",
     featured: true

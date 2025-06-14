@@ -1,4 +1,3 @@
-
 export interface Product {
   id: number;
   name: string;
@@ -86,7 +85,7 @@ export const products: Product[] = [
       "Thoroughly cleanses without stripping oils",
       "Contains bionutrients and antioxidants"
     ],
-    image: "https://images.pexels.com/photos/6621472/pexels-photo-6621472.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Cleanser"
   },
   {

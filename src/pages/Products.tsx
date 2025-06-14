@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,13 +7,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { products } from '../utils/products';
 import { Star, ShoppingCart } from 'lucide-react';
-
 const Products = () => {
   const featuredProduct = products.find(product => product.featured) || products[0];
   const remainingProducts = products.filter(product => product.id !== featuredProduct.id);
-  
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -60,7 +56,7 @@ const Products = () => {
                       <div className="flex items-center justify-between mt-2">
                         <span className="text-lg font-medium">{featuredProduct.price}</span>
                         <Link to={`/products/${featuredProduct.id}`}>
-                          <Button size="sm" className="bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light">
+                          <Button size="sm" className="bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light bg-white">
                             View Product
                           </Button>
                         </Link>
@@ -73,8 +69,7 @@ const Products = () => {
               {/* Right Column with 2x3 Grid */}
               <div className="lg:col-span-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {remainingProducts.map(product => (
-                    <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow">
+                  {remainingProducts.map(product => <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative h-48">
                         <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                       </div>
@@ -90,8 +85,7 @@ const Products = () => {
                           </Link>
                         </div>
                       </CardContent>
-                    </Card>
-                  ))}
+                    </Card>)}
                 </div>
               </div>
             </div>
@@ -99,9 +93,6 @@ const Products = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Products;
-

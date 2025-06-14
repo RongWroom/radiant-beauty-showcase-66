@@ -24,7 +24,7 @@ export const products: Product[] = [
       "Helps reduce the appearance of fine lines and wrinkles",
       "Helps revitalise the appearance of aging and sensitive skin"
     ],
-    image: "/placeholder.svg",
+    image: "https://images.pexels.com/photos/7797357/pexels-photo-7797357.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Serum",
     size: "30ml",
     featured: true
@@ -41,7 +41,7 @@ export const products: Product[] = [
       "Helps reduce the appearance of fine lines and wrinkles",
       "Helps revitalise the appearance of aging and sensitive skin"
     ],
-    image: "/placeholder.svg",
+    image: "https://images.pexels.com/photos/7797118/pexels-photo-7797118.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Serum",
     size: "15ml"
   },
@@ -58,7 +58,7 @@ export const products: Product[] = [
       "Excellent moisturizing prep for makeup",
       "Great for all skin types including oily and sensitive skin"
     ],
-    image: "/placeholder.svg",
+    image: "https://images.pexels.com/photos/7797097/pexels-photo-7797097.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Moisturizer"
   },
   {
@@ -72,7 +72,7 @@ export const products: Product[] = [
       "Reduces the appearance of fine lines and wrinkles",
       "Smooths and softens"
     ],
-    image: "/placeholder.svg",
+    image: "https://images.pexels.com/photos/7319070/pexels-photo-7319070.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Moisturizer"
   },
   {
@@ -86,7 +86,7 @@ export const products: Product[] = [
       "Thoroughly cleanses without stripping oils",
       "Contains bionutrients and antioxidants"
     ],
-    image: "/placeholder.svg",
+    image: "https://images.pexels.com/photos/3685530/pexels-photo-3685530.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Cleanser"
   },
   {
@@ -100,7 +100,7 @@ export const products: Product[] = [
       "Enhances hydration",
       "Provides multi-level protection"
     ],
-    image: "/placeholder.svg",
+    image: "https://images.pexels.com/photos/6621461/pexels-photo-6621461.jpeg?auto=compress&cs=tinysrgb&w=800",
     category: "Serum"
   }
 ];

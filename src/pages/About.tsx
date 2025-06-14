@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -67,8 +66,8 @@ const About = () => {
           </div>
         </section>
 
-        {/* Values Section - Redesigned with better contrast and spacing */}
-        <section className="py-20 bg-brand-champagne">
+        {/* Values Section - Changed background to yellow */}
+        <section className="py-20 bg-brand-warm-ivory">
           <div className="container-custom">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-serif mb-4 text-brand-charcoal font-bold">Our Values</h2>

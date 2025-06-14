@@ -17,12 +17,12 @@ const InfiniteScrollBanner = () => {
     "Advanced Technology"
   ];
 
-  // Duplicate the keywords array to create seamless infinite scroll
-  const duplicatedKeywords = [...keywords, ...keywords];
+  // Duplicate several times to ensure a seamless infinite scroll
+  const duplicatedKeywords = [...keywords, ...keywords, ...keywords];
 
   return (
     <div className="bg-brand-sage overflow-hidden py-4 border-y border-brand-sage-dark/20">
-      <div className="flex animate-scroll-left whitespace-nowrap">
+      <div className="flex animate-scroll-left whitespace-nowrap" style={{ minWidth: "200%" }}>
         {duplicatedKeywords.map((keyword, index) => (
           <span
             key={index}

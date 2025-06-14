@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const ValuesBanner = () => {
   return (
-    <section className="relative bg-brand-plum text-white overflow-hidden">
+    <section className="relative bg-brand-slate-blue text-white overflow-hidden">
       <div className="container-custom py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
@@ -15,12 +15,12 @@ const ValuesBanner = () => {
               Our commitment to sustainability goes beyond skin-deep. We source ingredients responsibly,
               use eco-friendly packaging, and donate a portion of every purchase to water conservation efforts.
             </p>
-            <Button className="bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light transition-all duration-300 shadow-lg px-10 py-4 text-lg font-medium">
+            <Button variant="accent" className="transition-all duration-300 shadow-lg px-10 py-4 text-lg font-medium">
               LEARN MORE
             </Button>
           </div>
           <div className="relative">
-            <div className="absolute inset-0 bg-brand-rose-gold/10 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-brand-silver/10 rounded-3xl"></div>
             <img 
               src="/placeholder.svg" 
               alt="Beautiful woman with flower" 
@@ -29,7 +29,7 @@ const ValuesBanner = () => {
           </div>
         </div>
       </div>
-      <div className="absolute top-0 right-0 h-full w-1/3 bg-gradient-to-l from-brand-rose-gold/10 to-transparent pointer-events-none"></div>
+      <div className="absolute top-0 right-0 h-full w-1/3 bg-gradient-to-l from-brand-silver/10 to-transparent pointer-events-none"></div>
     </section>
   );
 };

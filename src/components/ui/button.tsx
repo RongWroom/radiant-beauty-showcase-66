@@ -10,16 +10,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand-plum text-white hover:bg-brand-plum-light",
+        default: "bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light",
         destructive:
           "bg-red-500 text-white hover:bg-red-600",
         outline:
-          "border border-brand-plum bg-white text-brand-plum hover:bg-brand-plum hover:text-white",
+          "border border-brand-slate-blue bg-white text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white",
         secondary:
-          "bg-brand-warm-gray-100 text-brand-warm-gray-800 hover:bg-brand-warm-gray-200",
-        ghost: "hover:bg-brand-warm-gray-100 hover:text-brand-charcoal",
-        link: "text-brand-plum underline-offset-4 hover:underline",
-        accent: "bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light",
+          "bg-brand-gray-100 text-brand-gray-800 hover:bg-brand-gray-200",
+        ghost: "hover:bg-brand-gray-100 hover:text-brand-charcoal",
+        link: "text-brand-slate-blue underline-offset-4 hover:underline",
+        accent: "bg-brand-silver text-brand-charcoal hover:bg-brand-silver-light",
       },
       size: {
         default: "h-10 px-4 py-2",

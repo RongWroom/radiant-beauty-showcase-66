@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,22 +62,22 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// New sophisticated beauty brand palette
+				// New blue-grey beauty brand palette
 				brand: {
-					plum: '#6B4C57', // PRIMARY BUTTONS - sophisticated main brand color
-					'plum-light': '#8A6B76', // BUTTON HOVER STATES
-					'plum-dark': '#4A3340', // DEEP ACCENTS
-					'rose-gold': '#E8B4B8', // ACCENT ELEMENTS - badges, highlights
-					'rose-gold-light': '#F0C8CB', // ROSE GOLD HOVER STATES
-					'rose-gold-dark': '#D49BA0', // ROSE GOLD ACTIVE STATES
-					champagne: '#F7F3E9', // SUBTLE SECTION BACKGROUNDS
-					'warm-ivory': '#FDFCF8', // MAIN BACKGROUNDS
-					'soft-blush': '#FBF8F5', // LIGHT SECTION BACKGROUNDS
-					'warm-gray-100': '#F5F3F0', // BORDERS AND DIVIDERS
-					'warm-gray-200': '#E8E4E0', // SUBTLE BORDERS
-					'charcoal': '#2C2C2C', // PRIMARY TEXT
-					'warm-gray-600': '#6B6562', // SECONDARY TEXT
-					'warm-gray-800': '#4A453F' // SUPPORTING TEXT
+					'slate-blue': '#52527a',       // PRIMARY - new main brand color
+					'slate-blue-light': '#71719b', // PRIMARY HOVER
+					'slate-blue-dark': '#3e3e5c',  // DEEP ACCENTS
+					'silver': '#d1d1e0',           // ACCENT - badges, highlights
+					'silver-light': '#e0e0eb',     // ACCENT HOVER
+					'silver-dark': '#b8b8cc',      // ACCENT ACTIVE
+					'off-white': '#F7F7F7',         // SUBTLE SECTION BACKGROUNDS
+					'white': '#FFFFFF',             // MAIN BACKGROUND
+					'light-gray': '#F0F0F5',       // LIGHT SECTION BACKGROUNDS
+					'gray-100': '#E5E7EB',         // BORDERS AND DIVIDERS
+					'gray-200': '#D1D5DB',         // SUBTLE BORDERS
+					'charcoal': '#1F2937',         // PRIMARY TEXT
+					'gray-600': '#4B5563',         // SECONDARY TEXT
+					'gray-800': '#111827'          // SUPPORTING TEXT
 				}
 			},
 			borderRadius: {

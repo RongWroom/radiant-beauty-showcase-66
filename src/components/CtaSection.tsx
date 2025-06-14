@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const CtaSection = () => {
   return (
-    <section className="bg-brand-plum py-20">
+    <section className="bg-brand-slate-blue py-20">
       <div className="container-custom text-center">
         <h2 className="font-serif text-4xl md:text-5xl font-medium text-white mb-6">
           Ready to Transform Your Skin?
@@ -16,14 +15,15 @@ const CtaSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/contact">
             <Button 
-              className="bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light text-lg px-8 py-4"
+              variant="accent"
+              className="text-lg px-8 py-4"
             >
               Book Consultation
             </Button>
           </Link>
           <Link to="/treatments">
             <Button 
-              className="bg-white text-brand-plum hover:bg-brand-champagne text-lg px-8 py-4"
+              className="bg-white text-brand-slate-blue hover:bg-brand-off-white text-lg px-8 py-4"
             >
               View Treatments
             </Button>

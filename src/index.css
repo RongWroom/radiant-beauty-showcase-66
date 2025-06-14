@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -74,7 +75,7 @@
   }
   
   body {
-    @apply bg-brand-warm-ivory text-brand-charcoal font-sans;
+    @apply bg-brand-white text-brand-charcoal font-sans;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -89,15 +90,15 @@
   }
   
   .btn-primary {
-    @apply bg-brand-plum text-white hover:bg-brand-plum-light hover:shadow-lg font-medium;
+    @apply bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light hover:shadow-lg font-medium;
   }
   
   .btn-secondary {
-    @apply bg-white text-brand-plum border-2 border-brand-plum hover:bg-brand-plum hover:text-white transition-all duration-300;
+    @apply bg-white text-brand-slate-blue border-2 border-brand-slate-blue hover:bg-brand-slate-blue hover:text-white transition-all duration-300;
   }
   
   .btn-accent {
-    @apply bg-brand-rose-gold text-brand-charcoal hover:bg-brand-rose-gold-light hover:shadow-lg font-medium;
+    @apply bg-brand-silver text-brand-charcoal hover:bg-brand-silver-light hover:shadow-lg font-medium;
   }
   
   /* ENHANCED LAYOUT SYSTEM */
@@ -111,15 +112,15 @@
   
   /* SOPHISTICATED CARD SYSTEM */
   .card-clean {
-    @apply bg-white border border-brand-warm-gray-200 hover:border-brand-rose-gold hover:shadow-lg transition-all duration-300;
+    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-lg transition-all duration-300;
   }
   
   .card-featured {
-    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-warm-gray-200 hover:border-brand-rose-gold;
+    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-gray-200 hover:border-brand-silver;
   }
   
   .card-product {
-    @apply bg-white border border-brand-warm-gray-200 hover:border-brand-rose-gold hover:shadow-md transition-all duration-300;
+    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-md transition-all duration-300;
   }
   
   /* REFINED TEXT HIERARCHY - PROPER CONTRAST */
@@ -128,11 +129,11 @@
   }
   
   .text-hierarchy-secondary {
-    @apply text-brand-warm-gray-600;
+    @apply text-brand-gray-600;
   }
   
   .text-hierarchy-accent {
-    @apply text-brand-plum;
+    @apply text-brand-slate-blue;
   }
   
   /* TEXT ON DARK BACKGROUNDS */
@@ -146,22 +147,22 @@
   
   /* SOPHISTICATED BACKGROUND SYSTEM */
   .bg-section-light {
-    @apply bg-brand-warm-ivory; /* Updated: use the same yellow as Hero */
+    @apply bg-brand-white; /* Updated: use the same as Hero */
   }
   .bg-section-subtle {
-    @apply bg-brand-champagne; /* still available if needed elsewhere */
+    @apply bg-brand-off-white; /* still available if needed elsewhere */
   }
   .bg-section-primary {
-    @apply bg-brand-plum;
+    @apply bg-brand-slate-blue;
   }
   
   /* ELEGANT BADGE SYSTEM */
   .badge-featured {
-    @apply bg-brand-plum text-white font-medium px-3 py-1 rounded-full;
+    @apply bg-brand-slate-blue text-white font-medium px-3 py-1 rounded-full;
   }
   
   .badge-accent {
-    @apply bg-brand-rose-gold text-brand-charcoal font-medium px-3 py-1 rounded-full;
+    @apply bg-brand-silver text-brand-charcoal font-medium px-3 py-1 rounded-full;
   }
   
   /* UTILITY CLASSES */

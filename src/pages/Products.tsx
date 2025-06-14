@@ -36,7 +36,7 @@ const Products = () => {
                 <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-full">
                   <div className="relative h-96 lg:h-full">
                     <img 
-                      src="https://images.pexels.com/photos/8376094/pexels-photo-8376094.jpeg?auto=compress&fit=crop&w=800&q=80" 
+                      src={featuredProduct.image} 
                       alt={featuredProduct.name} 
                       className="w-full h-full object-cover" 
                     />

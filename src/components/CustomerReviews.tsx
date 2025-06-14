@@ -57,17 +57,17 @@ const CustomerReviews = () => {
           {reviews.map((review) => (
             <div 
               key={review.id} 
-              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1 border border-brand-neutral-200"
+              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1 border border-brand-warm-gray-200"
             >
               <div className="flex mb-6">
                 {Array.from({ length: review.stars }).map((_, index) => (
-                  <Star key={index} className="h-5 w-5 fill-brand-lime text-brand-lime" />
+                  <Star key={index} className="h-5 w-5 fill-brand-rose-gold text-brand-rose-gold" />
                 ))}
               </div>
               <blockquote className="flex-grow">
                 <p className="text-hierarchy-secondary italic mb-8 leading-relaxed text-lg">"{review.text}"</p>
               </blockquote>
-              <footer className="mt-auto pt-6 border-t border-brand-neutral-200">
+              <footer className="mt-auto pt-6 border-t border-brand-warm-gray-200">
                 <p className="font-medium text-hierarchy-primary text-lg">{review.name}</p>
               </footer>
             </div>
@@ -81,7 +81,7 @@ const CustomerReviews = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className="bg-white px-10 py-8 rounded-2xl shadow-sm flex items-center max-w-md hover:shadow-md transition-shadow duration-300 border border-brand-neutral-200">
+          <div className="bg-white px-10 py-8 rounded-2xl shadow-sm flex items-center max-w-md hover:shadow-md transition-shadow duration-300 border border-brand-warm-gray-200">
             <img 
               src="/placeholder.svg"
               alt="Google Reviews" 

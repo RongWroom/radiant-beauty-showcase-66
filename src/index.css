@@ -123,7 +123,7 @@
     @apply bg-white border border-brand-warm-gray-200 hover:border-brand-rose-gold hover:shadow-md transition-all duration-300;
   }
   
-  /* REFINED TEXT HIERARCHY */
+  /* REFINED TEXT HIERARCHY - PROPER CONTRAST */
   .text-hierarchy-primary {
     @apply text-brand-charcoal font-serif;
   }
@@ -134,6 +134,15 @@
   
   .text-hierarchy-accent {
     @apply text-brand-plum;
+  }
+  
+  /* TEXT ON DARK BACKGROUNDS */
+  .text-on-dark-primary {
+    @apply text-white font-serif;
+  }
+  
+  .text-on-dark-secondary {
+    @apply text-white/90;
   }
   
   /* SOPHISTICATED BACKGROUND SYSTEM */

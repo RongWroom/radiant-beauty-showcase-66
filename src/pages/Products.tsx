@@ -18,12 +18,18 @@ const Products = () => {
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-brand-soft-blush py-16 md:py-24">
+        <section className="bg-brand-warm-ivory py-12 md:py-20 animate-fade-in">
           <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-3xl md:text-5xl font-serif mb-6 text-hierarchy-primary">Our Products</h1>
-              <p className="text-lg mb-8 text-hierarchy-secondary">
-                Discover our range of premium skincare products, scientifically formulated 
+              <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
+                Our Products
+              </h1>
+              {/* Decorative Rose Gold Line */}
+              <div className="flex justify-center mb-5">
+                <span className="block h-1 w-24 rounded-full bg-brand-rose-gold"></span>
+              </div>
+              <p className="text-lg mb-6 font-medium text-brand-charcoal">
+                Discover our range of <span className="px-2 py-0.5 rounded bg-brand-rose-gold/60 text-brand-charcoal font-semibold">premium</span> skincare products, scientifically formulated 
                 to deliver exceptional results for all skin types.
               </p>
             </div>
@@ -98,3 +104,4 @@ const Products = () => {
 };
 
 export default Products;
+

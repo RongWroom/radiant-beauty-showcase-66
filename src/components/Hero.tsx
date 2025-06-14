@@ -1,10 +1,13 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+
 const Hero = () => {
-  return <section className="bg-brand-warm-ivory relative overflow-hidden">
+  return (
+    <section className="bg-brand-warm-ivory relative overflow-hidden">
       <div className="container-custom min-h-[85vh] flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 pt-24 md:pt-0 z-10 space-y-8">
+          
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium leading-tight text-hierarchy-primary">
             Skincare That Lets Your Inner Glow Shine Through
           </h1>
@@ -22,10 +25,15 @@ const Hero = () => {
         </div>
         <div className="md:w-1/2 mt-16 md:mt-0 relative">
           <div className="absolute top-8 right-8 bottom-8 left-1/4 bg-brand-champagne rounded-2xl opacity-60"></div>
-          <img alt="Woman with glowing skin" src="https://drive.google.com/file/d/1UtyQ8SaJoHAmaCsEN078dUJKR7LceT8U/view?usp=sharing" className="relative z-10 ml-auto h-[500px] md:h-[600px] w-full max-w-md rounded-lg shadow-lg object-cover" />
+          <img
+            alt="STW Aesthetic Clinic logo"
+            src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png"
+            className="relative z-10 ml-auto h-[500px] md:h-[600px] w-full max-w-md rounded-lg object-contain p-8"
+          />
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-brand-soft-blush/30"></div>
-    </section>;
+    </section>
+  );
 };
 export default Hero;

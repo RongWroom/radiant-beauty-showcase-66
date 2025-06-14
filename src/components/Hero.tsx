@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="bg-brand-white relative overflow-hidden">
-      <div className="container-custom min-h-[85vh] flex flex-col md:flex-row items-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-white via-brand-off-white to-brand-light-gray">
+      <div className="container-custom min-h-[85vh] flex flex-col md:flex-row items-center relative z-10">
         <div className="md:w-1/2 pt-24 md:pt-0 z-10 space-y-8">
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium leading-tight text-hierarchy-primary">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium leading-tight text-brand-charcoal">
             Skincare That Lets Your Inner Glow Shine Through
           </h1>
-          <p className="text-hierarchy-secondary text-lg md:text-xl leading-relaxed max-w-lg">
+          <p className="text-brand-gray-600 text-lg md:text-xl leading-relaxed max-w-lg">
             At STW Aesthetic Clinic, your safety and satisfaction are our top priorities. Our experienced and certified technicians will guide you through every step of your treatment.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
@@ -20,12 +20,12 @@ const Hero = () => {
               <Button className="btn-primary text-lg py-4 px-10 shadow-lg">SHOP NOW</Button>
             </Link>
             <Link to="/treatments">
-              <Button className="btn-secondary text-lg py-4 px-10">OUR SERVICES</Button>
+              <Button variant="outline" className="text-lg py-4 px-10">OUR SERVICES</Button>
             </Link>
           </div>
         </div>
         <div className="md:w-1/2 mt-16 md:mt-0 relative">
-          <div className="absolute top-8 right-8 bottom-8 left-1/4 bg-brand-off-white rounded-2xl opacity-60"></div>
+          <div className="absolute top-8 right-8 bottom-8 left-1/4 bg-gradient-to-br from-brand-silver/30 to-brand-slate-blue/20 rounded-2xl"></div>
           <img
             alt="STW Aesthetic Clinic logo"
             src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png"
@@ -33,8 +33,11 @@ const Hero = () => {
           />
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-brand-light-gray/30"></div>
+      {/* Flowing gradient overlay */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brand-slate-blue/10 to-transparent"></div>
+      <div className="absolute top-1/2 right-0 w-1/3 h-1/2 bg-gradient-to-l from-brand-silver/20 to-transparent rounded-full blur-3xl"></div>
     </section>
   );
 };
+
 export default Hero;

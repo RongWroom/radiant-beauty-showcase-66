@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
@@ -63,11 +64,11 @@ const CustomerReviews = () => {
   const visibleReviews = showAll ? reviews : reviews.slice(0, defaultCount);
 
   return (
-    <section className="bg-brand-warm-ivory section pb-12">
-      <div className="container-custom">
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray section pb-12">
+      <div className="container-custom relative z-10">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-6 text-hierarchy-primary">What Our Clients Say</h2>
-          <p className="text-hierarchy-secondary max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-6 text-brand-charcoal">What Our Clients Say</h2>
+          <p className="text-brand-gray-600 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
             Don't just take our word for it. Here's what our satisfied clients have to say.
           </p>
         </div>
@@ -76,18 +77,18 @@ const CustomerReviews = () => {
           {visibleReviews.map((review) => (
             <div 
               key={review.id} 
-              className="bg-white p-6 md:p-7 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1 border border-brand-warm-gray-200 animate-fade-in"
+              className="bg-white/80 backdrop-blur-sm p-6 md:p-7 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1 border border-brand-silver/30 animate-fade-in"
             >
               <div className="flex mb-5">
                 {Array.from({ length: review.stars }).map((_, index) => (
-                  <Star key={index} className="h-5 w-5 fill-brand-rose-gold text-brand-rose-gold" />
+                  <Star key={index} className="h-5 w-5 fill-brand-slate-blue text-brand-slate-blue" />
                 ))}
               </div>
               <blockquote className="flex-grow">
-                <p className="text-hierarchy-secondary italic mb-7 leading-relaxed text-base md:text-lg">"{review.text}"</p>
+                <p className="text-brand-gray-600 italic mb-7 leading-relaxed text-base md:text-lg">"{review.text}"</p>
               </blockquote>
-              <footer className="mt-auto pt-5 border-t border-brand-warm-gray-200">
-                <p className="font-medium text-hierarchy-primary text-base md:text-lg">{review.name}</p>
+              <footer className="mt-auto pt-5 border-t border-brand-silver/20">
+                <p className="font-medium text-brand-charcoal text-base md:text-lg">{review.name}</p>
               </footer>
             </div>
           ))}
@@ -107,19 +108,23 @@ const CustomerReviews = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className="bg-white px-8 py-7 rounded-xl shadow-sm flex items-center max-w-md hover:shadow-md transition-shadow duration-300 border border-brand-warm-gray-200">
+          <div className="bg-white/90 backdrop-blur-sm px-8 py-7 rounded-xl shadow-sm flex items-center max-w-md hover:shadow-md transition-shadow duration-300 border border-brand-silver/30">
             <img 
               src="/placeholder.svg"
               alt="Google Reviews" 
               className="w-12 h-12 mr-5" 
             />
             <div>
-              <p className="font-medium text-lg md:text-xl text-hierarchy-primary">4.9 on Google Reviews</p>
-              <p className="text-hierarchy-secondary text-base md:text-lg">Based on 50+ reviews</p>
+              <p className="font-medium text-lg md:text-xl text-brand-charcoal">4.9 on Google Reviews</p>
+              <p className="text-brand-gray-600 text-base md:text-lg">Based on 50+ reviews</p>
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Flowing gradient overlays */}
+      <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-brand-slate-blue/5 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-brand-silver/10 to-transparent rounded-full blur-2xl"></div>
     </section>
   );
 };

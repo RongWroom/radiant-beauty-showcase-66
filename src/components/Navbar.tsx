@@ -1,11 +1,15 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, User, Menu, X } from 'lucide-react';
+import { Search, User, Menu, X, LogOut } from 'lucide-react';
 import Cart from './Cart';
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
   
   const isActive = (path: string) => {
     return location.pathname === path ? "text-brand-plum font-medium" : "text-brand-charcoal hover:text-brand-plum";
@@ -17,6 +21,11 @@ const Navbar = () => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    closeMobileMenu();
   };
 
   return (
@@ -40,9 +49,30 @@ const Navbar = () => {
           <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
             <Search className="h-5 w-5 text-brand-warm-gray-600" />
           </button>
-          <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
-            <User className="h-5 w-5 text-brand-warm-gray-600" />
-          </button>
+          
+          {user ? (
+            <div className="flex items-center space-x-2">
+              <Link 
+                to="/account" 
+                className="p-3 hover:bg-brand-champagne rounded-full transition-colors"
+              >
+                <User className="h-5 w-5 text-brand-warm-gray-600" />
+              </Link>
+              <button 
+                onClick={handleSignOut}
+                className="p-3 hover:bg-brand-champagne rounded-full transition-colors"
+              >
+                <LogOut className="h-5 w-5 text-brand-warm-gray-600" />
+              </button>
+            </div>
+          ) : (
+            <Link to="/auth">
+              <Button variant="outline" size="sm">
+                Sign In
+              </Button>
+            </Link>
+          )}
+          
           <Cart />
         </div>
 
@@ -100,15 +130,33 @@ const Navbar = () => {
             <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg py-2`} onClick={closeMobileMenu}>
               Contact
             </Link>
+
+            {user && (
+              <Link to="/account" className={`${isActive('/account')} transition-colors text-lg py-2`} onClick={closeMobileMenu}>
+                My Account
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center space-x-4 mt-8 pt-8 border-t border-brand-warm-gray-200">
             <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
               <Search className="h-5 w-5 text-brand-warm-gray-600" />
             </button>
-            <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
-              <User className="h-5 w-5 text-brand-warm-gray-600" />
-            </button>
+            
+            {user ? (
+              <button 
+                onClick={handleSignOut}
+                className="p-3 hover:bg-brand-champagne rounded-full transition-colors"
+              >
+                <LogOut className="h-5 w-5 text-brand-warm-gray-600" />
+              </button>
+            ) : (
+              <Link to="/auth" onClick={closeMobileMenu}>
+                <Button variant="outline" size="sm">
+                  Sign In
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

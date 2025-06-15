@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { featuredTreatments, treatments } from '../utils/data';
+
 export const FeaturedSection = () => {
   return <section className="section bg-white">
       <div className="container-custom">
@@ -54,30 +55,46 @@ export const FeaturedSection = () => {
       </div>
     </section>;
 };
+
 export const BannerSection = () => {
-  return <section className="section bg-brand-plum relative overflow-hidden">
+  return (
+    <section className="section bg-section-light relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Subtle blush gradient diagonally from left-bottom to right-top */}
+        <div className="w-full h-full bg-gradient-to-tr from-brand-silver-light/30 via-white to-white" />
+      </div>
       <div className="container-custom relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-20 bg-[brand-soft-blush]">
+        <div className="flex flex-col lg:flex-row items-center gap-20">
           <div className="lg:w-1/3">
             <div className="relative">
-              <img src="/placeholder.svg" alt="Skincare serum" className="w-full h-96 object-cover rounded-3xl shadow-lg" />
-              <div className="absolute inset-0 bg-white/10 rounded-3xl"></div>
+              <img
+                src="/placeholder.svg"
+                alt="Skincare serum"
+                className="w-full h-96 object-cover rounded-3xl shadow-lg"
+              />
+              <div className="absolute inset-0 bg-white/15 rounded-3xl"></div>
             </div>
           </div>
-          <div className="lg:w-2/3 text-white space-y-10">
-            <h2 className="text-5xl lg:text-6xl font-serif leading-tight text-white">Skin Care Meets Nature</h2>
-            <p className="text-xl leading-relaxed opacity-95 max-w-2xl">Unlock the secret to your inner beauty and energy with our natural skincare products</p>
-            <Button className="bg-white text-brand-plum hover:bg-brand-champagne transition-all duration-300 shadow-lg px-12 py-4 text-lg font-medium">
+          <div className="lg:w-2/3 space-y-10">
+            <h2 className="text-5xl lg:text-6xl font-serif leading-tight text-brand-charcoal">
+              Skin Care Meets Nature
+            </h2>
+            <p className="text-xl leading-relaxed max-w-2xl text-hierarchy-secondary">
+              Unlock the secret to your inner beauty and energy with our natural skincare products
+            </p>
+            <Button className="bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light transition-all duration-300 shadow-lg px-12 py-4 text-lg font-medium">
               LEARN MORE
             </Button>
           </div>
         </div>
       </div>
-      <div className="absolute top-0 right-0 h-full w-1/4 opacity-10">
+      <div className="absolute top-0 right-0 h-full w-1/4 opacity-10 pointer-events-none" aria-hidden="true">
         <img src="/placeholder.svg" alt="Decorative leaves" className="h-full object-cover" />
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export const ProductGrid = () => {
   return <section className="section bg-section-light">
       <div className="container-custom">
@@ -99,6 +116,7 @@ export const ProductGrid = () => {
       </div>
     </section>;
 };
+
 export default {
   FeaturedSection,
   BannerSection,

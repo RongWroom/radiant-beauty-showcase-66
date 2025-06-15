@@ -28,9 +28,7 @@ export const FeaturedSection = () => {
         </div>
         
         <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-6xl font-serif text-hierarchy-primary max-w-5xl mx-auto leading-tight">
-            Best-selling essentials for a vibrant, healthy glow of your skin.
-          </h2>
+          <h2 className="text-5xl lg:text-6xl font-serif text-hierarchy-primary max-w-5xl mx-auto leading-tight">Best-selling treatments for a vibrant, healthy glow of your skin.</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">

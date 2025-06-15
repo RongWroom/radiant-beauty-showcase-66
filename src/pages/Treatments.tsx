@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,15 +7,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { treatments } from '../utils/data';
 import { Droplet, Syringe, Calendar, Star } from 'lucide-react';
-
 const Treatments = () => {
   // Find the featured treatment
   const featuredTreatment = treatments.find(treatment => treatment.featured) || treatments[0];
   // Get the remaining treatments (excluding the featured one)
   const remainingTreatments = treatments.filter(treatment => treatment.id !== featuredTreatment.id);
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -105,7 +101,7 @@ const Treatments = () => {
                         Most Popular
                       </Badge>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 bg-opacity-60 p-4 text-white bg-brand-slate-blue">
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-slate-blue/90 to-transparent p-4 text-white">
                       <h3 className="font-serif text-xl font-medium text-white">{featuredTreatment.name}</h3>
                       <p className="text-sm mt-1 mb-2 line-clamp-2">
                         {featuredTreatment.description}
@@ -124,8 +120,7 @@ const Treatments = () => {
               {/* Right Column with 2x2 Grid */}
               <div className="lg:col-span-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {remainingTreatments.map(treatment => (
-                    <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                  {remainingTreatments.map(treatment => <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative h-48">
                         <img src={treatment.image} alt={treatment.name} className="w-full h-full object-cover" />
                       </div>
@@ -141,8 +136,7 @@ const Treatments = () => {
                           </Link>
                         </div>
                       </CardContent>
-                    </Card>
-                  ))}
+                    </Card>)}
                 </div>
               </div>
             </div>
@@ -161,8 +155,6 @@ const Treatments = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Treatments;

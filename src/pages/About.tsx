@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Heart, Shield, Sparkles, Target, Award, Users } from 'lucide-react';
+import { Heart, Shield, Sparkles, Target, Award, Users, CheckCircle, Star } from 'lucide-react';
 
 const About = () => {
   return (
@@ -56,203 +56,211 @@ const About = () => {
           </div>
         </section>
 
-        {/* Vertical Branch Layout - Mission & Values */}
-        <section className="bg-gradient-to-b from-white via-brand-off-white/30 to-white py-20 md:py-32 relative overflow-hidden">
-          {/* Enhanced background elements */}
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-0 w-96 h-96 bg-gradient-to-r from-brand-slate-blue/5 to-transparent rounded-full blur-3xl"></div>
-            <div className="absolute top-1/2 right-0 w-80 h-80 bg-gradient-to-l from-brand-silver/10 to-transparent rounded-full blur-3xl"></div>
-            <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-brand-slate-blue/8 to-brand-silver/8 rounded-full blur-2xl"></div>
+        {/* Mission Statement - Full Width */}
+        <section className="bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue py-16 md:py-20">
+          <div className="container-custom text-center">
+            <div className="max-w-4xl mx-auto">
+              <div className="inline-flex items-center justify-center p-3 bg-white/10 rounded-full mb-6">
+                <Target className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
+                Our Mission
+              </h2>
+              <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8">
+                At STW Aesthetic Clinic, your safety and satisfaction are our top priorities.
+                Our experienced and certified technicians will guide you through every step of your treatment,
+                ensuring a seamless and enjoyable experience that enhances your natural beauty.
+              </p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                <blockquote className="text-2xl font-serif italic text-white">
+                  "Enhancing natural beauty through expert care and personalized treatments"
+                </blockquote>
+              </div>
+            </div>
           </div>
-          
-          <div className="container-custom relative">
-            
-            {/* Enhanced Central Vertical Line with gradient */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-silver via-brand-slate-blue to-brand-silver transform -translate-x-px hidden lg:block shadow-sm"></div>
-            
-            {/* Enhanced Decorative Elements on the Line */}
-            <div className="absolute left-1/2 top-1/4 w-4 h-4 bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light rounded-full transform -translate-x-1/2 hidden lg:block shadow-lg ring-2 ring-white"></div>
-            <div className="absolute left-1/2 top-1/2 w-6 h-6 bg-gradient-to-br from-brand-silver to-brand-silver-light rounded-full transform -translate-x-1/2 hidden lg:block shadow-lg ring-2 ring-white"></div>
-            <div className="absolute left-1/2 top-3/4 w-4 h-4 bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light rounded-full transform -translate-x-1/2 hidden lg:block shadow-lg ring-2 ring-white"></div>
+        </section>
 
-            <div className="space-y-24 md:space-y-32">
-              
-              {/* Mission - Left Side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div className="lg:pr-16 order-1 relative">
-                  {/* Subtle background glow */}
-                  <div className="absolute -inset-8 bg-gradient-to-r from-brand-slate-blue/5 to-transparent rounded-3xl blur-xl"></div>
-                  
-                  <div className="relative">
-                    <div className="flex items-center mb-6">
-                      <div className="rounded-full bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light p-4 mr-4 shadow-lg">
-                        <Target className="w-8 h-8 text-white" />
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal">Our Mission</h2>
-                    </div>
-                    <div className="flex mb-6">
-                      <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver" />
-                    </div>
-                    <p className="text-lg md:text-xl leading-relaxed text-brand-gray-600 mb-8">
-                      At STW Aesthetic Clinic, your safety and satisfaction are our top priorities.
-                      Our experienced and certified technicians will guide you through every step of your treatment,
-                      ensuring a seamless and enjoyable experience that enhances your natural beauty.
-                    </p>
-                    <Card className="border border-brand-silver/50 bg-gradient-to-br from-white via-brand-off-white/50 to-white shadow-lg hover:shadow-xl transition-all duration-300">
-                      <CardContent className="p-6">
-                        <blockquote className="text-brand-slate-blue font-medium italic">
-                          "Enhancing natural beauty through expert care and personalized treatments"
-                        </blockquote>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-                <div className="order-2 lg:pl-16">
-                  {/* Decorative element for balance */}
-                  <div className="hidden lg:block opacity-20">
-                    <div className="w-32 h-32 bg-gradient-to-br from-brand-silver to-brand-slate-blue rounded-full blur-2xl"></div>
-                  </div>
-                </div>
+        {/* Core Values Grid */}
+        <section className="py-20 md:py-28 bg-gradient-to-b from-white via-brand-off-white/50 to-white">
+          <div className="container-custom">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-6">
+                <Award className="w-8 h-8 text-brand-slate-blue" />
               </div>
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-charcoal mb-6">
+                Our Core Values
+              </h2>
+              <p className="text-xl text-brand-gray-600 max-w-3xl mx-auto">
+                These fundamental principles guide everything we do at STW Aesthetic Clinic
+              </p>
+            </div>
 
-              {/* Values - Right Side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                <div className="order-2 lg:order-1 lg:pr-16">
-                  {/* Decorative element for balance */}
-                  <div className="hidden lg:block opacity-20">
-                    <div className="w-40 h-40 bg-gradient-to-br from-brand-slate-blue to-brand-silver rounded-full blur-3xl ml-auto"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-white to-brand-off-white/50">
+                <CardContent className="p-8 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Heart className="w-8 h-8 text-white" />
                   </div>
+                  <h3 className="text-2xl font-serif font-bold text-brand-charcoal mb-4">
+                    Personalized Care
+                  </h3>
+                  <p className="text-brand-gray-600 leading-relaxed">
+                    Our skilled practitioners will tailor a treatment plan to address your specific beauty goals and individual needs.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-white to-brand-off-white/50">
+                <CardContent className="p-8 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-silver to-brand-silver-light rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Shield className="w-8 h-8 text-brand-charcoal" />
+                  </div>
+                  <h3 className="text-2xl font-serif font-bold text-brand-charcoal mb-4">
+                    Safety First
+                  </h3>
+                  <p className="text-brand-gray-600 leading-relaxed">
+                    We use only the highest quality products and follow strict safety protocols to ensure your wellbeing.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-white to-brand-off-white/50 md:col-span-2 lg:col-span-1">
+                <CardContent className="p-8 text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Sparkles className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-serif font-bold text-brand-charcoal mb-4">
+                    Natural Results
+                  </h3>
+                  <p className="text-brand-gray-600 leading-relaxed">
+                    Our treatments enhance your natural features, giving you a refreshed and revitalized appearance.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-20 md:py-28 bg-gradient-to-br from-brand-light-gray via-brand-off-white to-white">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-6">
+                  <Users className="w-8 h-8 text-brand-slate-blue" />
                 </div>
-                <div className="order-1 lg:order-2 lg:pl-16 relative">
-                  {/* Subtle background glow */}
-                  <div className="absolute -inset-8 bg-gradient-to-l from-brand-silver/8 to-transparent rounded-3xl blur-xl"></div>
-                  
-                  <div className="relative">
-                    <div className="flex items-center mb-6">
-                      <div className="rounded-full bg-gradient-to-br from-brand-silver to-brand-silver-light p-4 mr-4 shadow-lg">
-                        <Award className="w-8 h-8 text-brand-charcoal" />
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal">Our Values</h2>
-                    </div>
-                    <div className="flex mb-8">
-                      <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-brand-silver to-brand-slate-blue" />
-                    </div>
-                    
-                    <div className="space-y-6">
-                      <Card className="border border-brand-silver/50 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-brand-off-white/30 hover:-translate-y-1">
-                        <CardContent className="p-6 flex items-start">
-                          <div className="rounded-full bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light p-3 mr-4 flex-shrink-0 shadow-md">
-                            <Heart className="w-6 h-6 text-white" />
-                          </div>
-                          <div>
-                            <h3 className="font-serif text-xl mb-2 text-brand-charcoal font-semibold">Personalized Care</h3>
-                            <p className="text-brand-gray-600 leading-relaxed">
-                              Our skilled practitioners will tailor a treatment plan to address your specific beauty goals.
-                            </p>
-                          </div>
-                        </CardContent>
-                      </Card>
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal mb-6">
+                  Why Choose STW Aesthetic Clinic?
+                </h2>
+                <p className="text-lg text-brand-gray-600 mb-8 leading-relaxed">
+                  With years of experience and hundreds of satisfied clients, we've built our reputation 
+                  on delivering exceptional results in a comfortable, professional environment.
+                </p>
 
-                      <Card className="border border-brand-silver/50 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-brand-off-white/30 hover:-translate-y-1">
-                        <CardContent className="p-6 flex items-start">
-                          <div className="rounded-full bg-gradient-to-br from-brand-silver to-brand-silver-light p-3 mr-4 flex-shrink-0 shadow-md">
-                            <Shield className="w-6 h-6 text-brand-charcoal" />
-                          </div>
-                          <div>
-                            <h3 className="font-serif text-xl mb-2 text-brand-charcoal font-semibold">Comfort & Relaxation</h3>
-                            <p className="text-brand-gray-600 leading-relaxed">
-                              Sit back, relax, and let our friendly team take care of you throughout your treatment journey.
-                            </p>
-                          </div>
-                        </CardContent>
-                      </Card>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-6 h-6 bg-brand-slate-blue rounded-full flex items-center justify-center mt-1">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-brand-charcoal mb-1">Expert Practitioners</h4>
+                      <p className="text-brand-gray-600">Fully qualified and experienced aesthetic professionals</p>
+                    </div>
+                  </div>
 
-                      <Card className="border border-brand-silver/50 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-brand-off-white/30 hover:-translate-y-1">
-                        <CardContent className="p-6 flex items-start">
-                          <div className="rounded-full bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light p-3 mr-4 flex-shrink-0 shadow-md">
-                            <Sparkles className="w-6 h-6 text-white" />
-                          </div>
-                          <div>
-                            <h3 className="font-serif text-xl mb-2 text-brand-charcoal font-semibold">Natural Results</h3>
-                            <p className="text-brand-gray-600 leading-relaxed">
-                              Our treatments enhance your natural features, giving you a refreshed and revitalised appearance.
-                            </p>
-                          </div>
-                        </CardContent>
-                      </Card>
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-6 h-6 bg-brand-slate-blue rounded-full flex items-center justify-center mt-1">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-brand-charcoal mb-1">Premium Products</h4>
+                      <p className="text-brand-gray-600">We use only the finest, clinically-proven treatments</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-6 h-6 bg-brand-slate-blue rounded-full flex items-center justify-center mt-1">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-brand-charcoal mb-1">Aftercare Support</h4>
+                      <p className="text-brand-gray-600">Comprehensive follow-up care and guidance</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Our Commitment - Left Side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div className="lg:pr-16 order-1 relative">
-                  {/* Subtle background glow */}
-                  <div className="absolute -inset-8 bg-gradient-to-r from-brand-slate-blue/5 to-transparent rounded-3xl blur-xl"></div>
-                  
-                  <div className="relative">
-                    <div className="flex items-center mb-6">
-                      <div className="rounded-full bg-gradient-to-br from-brand-silver to-brand-silver-light p-4 mr-4 shadow-lg">
-                        <Users className="w-8 h-8 text-brand-charcoal" />
-                      </div>
-                      <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal">Our Commitment</h2>
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-slate-blue/10 to-brand-silver/10 rounded-3xl transform rotate-3"></div>
+                <div className="relative bg-white rounded-3xl shadow-2xl p-8">
+                  <div className="text-center">
+                    <div className="flex justify-center mb-6">
+                      <Star className="w-8 h-8 text-yellow-500 fill-current" />
+                      <Star className="w-8 h-8 text-yellow-500 fill-current" />
+                      <Star className="w-8 h-8 text-yellow-500 fill-current" />
+                      <Star className="w-8 h-8 text-yellow-500 fill-current" />
+                      <Star className="w-8 h-8 text-yellow-500 fill-current" />
                     </div>
-                    <div className="flex mb-6">
-                      <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-brand-silver to-brand-slate-blue" />
-                    </div>
-                    <blockquote className="text-lg md:text-xl italic leading-relaxed text-brand-gray-600 mb-8">
-                      "Contact us today and rediscover the confidence that comes with having beautiful, rejuvenated skin."
+                    <blockquote className="text-lg italic text-brand-gray-600 mb-6">
+                      "The team at STW made me feel so comfortable and the results exceeded my expectations. 
+                      I finally have the confidence I've been looking for!"
                     </blockquote>
-                    <div className="bg-gradient-to-r from-brand-slate-blue/10 via-brand-silver/20 to-brand-slate-blue/10 p-6 rounded-xl shadow-inner">
-                      <p className="text-brand-charcoal font-medium">
-                        Join hundreds of satisfied clients who have discovered their confidence with STW Aesthetic Clinic.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="order-2 lg:pl-16">
-                  {/* Decorative element for balance */}
-                  <div className="hidden lg:block opacity-20">
-                    <div className="w-36 h-36 bg-gradient-to-br from-brand-slate-blue to-brand-silver rounded-full blur-2xl"></div>
+                    <div className="font-semibold text-brand-charcoal">Sarah M.</div>
+                    <div className="text-brand-gray-600 text-sm">Verified Client</div>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
 
-        {/* Enhanced Call to Action */}
-        <section className="bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue py-16 md:py-20 relative overflow-hidden">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-2xl"></div>
-            <div className="absolute bottom-10 right-10 w-40 h-40 bg-brand-silver rounded-full blur-3xl"></div>
-            <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white rounded-full blur-xl"></div>
-          </div>
-          
-          <div className="container-custom text-center max-w-4xl mx-auto relative z-10">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-white">
-              Ready to Transform Your Look?
-            </h2>
-            <div className="flex justify-center mb-8">
-              <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-white to-brand-silver" />
-            </div>
-            <p className="text-lg md:text-xl mb-10 text-white/90 leading-relaxed max-w-3xl mx-auto">
-              Experience the STW difference with our professional, personalized aesthetic treatments.
-              Join hundreds of satisfied clients who have discovered their confidence with us.
-            </p>
-            <div className="flex justify-center">
-              <Button
-                variant="accent"
-                className="bg-gradient-to-r from-white to-brand-silver text-brand-charcoal hover:from-brand-silver hover:to-white font-semibold px-10 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-              >
-                Contact Us Today
-              </Button>
+        {/* Stats Section */}
+        <section className="py-16 md:py-20 bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue">
+          <div className="container-custom">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">500+</div>
+                <div className="text-white/80 font-medium">Happy Clients</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">5+</div>
+                <div className="text-white/80 font-medium">Years Experience</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">15+</div>
+                <div className="text-white/80 font-medium">Treatment Types</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">98%</div>
+                <div className="text-white/80 font-medium">Satisfaction Rate</div>
+              </div>
             </div>
           </div>
         </section>
+
+        {/* Final CTA */}
+        <section className="py-20 md:py-28 bg-gradient-to-b from-white via-brand-off-white/30 to-white">
+          <div className="container-custom text-center">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-charcoal mb-6">
+                Ready to Transform Your Look?
+              </h2>
+              <p className="text-xl text-brand-gray-600 mb-10 leading-relaxed">
+                Join hundreds of satisfied clients who have discovered their confidence with STW Aesthetic Clinic.
+                Book your consultation today and take the first step towards your beauty goals.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white text-lg py-4 px-10 shadow-lg hover:shadow-xl transition-all duration-300">
+                  Book Your Consultation
+                </Button>
+                <Button variant="outline" className="border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white text-lg py-4 px-10 transition-all duration-300">
+                  Call Us Today
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>

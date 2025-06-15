@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -10,7 +9,6 @@ import { ArrowLeft, Star, ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw 
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
-
 type Product = {
   id: string;
   name: string;
@@ -21,62 +19,59 @@ type Product = {
   featured: boolean | null;
   product_benefits: string[] | null;
 };
-
 const fetchProduct = async (id: string): Promise<Product | null> => {
-  const { data, error } = await supabase
-    .from('products')
-    .select('id, name, description, price, currency, image_url, featured, product_benefits')
-    .eq('id', id)
-    .maybeSingle();
-
+  const {
+    data,
+    error
+  } = await supabase.from('products').select('id, name, description, price, currency, image_url, featured, product_benefits').eq('id', id).maybeSingle();
   if (error) {
     console.error(`Error fetching product with id ${id}:`, error);
     throw new Error(error.message);
   }
   return data;
 };
-
 const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]> => {
-    const { data, error } = await supabase
-        .from('products')
-        .select('id, name, description, price, currency, image_url, featured, product_benefits')
-        .neq('id', currentProductId)
-        .limit(3);
-
-    if (error) {
-        console.error("Error fetching related products:", error);
-        throw new Error(error.message);
-    }
-
-    return data || [];
+  const {
+    data,
+    error
+  } = await supabase.from('products').select('id, name, description, price, currency, image_url, featured, product_benefits').neq('id', currentProductId).limit(3);
+  if (error) {
+    console.error("Error fetching related products:", error);
+    throw new Error(error.message);
+  }
+  return data || [];
 };
-
 const ProductDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
-  
-  const { data: product, isLoading, isError } = useQuery({
+  const {
+    data: product,
+    isLoading,
+    isError
+  } = useQuery({
     queryKey: ['product', id],
     queryFn: () => fetchProduct(id!),
-    enabled: !!id,
+    enabled: !!id
   });
-
-  const { data: relatedProducts } = useQuery({
+  const {
+    data: relatedProducts
+  } = useQuery({
     queryKey: ['relatedProducts', id],
     queryFn: () => fetchRelatedProducts(id!),
-    enabled: !!id,
+    enabled: !!id
   });
-
   const formatPrice = (price: number | null, currency: string | null) => {
     if (price === null) return 'N/A';
-    const currencySymbol = currency === 'GBP' ? '£' : (currency === 'USD' ? '$' : '€');
+    const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
     return `${currencySymbol}${price.toFixed(2)}`;
   };
-
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow container-custom py-12">
            <Skeleton className="h-10 w-48 mb-4" />
@@ -91,13 +86,10 @@ const ProductDetail = () => {
            </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
   if (isError || !product) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
@@ -108,12 +100,9 @@ const ProductDetail = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Breadcrumb & Back Button */}
@@ -126,12 +115,10 @@ const ProductDetail = () => {
                   Back to Products
                 </Button>
               </Link>
-              {product.featured && (
-                <Badge className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white shadow-lg">
+              {product.featured && <Badge className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white shadow-lg">
                   <Star className="w-4 h-4 mr-1 fill-current" />
                   Featured
-                </Badge>
-              )}
+                </Badge>}
             </div>
           </div>
         </section>
@@ -143,11 +130,7 @@ const ProductDetail = () => {
               {/* Product Image */}
               <div className="space-y-4">
                 <div className="aspect-square bg-gradient-to-br from-brand-silver/10 to-brand-slate-blue/5 rounded-xl overflow-hidden shadow-lg border border-brand-silver/30">
-                  <img 
-                    src={product.image_url || '/placeholder.svg'} 
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={product.image_url || '/placeholder.svg'} alt={product.name} className="w-full h-full object-cover" />
                 </div>
               </div>
 
@@ -156,7 +139,7 @@ const ProductDetail = () => {
                 <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-brand-silver/20">
                   <h1 className="text-3xl md:text-4xl font-serif mb-2 text-brand-charcoal">{product.name}</h1>
                   <p className="text-brand-gray-600 mb-4">{product.description}</p>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-transparent mb-6">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-white mb-6">
                     {formatPrice(product.price, product.currency)}
                   </div>
                 </div>
@@ -166,17 +149,11 @@ const ProductDetail = () => {
                   <div className="flex items-center gap-4">
                     <label htmlFor="quantity" className="font-medium text-brand-charcoal">Quantity:</label>
                     <div className="flex items-center border border-brand-silver rounded-lg overflow-hidden">
-                      <button 
-                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors"
-                      >
+                      <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors">
                         -
                       </button>
                       <span className="px-4 py-2 border-x border-brand-silver bg-white font-medium">{quantity}</span>
-                      <button 
-                        onClick={() => setQuantity(quantity + 1)}
-                        className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors"
-                      >
+                      <button onClick={() => setQuantity(quantity + 1)} className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors">
                         +
                       </button>
                     </div>
@@ -187,11 +164,7 @@ const ProductDetail = () => {
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       Add to Cart
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      onClick={() => setIsWishlisted(!isWishlisted)}
-                      className={`border-2 transition-all ${isWishlisted ? "text-red-500 border-red-400 bg-red-50" : "border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white"}`}
-                    >
+                    <Button variant="outline" onClick={() => setIsWishlisted(!isWishlisted)} className={`border-2 transition-all ${isWishlisted ? "text-red-500 border-red-400 bg-red-50" : "border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white"}`}>
                       <Heart className={`h-4 w-4 ${isWishlisted ? "fill-current" : ""}`} />
                     </Button>
                     <Button variant="outline" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">
@@ -231,12 +204,10 @@ const ProductDetail = () => {
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-serif mb-6 text-brand-charcoal">Key Benefits</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {product.product_benefits?.map((benefit, index) => (
-                      <div key={index} className="flex items-start gap-3 p-4 bg-gradient-to-r from-brand-slate-blue/5 to-brand-silver/10 rounded-lg border border-brand-silver/20">
+                    {product.product_benefits?.map((benefit, index) => <div key={index} className="flex items-start gap-3 p-4 bg-gradient-to-r from-brand-slate-blue/5 to-brand-silver/10 rounded-lg border border-brand-silver/20">
                         <div className="w-2 h-2 bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light rounded-full mt-2 flex-shrink-0"></div>
                         <span className="text-sm text-brand-gray-600">{benefit}</span>
-                      </div>
-                    ))}
+                      </div>)}
                   </div>
                 </CardContent>
               </Card>
@@ -304,19 +275,13 @@ const ProductDetail = () => {
         </section>
 
         {/* Related Products */}
-        {relatedProducts && relatedProducts.length > 0 && (
-          <section className="py-16 bg-gradient-to-t from-brand-off-white to-brand-white">
+        {relatedProducts && relatedProducts.length > 0 && <section className="py-16 bg-gradient-to-t from-brand-off-white to-brand-white">
             <div className="container-custom">
               <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center text-brand-charcoal">Related Products</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedProducts.map(relatedProduct => (
-                  <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-brand-silver/30 bg-gradient-to-br from-white to-brand-silver/5">
+                {relatedProducts.map(relatedProduct => <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-brand-silver/30 bg-gradient-to-br from-white to-brand-silver/5">
                     <div className="relative h-48">
-                      <img 
-                        src={relatedProduct.image_url || '/placeholder.svg'} 
-                        alt={relatedProduct.name} 
-                        className="w-full h-full object-cover" 
-                      />
+                      <img src={relatedProduct.image_url || '/placeholder.svg'} alt={relatedProduct.name} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-slate-blue/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <CardContent className="p-4">
@@ -333,16 +298,12 @@ const ProductDetail = () => {
                         </Link>
                       </div>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
             </div>
-          </section>
-        )}
+          </section>}
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default ProductDetail;

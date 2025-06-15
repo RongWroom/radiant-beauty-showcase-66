@@ -28,29 +28,29 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Section - 2 Column Layout */}
-        <section className="py-20 md:py-28 bg-white">
+        {/* Contact Section - 2 Column Layout with Blue Background */}
+        <section className="py-20 md:py-28 bg-brand-slate-blue">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               
               {/* Left Column - Get In Touch */}
               <div>
                 <div className="mb-12">
-                  <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal mb-6">Get In Touch</h2>
+                  <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Get In Touch</h2>
                   <div className="flex justify-start mb-6">
-                    <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
+                    <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-brand-silver to-white"></span>
                   </div>
-                  <p className="text-xl text-brand-gray-600 mb-12 leading-relaxed">
+                  <p className="text-xl text-white/90 mb-12 leading-relaxed">
                     We're here to help you on your journey to beautiful, healthy skin. Contact us today to schedule your consultation.
                   </p>
                 </div>
                 
                 <div className="space-y-8">
                   <div className="flex items-start space-x-4">
-                    <MapPin className="h-6 w-6 text-brand-slate-blue mt-1 flex-shrink-0" />
+                    <MapPin className="h-6 w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="text-lg font-semibold text-brand-charcoal mb-2">Location</h3>
-                      <p className="text-brand-gray-600 leading-relaxed">
+                      <h3 className="text-lg font-semibold text-white mb-2">Location</h3>
+                      <p className="text-white/90 leading-relaxed">
                         123 Beauty Street<br />
                         Downtown District<br />
                         City, ST 12345
@@ -59,26 +59,26 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <Phone className="h-6 w-6 text-brand-slate-blue mt-1 flex-shrink-0" />
+                    <Phone className="h-6 w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="text-lg font-semibold text-brand-charcoal mb-2">Phone</h3>
-                      <p className="text-brand-gray-600">(555) 123-4567</p>
+                      <h3 className="text-lg font-semibold text-white mb-2">Phone</h3>
+                      <p className="text-white/90">(555) 123-4567</p>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <Mail className="h-6 w-6 text-brand-slate-blue mt-1 flex-shrink-0" />
+                    <Mail className="h-6 w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="text-lg font-semibold text-brand-charcoal mb-2">Email</h3>
-                      <p className="text-brand-gray-600">info@stwclinic.com</p>
+                      <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
+                      <p className="text-white/90">info@stwclinic.com</p>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <Clock className="h-6 w-6 text-brand-slate-blue mt-1 flex-shrink-0" />
+                    <Clock className="h-6 w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="text-lg font-semibold text-brand-charcoal mb-2">Hours</h3>
-                      <p className="text-brand-gray-600 leading-relaxed">
+                      <h3 className="text-lg font-semibold text-white mb-2">Hours</h3>
+                      <p className="text-white/90 leading-relaxed">
                         Monday - Friday: 9AM - 7PM<br />
                         Saturday: 10AM - 5PM<br />
                         Sunday: Closed

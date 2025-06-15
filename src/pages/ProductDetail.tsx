@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -23,8 +24,8 @@ type Product = {
 
 const fetchProduct = async (id: string): Promise<Product | null> => {
   const { data, error } = await supabase
-    .from('products')
-    .select('*, product_benefits')
+    .from('public.products')
+    .select('id, name, description, price, currency, image_url, featured, product_benefits')
     .eq('id', id)
     .maybeSingle();
 
@@ -37,8 +38,8 @@ const fetchProduct = async (id: string): Promise<Product | null> => {
 
 const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]> => {
     const { data, error } = await supabase
-        .from('products')
-        .select('id, name, description, price, currency, image_url')
+        .from('public.products')
+        .select('id, name, description, price, currency, image_url, featured, product_benefits')
         .neq('id', currentProductId)
         .limit(3);
 

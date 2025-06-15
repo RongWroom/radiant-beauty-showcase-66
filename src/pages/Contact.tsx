@@ -12,140 +12,87 @@ const Contact = () => {
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 md:py-20 animate-fade-in">
+        <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-16 md:py-24">
           <div className="container-custom relative z-10">
-            <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-6xl font-serif mb-6 font-bold text-brand-charcoal">
                 Contact Us
               </h1>
-              {/* Decorative Line */}
-              <div className="flex justify-center mb-5">
+              <div className="flex justify-center mb-6">
                 <span className="block h-1 w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
               </div>
-              <p className="text-lg mb-6 font-medium text-brand-gray-600">
-                Ready to start your skincare journey? Get in touch with our expert team to 
-                <span className="px-2 py-0.5 rounded bg-brand-slate-blue/10 text-brand-slate-blue font-semibold ml-1">
-                  book your consultation
-                </span>{" "}
-                or ask any questions.
+              <p className="text-xl md:text-2xl mb-8 font-light text-brand-gray-600 leading-relaxed">
+                Ready to start your skincare journey? Get in touch with our expert team.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white text-lg py-3 px-8 shadow-lg">
-                  Book Now
-                </Button>
-                <Button variant="outline" className="border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white text-lg py-3 px-8 transition-all duration-300">
-                  Call Us
-                </Button>
-              </div>
             </div>
           </div>
-          {/* Flowing gradient overlay */}
-          <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand-silver/10 to-transparent"></div>
         </section>
 
         {/* Contact Section - 2 Column Layout */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-white via-brand-off-white/50 to-white">
+        <section className="py-20 md:py-28 bg-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               
               {/* Left Column - Get In Touch */}
               <div>
                 <div className="mb-12">
-                  <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-6">
-                    <Phone className="w-8 h-8 text-brand-slate-blue" />
-                  </div>
                   <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal mb-6">Get In Touch</h2>
                   <div className="flex justify-start mb-6">
                     <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
                   </div>
-                  <p className="text-xl text-brand-gray-600 mb-12">
-                    We're here to help you on your journey to beautiful, healthy skin
+                  <p className="text-xl text-brand-gray-600 mb-12 leading-relaxed">
+                    We're here to help you on your journey to beautiful, healthy skin. Contact us today to schedule your consultation.
                   </p>
                 </div>
                 
                 <div className="space-y-8">
-                  <Card className="group hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-white to-brand-off-white/50">
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light rounded-full group-hover:scale-110 transition-transform duration-300">
-                            <MapPin className="h-6 w-6 text-white" />
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-serif font-bold text-brand-charcoal mb-2">Location</h3>
-                          <p className="text-brand-gray-600">
-                            123 Beauty Street<br />
-                            Downtown District<br />
-                            City, ST 12345
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div className="flex items-start space-x-4">
+                    <MapPin className="h-6 w-6 text-brand-slate-blue mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-brand-charcoal mb-2">Location</h3>
+                      <p className="text-brand-gray-600 leading-relaxed">
+                        123 Beauty Street<br />
+                        Downtown District<br />
+                        City, ST 12345
+                      </p>
+                    </div>
+                  </div>
 
-                  <Card className="group hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-white to-brand-off-white/50">
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-silver to-brand-silver-light rounded-full group-hover:scale-110 transition-transform duration-300">
-                            <Phone className="h-6 w-6 text-brand-charcoal" />
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-serif font-bold text-brand-charcoal mb-2">Phone</h3>
-                          <p className="text-brand-gray-600">(555) 123-4567</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div className="flex items-start space-x-4">
+                    <Phone className="h-6 w-6 text-brand-slate-blue mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-brand-charcoal mb-2">Phone</h3>
+                      <p className="text-brand-gray-600">(555) 123-4567</p>
+                    </div>
+                  </div>
 
-                  <Card className="group hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-white to-brand-off-white/50">
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light rounded-full group-hover:scale-110 transition-transform duration-300">
-                            <Mail className="h-6 w-6 text-white" />
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-serif font-bold text-brand-charcoal mb-2">Email</h3>
-                          <p className="text-brand-gray-600">info@stwclinic.com</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div className="flex items-start space-x-4">
+                    <Mail className="h-6 w-6 text-brand-slate-blue mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-brand-charcoal mb-2">Email</h3>
+                      <p className="text-brand-gray-600">info@stwclinic.com</p>
+                    </div>
+                  </div>
 
-                  <Card className="group hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-white to-brand-off-white/50">
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-silver to-brand-silver-light rounded-full group-hover:scale-110 transition-transform duration-300">
-                            <Clock className="h-6 w-6 text-brand-charcoal" />
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-serif font-bold text-brand-charcoal mb-2">Hours</h3>
-                          <p className="text-brand-gray-600">
-                            Mon-Fri: 9AM-7PM<br />
-                            Sat: 10AM-5PM<br />
-                            Sun: Closed
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div className="flex items-start space-x-4">
+                    <Clock className="h-6 w-6 text-brand-slate-blue mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-brand-charcoal mb-2">Hours</h3>
+                      <p className="text-brand-gray-600 leading-relaxed">
+                        Monday - Friday: 9AM - 7PM<br />
+                        Saturday: 10AM - 5PM<br />
+                        Sunday: Closed
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               {/* Right Column - Contact Form */}
               <div>
-                <Card className="border-0 shadow-2xl bg-white">
+                <Card className="border-0 shadow-xl bg-white">
                   <CardContent className="p-10">
                     <div className="text-center mb-8">
-                      <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-6">
-                        <Mail className="w-8 h-8 text-brand-slate-blue" />
-                      </div>
                       <h2 className="text-2xl md:text-3xl font-serif font-bold text-brand-charcoal mb-4">Book Your Consultation</h2>
                       <div className="flex justify-center mb-4">
                         <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>

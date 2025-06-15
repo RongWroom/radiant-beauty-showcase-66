@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Heart, Share2, CreditCard, Truck, Shield, RotateCcw } from 'lucide-react';
+import { ShoppingCart, Share2, CreditCard, Truck, Shield, RotateCcw } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -22,7 +22,6 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const { toast } = useToast();
   const { addToCart } = useCart();
@@ -86,6 +85,47 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
     }
   };
 
+  const handleShare = async () => {
+    const shareData = {
+      title: product.name,
+      text: product.description || `Check out ${product.name}`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+        toast({
+          title: "Shared Successfully",
+          description: "Product shared successfully!",
+        });
+      } else {
+        // Fallback: copy to clipboard
+        await navigator.clipboard.writeText(window.location.href);
+        toast({
+          title: "Link Copied",
+          description: "Product link copied to clipboard!",
+        });
+      }
+    } catch (error) {
+      console.error('Share failed:', error);
+      // Fallback: copy to clipboard
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        toast({
+          title: "Link Copied",
+          description: "Product link copied to clipboard!",
+        });
+      } catch (clipboardError) {
+        toast({
+          title: "Share Failed",
+          description: "Unable to share or copy link.",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-brand-silver/20">
@@ -138,14 +178,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
           </Button>
           <Button 
             variant="outline" 
-            onClick={() => setIsWishlisted(!isWishlisted)} 
-            className={`border-2 transition-all ${isWishlisted ? "text-red-500 border-red-400 bg-red-50" : "border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white"}`}
-            disabled={isProcessingPayment}
-          >
-            <Heart className={`h-4 w-4 ${isWishlisted ? "fill-current" : ""}`} />
-          </Button>
-          <Button 
-            variant="outline" 
+            onClick={handleShare}
             className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white"
             disabled={isProcessingPayment}
           >

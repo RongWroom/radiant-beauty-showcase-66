@@ -5,10 +5,12 @@ import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Star, ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Star, ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw, CreditCard } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useToast } from "@/components/ui/use-toast";
+
 type Product = {
   id: string;
   name: string;
@@ -19,6 +21,7 @@ type Product = {
   featured: boolean | null;
   product_benefits: string[] | null;
 };
+
 const fetchProduct = async (id: string): Promise<Product | null> => {
   const {
     data,
@@ -30,6 +33,7 @@ const fetchProduct = async (id: string): Promise<Product | null> => {
   }
   return data;
 };
+
 const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]> => {
   const {
     data,
@@ -41,6 +45,7 @@ const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]
   }
   return data || [];
 };
+
 const ProductDetail = () => {
   const {
     id
@@ -49,6 +54,9 @@ const ProductDetail = () => {
   }>();
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const { toast } = useToast();
+
   const {
     data: product,
     isLoading,
@@ -58,6 +66,7 @@ const ProductDetail = () => {
     queryFn: () => fetchProduct(id!),
     enabled: !!id
   });
+
   const {
     data: relatedProducts
   } = useQuery({
@@ -65,11 +74,50 @@ const ProductDetail = () => {
     queryFn: () => fetchRelatedProducts(id!),
     enabled: !!id
   });
+
   const formatPrice = (price: number | null, currency: string | null) => {
     if (price === null) return 'N/A';
     const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
     return `${currencySymbol}${price.toFixed(2)}`;
   };
+
+  const handleBuyNow = async () => {
+    if (!product || !id) return;
+    
+    setIsProcessingPayment(true);
+    try {
+      console.log('Creating payment for product:', id, 'quantity:', quantity);
+      
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: { 
+          productId: id,
+          quantity: quantity 
+        }
+      });
+
+      if (error) {
+        console.error('Payment error:', error);
+        throw new Error(error.message);
+      }
+
+      if (data?.url) {
+        // Open Stripe checkout in a new tab
+        window.open(data.url, '_blank');
+      } else {
+        throw new Error('No checkout URL received');
+      }
+    } catch (error) {
+      console.error('Payment processing failed:', error);
+      toast({
+        title: "Payment Error",
+        description: error instanceof Error ? error.message : "Failed to process payment. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsProcessingPayment(false);
+    }
+  };
+
   if (isLoading) {
     return <div className="min-h-screen flex flex-col">
         <Navbar />
@@ -149,25 +197,53 @@ const ProductDetail = () => {
                   <div className="flex items-center gap-4">
                     <label htmlFor="quantity" className="font-medium text-brand-charcoal">Quantity:</label>
                     <div className="flex items-center border border-brand-silver rounded-lg overflow-hidden">
-                      <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors">
+                      <button 
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))} 
+                        className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors"
+                        disabled={isProcessingPayment}
+                      >
                         -
                       </button>
                       <span className="px-4 py-2 border-x border-brand-silver bg-white font-medium">{quantity}</span>
-                      <button onClick={() => setQuantity(quantity + 1)} className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors">
+                      <button 
+                        onClick={() => setQuantity(quantity + 1)} 
+                        className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors"
+                        disabled={isProcessingPayment}
+                      >
                         +
                       </button>
                     </div>
                   </div>
 
                   <div className="flex gap-3">
-                    <Button className="flex-1 bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark shadow-lg">
+                    <Button 
+                      onClick={handleBuyNow}
+                      disabled={isProcessingPayment}
+                      className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 shadow-lg"
+                    >
+                      <CreditCard className="mr-2 h-4 w-4" />
+                      {isProcessingPayment ? 'Processing...' : 'Buy Now'}
+                    </Button>
+                    <Button 
+                      className="flex-1 bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark shadow-lg"
+                      disabled={isProcessingPayment}
+                    >
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       Add to Cart
                     </Button>
-                    <Button variant="outline" onClick={() => setIsWishlisted(!isWishlisted)} className={`border-2 transition-all ${isWishlisted ? "text-red-500 border-red-400 bg-red-50" : "border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white"}`}>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => setIsWishlisted(!isWishlisted)} 
+                      className={`border-2 transition-all ${isWishlisted ? "text-red-500 border-red-400 bg-red-50" : "border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white"}`}
+                      disabled={isProcessingPayment}
+                    >
                       <Heart className={`h-4 w-4 ${isWishlisted ? "fill-current" : ""}`} />
                     </Button>
-                    <Button variant="outline" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">
+                    <Button 
+                      variant="outline" 
+                      className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white"
+                      disabled={isProcessingPayment}
+                    >
                       <Share2 className="h-4 w-4" />
                     </Button>
                   </div>
@@ -306,4 +382,5 @@ const ProductDetail = () => {
       <Footer />
     </div>;
 };
+
 export default ProductDetail;

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,6 +6,8 @@ import { Label } from '@/components/ui/label';
 import { useCreateAppointment } from '@/hooks/useAppointments';
 import { useTreatment } from '@/hooks/useTreatments';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { format } from 'date-fns';
 import { CalendarDays, Clock, FileText } from 'lucide-react';
 import BookingCalendar from './BookingCalendar';
@@ -22,12 +23,55 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
   const [notes, setNotes] = useState('');
   
   const { data: treatment } = useTreatment(treatmentId);
+  const { user } = useAuth();
   const createAppointment = useCreateAppointment();
   const { toast } = useToast();
 
   const handleDateTimeSelect = (date: Date, time: string) => {
     setSelectedDate(date);
     setSelectedTime(time);
+  };
+
+  const sendBookingNotification = async () => {
+    if (!user || !treatment || !selectedDate || !selectedTime) return;
+
+    try {
+      console.log('Sending booking notification...');
+      
+      // Get user profile for name
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('first_name, last_name')
+        .eq('id', user.id)
+        .single();
+
+      const customerName = profile 
+        ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() 
+        : user.email || 'Unknown Customer';
+
+      const { error } = await supabase.functions.invoke('send-booking-notification', {
+        body: {
+          customerName,
+          customerEmail: user.email,
+          treatmentName: treatment.name,
+          appointmentDate: format(selectedDate, 'yyyy-MM-dd'),
+          appointmentTime: selectedTime,
+          notes: notes.trim() || undefined,
+          treatmentPrice: treatment.price,
+          treatmentDuration: treatment.duration_minutes,
+        },
+      });
+
+      if (error) {
+        console.error('Error sending notification email:', error);
+        // Don't throw here - we don't want booking to fail if email fails
+      } else {
+        console.log('Booking notification sent successfully');
+      }
+    } catch (error) {
+      console.error('Error sending booking notification:', error);
+      // Don't throw here - we don't want booking to fail if email fails
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,12 +87,16 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
     }
 
     try {
+      // Create the appointment first
       await createAppointment.mutateAsync({
         treatment_id: treatmentId,
         appointment_date: format(selectedDate, 'yyyy-MM-dd'),
         appointment_time: selectedTime,
         notes: notes.trim() || undefined,
       });
+
+      // Send notification email (don't await to avoid blocking)
+      sendBookingNotification();
 
       toast({
         title: "Appointment booked successfully!",

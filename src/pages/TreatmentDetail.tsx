@@ -93,10 +93,12 @@ const TreatmentDetail = () => {
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-transparent">{formatPrice(treatment.price, treatment.currency)}</span>
-                  <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark text-white shadow-lg">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    Book Treatment
-                  </Button>
+                  <Link to={`/treatments/${treatment.id}/book`}>
+                    <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark text-white shadow-lg">
+                      <Calendar className="mr-2 h-4 w-4" />
+                      Book Treatment
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <div className="relative">
@@ -216,10 +218,12 @@ const TreatmentDetail = () => {
                       <Phone className="mr-2 h-4 w-4" />
                       Call Now
                     </Button>
-                    <Button variant="outline" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      Book Online
-                    </Button>
+                    <Link to={`/treatments/${treatment.id}/book`}>
+                      <Button variant="outline" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">
+                        <Calendar className="mr-2 h-4 w-4" />
+                        Book Online
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
@@ -255,7 +259,7 @@ const TreatmentDetail = () => {
                 ))}
               </div>
             </div>
-          </section>
+          </div>
         )}
       </main>
       <Footer />

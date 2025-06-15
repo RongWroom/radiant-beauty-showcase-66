@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-white via-brand-off-white to-brand-light-gray">
+    <section className="relative overflow-hidden bg-white">
       <div className="container-custom min-h-[85vh] flex flex-col md:flex-row items-center relative z-10">
         <div className="md:w-1/2 pt-24 md:pt-0 z-10 space-y-8">
           
@@ -29,18 +29,18 @@ const Hero = () => {
           </div>
         </div>
         <div className="md:w-1/2 mt-16 md:mt-0 relative">
-          <div className="absolute top-8 right-8 bottom-8 left-1/4 bg-gradient-to-br from-brand-silver/30 to-brand-slate-blue/20 rounded-2xl"></div>
+          {/* Improved grey background block */}
+          <div className="absolute inset-4 bg-gradient-to-br from-brand-light-gray/60 to-brand-silver/40 rounded-3xl shadow-sm"></div>
           <img
             alt="STW Aesthetic Clinic logo"
             src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png"
-            className="relative z-10 ml-auto h-[500px] md:h-[600px] w-full max-w-md rounded-lg object-contain p-8"
+            className="relative z-10 mx-auto h-[500px] md:h-[600px] w-full max-w-md rounded-lg object-contain p-8"
           />
         </div>
       </div>
-      {/* Enhanced flowing gradient overlays */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brand-slate-blue/10 to-transparent"></div>
-      <div className="absolute top-1/2 right-0 w-1/3 h-1/2 bg-gradient-to-l from-brand-silver/20 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute top-1/4 left-0 w-1/4 h-1/4 bg-gradient-to-r from-brand-slate-blue/5 to-transparent rounded-full blur-2xl"></div>
+      {/* Subtle flowing gradient overlays - very minimal */}
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-brand-off-white/30 to-transparent"></div>
+      <div className="absolute top-1/2 right-0 w-1/4 h-1/4 bg-gradient-to-l from-brand-silver/10 to-transparent rounded-full blur-3xl"></div>
     </section>
   );
 };

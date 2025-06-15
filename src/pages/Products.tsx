@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -17,14 +16,12 @@ type Product = {
   description: string | null;
   price: number | null;
   currency: string | null;
-  image: string | null;
-  featured: boolean | null;
 };
 
 const fetchProducts = async (): Promise<Product[]> => {
   const { data, error } = await supabase
     .from('products')
-    .select('id, name, description, price, currency, image, featured')
+    .select('id, name, description, price, currency')
     .order('created_at', { ascending: false });
 
   if (error) {
@@ -47,7 +44,7 @@ const Products = () => {
     return `${currencySymbol}${price.toFixed(2)}`;
   };
 
-  const featuredProduct = products?.find(product => product.featured) || (products && products.length > 0 ? products[0] : null);
+  const featuredProduct = products && products.length > 0 ? products[0] : null;
   const remainingProducts = products?.filter(product => product.id !== featuredProduct?.id) || [];
 
   return (
@@ -108,7 +105,7 @@ const Products = () => {
                   <div className="lg:col-span-1">
                     <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-full border-brand-silver/30">
                       <div className="relative h-96 lg:h-full">
-                        <img src={featuredProduct.image || '/placeholder.svg'} alt={featuredProduct.name} className="w-full h-full object-cover" />
+                        <img src={'/placeholder.svg'} alt={featuredProduct.name} className="w-full h-full object-cover" />
                         <div className="absolute top-4 left-4">
                           <Badge className="badge-featured">
                             <Star className="w-4 h-4 mr-1" />
@@ -140,7 +137,7 @@ const Products = () => {
                     {remainingProducts.map(product => (
                       <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow border-brand-silver/30">
                         <div className="relative h-48">
-                          <img src={product.image || '/placeholder.svg'} alt={product.name} className="w-full h-full object-cover" />
+                          <img src={'/placeholder.svg'} alt={product.name} className="w-full h-full object-cover" />
                         </div>
                         <CardContent className="p-4 bg-white/90">
                           <h3 className="font-serif text-lg font-medium text-brand-charcoal">{product.name}</h3>

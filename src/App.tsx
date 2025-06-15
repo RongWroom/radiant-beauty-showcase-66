@@ -16,6 +16,7 @@ import TreatmentDetail from "./pages/TreatmentDetail";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Account from "./pages/Account";
+import BookAppointment from "./pages/BookAppointment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import NotFound from "./pages/NotFound";
 
@@ -37,6 +38,7 @@ const App = () => (
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/treatments" element={<Treatments />} />
               <Route path="/treatments/:id" element={<TreatmentDetail />} />
+              <Route path="/treatments/:id/book" element={<BookAppointment />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/account" element={<Account />} />

@@ -9,6 +9,83 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      appointments: {
+        Row: {
+          appointment_date: string
+          appointment_time: string
+          created_at: string
+          id: string
+          notes: string | null
+          status: string
+          treatment_id: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          appointment_date: string
+          appointment_time: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          status?: string
+          treatment_id: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          appointment_date?: string
+          appointment_time?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          status?: string
+          treatment_id?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_treatment_id_fkey"
+            columns: ["treatment_id"]
+            isOneToOne: false
+            referencedRelation: "treatments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      business_hours: {
+        Row: {
+          break_end_time: string | null
+          break_start_time: string | null
+          close_time: string
+          created_at: string
+          day_of_week: number
+          id: number
+          is_open: boolean
+          open_time: string
+        }
+        Insert: {
+          break_end_time?: string | null
+          break_start_time?: string | null
+          close_time: string
+          created_at?: string
+          day_of_week: number
+          id?: number
+          is_open?: boolean
+          open_time: string
+        }
+        Update: {
+          break_end_time?: string | null
+          break_start_time?: string | null
+          close_time?: string
+          created_at?: string
+          day_of_week?: number
+          id?: number
+          is_open?: boolean
+          open_time?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           created_at: string
@@ -147,6 +224,33 @@ export type Database = {
           id?: string
           last_name?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      time_slots: {
+        Row: {
+          created_at: string
+          day_of_week: number | null
+          end_time: string
+          id: number
+          is_available: boolean
+          start_time: string
+        }
+        Insert: {
+          created_at?: string
+          day_of_week?: number | null
+          end_time: string
+          id?: number
+          is_available?: boolean
+          start_time: string
+        }
+        Update: {
+          created_at?: string
+          day_of_week?: number | null
+          end_time?: string
+          id?: number
+          is_available?: boolean
+          start_time?: string
         }
         Relationships: []
       }

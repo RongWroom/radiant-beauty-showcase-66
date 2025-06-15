@@ -9,7 +9,43 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      products: {
+      products_duplicate: {
+        Row: {
+          created_at: string | null
+          currency: string | null
+          description: string | null
+          id: string
+          name: string
+          price: number
+          product_benefits: string[] | null
+          stripe_product_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          currency?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          price: number
+          product_benefits?: string[] | null
+          stripe_product_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          currency?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          price?: number
+          product_benefits?: string[] | null
+          stripe_product_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      "public.products": {
         Row: {
           created_at: string | null
           currency: string | null

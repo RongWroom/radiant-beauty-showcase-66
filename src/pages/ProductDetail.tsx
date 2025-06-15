@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -6,17 +5,96 @@ import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { products } from '../utils/products';
 import { ArrowLeft, Star, ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
+import { Skeleton } from '@/components/ui/skeleton';
+
+type Product = {
+  id: string;
+  name: string;
+  description: string | null;
+  price: number | null;
+  currency: string | null;
+  image_url: string | null;
+  featured: boolean | null;
+  product_benefits: string[] | null;
+};
+
+const fetchProduct = async (id: string): Promise<Product | null> => {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*, product_benefits')
+    .eq('id', id)
+    .maybeSingle();
+
+  if (error) {
+    console.error(`Error fetching product with id ${id}:`, error);
+    throw new Error(error.message);
+  }
+  return data;
+};
+
+const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]> => {
+    const { data, error } = await supabase
+        .from('products')
+        .select('id, name, description, price, currency, image_url')
+        .neq('id', currentProductId)
+        .limit(3);
+
+    if (error) {
+        console.error("Error fetching related products:", error);
+        throw new Error(error.message);
+    }
+
+    return data || [];
+};
 
 const ProductDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   
-  const product = products.find(p => p.id === parseInt(id || '0'));
+  const { data: product, isLoading, isError } = useQuery({
+    queryKey: ['product', id],
+    queryFn: () => fetchProduct(id!),
+    enabled: !!id,
+  });
 
-  if (!product) {
+  const { data: relatedProducts } = useQuery({
+    queryKey: ['relatedProducts', id],
+    queryFn: () => fetchRelatedProducts(id!),
+    enabled: !!id,
+  });
+
+  const formatPrice = (price: number | null, currency: string | null) => {
+    if (price === null) return 'N/A';
+    const currencySymbol = currency === 'GBP' ? '£' : (currency === 'USD' ? '$' : '€');
+    return `${currencySymbol}${price.toFixed(2)}`;
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow container-custom py-12">
+           <Skeleton className="h-10 w-48 mb-4" />
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+             <Skeleton className="aspect-square rounded-lg" />
+             <div className="space-y-6">
+                <Skeleton className="h-12 w-3/4" />
+                <Skeleton className="h-6 w-full" />
+                <Skeleton className="h-6 w-1/2" />
+                <Skeleton className="h-10 w-24" />
+             </div>
+           </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isError || !product) {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
@@ -32,10 +110,6 @@ const ProductDetail = () => {
       </div>
     );
   }
-
-  const relatedProducts = products
-    .filter(p => p.id !== product.id && p.category === product.category)
-    .slice(0, 3);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -69,7 +143,7 @@ const ProductDetail = () => {
               <div className="space-y-4">
                 <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                   <img 
-                    src={product.image} 
+                    src={product.image_url || '/placeholder.svg'} 
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
@@ -81,7 +155,7 @@ const ProductDetail = () => {
                 <div>
                   <h1 className="text-3xl md:text-4xl font-serif mb-2">{product.name}</h1>
                   <p className="text-gray-600 mb-4">{product.description}</p>
-                  <div className="text-3xl font-bold text-skin-teal mb-6">{product.price}</div>
+                  <div className="text-3xl font-bold text-skin-teal mb-6">{formatPrice(product.price, product.currency)}</div>
                 </div>
 
                 {/* Quantity & Add to Cart */}
@@ -154,7 +228,7 @@ const ProductDetail = () => {
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-serif mb-6">Key Benefits</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {product.benefits.map((benefit, index) => (
+                    {product.product_benefits?.map((benefit, index) => (
                       <div key={index} className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
                         <div className="w-2 h-2 bg-skin-teal rounded-full mt-2 flex-shrink-0"></div>
                         <span className="text-sm text-gray-700">{benefit}</span>
@@ -170,18 +244,8 @@ const ProductDetail = () => {
                   <h3 className="text-xl font-serif mb-4 text-black">Product Info</h3>
                   <div className="space-y-4 text-black">
                     <div>
-                      <p className="text-sm font-medium">Category</p>
-                      <p className="text-lg">{product.category}</p>
-                    </div>
-                    {product.size && (
-                      <div>
-                        <p className="text-sm font-medium">Size</p>
-                        <p className="text-lg">{product.size}</p>
-                      </div>
-                    )}
-                    <div>
                       <p className="text-sm font-medium">Price</p>
-                      <p className="text-2xl font-bold">{product.price}</p>
+                      <p className="text-2xl font-bold">{formatPrice(product.price, product.currency)}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -225,7 +289,7 @@ const ProductDetail = () => {
         </section>
 
         {/* Related Products */}
-        {relatedProducts.length > 0 && (
+        {relatedProducts && relatedProducts.length > 0 && (
           <section className="py-16 bg-white">
             <div className="container-custom">
               <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Related Products</h2>
@@ -234,7 +298,7 @@ const ProductDetail = () => {
                   <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                     <div className="relative h-48">
                       <img 
-                        src={relatedProduct.image} 
+                        src={relatedProduct.image_url || '/placeholder.svg'} 
                         alt={relatedProduct.name} 
                         className="w-full h-full object-cover" 
                       />
@@ -245,7 +309,7 @@ const ProductDetail = () => {
                         {relatedProduct.description}
                       </p>
                       <div className="flex items-center justify-between mt-4">
-                        <span className="text-lg font-medium">{relatedProduct.price}</span>
+                        <span className="text-lg font-medium">{formatPrice(relatedProduct.price, relatedProduct.currency)}</span>
                         <Link to={`/products/${relatedProduct.id}`}>
                           <Button size="sm">View Product</Button>
                         </Link>

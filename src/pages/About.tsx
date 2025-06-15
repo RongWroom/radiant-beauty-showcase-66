@@ -13,47 +13,33 @@ const About = () => {
       <Navbar />
       <main className="flex-grow">
 
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-brand-off-white via-white to-brand-light-gray pt-24 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
-          {/* Subtle background pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-20 left-10 w-32 h-32 bg-brand-slate-blue rounded-full blur-3xl"></div>
-            <div className="absolute top-40 right-20 w-24 h-24 bg-brand-silver rounded-full blur-2xl"></div>
-            <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-brand-slate-blue-light rounded-full blur-3xl"></div>
-          </div>
-          
-          <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
-            <div className="order-2 lg:order-1">
-              <h1 className="text-4xl md:text-6xl font-serif font-medium leading-tight mb-4 text-brand-charcoal">
-                Welcome to <br />
-                <span className="text-brand-slate-blue font-semibold">STW Aesthetic Clinic</span>
+        {/* Hero Section - Updated to match Products page style */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 md:py-20 animate-fade-in">
+          <div className="container-custom relative z-10">
+            <div className="text-center max-w-3xl mx-auto">
+              <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
+                About STW Aesthetics
               </h1>
-              <div className="flex mb-6">
-                <span className="block h-1 w-20 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver" />
+              {/* Decorative Line */}
+              <div className="flex justify-center mb-5">
+                <span className="block h-1 w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
               </div>
-              <p className="text-lg md:text-xl mb-8 text-brand-gray-600 max-w-xl">
-                <span className="bg-gradient-to-r from-brand-silver/40 to-brand-slate-blue/20 px-2 py-0.5 rounded font-medium text-brand-charcoal">
-                  Non-Surgical Beauty Treatments
-                </span>{" "}
-                in County Durham
+              <p className="text-lg mb-6 font-medium text-brand-gray-600">
+                Discover our journey of providing <span className="px-2 py-0.5 rounded bg-brand-slate-blue/10 text-brand-slate-blue font-semibold">exceptional</span> non-surgical beauty treatments 
+                in County Durham with personalized care and professional expertise.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white text-lg py-3 px-8 shadow-lg">
                   Book a Consultation
                 </Button>
-                <Button variant="outline" className="border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-gradient-to-r hover:from-brand-slate-blue hover:to-brand-slate-blue-light hover:text-white text-lg py-3 px-8 transition-all duration-300">
+                <Button variant="outline" className="border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white text-lg py-3 px-8 transition-all duration-300">
                   View Our Services
                 </Button>
               </div>
             </div>
-            <div className="order-1 lg:order-2 flex justify-center">
-              <div className="rounded-3xl overflow-hidden shadow-2xl bg-white ring-1 ring-brand-silver/20">
-                <AspectRatio ratio={4 / 3}>
-                  <img src="/lovable-uploads/8ba11e7a-85dd-4fad-8b15-798fdcfedda6.png" alt="STW Aesthetic Clinic Professional" className="object-cover w-full h-full" />
-                </AspectRatio>
-              </div>
-            </div>
           </div>
+          {/* Flowing gradient overlay */}
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand-silver/10 to-transparent"></div>
         </section>
 
         {/* Mission Statement - Full Width */}

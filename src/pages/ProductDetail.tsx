@@ -139,7 +139,7 @@ const ProductDetail = () => {
                 <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-brand-silver/20">
                   <h1 className="text-3xl md:text-4xl font-serif mb-2 text-brand-charcoal">{product.name}</h1>
                   <p className="text-brand-gray-600 mb-4">{product.description}</p>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-white mb-6">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-black mb-6">
                     {formatPrice(product.price, product.currency)}
                   </div>
                 </div>

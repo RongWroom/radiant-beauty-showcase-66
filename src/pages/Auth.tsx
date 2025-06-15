@@ -16,6 +16,7 @@ const Auth = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showConfirmationMessage, setShowConfirmationMessage] = useState(false);
   
   const { signIn, signUp, user } = useAuth();
   const { toast } = useToast();
@@ -35,11 +36,25 @@ const Auth = () => {
       if (isLogin) {
         const { error } = await signIn(email, password);
         if (error) {
-          toast({
-            title: "Login failed",
-            description: error.message,
-            variant: "destructive"
-          });
+          if (error.message.includes('Email not confirmed')) {
+            toast({
+              title: "Please confirm your email",
+              description: "Check your email and click the confirmation link before signing in.",
+              variant: "destructive"
+            });
+          } else if (error.message.includes('Invalid login credentials')) {
+            toast({
+              title: "Invalid credentials",
+              description: "Please check your email and password and try again.",
+              variant: "destructive"
+            });
+          } else {
+            toast({
+              title: "Login failed",
+              description: error.message,
+              variant: "destructive"
+            });
+          }
         } else {
           toast({
             title: "Welcome back!",
@@ -50,19 +65,30 @@ const Auth = () => {
       } else {
         const { error } = await signUp(email, password, firstName, lastName);
         if (error) {
-          toast({
-            title: "Sign up failed",
-            description: error.message,
-            variant: "destructive"
-          });
+          if (error.message.includes('User already registered')) {
+            toast({
+              title: "Account already exists",
+              description: "An account with this email already exists. Please try signing in instead.",
+              variant: "destructive"
+            });
+            setIsLogin(true);
+          } else {
+            toast({
+              title: "Sign up failed",
+              description: error.message,
+              variant: "destructive"
+            });
+          }
         } else {
+          setShowConfirmationMessage(true);
           toast({
             title: "Account created!",
-            description: "Please check your email to verify your account."
+            description: "Please check your email to verify your account before signing in."
           });
         }
       }
     } catch (error) {
+      console.error('Auth error:', error);
       toast({
         title: "An error occurred",
         description: "Please try again later.",
@@ -72,6 +98,45 @@ const Auth = () => {
       setLoading(false);
     }
   };
+
+  if (showConfirmationMessage) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-md w-full space-y-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-center">Check your email</CardTitle>
+                <CardDescription className="text-center">
+                  We've sent a confirmation link to {email}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-gray-600 text-center">
+                  Please click the link in your email to verify your account. 
+                  Once verified, you can return here to sign in.
+                </p>
+                <Button 
+                  onClick={() => {
+                    setShowConfirmationMessage(false);
+                    setIsLogin(true);
+                    setEmail('');
+                    setPassword('');
+                    setFirstName('');
+                    setLastName('');
+                  }}
+                  className="w-full"
+                >
+                  Return to Sign In
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -143,7 +208,13 @@ const Auth = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    minLength={6}
                   />
+                  {!isLogin && (
+                    <p className="text-xs text-gray-500 mt-1">
+                      Password must be at least 6 characters long
+                    </p>
+                  )}
                 </div>
 
                 <Button 

@@ -10,10 +10,7 @@ export const FeaturedSection = () => {
             <h2 className="text-5xl lg:text-6xl font-serif leading-tight text-hierarchy-primary">
               Essential for Radiant Skin
             </h2>
-            <p className="text-hierarchy-secondary text-xl leading-relaxed">
-              Our skilled practitioners will tailor a treatment plan to address your specific beauty goals, 
-              ensuring optimal results that enhance your natural beauty.
-            </p>
+            <p className="text-hierarchy-secondary text-xl leading-relaxed">Our skilled practitioners will tailor a treatment plan to address your specific beauty goals, ensuring the best results to enhance your natural beauty.</p>
             <div className="flex flex-col sm:flex-row gap-6 pt-4">
               <Button className="btn-primary text-lg py-4 px-10">
                 LEARN MORE

@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-gradient-to-tr from-brand-light-gray/80 via-white to-white">
       <div className="container-custom min-h-[85vh] flex flex-col md:flex-row items-center relative z-10">
         <div className="md:w-1/2 pt-24 md:pt-0 z-10 space-y-8">
-          
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium leading-tight text-brand-charcoal">
             Skincare That Lets Your Inner Glow Shine Through
           </h1>
@@ -29,8 +28,8 @@ const Hero = () => {
           </div>
         </div>
         <div className="md:w-1/2 mt-16 md:mt-0 relative">
-          {/* Improved grey background block */}
-          <div className="absolute inset-4 bg-gradient-to-br from-brand-light-gray/60 to-brand-silver/40 rounded-3xl shadow-sm"></div>
+          {/* Subtle soft grey block behind logo */}
+          <div className="absolute inset-4 bg-gradient-to-br from-brand-light-gray/70 to-brand-silver/30 rounded-3xl shadow-sm"></div>
           <img
             alt="STW Aesthetic Clinic logo"
             src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png"
@@ -38,8 +37,8 @@ const Hero = () => {
           />
         </div>
       </div>
-      {/* Subtle flowing gradient overlays - very minimal */}
-      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-brand-off-white/30 to-transparent"></div>
+      {/* Minimal, modern gradient overlays for depth */}
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-brand-off-white/40 to-transparent"></div>
       <div className="absolute top-1/2 right-0 w-1/4 h-1/4 bg-gradient-to-l from-brand-silver/10 to-transparent rounded-full blur-3xl"></div>
     </section>
   );

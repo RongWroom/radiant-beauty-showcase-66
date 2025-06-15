@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, User, Menu, X, LogOut } from 'lucide-react';
+import { User, Menu, X, LogOut } from 'lucide-react';
 import Cart from './Cart';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -46,10 +46,6 @@ const Navbar = () => {
         
         {/* Desktop Icons */}
         <div className="hidden md:flex items-center space-x-4">
-          <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
-            <Search className="h-5 w-5 text-brand-warm-gray-600" />
-          </button>
-          
           {user ? (
             <div className="flex items-center space-x-2">
               <Link 
@@ -139,10 +135,6 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-4 mt-8 pt-8 border-t border-brand-warm-gray-200">
-            <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
-              <Search className="h-5 w-5 text-brand-warm-gray-600" />
-            </button>
-            
             {user ? (
               <button 
                 onClick={handleSignOut}

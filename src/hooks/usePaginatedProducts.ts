@@ -45,7 +45,6 @@ export function usePaginatedProducts(page: number, pageSize: number): UsePaginat
         total: count || 0,
       };
     },
-    keepPreviousData: true,
   });
 
   return {

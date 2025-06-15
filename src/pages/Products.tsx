@@ -23,7 +23,7 @@ type Product = {
 
 const fetchProducts = async (): Promise<Product[]> => {
   const { data, error } = await supabase
-    .from('public.products')
+    .from('products')
     .select('id, name, description, price, currency, image_url, featured')
     .order('created_at', { ascending: false });
 

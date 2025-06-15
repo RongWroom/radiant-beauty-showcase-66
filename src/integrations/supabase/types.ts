@@ -9,12 +9,14 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      products_duplicate: {
+      products: {
         Row: {
           created_at: string | null
           currency: string | null
           description: string | null
+          featured: boolean | null
           id: string
+          image_url: string | null
           name: string
           price: number
           product_benefits: string[] | null
@@ -25,7 +27,9 @@ export type Database = {
           created_at?: string | null
           currency?: string | null
           description?: string | null
+          featured?: boolean | null
           id?: string
+          image_url?: string | null
           name: string
           price: number
           product_benefits?: string[] | null
@@ -36,7 +40,9 @@ export type Database = {
           created_at?: string | null
           currency?: string | null
           description?: string | null
+          featured?: boolean | null
           id?: string
+          image_url?: string | null
           name?: string
           price?: number
           product_benefits?: string[] | null
@@ -45,7 +51,7 @@ export type Database = {
         }
         Relationships: []
       }
-      "public.products": {
+      products_duplicate: {
         Row: {
           created_at: string | null
           currency: string | null

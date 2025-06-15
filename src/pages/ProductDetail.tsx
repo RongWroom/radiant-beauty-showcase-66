@@ -24,7 +24,7 @@ type Product = {
 
 const fetchProduct = async (id: string): Promise<Product | null> => {
   const { data, error } = await supabase
-    .from('public.products')
+    .from('products')
     .select('id, name, description, price, currency, image_url, featured, product_benefits')
     .eq('id', id)
     .maybeSingle();
@@ -38,7 +38,7 @@ const fetchProduct = async (id: string): Promise<Product | null> => {
 
 const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]> => {
     const { data, error } = await supabase
-        .from('public.products')
+        .from('products')
         .select('id, name, description, price, currency, image_url, featured, product_benefits')
         .neq('id', currentProductId)
         .limit(3);

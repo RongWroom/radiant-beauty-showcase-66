@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from "@/components/ui/use-toast";
+import { useCart } from '@/contexts/CartContext';
 
 type Product = {
   id: string;
@@ -56,6 +57,7 @@ const ProductDetail = () => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const { toast } = useToast();
+  const { addToCart } = useCart();
 
   const {
     data: product,
@@ -79,6 +81,23 @@ const ProductDetail = () => {
     if (price === null) return 'N/A';
     const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
     return `${currencySymbol}${price.toFixed(2)}`;
+  };
+
+  const handleAddToCart = () => {
+    if (!product || !id) return;
+    
+    addToCart({
+      id,
+      name: product.name,
+      price: product.price || 0,
+      currency: product.currency || 'GBP',
+      image_url: product.image_url || undefined,
+    }, quantity);
+
+    toast({
+      title: "Added to Cart",
+      description: `${product.name} (${quantity}) has been added to your cart.`,
+    });
   };
 
   const handleBuyNow = async () => {
@@ -225,6 +244,7 @@ const ProductDetail = () => {
                       {isProcessingPayment ? 'Processing...' : 'Buy Now'}
                     </Button>
                     <Button 
+                      onClick={handleAddToCart}
                       className="flex-1 bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark shadow-lg"
                       disabled={isProcessingPayment}
                     >

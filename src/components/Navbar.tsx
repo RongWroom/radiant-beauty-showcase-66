@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, ShoppingCart, User, Menu, X } from 'lucide-react';
+import { Search, User, Menu, X } from 'lucide-react';
+import Cart from './Cart';
 
 const Navbar = () => {
   const location = useLocation();
@@ -43,22 +43,12 @@ const Navbar = () => {
           <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors">
             <User className="h-5 w-5 text-brand-warm-gray-600" />
           </button>
-          <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors relative">
-            <ShoppingCart className="h-5 w-5 text-brand-warm-gray-600" />
-            <span className="absolute -top-1 -right-1 bg-brand-rose-gold text-xs rounded-full h-5 w-5 flex items-center justify-center text-brand-charcoal font-medium">
-              0
-            </span>
-          </button>
+          <Cart />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-2">
-          <button className="p-2 hover:bg-brand-champagne rounded-full transition-colors relative">
-            <ShoppingCart className="h-5 w-5 text-brand-warm-gray-600" />
-            <span className="absolute -top-1 -right-1 bg-brand-rose-gold text-xs rounded-full h-4 w-4 flex items-center justify-center text-brand-charcoal font-medium text-xs">
-              0
-            </span>
-          </button>
+          <Cart />
           <button 
             onClick={toggleMobileMenu}
             className="p-2 hover:bg-brand-champagne rounded-full transition-colors"

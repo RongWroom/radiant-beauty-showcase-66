@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -21,42 +21,24 @@ type Product = {
   featured: boolean | null;
 };
 
-const PRODUCTS_PER_PAGE = 6;
-
-const fetchProducts = async (page: number = 0): Promise<{ products: Product[], hasMore: boolean }> => {
-  const from = page * PRODUCTS_PER_PAGE;
-  const to = from + PRODUCTS_PER_PAGE - 1;
-  
-  const { data, error, count } = await supabase
+const fetchProducts = async (): Promise<Product[]> => {
+  const { data, error } = await supabase
     .from('products')
-    .select('id, name, description, price, currency, image_url, featured', { count: 'exact' })
-    .order('created_at', { ascending: false })
-    .range(from, to);
+    .select('id, name, description, price, currency, image_url, featured')
+    .order('created_at', { ascending: false });
 
   if (error) {
     console.error("Error fetching products:", error);
     throw new Error(error.message);
   }
 
-  const hasMore = count ? (from + data.length) < count : false;
-  
-  return { products: data || [], hasMore };
+  return data || [];
 };
 
 const Products = () => {
-  const [page, setPage] = useState(0);
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
-
-  const { data, isLoading, isError, isFetching } = useQuery({
-    queryKey: ['products', page],
-    queryFn: () => fetchProducts(page),
-    onSuccess: (newData) => {
-      if (page === 0) {
-        setAllProducts(newData.products);
-      } else {
-        setAllProducts(prev => [...prev, ...newData.products]);
-      }
-    }
+  const { data: products, isLoading, isError } = useQuery<Product[]>({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
   });
 
   const formatPrice = (price: number | null, currency: string | null) => {
@@ -65,12 +47,8 @@ const Products = () => {
     return `${currencySymbol}${price.toFixed(2)}`;
   };
 
-  const featuredProduct = allProducts?.find(p => p.featured) || (allProducts && allProducts.length > 0 ? allProducts[0] : null);
-  const remainingProducts = allProducts?.filter(product => product.id !== featuredProduct?.id) || [];
-
-  const handleLoadMore = () => {
-    setPage(prev => prev + 1);
-  };
+  const featuredProduct = products?.find(p => p.featured) || (products && products.length > 0 ? products[0] : null);
+  const remainingProducts = products?.filter(product => product.id !== featuredProduct?.id) || [];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -102,7 +80,7 @@ const Products = () => {
           <div className="container-custom relative z-10">
             <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center text-brand-charcoal">All Products</h2>
             
-            {isLoading && page === 0 && (
+            {isLoading && (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-1">
                   <Skeleton className="h-[500px] w-full rounded-lg" />
@@ -119,11 +97,11 @@ const Products = () => {
               <div className="text-center text-red-500 font-medium">Failed to load products. Please try again later.</div>
             )}
 
-            {!isLoading && allProducts.length === 0 && (
+            {!isLoading && !isError && products && products.length === 0 && (
               <div className="text-center text-brand-gray-600">No products have been added yet.</div>
             )}
 
-            {allProducts.length > 0 && (
+            {!isLoading && !isError && products && products.length > 0 && (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Featured Product - Large Square on Left */}
                 {featuredProduct && (
@@ -180,27 +158,6 @@ const Products = () => {
                     ))}
                   </div>
                 </div>
-              </div>
-            )}
-
-            {/* Load More Button */}
-            {data?.hasMore && (
-              <div className="flex justify-center mt-12">
-                <Button 
-                  onClick={handleLoadMore}
-                  disabled={isFetching}
-                  size="lg"
-                  className="px-8"
-                >
-                  {isFetching ? 'Loading...' : 'Load More Products'}
-                </Button>
-              </div>
-            )}
-
-            {/* Loading indicator for load more */}
-            {isFetching && page > 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                {[...Array(3)].map((_, i) => <Skeleton key={i} className="h-72 w-full rounded-lg" />)}
               </div>
             )}
           </div>

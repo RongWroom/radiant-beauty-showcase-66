@@ -259,7 +259,7 @@ const TreatmentDetail = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </section>
         )}
       </main>
       <Footer />

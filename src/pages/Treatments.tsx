@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -5,14 +6,51 @@ import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { treatments } from '../utils/data';
-import { Droplet, Syringe, Calendar, Star } from 'lucide-react';
+import { useTreatments } from '@/hooks/useTreatments';
+import { Droplet, Syringe, Calendar, Star, Loader2 } from 'lucide-react';
+
 const Treatments = () => {
+  const { data: treatments, isLoading, isError } = useTreatments();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isError || !treatments) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-serif mb-4">Error loading treatments</h1>
+            <p className="text-gray-600">Please try again later.</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   // Find the featured treatment
   const featuredTreatment = treatments.find(treatment => treatment.featured) || treatments[0];
   // Get the remaining treatments (excluding the featured one)
-  const remainingTreatments = treatments.filter(treatment => treatment.id !== featuredTreatment.id);
-  return <div className="min-h-screen flex flex-col">
+  const remainingTreatments = treatments.filter(treatment => treatment.id !== featuredTreatment?.id);
+
+  const formatPrice = (price: number, currency: string | null) => {
+    const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
+    return `${currencySymbol}${price.toFixed(0)}`;
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -86,62 +124,66 @@ const Treatments = () => {
         </section>
 
         {/* All Treatments Grid - Updated Layout */}
-        <section className="py-14 bg-brand-light-gray">
-          <div className="container-custom">
-            <h2 className="text-2xl md:text-3xl font-serif mb-7 text-brand-charcoal font-bold text-center">All Treatments</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Featured Treatment - Large Square on Left */}
-              <div className="lg:col-span-1">
-                <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
-                  <div className="relative h-96 lg:h-full">
-                    <img src={featuredTreatment.image} alt={featuredTreatment.name} className="w-full h-full object-cover" />
-                    <div className="absolute top-4 left-4">
-                      <Badge variant="secondary" className="font-medium px-3 py-1 bg-brand-silver text-brand-charcoal">
-                        <Star className="w-4 h-4 mr-1" />
-                        Most Popular
-                      </Badge>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-slate-blue/90 to-transparent p-4 text-white">
-                      <h3 className="font-serif text-xl font-medium text-white">{featuredTreatment.name}</h3>
-                      <p className="text-sm mt-1 mb-2 line-clamp-2">
-                        {featuredTreatment.description}
-                      </p>
-                      <div className="flex items-center justify-between mt-2">
-                        <span className="font-medium text-brand-light-gray">{featuredTreatment.price}</span>
-                        <Link to={`/treatments/${featuredTreatment.id}`}>
-                          <Button size="sm" variant="secondary" className="bg-brand-silver text-brand-charcoal hover:bg-brand-silver-light">Read More</Button>
-                        </Link>
+        {featuredTreatment && (
+          <section className="py-14 bg-brand-light-gray">
+            <div className="container-custom">
+              <h2 className="text-2xl md:text-3xl font-serif mb-7 text-brand-charcoal font-bold text-center">All Treatments</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Featured Treatment - Large Square on Left */}
+                <div className="lg:col-span-1">
+                  <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full">
+                    <div className="relative h-96 lg:h-full">
+                      <img src={featuredTreatment.image_url || '/placeholder.svg'} alt={featuredTreatment.name} className="w-full h-full object-cover" />
+                      <div className="absolute top-4 left-4">
+                        <Badge variant="secondary" className="font-medium px-3 py-1 bg-brand-silver text-brand-charcoal">
+                          <Star className="w-4 h-4 mr-1" />
+                          Most Popular
+                        </Badge>
                       </div>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-              
-              {/* Right Column with 2x2 Grid */}
-              <div className="lg:col-span-2">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {remainingTreatments.map(treatment => <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                      <div className="relative h-48">
-                        <img src={treatment.image} alt={treatment.name} className="w-full h-full object-cover" />
-                      </div>
-                      <CardContent className="p-4">
-                        <h3 className="font-serif text-lg font-medium">{treatment.name}</h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2 mt-1 mb-3">
-                          {treatment.description}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-slate-blue/90 to-transparent p-4 text-white">
+                        <h3 className="font-serif text-xl font-medium text-white">{featuredTreatment.name}</h3>
+                        <p className="text-sm mt-1 mb-2 line-clamp-2">
+                          {featuredTreatment.description}
                         </p>
-                        <div className="flex items-center justify-between mt-4">
-                          <span className="text-lg font-medium">{treatment.price}</span>
-                          <Link to={`/treatments/${treatment.id}`}>
-                            <Button size="sm" variant="default">Read More</Button>
+                        <div className="flex items-center justify-between mt-2">
+                          <span className="font-medium text-brand-light-gray">{formatPrice(featuredTreatment.price, featuredTreatment.currency)}</span>
+                          <Link to={`/treatments/${featuredTreatment.id}`}>
+                            <Button size="sm" variant="secondary" className="bg-brand-silver text-brand-charcoal hover:bg-brand-silver-light">Read More</Button>
                           </Link>
                         </div>
-                      </CardContent>
-                    </Card>)}
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+                
+                {/* Right Column with 2x2 Grid */}
+                <div className="lg:col-span-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {remainingTreatments.map(treatment => (
+                      <Card key={treatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                        <div className="relative h-48">
+                          <img src={treatment.image_url || '/placeholder.svg'} alt={treatment.name} className="w-full h-full object-cover" />
+                        </div>
+                        <CardContent className="p-4">
+                          <h3 className="font-serif text-lg font-medium">{treatment.name}</h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2 mt-1 mb-3">
+                            {treatment.description}
+                          </p>
+                          <div className="flex items-center justify-between mt-4">
+                            <span className="text-lg font-medium">{formatPrice(treatment.price, treatment.currency)}</span>
+                            <Link to={`/treatments/${treatment.id}`}>
+                              <Button size="sm" variant="default">Read More</Button>
+                            </Link>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Booking Section */}
         <section className="py-12 bg-brand-off-white">
@@ -155,6 +197,8 @@ const Treatments = () => {
         </section>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Treatments;

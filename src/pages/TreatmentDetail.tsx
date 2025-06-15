@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -5,15 +6,35 @@ import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { treatments } from '../utils/data';
-import { ArrowLeft, Clock, MapPin, Star, Phone, Calendar } from 'lucide-react';
+import { useTreatment, useTreatments } from '@/hooks/useTreatments';
+import { ArrowLeft, Clock, MapPin, Star, Phone, Calendar, Loader2 } from 'lucide-react';
+
 const TreatmentDetail = () => {
-  const {
-    id
-  } = useParams();
-  const treatment = treatments.find(t => t.id === parseInt(id || '0'));
-  if (!treatment) {
-    return <div className="min-h-screen flex flex-col">
+  const { id } = useParams();
+  const treatmentId = parseInt(id || '0');
+  const { data: treatment, isLoading, isError } = useTreatment(treatmentId);
+  const { data: allTreatments } = useTreatments();
+
+  const formatPrice = (price: number, currency: string | null) => {
+    const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
+    return `${currencySymbol}${price.toFixed(0)}`;
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isError || !treatment) {
+    return (
+      <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
@@ -24,12 +45,17 @@ const TreatmentDetail = () => {
           </div>
         </main>
         <Footer />
-      </div>;
+      </div>
+    );
   }
 
   // Get related treatments (excluding current one)
-  const relatedTreatments = treatments.filter(t => t.id !== treatment.id && t.category === treatment.category).slice(0, 2);
-  return <div className="min-h-screen flex flex-col">
+  const relatedTreatments = allTreatments
+    ?.filter(t => t.id !== treatment.id && t.category === treatment.category)
+    ?.slice(0, 2) || [];
+
+  return (
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -42,10 +68,12 @@ const TreatmentDetail = () => {
                   Back to Treatments
                 </Button>
               </Link>
-              {treatment.featured && <Badge className="bg-skin-green text-black">
+              {treatment.featured && (
+                <Badge className="bg-skin-green text-black">
                   <Star className="w-4 h-4 mr-1" />
                   Most Popular
-                </Badge>}
+                </Badge>
+              )}
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -56,7 +84,7 @@ const TreatmentDetail = () => {
                 <div className="flex flex-wrap gap-4 mb-8">
                   <div className="flex items-center gap-2">
                     <Clock className="w-5 h-5 text-skin-teal" />
-                    <span>60-90 minutes</span>
+                    <span>{treatment.duration_minutes ? `${treatment.duration_minutes} minutes` : '60-90 minutes'}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-skin-teal" />
@@ -64,7 +92,7 @@ const TreatmentDetail = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-3xl font-bold text-skin-teal">{treatment.price}</span>
+                  <span className="text-3xl font-bold text-skin-teal">{formatPrice(treatment.price, treatment.currency)}</span>
                   <Button className="hover:bg-opacity-90 bg-skin-teal">
                     <Calendar className="mr-2 h-4 w-4" />
                     Book Treatment
@@ -72,7 +100,7 @@ const TreatmentDetail = () => {
                 </div>
               </div>
               <div className="relative">
-                <img src={treatment.image} alt={treatment.name} className="w-full h-96 object-cover rounded-lg shadow-lg" />
+                <img src={treatment.image_url || '/placeholder.svg'} alt={treatment.name} className="w-full h-96 object-cover rounded-lg shadow-lg" />
               </div>
             </div>
           </div>
@@ -120,22 +148,33 @@ const TreatmentDetail = () => {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-serif mb-4 text-black">Key Benefits</h3>
                   <ul className="space-y-3 text-black">
-                    <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm">Improves skin texture and tone</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm">Reduces signs of aging</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm">Enhances natural radiance</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm">Long-lasting results</span>
-                    </li>
+                    {treatment.benefits && treatment.benefits.length > 0 ? (
+                      treatment.benefits.map((benefit, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm">{benefit}</span>
+                        </li>
+                      ))
+                    ) : (
+                      <>
+                        <li className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm">Improves skin texture and tone</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm">Reduces signs of aging</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm">Enhances natural radiance</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm">Long-lasting results</span>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </CardContent>
               </Card>
@@ -146,7 +185,7 @@ const TreatmentDetail = () => {
                   <h3 className="text-xl font-serif mb-4 text-gray-900">Treatment Pricing</h3>
                   <div className="space-y-4">
                     <div className="text-center">
-                      <span className="text-3xl font-bold text-skin-teal">{treatment.price}</span>
+                      <span className="text-3xl font-bold text-skin-teal">{formatPrice(treatment.price, treatment.currency)}</span>
                       <p className="text-sm text-gray-600 mt-1">Single session</p>
                     </div>
                     <div className="space-y-2">
@@ -188,13 +227,15 @@ const TreatmentDetail = () => {
         </section>
 
         {/* Related Treatments */}
-        {relatedTreatments.length > 0 && <section className="py-16 bg-skin-gray">
+        {relatedTreatments.length > 0 && (
+          <section className="py-16 bg-skin-gray">
             <div className="container-custom">
               <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">Related Treatments</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                {relatedTreatments.map(relatedTreatment => <Card key={relatedTreatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                {relatedTreatments.map(relatedTreatment => (
+                  <Card key={relatedTreatment.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                     <div className="relative h-48">
-                      <img src={relatedTreatment.image} alt={relatedTreatment.name} className="w-full h-full object-cover" />
+                      <img src={relatedTreatment.image_url || '/placeholder.svg'} alt={relatedTreatment.name} className="w-full h-full object-cover" />
                     </div>
                     <CardContent className="p-4">
                       <h3 className="font-serif text-lg font-medium">{relatedTreatment.name}</h3>
@@ -202,18 +243,22 @@ const TreatmentDetail = () => {
                         {relatedTreatment.description}
                       </p>
                       <div className="flex items-center justify-between mt-4">
-                        <span className="text-lg font-medium">{relatedTreatment.price}</span>
+                        <span className="text-lg font-medium">{formatPrice(relatedTreatment.price, relatedTreatment.currency)}</span>
                         <Link to={`/treatments/${relatedTreatment.id}`}>
                           <Button size="sm">Read More</Button>
                         </Link>
                       </div>
                     </CardContent>
-                  </Card>)}
+                  </Card>
+                ))}
               </div>
             </div>
-          </section>}
+          </section>
+        )}
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default TreatmentDetail;

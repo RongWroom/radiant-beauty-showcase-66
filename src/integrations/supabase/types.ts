@@ -87,6 +87,51 @@ export type Database = {
         }
         Relationships: []
       }
+      treatments: {
+        Row: {
+          benefits: string[] | null
+          category: string | null
+          created_at: string | null
+          currency: string | null
+          description: string | null
+          duration_minutes: number | null
+          featured: boolean | null
+          id: number
+          image_url: string | null
+          name: string
+          price: number
+          updated_at: string | null
+        }
+        Insert: {
+          benefits?: string[] | null
+          category?: string | null
+          created_at?: string | null
+          currency?: string | null
+          description?: string | null
+          duration_minutes?: number | null
+          featured?: boolean | null
+          id?: number
+          image_url?: string | null
+          name: string
+          price: number
+          updated_at?: string | null
+        }
+        Update: {
+          benefits?: string[] | null
+          category?: string | null
+          created_at?: string | null
+          currency?: string | null
+          description?: string | null
+          duration_minutes?: number | null
+          featured?: boolean | null
+          id?: number
+          image_url?: string | null
+          name?: string
+          price?: number
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

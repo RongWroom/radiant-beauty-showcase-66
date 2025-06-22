@@ -59,6 +59,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
           notes: notes.trim() || undefined,
           treatmentPrice: treatment.price,
           treatmentDuration: treatment.duration_minutes,
+          treatmentCategory: treatment.category, // Added this line
         },
       });
 

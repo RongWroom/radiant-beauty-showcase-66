@@ -69,10 +69,12 @@ const Treatments = () => {
                 Each treatment is performed by our expert estheticians using premium products.
               </p>
               <div className="flex justify-center space-x-4">
-                <Button variant="default">
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Book Consultation
-                </Button>
+                <Link to="/contact">
+                  <Button variant="default">
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Book Consultation
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -92,7 +94,9 @@ const Treatments = () => {
                   <p className="mb-4 text-brand-silver">
                     Revitalize and nourish your skin with our specialized facial treatments
                   </p>
-                  <Button variant="outline" className="mt-auto bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Facials</Button>
+                  <Link to="/contact" className="mt-auto">
+                    <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Facials</Button>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
@@ -104,7 +108,9 @@ const Treatments = () => {
                   <p className="mb-4 text-brand-silver">
                     Turn back the clock with our effective anti-aging treatments
                   </p>
-                  <Button variant="outline" className="mt-auto bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Anti-Aging</Button>
+                  <Link to="/contact" className="mt-auto">
+                    <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Anti-Aging</Button>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
@@ -116,7 +122,9 @@ const Treatments = () => {
                   <p className="mb-4 text-brand-silver">
                     Refresh and renew your skin with our rejuvenating treatments
                   </p>
-                  <Button variant="outline" className="mt-auto bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Rejuvenation</Button>
+                  <Link to="/contact" className="mt-auto">
+                    <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Rejuvenation</Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>
@@ -191,7 +199,9 @@ const Treatments = () => {
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-serif mb-3 font-semibold text-brand-charcoal">Ready to Book Your Treatment?</h2>
               <p className="mb-6 text-brand-charcoal">Schedule your appointment today and take the first step towards healthier, more radiant skin.</p>
-              <Button variant="default">Book Now</Button>
+              <Link to="/contact">
+                <Button variant="default">Book Now</Button>
+              </Link>
             </div>
           </div>
         </section>

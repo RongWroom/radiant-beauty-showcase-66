@@ -13,12 +13,16 @@ export const FeaturedSection = () => {
             </h2>
             <p className="text-hierarchy-secondary text-xl leading-relaxed">Our skilled practitioners will tailor a treatment plan to address your specific beauty goals, ensuring the best results to enhance your natural beauty.</p>
             <div className="flex flex-col sm:flex-row gap-6 pt-4">
-              <Button className="btn-primary text-lg py-4 px-10">
-                LEARN MORE
-              </Button>
-              <Button className="btn-secondary text-lg py-4 px-10">
-                BOOK NOW
-              </Button>
+              <Link to="/about">
+                <Button className="btn-primary text-lg py-4 px-10">
+                  LEARN MORE
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button className="btn-secondary text-lg py-4 px-10">
+                  BOOK NOW
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="lg:w-1/2">
@@ -82,9 +86,11 @@ export const BannerSection = () => {
             <p className="text-xl leading-relaxed max-w-2xl text-hierarchy-secondary">
               Unlock the secret to your inner beauty and energy with our natural skincare products
             </p>
-            <Button className="bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light transition-all duration-300 shadow-lg px-12 py-4 text-lg font-medium">
-              LEARN MORE
-            </Button>
+            <Link to="/products">
+              <Button className="bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light transition-all duration-300 shadow-lg px-12 py-4 text-lg font-medium">
+                LEARN MORE
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

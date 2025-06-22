@@ -19,11 +19,15 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-serif text-lg font-medium mb-4 text-hierarchy-primary">Account</h3>
-            <ul className="space-y-2">
-              <li><Link to="/auth" className="text-hierarchy-secondary hover:text-brand-plum transition-colors">Sign In</Link></li>
-              <li><Link to="/account" className="text-hierarchy-secondary hover:text-brand-plum transition-colors">My Account</Link></li>
-            </ul>
+            <h3 className="font-serif text-lg font-medium mb-4 text-hierarchy-primary">Contact</h3>
+            <div className="space-y-2">
+              <p className="text-hierarchy-secondary">The Treatment Rooms</p>
+              <p className="text-hierarchy-secondary">110 Front Street</p>
+              <p className="text-hierarchy-secondary">Stanley, United Kingdom</p>
+              <p className="text-hierarchy-secondary">01207 239983</p>
+              <p className="text-hierarchy-secondary">sharon@stwaestheticclinic.co.uk</p>
+              <p className="text-hierarchy-secondary">stwaestheticclinic.co.uk</p>
+            </div>
           </div>
           <div>
             <h3 className="font-serif text-lg font-medium mb-4 text-hierarchy-primary">Stay Connected</h3>

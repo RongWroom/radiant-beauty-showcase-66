@@ -51,9 +51,9 @@ const Contact = () => {
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-2">Location</h3>
                       <p className="text-white/90 leading-relaxed">
-                        123 Beauty Street<br />
-                        Downtown District<br />
-                        City, ST 12345
+                        The Treatment Rooms<br />
+                        110 Front Street<br />
+                        Stanley, United Kingdom
                       </p>
                     </div>
                   </div>
@@ -62,7 +62,7 @@ const Contact = () => {
                     <Phone className="h-6 w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-2">Phone</h3>
-                      <p className="text-white/90">(555) 123-4567</p>
+                      <p className="text-white/90">01207 239983</p>
                     </div>
                   </div>
 
@@ -70,7 +70,7 @@ const Contact = () => {
                     <Mail className="h-6 w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
-                      <p className="text-white/90">info@stwclinic.com</p>
+                      <p className="text-white/90">sharon@stwaestheticclinic.co.uk</p>
                     </div>
                   </div>
 
@@ -140,10 +140,10 @@ const Contact = () => {
                         <label className="block text-sm font-semibold text-brand-charcoal mb-2">Service of Interest</label>
                         <select className="w-full px-4 py-3 border-2 border-brand-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-slate-blue focus:border-transparent transition-all duration-200 text-base">
                           <option>Select a service</option>
-                          <option>Facial Treatment</option>
-                          <option>Anti-Aging Treatment</option>
-                          <option>Skin Rejuvenation</option>
-                          <option>Consultation Only</option>
+                          <option>Facial Treatments</option>
+                          <option>Laser Hair Removal</option>
+                          <option>Body Sculpting</option>
+                          <option>Free Consultation</option>
                         </select>
                       </div>
                       <div>

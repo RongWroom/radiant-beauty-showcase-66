@@ -181,7 +181,7 @@ const Treatments = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         )}
 
         {/* Booking Section */}

@@ -13,7 +13,7 @@ const Navbar = () => {
   const { user, signOut } = useAuth();
   
   const isActive = (path: string) => {
-    return location.pathname === path ? "text-brand-plum font-medium" : "text-brand-charcoal hover:text-brand-plum";
+    return location.pathname === path ? "text-brand-slate-blue font-medium" : "text-brand-charcoal hover:text-brand-slate-blue";
   };
 
   const handleSignOut = async () => {
@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white py-4 sm:py-6 sticky top-0 z-50 shadow-sm border-b border-brand-warm-gray-200">
+      <nav className="bg-white py-4 sm:py-6 sticky top-0 z-50 shadow-sm border-b border-brand-gray-200">
         <div className="container-custom flex justify-between items-center">
           <div className="flex items-center space-x-8 sm:space-x-12">
             <Link to="/" className="text-2xl sm:text-3xl font-serif font-bold text-hierarchy-primary" onClick={close}>
@@ -44,15 +44,15 @@ const Navbar = () => {
               <div className="flex items-center space-x-2">
                 <Link 
                   to="/account" 
-                  className="p-2 lg:p-3 hover:bg-brand-champagne rounded-full transition-colors touch-target"
+                  className="p-2 lg:p-3 hover:bg-brand-light-gray rounded-full transition-colors touch-target"
                 >
-                  <User className="h-5 w-5 text-brand-warm-gray-600" />
+                  <User className="h-5 w-5 text-brand-gray-600 fill-current" />
                 </Link>
                 <button 
                   onClick={handleSignOut}
-                  className="p-2 lg:p-3 hover:bg-brand-champagne rounded-full transition-colors touch-target"
+                  className="p-2 lg:p-3 hover:bg-brand-light-gray rounded-full transition-colors touch-target"
                 >
-                  <LogOut className="h-5 w-5 text-brand-warm-gray-600" />
+                  <LogOut className="h-5 w-5 text-brand-gray-600" />
                 </button>
               </div>
             ) : (
@@ -71,13 +71,13 @@ const Navbar = () => {
             <Cart />
             <button 
               onClick={toggle}
-              className="p-2 hover:bg-brand-champagne rounded-full transition-colors touch-target"
+              className="p-2 hover:bg-brand-light-gray rounded-full transition-colors touch-target"
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? (
-                <X className="h-6 w-6 text-brand-warm-gray-600" />
+                <X className="h-6 w-6 text-brand-gray-600" />
               ) : (
-                <Menu className="h-6 w-6 text-brand-warm-gray-600" />
+                <Menu className="h-6 w-6 text-brand-gray-600" />
               )}
             </button>
           </div>
@@ -104,10 +104,10 @@ const Navbar = () => {
             </Link>
             <button 
               onClick={close}
-              className="p-2 hover:bg-brand-champagne rounded-full transition-colors touch-target"
+              className="p-2 hover:bg-brand-light-gray rounded-full transition-colors touch-target"
               aria-label="Close menu"
             >
-              <X className="h-6 w-6 text-brand-warm-gray-600" />
+              <X className="h-6 w-6 text-brand-gray-600" />
             </button>
           </div>
           
@@ -135,14 +135,14 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="flex items-center justify-center space-x-4 mt-6 pt-6 border-t border-brand-warm-gray-200">
+          <div className="flex items-center justify-center space-x-4 mt-6 pt-6 border-t border-brand-gray-200">
             {user ? (
               <button 
                 onClick={handleSignOut}
-                className="flex items-center space-x-2 p-3 hover:bg-brand-champagne rounded-lg transition-colors touch-target"
+                className="flex items-center space-x-2 p-3 hover:bg-brand-light-gray rounded-lg transition-colors touch-target"
               >
-                <LogOut className="h-5 w-5 text-brand-warm-gray-600" />
-                <span className="text-brand-warm-gray-600">Sign Out</span>
+                <LogOut className="h-5 w-5 text-brand-gray-600" />
+                <span className="text-brand-gray-600">Sign Out</span>
               </button>
             ) : (
               <Link to="/auth" onClick={close} className="w-full">

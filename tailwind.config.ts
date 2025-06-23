@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -62,7 +63,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Updated brand palette with new primary color
+				// Updated brand palette with dusty rose
 				brand: {
 					'slate-blue': '#182F3D',           // NEW PRIMARY - updated main brand color
 					'slate-blue-light': '#243A4D',     // PRIMARY HOVER - lighter version
@@ -78,6 +79,11 @@ export default {
 					'charcoal': '#1F2937',            // PRIMARY TEXT
 					'gray-600': '#4B5563',            // SECONDARY TEXT
 					'gray-800': '#111827'             // SUPPORTING TEXT
+				},
+				'dusty-rose': {
+					DEFAULT: '#C9A9A6',
+					light: '#D4B8B5',
+					dark: '#B89B97'
 				}
 			},
 			borderRadius: {
@@ -129,7 +135,8 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Poppins', 'sans-serif'],
-				serif: ['Playfair Display', 'serif']
+				serif: ['Playfair Display', 'serif'],
+				montserrat: ['Montserrat', 'sans-serif']
 			}
 		}
 	},

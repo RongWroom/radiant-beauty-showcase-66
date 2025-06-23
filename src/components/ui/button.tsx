@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -5,25 +6,25 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-base font-montserrat font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-2 border-transparent shadow-sm hover:shadow-lg [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-brand-slate-blue text-white hover:bg-rose-200",
+        default: "bg-brand-slate-blue text-white hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
         destructive:
-          "bg-red-500 text-white hover:bg-rose-200",
+          "bg-red-500 text-white hover:bg-dusty-rose hover:text-red-500 hover:border-red-500",
         outline:
-          "border border-brand-slate-blue bg-white text-brand-slate-blue hover:bg-rose-50 hover:text-brand-slate-blue hover:border-rose-200",
+          "border-brand-slate-blue bg-white text-brand-slate-blue hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
         secondary:
-          "bg-brand-gray-100 text-brand-gray-800 hover:bg-rose-50",
-        ghost: "hover:bg-rose-50 hover:text-brand-charcoal",
-        link: "text-brand-slate-blue underline-offset-4 hover:underline hover:text-rose-400",
-        accent: "bg-brand-silver text-brand-charcoal hover:bg-rose-100",
+          "bg-brand-gray-100 text-brand-gray-800 hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
+        ghost: "hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
+        link: "text-brand-slate-blue underline-offset-4 hover:underline hover:text-dusty-rose border-transparent hover:border-transparent shadow-none hover:shadow-none",
+        accent: "bg-brand-silver text-brand-charcoal hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        default: "px-7 py-[14px]",
+        sm: "px-4 py-2 text-sm rounded-md",
+        lg: "px-8 py-4 text-lg rounded-[12px]",
         icon: "h-10 w-10",
       },
     },

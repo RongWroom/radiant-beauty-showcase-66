@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
 const Hero = () => {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-white to-brand-light-gray/50">
+  return <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-white to-brand-light-gray/50">
       {/* Enhanced background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-16 h-16 sm:w-32 sm:h-32 bg-brand-slate-blue rounded-full blur-2xl sm:blur-3xl"></div>
@@ -52,12 +49,8 @@ const Hero = () => {
         <div className="w-full lg:w-1/2 mt-12 sm:mt-16 lg:mt-0 relative px-4 sm:px-0">
           {/* Enhanced background styling for image */}
           <div className="absolute inset-2 sm:inset-4 bg-gradient-to-br from-brand-light-gray/70 to-brand-silver/30 rounded-2xl sm:rounded-3xl shadow-lg"></div>
-          <div className="absolute inset-1 sm:inset-2 bg-gradient-to-tr from-brand-slate-blue/5 to-transparent rounded-2xl sm:rounded-3xl"></div>
-          <img 
-            alt="STW Aesthetic Clinic logo" 
-            src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png" 
-            className="relative z-10 mx-auto h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] w-full max-w-sm sm:max-w-md rounded-lg object-contain p-6 sm:p-8 lg:p-10" 
-          />
+          <div className="absolute inset-1 sm:inset-2 bg-gradient-to-tr from-brand-slate-blue/5 to-transparent sm:rounded-3xl rounded-lg"></div>
+          <img alt="STW Aesthetic Clinic logo" src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png" className="relative z-10 mx-auto h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] w-full max-w-sm sm:max-w-md rounded-lg object-contain p-6 sm:p-8 lg:p-10" />
         </div>
       </div>
       
@@ -65,8 +58,6 @@ const Hero = () => {
       <div className="absolute bottom-0 left-0 w-full h-8 sm:h-16 bg-gradient-to-t from-brand-off-white/60 to-transparent"></div>
       <div className="absolute top-1/2 right-0 w-1/4 h-1/4 bg-gradient-to-l from-brand-silver/15 to-transparent rounded-full blur-2xl sm:blur-3xl"></div>
       <div className="absolute top-1/4 left-0 w-1/6 h-1/6 bg-gradient-to-r from-brand-slate-blue/10 to-transparent rounded-full blur-xl sm:blur-2xl"></div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;

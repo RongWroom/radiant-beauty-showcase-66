@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { User, Menu, X, LogOut } from 'lucide-react';
@@ -44,15 +43,15 @@ const Navbar = () => {
               <div className="flex items-center space-x-2">
                 <Link 
                   to="/account" 
-                  className="p-2 lg:p-3 hover:bg-brand-light-gray rounded-full transition-colors touch-target"
+                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center hover:bg-brand-light-gray rounded-full transition-colors"
                 >
-                  <User className="h-5 w-5 text-brand-gray-600 fill-current" />
+                  <User className="h-5 w-5 lg:h-6 lg:w-6 text-brand-gray-600 fill-current" />
                 </Link>
                 <button 
                   onClick={handleSignOut}
-                  className="p-2 lg:p-3 hover:bg-brand-light-gray rounded-full transition-colors touch-target"
+                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center hover:bg-brand-light-gray rounded-full transition-colors"
                 >
-                  <LogOut className="h-5 w-5 text-brand-gray-600" />
+                  <LogOut className="h-5 w-5 lg:h-6 lg:w-6 text-brand-gray-600" />
                 </button>
               </div>
             ) : (
@@ -71,7 +70,7 @@ const Navbar = () => {
             <Cart />
             <button 
               onClick={toggle}
-              className="p-2 hover:bg-brand-light-gray rounded-full transition-colors touch-target"
+              className="w-12 h-12 flex items-center justify-center hover:bg-brand-light-gray rounded-full transition-colors"
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? (
@@ -104,7 +103,7 @@ const Navbar = () => {
             </Link>
             <button 
               onClick={close}
-              className="p-2 hover:bg-brand-light-gray rounded-full transition-colors touch-target"
+              className="w-12 h-12 flex items-center justify-center hover:bg-brand-light-gray rounded-full transition-colors"
               aria-label="Close menu"
             >
               <X className="h-6 w-6 text-brand-gray-600" />
@@ -139,7 +138,7 @@ const Navbar = () => {
             {user ? (
               <button 
                 onClick={handleSignOut}
-                className="flex items-center space-x-2 p-3 hover:bg-brand-light-gray rounded-lg transition-colors touch-target"
+                className="flex items-center space-x-2 px-4 py-3 hover:bg-brand-light-gray rounded-lg transition-colors"
               >
                 <LogOut className="h-5 w-5 text-brand-gray-600" />
                 <span className="text-brand-gray-600">Sign Out</span>

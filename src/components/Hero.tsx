@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="absolute bottom-10 sm:bottom-20 left-1/4 sm:left-1/3 w-20 h-20 sm:w-40 sm:h-40 bg-brand-slate-blue-light rounded-full blur-2xl sm:blur-3xl"></div>
       </div>
       
-      <div className="container-custom min-h-[85vh] sm:min-h-[90vh] flex flex-col lg:flex-row items-center relative z-10">
+      <div className="container-custom min-h-[85vh] sm:min-h-[90vh] flex flex-col lg:flex-row items-center relative z-10 py-0 my-[10px]">
         <div className="w-full lg:w-1/2 pt-20 sm:pt-24 lg:pt-0 z-10 mobile-spacing-lg text-center lg:text-left">
           <div className="mobile-spacing-md">
             <h1 className="mobile-text-2xl font-serif font-medium text-brand-charcoal px-4 sm:px-0">

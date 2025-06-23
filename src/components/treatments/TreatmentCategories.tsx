@@ -38,7 +38,8 @@ const TreatmentCategories = () => {
           </div>
 
           {/* Main heading */}
-          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-white font-bold lg:text-4xl">Beauty Treatments</h2>
+          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-white font-bold lg:text-4xl">STW Aesthetics
+Beauty Treatments</h2>
 
           {/* Current category content */}
           <div className="transition-all duration-1000 transform">

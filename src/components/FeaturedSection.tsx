@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { featuredTreatments, treatments } from '../utils/data';
-
 export const FeaturedSection = () => {
   return <section className="section bg-white">
       <div className="container-custom">
@@ -60,10 +58,8 @@ export const FeaturedSection = () => {
       </div>
     </section>;
 };
-
 export const BannerSection = () => {
-  return (
-    <section className="section bg-section-light relative overflow-hidden">
+  return <section className="section bg-section-light relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {/* Subtle blush gradient diagonally from left-bottom to right-top */}
         <div className="w-full h-full bg-gradient-to-tr from-brand-silver-light/30 via-white to-white" />
@@ -72,11 +68,7 @@ export const BannerSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-16 sm:gap-20">
           <div className="lg:w-1/3">
             <div className="relative">
-              <img
-                src="/placeholder.svg"
-                alt="Skincare serum"
-                className="w-full h-80 sm:h-96 object-cover rounded-3xl shadow-lg"
-              />
+              <img src="/placeholder.svg" alt="Skincare serum" className="w-full h-80 sm:h-96 object-cover rounded-3xl shadow-lg" />
               <div className="absolute inset-0 bg-white/15 rounded-3xl"></div>
             </div>
           </div>
@@ -84,7 +76,7 @@ export const BannerSection = () => {
             <h2 className="mobile-text-2xl font-serif font-semibold text-brand-charcoal">
               Skin Care Meets Nature
             </h2>
-            <p className="mobile-text-base max-w-2xl text-hierarchy-secondary">
+            <p className="mobile-text-base max-w-2xl text-hierarchy-secondary my-[10px]">
               Unlock the secret to your inner beauty and energy with our natural skincare products
             </p>
             <Link to="/products">
@@ -98,10 +90,8 @@ export const BannerSection = () => {
       <div className="absolute top-0 right-0 h-full w-1/4 opacity-10 pointer-events-none" aria-hidden="true">
         <img src="/placeholder.svg" alt="Decorative leaves" className="h-full object-cover" />
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export const ProductGrid = () => {
   return <section className="section bg-section-light">
       <div className="container-custom">
@@ -123,7 +113,6 @@ export const ProductGrid = () => {
       </div>
     </section>;
 };
-
 export default {
   FeaturedSection,
   BannerSection,

@@ -76,7 +76,7 @@ export const BannerSection = () => {
             <h2 className="mobile-text-2xl font-serif font-semibold text-brand-charcoal">
               Skin Care Meets Nature
             </h2>
-            <p className="mobile-text-base max-w-2xl text-hierarchy-secondary my-[10px]">
+            <p className="mobile-text-base max-w-2xl text-hierarchy-secondary my-0">
               Unlock the secret to your inner beauty and energy with our natural skincare products
             </p>
             <Link to="/products">

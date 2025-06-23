@@ -13,14 +13,17 @@ const Hero = () => {
         <div className="absolute bottom-10 sm:bottom-20 left-1/4 sm:left-1/3 w-20 h-20 sm:w-40 sm:h-40 bg-brand-slate-blue-light rounded-full blur-2xl sm:blur-3xl"></div>
       </div>
       
-      {/* Organic beauty background - blossom leaves */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full opacity-15 lg:opacity-20">
+      {/* Flowing organic beauty background - pink blossom petals */}
+      <div className="absolute inset-0 opacity-20">
         <img 
-          src="/images/hero-blossom.jpg" 
+          src="/lovable-uploads/72ed3b10-bdb8-421e-95eb-1645b48a2b97.png" 
           alt="" 
-          className="w-full h-full object-cover object-left mix-blend-soft-light"
+          className="w-full h-full object-cover mix-blend-soft-light"
         />
       </div>
+      
+      {/* Subtle gradient overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
       
       <div className="container-custom min-h-[85vh] sm:min-h-[90vh] flex flex-col lg:flex-row items-center relative z-10 py-0 my-[10px]">
         <div className="w-full lg:w-1/2 pt-20 sm:pt-24 lg:pt-0 z-10 mobile-spacing-lg text-center lg:text-left">
@@ -59,7 +62,7 @@ const Hero = () => {
         </div>
         
         <div className="w-full lg:w-1/2 mt-12 sm:mt-16 lg:mt-0 relative px-4 sm:px-0">
-          {/* Natural, organic logo presentation - removed boxy elements */}
+          {/* Natural, organic logo presentation */}
           <div className="relative z-10">
             <img 
               alt="STW Aesthetic Clinic logo" 
@@ -67,16 +70,11 @@ const Hero = () => {
               className="mx-auto h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px] w-full max-w-sm sm:max-w-md object-contain drop-shadow-lg" 
             />
           </div>
-          
-          {/* Subtle organic accent behind logo */}
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-slate-blue/5 via-transparent to-brand-silver/10 rounded-full blur-3xl opacity-60"></div>
         </div>
       </div>
       
       {/* Enhanced organic gradient overlays */}
       <div className="absolute bottom-0 left-0 w-full h-8 sm:h-16 bg-gradient-to-t from-brand-off-white/80 to-transparent"></div>
-      <div className="absolute top-1/2 right-0 w-1/3 h-1/3 bg-gradient-to-l from-brand-silver/10 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute top-1/4 left-0 w-1/6 h-1/6 bg-gradient-to-r from-brand-slate-blue/8 to-transparent rounded-full blur-2xl"></div>
     </section>
   );
 };

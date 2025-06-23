@@ -1,12 +1,93 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+}
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.service || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+
+    } catch (error: any) {
+      console.error('Error sending contact form:', error);
+      toast({
+        title: "Error Sending Message",
+        description: "There was a problem sending your message. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -101,62 +182,93 @@ const Contact = () => {
                         Take the first step towards healthier, more beautiful skin
                       </p>
                     </div>
-                    <form className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold text-brand-charcoal mb-2">First Name</label>
+                          <label className="block text-sm font-semibold text-brand-charcoal mb-2">First Name *</label>
                           <input 
-                            type="text" 
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleInputChange}
                             className="w-full px-4 py-3 border-2 border-brand-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-slate-blue focus:border-transparent transition-all duration-200 text-base" 
-                            placeholder="Enter your first name" 
+                            placeholder="Enter your first name"
+                            required
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-brand-charcoal mb-2">Last Name</label>
+                          <label className="block text-sm font-semibold text-brand-charcoal mb-2">Last Name *</label>
                           <input 
-                            type="text" 
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleInputChange}
                             className="w-full px-4 py-3 border-2 border-brand-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-slate-blue focus:border-transparent transition-all duration-200 text-base" 
-                            placeholder="Enter your last name" 
+                            placeholder="Enter your last name"
+                            required
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-brand-charcoal mb-2">Email</label>
+                        <label className="block text-sm font-semibold text-brand-charcoal mb-2">Email *</label>
                         <input 
-                          type="email" 
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
                           className="w-full px-4 py-3 border-2 border-brand-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-slate-blue focus:border-transparent transition-all duration-200 text-base" 
-                          placeholder="Enter your email" 
+                          placeholder="Enter your email"
+                          required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-brand-charcoal mb-2">Phone</label>
+                        <label className="block text-sm font-semibold text-brand-charcoal mb-2">Phone *</label>
                         <input 
-                          type="tel" 
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
                           className="w-full px-4 py-3 border-2 border-brand-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-slate-blue focus:border-transparent transition-all duration-200 text-base" 
-                          placeholder="Enter your phone number" 
+                          placeholder="Enter your phone number"
+                          required
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-brand-charcoal mb-2">Service of Interest</label>
-                        <select className="w-full px-4 py-3 border-2 border-brand-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-slate-blue focus:border-transparent transition-all duration-200 text-base">
-                          <option>Select a service</option>
-                          <option>Facial Treatments</option>
-                          <option>Laser Hair Removal</option>
-                          <option>Body Sculpting</option>
-                          <option>Free Consultation</option>
+                        <label className="block text-sm font-semibold text-brand-charcoal mb-2">Service of Interest *</label>
+                        <select 
+                          name="service"
+                          value={formData.service}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border-2 border-brand-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-slate-blue focus:border-transparent transition-all duration-200 text-base"
+                          required
+                        >
+                          <option value="">Select a service</option>
+                          <option value="Facial Treatments">Facial Treatments</option>
+                          <option value="Laser Hair Removal">Laser Hair Removal</option>
+                          <option value="Body Sculpting">Body Sculpting</option>
+                          <option value="Free Consultation">Free Consultation</option>
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-brand-charcoal mb-2">Message</label>
+                        <label className="block text-sm font-semibold text-brand-charcoal mb-2">Message *</label>
                         <textarea 
-                          rows={4} 
+                          rows={4}
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
                           className="w-full px-4 py-3 border-2 border-brand-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-slate-blue focus:border-transparent transition-all duration-200 resize-none text-base" 
                           placeholder="Tell us about your skincare goals or any questions you have"
+                          required
                         ></textarea>
                       </div>
                       <div className="text-center pt-4">
-                        <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white font-semibold px-10 py-3 text-base shadow-lg hover:shadow-xl transition-all duration-300" size="lg">
-                          Send Message
+                        <Button 
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white font-semibold px-10 py-3 text-base shadow-lg hover:shadow-xl transition-all duration-300" 
+                          size="lg"
+                        >
+                          {isSubmitting ? 'Sending...' : 'Send Message'}
                         </Button>
                       </div>
                     </form>

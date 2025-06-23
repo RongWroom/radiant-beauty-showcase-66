@@ -1,150 +1,152 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { User, Menu, X, LogOut } from 'lucide-react';
 import Cart from './Cart';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 
 const Navbar = () => {
   const location = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isOpen, toggle, close } = useMobileNavigation();
   const { user, signOut } = useAuth();
   
   const isActive = (path: string) => {
     return location.pathname === path ? "text-brand-plum font-medium" : "text-brand-charcoal hover:text-brand-plum";
   };
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   const handleSignOut = async () => {
     await signOut();
-    closeMobileMenu();
+    close();
   };
 
   return (
-    <nav className="bg-white py-6 sticky top-0 z-50 shadow-sm border-b border-brand-warm-gray-200">
-      <div className="container-custom flex justify-between items-center">
-        <div className="flex items-center space-x-12">
-          <Link to="/" className="text-3xl font-serif font-bold text-hierarchy-primary">
-            STW Clinic
-          </Link>
-          <div className="hidden md:flex space-x-8">
-            <Link to="/" className={`${isActive('/')} transition-colors text-lg`}>Home</Link>
-            <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-lg`}>Treatments</Link>
-            <Link to="/products" className={`${isActive('/products')} transition-colors text-lg`}>Products</Link>
-            <Link to="/about" className={`${isActive('/about')} transition-colors text-lg`}>About</Link>
-            <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg`}>Contact</Link>
+    <>
+      <nav className="bg-white py-4 sm:py-6 sticky top-0 z-50 shadow-sm border-b border-brand-warm-gray-200">
+        <div className="container-custom flex justify-between items-center">
+          <div className="flex items-center space-x-8 sm:space-x-12">
+            <Link to="/" className="text-2xl sm:text-3xl font-serif font-bold text-hierarchy-primary" onClick={close}>
+              STW Clinic
+            </Link>
+            <div className="hidden md:flex space-x-6 lg:space-x-8">
+              <Link to="/" className={`${isActive('/')} transition-colors text-base lg:text-lg`}>Home</Link>
+              <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-base lg:text-lg`}>Treatments</Link>
+              <Link to="/products" className={`${isActive('/products')} transition-colors text-base lg:text-lg`}>Products</Link>
+              <Link to="/about" className={`${isActive('/about')} transition-colors text-base lg:text-lg`}>About</Link>
+              <Link to="/contact" className={`${isActive('/contact')} transition-colors text-base lg:text-lg`}>Contact</Link>
+            </div>
+          </div>
+          
+          {/* Desktop Icons */}
+          <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
+            {user ? (
+              <div className="flex items-center space-x-2">
+                <Link 
+                  to="/account" 
+                  className="p-2 lg:p-3 hover:bg-brand-champagne rounded-full transition-colors touch-target"
+                >
+                  <User className="h-5 w-5 text-brand-warm-gray-600" />
+                </Link>
+                <button 
+                  onClick={handleSignOut}
+                  className="p-2 lg:p-3 hover:bg-brand-champagne rounded-full transition-colors touch-target"
+                >
+                  <LogOut className="h-5 w-5 text-brand-warm-gray-600" />
+                </button>
+              </div>
+            ) : (
+              <Link to="/auth">
+                <Button variant="outline" size="sm" className="min-h-[40px]">
+                  Sign In
+                </Button>
+              </Link>
+            )}
+            
+            <Cart />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center space-x-2">
+            <Cart />
+            <button 
+              onClick={toggle}
+              className="p-2 hover:bg-brand-champagne rounded-full transition-colors touch-target"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              {isOpen ? (
+                <X className="h-6 w-6 text-brand-warm-gray-600" />
+              ) : (
+                <Menu className="h-6 w-6 text-brand-warm-gray-600" />
+              )}
+            </button>
           </div>
         </div>
-        
-        {/* Desktop Icons */}
-        <div className="hidden md:flex items-center space-x-4">
-          {user ? (
-            <div className="flex items-center space-x-2">
-              <Link 
-                to="/account" 
-                className="p-3 hover:bg-brand-champagne rounded-full transition-colors"
-              >
-                <User className="h-5 w-5 text-brand-warm-gray-600" />
-              </Link>
-              <button 
-                onClick={handleSignOut}
-                className="p-3 hover:bg-brand-champagne rounded-full transition-colors"
-              >
-                <LogOut className="h-5 w-5 text-brand-warm-gray-600" />
-              </button>
-            </div>
-          ) : (
-            <Link to="/auth">
-              <Button variant="outline" size="sm">
-                Sign In
-              </Button>
-            </Link>
-          )}
-          
-          <Cart />
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center space-x-2">
-          <Cart />
-          <button 
-            onClick={toggleMobileMenu}
-            className="p-2 hover:bg-brand-champagne rounded-full transition-colors"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-brand-warm-gray-600" />
-            ) : (
-              <Menu className="h-6 w-6 text-brand-warm-gray-600" />
-            )}
-          </button>
-        </div>
-      </div>
+      </nav>
 
       {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40" onClick={closeMobileMenu} />
+      {isOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40" 
+          onClick={close}
+          aria-hidden="true"
+        />
       )}
 
       {/* Mobile Menu */}
-      <div className={`md:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
-        isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+      <div className={`md:hidden fixed top-0 right-0 h-full w-72 sm:w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+        isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-8">
-            <Link to="/" className="text-2xl font-serif font-bold text-hierarchy-primary" onClick={closeMobileMenu}>
+        <div className="p-4 sm:p-6 h-full flex flex-col">
+          <div className="flex justify-between items-center mb-6 sm:mb-8">
+            <Link to="/" className="text-xl sm:text-2xl font-serif font-bold text-hierarchy-primary" onClick={close}>
               STW Clinic
             </Link>
             <button 
-              onClick={closeMobileMenu}
-              className="p-2 hover:bg-brand-champagne rounded-full transition-colors"
+              onClick={close}
+              className="p-2 hover:bg-brand-champagne rounded-full transition-colors touch-target"
+              aria-label="Close menu"
             >
               <X className="h-6 w-6 text-brand-warm-gray-600" />
             </button>
           </div>
           
-          <div className="flex flex-col space-y-6">
-            <Link to="/" className={`${isActive('/')} transition-colors text-lg py-2`} onClick={closeMobileMenu}>
+          <div className="flex flex-col space-y-4 sm:space-y-6 flex-grow">
+            <Link to="/" className={`${isActive('/')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
               Home
             </Link>
-            <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-lg py-2`} onClick={closeMobileMenu}>
+            <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
               Treatments
             </Link>
-            <Link to="/products" className={`${isActive('/products')} transition-colors text-lg py-2`} onClick={closeMobileMenu}>
+            <Link to="/products" className={`${isActive('/products')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
               Products
             </Link>
-            <Link to="/about" className={`${isActive('/about')} transition-colors text-lg py-2`} onClick={closeMobileMenu}>
+            <Link to="/about" className={`${isActive('/about')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
               About
             </Link>
-            <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg py-2`} onClick={closeMobileMenu}>
+            <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
               Contact
             </Link>
 
             {user && (
-              <Link to="/account" className={`${isActive('/account')} transition-colors text-lg py-2`} onClick={closeMobileMenu}>
+              <Link to="/account" className={`${isActive('/account')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
                 My Account
               </Link>
             )}
           </div>
 
-          <div className="flex items-center space-x-4 mt-8 pt-8 border-t border-brand-warm-gray-200">
+          <div className="flex items-center justify-center space-x-4 mt-6 pt-6 border-t border-brand-warm-gray-200">
             {user ? (
               <button 
                 onClick={handleSignOut}
-                className="p-3 hover:bg-brand-champagne rounded-full transition-colors"
+                className="flex items-center space-x-2 p-3 hover:bg-brand-champagne rounded-lg transition-colors touch-target"
               >
                 <LogOut className="h-5 w-5 text-brand-warm-gray-600" />
+                <span className="text-brand-warm-gray-600">Sign Out</span>
               </button>
             ) : (
-              <Link to="/auth" onClick={closeMobileMenu}>
-                <Button variant="outline" size="sm">
+              <Link to="/auth" onClick={close} className="w-full">
+                <Button variant="outline" size="sm" className="w-full min-h-[48px]">
                   Sign In
                 </Button>
               </Link>
@@ -152,7 +154,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 

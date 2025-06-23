@@ -84,9 +84,9 @@
 }
 
 @layer components {
-  /* SOPHISTICATED BUTTON SYSTEM */
+  /* MOBILE-FIRST BUTTON SYSTEM */
   .btn {
-    @apply inline-flex items-center justify-center rounded-lg px-8 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-3 sm:px-6 md:px-8 text-sm sm:text-base font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-[44px] min-w-[44px];
   }
   
   .btn-primary {
@@ -101,29 +101,29 @@
     @apply bg-brand-silver text-brand-charcoal hover:bg-brand-silver-light hover:shadow-lg font-medium;
   }
   
-  /* ENHANCED LAYOUT SYSTEM */
+  /* MOBILE-FIRST LAYOUT SYSTEM */
   .section {
-    @apply py-20 md:py-28;
+    @apply py-12 sm:py-16 md:py-20 lg:py-28;
   }
   
   .container-custom {
-    @apply px-6 md:px-8 max-w-7xl mx-auto;
+    @apply px-4 sm:px-6 md:px-8 max-w-7xl mx-auto;
   }
   
-  /* SOPHISTICATED CARD SYSTEM */
+  /* MOBILE-OPTIMIZED CARD SYSTEM */
   .card-clean {
-    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-lg transition-all duration-300;
+    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-lg transition-all duration-300 p-4 sm:p-6;
   }
   
   .card-featured {
-    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-gray-200 hover:border-brand-silver;
+    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-gray-200 hover:border-brand-silver p-4 sm:p-6;
   }
   
   .card-product {
-    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-md transition-all duration-300;
+    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-md transition-all duration-300 p-3 sm:p-4;
   }
   
-  /* REFINED TEXT HIERARCHY - PROPER CONTRAST */
+  /* MOBILE-FIRST TEXT HIERARCHY */
   .text-hierarchy-primary {
     @apply text-brand-charcoal font-serif;
   }
@@ -145,24 +145,45 @@
     @apply text-white/90;
   }
   
-  /* SOPHISTICATED BACKGROUND SYSTEM */
+  /* MOBILE-OPTIMIZED BACKGROUND SYSTEM */
   .bg-section-light {
-    @apply bg-brand-white; /* Updated: use the same as Hero */
+    @apply bg-brand-white;
   }
   .bg-section-subtle {
-    @apply bg-brand-off-white; /* still available if needed elsewhere */
+    @apply bg-brand-off-white;
   }
   .bg-section-primary {
     @apply bg-brand-slate-blue;
   }
   
-  /* ELEGANT BADGE SYSTEM */
+  /* MOBILE-FRIENDLY BADGE SYSTEM */
   .badge-featured {
-    @apply bg-brand-slate-blue text-white font-medium px-3 py-1 rounded-full;
+    @apply bg-brand-slate-blue text-white font-medium px-3 py-1 text-xs sm:text-sm rounded-full;
   }
   
   .badge-accent {
-    @apply bg-brand-silver text-brand-charcoal font-medium px-3 py-1 rounded-full;
+    @apply bg-brand-silver text-brand-charcoal font-medium px-3 py-1 text-xs sm:text-sm rounded-full;
+  }
+  
+  /* MOBILE TOUCH UTILITIES */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .mobile-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+  }
+  
+  .mobile-text-sm {
+    @apply text-sm sm:text-base;
+  }
+  
+  .mobile-text-base {
+    @apply text-base sm:text-lg;
+  }
+  
+  .mobile-text-lg {
+    @apply text-lg sm:text-xl md:text-2xl;
   }
   
   /* UTILITY CLASSES */
@@ -176,6 +197,23 @@
   .animate-scroll-left {
     animation: scroll-left-infinite 40s linear infinite;
     will-change: transform;
+  }
+  
+  /* Mobile-specific utilities */
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+  
+  .desktop-only {
+    @apply hidden sm:block;
+  }
+  
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 

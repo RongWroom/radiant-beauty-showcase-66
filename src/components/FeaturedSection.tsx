@@ -80,7 +80,7 @@ export const BannerSection = () => {
               Unlock the secret to your inner beauty and energy with our natural skincare products
             </p>
             <Link to="/products">
-              <Button className="bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light transition-all duration-300 shadow-lg px-10 py-4 mobile-text-base font-semibold min-h-[56px] rounded-lg">
+              <Button className="bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light transition-all duration-300 shadow-lg px-10 py-4 mobile-text-base font-semibold min-h-[56px] rounded-lg my-[10px]">
                 LEARN MORE
               </Button>
             </Link>

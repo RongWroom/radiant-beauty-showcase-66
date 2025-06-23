@@ -90,15 +90,15 @@
   }
   
   .btn-primary {
-    @apply bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light hover:shadow-lg font-semibold;
+    @apply bg-brand-slate-blue text-white hover:bg-rose-200 hover:shadow-lg font-semibold;
   }
   
   .btn-secondary {
-    @apply bg-white text-brand-slate-blue border-2 border-brand-slate-blue hover:bg-brand-slate-blue hover:text-white transition-all duration-300;
+    @apply bg-white text-brand-slate-blue border-2 border-brand-slate-blue hover:bg-rose-50 hover:text-brand-slate-blue transition-all duration-300;
   }
   
   .btn-accent {
-    @apply bg-brand-silver text-brand-charcoal hover:bg-brand-silver-light hover:shadow-lg font-semibold;
+    @apply bg-brand-silver text-brand-charcoal hover:bg-rose-100 hover:shadow-lg font-semibold;
   }
   
   /* MOBILE-FIRST LAYOUT SYSTEM - IMPROVED */

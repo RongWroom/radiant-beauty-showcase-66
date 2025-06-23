@@ -24,7 +24,8 @@ const CtaSection = () => {
           </Link>
           <Link to="/treatments" className="w-full sm:w-auto">
             <Button 
-              className="w-full sm:w-auto bg-white text-brand-slate-blue hover:bg-brand-off-white mobile-text-base px-8 py-4 font-semibold min-h-[56px] rounded-lg"
+              className="w-full sm:w-auto bg-white text-brand-slate-blue mobile-text-base px-8 py-4 font-semibold min-h-[56px] rounded-lg"
+              variant="secondary"
             >
               View Treatments
             </Button>

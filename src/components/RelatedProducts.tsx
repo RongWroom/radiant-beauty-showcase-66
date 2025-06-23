@@ -53,7 +53,7 @@ const RelatedProducts = ({ products }: RelatedProductsProps) => {
                     {formatPrice(relatedProduct.price, relatedProduct.currency)}
                   </span>
                   <Link to={`/products/${relatedProduct.id}`}>
-                    <Button size="sm" className="bg-brand-slate-blue hover:bg-brand-slate-blue-light">View Product</Button>
+                    <Button size="sm" variant="default">View Product</Button>
                   </Link>
                 </div>
               </CardContent>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { User, Menu, X, LogOut } from 'lucide-react';
@@ -43,13 +44,13 @@ const Navbar = () => {
               <div className="flex items-center space-x-2">
                 <Link 
                   to="/account" 
-                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center hover:bg-brand-light-gray rounded-full transition-colors"
+                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center hover:bg-rose-50 rounded-full transition-colors"
                 >
                   <User className="h-5 w-5 lg:h-6 lg:w-6 text-brand-gray-600 fill-current" />
                 </Link>
                 <button 
                   onClick={handleSignOut}
-                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center hover:bg-brand-light-gray rounded-full transition-colors"
+                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center hover:bg-rose-50 rounded-full transition-colors"
                 >
                   <LogOut className="h-5 w-5 lg:h-6 lg:w-6 text-brand-gray-600" />
                 </button>
@@ -70,7 +71,7 @@ const Navbar = () => {
             <Cart />
             <button 
               onClick={toggle}
-              className="w-12 h-12 flex items-center justify-center hover:bg-brand-light-gray rounded-full transition-colors"
+              className="w-12 h-12 flex items-center justify-center hover:bg-rose-50 rounded-full transition-colors"
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? (
@@ -103,7 +104,7 @@ const Navbar = () => {
             </Link>
             <button 
               onClick={close}
-              className="w-12 h-12 flex items-center justify-center hover:bg-brand-light-gray rounded-full transition-colors"
+              className="w-12 h-12 flex items-center justify-center hover:bg-rose-50 rounded-full transition-colors"
               aria-label="Close menu"
             >
               <X className="h-6 w-6 text-brand-gray-600" />
@@ -111,24 +112,24 @@ const Navbar = () => {
           </div>
           
           <div className="flex flex-col space-y-4 sm:space-y-6 flex-grow">
-            <Link to="/" className={`${isActive('/')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
+            <Link to="/" className={`${isActive('/')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
               Home
             </Link>
-            <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
+            <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
               Treatments
             </Link>
-            <Link to="/products" className={`${isActive('/products')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
+            <Link to="/products" className={`${isActive('/products')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
               Products
             </Link>
-            <Link to="/about" className={`${isActive('/about')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
+            <Link to="/about" className={`${isActive('/about')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
               About
             </Link>
-            <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
+            <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
               Contact
             </Link>
 
             {user && (
-              <Link to="/account" className={`${isActive('/account')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-brand-off-white touch-target`} onClick={close}>
+              <Link to="/account" className={`${isActive('/account')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
                 My Account
               </Link>
             )}
@@ -138,7 +139,7 @@ const Navbar = () => {
             {user ? (
               <button 
                 onClick={handleSignOut}
-                className="flex items-center space-x-2 px-4 py-3 hover:bg-brand-light-gray rounded-lg transition-colors"
+                className="flex items-center space-x-2 px-4 py-3 hover:bg-rose-50 rounded-lg transition-colors"
               >
                 <LogOut className="h-5 w-5 text-brand-gray-600" />
                 <span className="text-brand-gray-600">Sign Out</span>

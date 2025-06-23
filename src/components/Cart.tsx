@@ -57,7 +57,7 @@ const Cart = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="p-3 hover:bg-brand-champagne rounded-full transition-colors relative">
+        <button className="p-3 hover:bg-rose-50 rounded-full transition-colors relative">
           <ShoppingCart className="h-5 w-5 text-brand-warm-gray-600" />
           {getTotalItems() > 0 && (
             <span className="absolute -top-1 -right-1 bg-brand-rose-gold text-xs rounded-full h-5 w-5 flex items-center justify-center text-brand-charcoal font-medium">
@@ -146,7 +146,7 @@ const Cart = () => {
                   <Button
                     onClick={handleCheckout}
                     disabled={isCheckingOut}
-                    className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
+                    className="w-full bg-gradient-to-r from-green-600 to-green-700"
                   >
                     <CreditCard className="mr-2 h-4 w-4" />
                     {isCheckingOut ? 'Processing...' : 'Checkout with Stripe'}

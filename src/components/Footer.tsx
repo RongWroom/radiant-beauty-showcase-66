@@ -34,7 +34,7 @@ const Footer = () => {
             <p className="text-hierarchy-secondary mb-4">Get skincare tips and exclusive offers direct to your inbox.</p>
             <div className="flex mb-4">
               <input type="email" placeholder="Your email" className="px-4 py-2 border border-brand-warm-gray-200 rounded-l-md w-full focus:outline-none focus:ring-1 focus:ring-brand-plum text-brand-charcoal" />
-              <Button className="rounded-l-none bg-brand-plum text-white hover:bg-brand-plum-light">
+              <Button className="rounded-l-none bg-brand-plum text-white" variant="default">
                 Join
               </Button>
             </div>

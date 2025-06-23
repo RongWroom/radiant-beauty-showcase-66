@@ -15,7 +15,7 @@ const ProductDetailHeader = ({ featured }: ProductDetailHeaderProps) => {
       <div className="container-custom">
         <div className="flex items-center gap-4">
           <Link to="/products">
-            <Button variant="outline" size="sm" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">
+            <Button variant="outline" size="sm" className="border-brand-slate-blue text-brand-slate-blue">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Products
             </Button>

@@ -97,7 +97,7 @@ const CustomerReviews = () => {
         <div className="text-center mb-8">
           {reviews.length > defaultCount && (
             <Button
-              className="bg-brand-slate-blue hover:bg-brand-slate-blue-light text-white text-base py-3 px-8 shadow-md hover:shadow-lg transition-all duration-300"
+              className="bg-brand-slate-blue text-white text-base py-3 px-8 shadow-md transition-all duration-300"
               variant="default"
               onClick={() => setShowAll((s) => !s)}
               aria-expanded={showAll}

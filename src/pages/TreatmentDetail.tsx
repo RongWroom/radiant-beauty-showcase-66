@@ -214,10 +214,12 @@ const TreatmentDetail = () => {
                     Our expert team is here to help you achieve your skincare goals.
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark text-white shadow-lg">
-                      <Phone className="mr-2 h-4 w-4" />
-                      Call Now
-                    </Button>
+                    <a href="tel:01207239983">
+                      <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark text-white shadow-lg">
+                        <Phone className="mr-2 h-4 w-4" />
+                        Call Now
+                      </Button>
+                    </a>
                     <Link to={`/treatments/${treatment.id}/book`}>
                       <Button variant="outline" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">
                         <Calendar className="mr-2 h-4 w-4" />

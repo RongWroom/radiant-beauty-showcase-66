@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -10,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand-slate-blue text-white hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
+        default: "bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light hover:text-white hover:border-brand-slate-blue",
         destructive:
-          "bg-red-500 text-white hover:bg-dusty-rose hover:text-red-500 hover:border-red-500",
+          "bg-red-500 text-white hover:bg-red-600 hover:text-white hover:border-red-500",
         outline:
-          "border-brand-slate-blue bg-white text-brand-slate-blue hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
+          "border-brand-slate-blue bg-white text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue",
         secondary:
-          "bg-brand-gray-100 text-brand-gray-800 hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
-        ghost: "hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
-        link: "text-brand-slate-blue underline-offset-4 hover:underline hover:text-dusty-rose border-transparent hover:border-transparent shadow-none hover:shadow-none",
-        accent: "bg-brand-silver text-brand-charcoal hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue",
+          "bg-brand-gray-100 text-brand-gray-800 hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue",
+        ghost: "hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue",
+        link: "text-brand-slate-blue underline-offset-4 hover:underline hover:text-brand-slate-blue border-transparent hover:border-transparent shadow-none hover:shadow-none",
+        accent: "bg-brand-silver text-brand-charcoal hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue",
       },
       size: {
         default: "px-7 py-[14px]",

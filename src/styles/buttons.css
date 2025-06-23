@@ -6,14 +6,14 @@
   }
   
   .btn-primary {
-    @apply bg-brand-slate-blue text-white hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue hover:shadow-lg font-medium;
+    @apply bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light hover:text-white hover:border-brand-slate-blue hover:shadow-lg font-medium;
   }
   
   .btn-secondary {
-    @apply bg-white text-brand-slate-blue border-2 border-brand-slate-blue hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue transition-all duration-300;
+    @apply bg-white text-brand-slate-blue border-2 border-brand-slate-blue hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue transition-all duration-300;
   }
   
   .btn-accent {
-    @apply bg-brand-silver text-brand-charcoal hover:bg-dusty-rose hover:text-brand-slate-blue hover:border-brand-slate-blue hover:shadow-lg font-medium;
+    @apply bg-brand-silver text-brand-charcoal hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue hover:shadow-lg font-medium;
   }
 }

@@ -62,22 +62,22 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// New blue-grey beauty brand palette
+				// Updated brand palette with new primary color
 				brand: {
-					'slate-blue': '#52527a',       // PRIMARY - new main brand color
-					'slate-blue-light': '#71719b', // PRIMARY HOVER
-					'slate-blue-dark': '#3e3e5c',  // DEEP ACCENTS
-					'silver': '#d1d1e0',           // ACCENT - badges, highlights
-					'silver-light': '#e0e0eb',     // ACCENT HOVER
-					'silver-dark': '#b8b8cc',      // ACCENT ACTIVE
-					'off-white': '#F7F7F7',         // SUBTLE SECTION BACKGROUNDS
-					'white': '#FFFFFF',             // MAIN BACKGROUND
-					'light-gray': '#F0F0F5',       // LIGHT SECTION BACKGROUNDS
-					'gray-100': '#E5E7EB',         // BORDERS AND DIVIDERS
-					'gray-200': '#D1D5DB',         // SUBTLE BORDERS
-					'charcoal': '#1F2937',         // PRIMARY TEXT
-					'gray-600': '#4B5563',         // SECONDARY TEXT
-					'gray-800': '#111827'          // SUPPORTING TEXT
+					'slate-blue': '#182F3D',           // NEW PRIMARY - updated main brand color
+					'slate-blue-light': '#243A4D',     // PRIMARY HOVER - lighter version
+					'slate-blue-dark': '#0F1F2A',      // DEEP ACCENTS - darker version
+					'silver': '#d1d1e0',               // ACCENT - badges, highlights
+					'silver-light': '#e0e0eb',         // ACCENT HOVER
+					'silver-dark': '#b8b8cc',          // ACCENT ACTIVE
+					'off-white': '#F7F7F7',            // SUBTLE SECTION BACKGROUNDS
+					'white': '#FFFFFF',                // MAIN BACKGROUND
+					'light-gray': '#F0F0F5',          // LIGHT SECTION BACKGROUNDS
+					'gray-100': '#E5E7EB',            // BORDERS AND DIVIDERS
+					'gray-200': '#D1D5DB',            // SUBTLE BORDERS
+					'charcoal': '#1F2937',            // PRIMARY TEXT
+					'gray-600': '#4B5563',            // SECONDARY TEXT
+					'gray-800': '#111827'             // SUPPORTING TEXT
 				}
 			},
 			borderRadius: {

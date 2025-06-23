@@ -15,14 +15,14 @@ const ProductShowcase = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-white to-brand-off-white section">
       <div className="container-custom relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif mb-4 text-brand-charcoal">Featured Treatments</h2>
-          <p className="text-brand-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+        <div className="text-center mobile-spacing-lg">
+          <h2 className="mobile-text-2xl font-serif font-semibold text-brand-charcoal">Featured Treatments</h2>
+          <p className="text-brand-gray-600 max-w-2xl mx-auto mobile-text-base">
             Experience our most popular treatments designed to rejuvenate and transform your skin
           </p>
-          <div className="mt-6">
+          <div className="mt-8">
             <Link to="/treatments">
-              <Button variant="outline" className="border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white transition-all duration-300 py-3 px-6">
+              <Button variant="outline" className="border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white transition-all duration-300 py-4 px-8 min-h-[56px] rounded-lg font-semibold">
                 View All Treatments
               </Button>
             </Link>
@@ -30,28 +30,28 @@ const ProductShowcase = () => {
         </div>
 
         {/* Bento Box Section */}
-        <div className="mt-16">
-          <h3 className="text-2xl md:text-3xl font-serif mb-8 text-center text-brand-charcoal">
+        <div className="mt-16 sm:mt-20">
+          <h3 className="mobile-text-xl font-serif font-semibold text-center text-brand-charcoal mb-8 sm:mb-12">
             Explore Our Special Treatments
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Feature Card */}
             <Card className="md:col-span-2 bg-gradient-to-br from-brand-silver/20 to-brand-slate-blue/10 card-clean border-brand-silver/40 shadow-sm hover:shadow-md transition-all duration-300">
-              <CardContent className="p-6">
+              <CardContent className="p-6 sm:p-8">
                 <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
                   <div className="rounded-full bg-brand-slate-blue p-4 shadow-lg">
                     <PackageCheck className="w-12 h-12 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-medium mb-2 text-brand-charcoal">Personalized Solutions</h4>
-                    <p className="text-brand-gray-600 mb-4 leading-relaxed">
+                    <h4 className="mobile-text-lg font-semibold mb-3 text-brand-charcoal">Personalized Solutions</h4>
+                    <p className="text-brand-gray-600 mb-6 mobile-text-sm">
                       Our treatments are tailored to your unique skin needs and goals. 
                       Experience personalized care that delivers real results.
                     </p>
-                    <Link to="/treatments" className="inline-flex items-center text-sm font-medium text-brand-slate-blue hover:text-brand-slate-blue-light transition-colors hover:underline">
+                    <Link to="/treatments" className="inline-flex items-center mobile-text-sm font-semibold text-brand-slate-blue hover:text-brand-slate-blue-light transition-colors hover:underline">
                       Learn more about our approach
-                      <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </Link>
@@ -62,17 +62,17 @@ const ProductShowcase = () => {
             
             {/* Treatment Card */}
             <Card className="card-product overflow-hidden border-brand-silver/40 shadow-sm hover:shadow-lg transition-all duration-300">
-              <div className="relative h-48">
+              <div className="relative h-48 sm:h-56">
                 <img src="/placeholder.svg" alt="Featured treatment" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                  <span className="bg-brand-slate-blue text-white font-medium px-3 py-1 rounded-full shadow-lg">
+                  <span className="bg-brand-slate-blue text-white font-semibold px-4 py-2 rounded-full shadow-lg text-sm">
                     Most Popular
                   </span>
                 </div>
               </div>
-              <CardContent className="p-4 bg-white">
-                <h4 className="font-medium text-brand-charcoal">{bentoTreatments[0]?.name || "Chemical Peel"}</h4>
-                <p className="text-sm text-brand-gray-600 line-clamp-2 mt-1">
+              <CardContent className="p-4 sm:p-6 bg-white">
+                <h4 className="font-semibold text-brand-charcoal mobile-text-base">{bentoTreatments[0]?.name || "Chemical Peel"}</h4>
+                <p className="mobile-text-sm text-brand-gray-600 line-clamp-2 mt-2">
                   {bentoTreatments[0]?.description || "Reveal fresh, new skin with our clinical-grade chemical peels"}
                 </p>
               </CardContent>
@@ -80,24 +80,24 @@ const ProductShowcase = () => {
             
             {/* Quick Links Card */}
             <Card className="bg-gradient-to-br from-brand-slate-blue/10 to-brand-silver/20 card-clean border-brand-silver/40 shadow-sm hover:shadow-md transition-all duration-300">
-              <CardContent className="p-6">
-                <h4 className="font-medium mb-4 text-brand-charcoal">Quick Navigation</h4>
-                <ul className="space-y-3">
+              <CardContent className="p-6 sm:p-8">
+                <h4 className="font-semibold mb-6 text-brand-charcoal mobile-text-base">Quick Navigation</h4>
+                <ul className="space-y-4">
                   <li>
-                    <Link to="/treatments" className="flex items-center text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
-                      <Package className="mr-2 h-4 w-4" />
+                    <Link to="/treatments" className="flex items-center mobile-text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
+                      <Package className="mr-3 h-5 w-5" />
                       <span>Facial Treatments</span>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/treatments" className="flex items-center text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
-                      <Grid3X3 className="mr-2 h-4 w-4" />
+                    <Link to="/treatments" className="flex items-center mobile-text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
+                      <Grid3X3 className="mr-3 h-5 w-5" />
                       <span>Anti-Aging Solutions</span>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/treatments" className="flex items-center text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
-                      <Package className="mr-2 h-4 w-4" />
+                    <Link to="/treatments" className="flex items-center mobile-text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
+                      <Package className="mr-3 h-5 w-5" />
                       <span>Skin Rejuvenation</span>
                     </Link>
                   </li>
@@ -108,17 +108,17 @@ const ProductShowcase = () => {
             {/* Treatment Cards */}
             {bentoTreatments.slice(1).map((treatment, index) => (
               <Card key={index} className="card-product overflow-hidden border-brand-silver/40 shadow-sm hover:shadow-lg transition-all duration-300">
-                <div className="relative h-48">
+                <div className="relative h-48 sm:h-56">
                   <img src={treatment.image || "/placeholder.svg"} alt={treatment.name} className="w-full h-full object-cover" />
                 </div>
-                <CardContent className="p-4 bg-white">
-                  <h4 className="font-medium text-brand-charcoal">{treatment.name}</h4>
-                  <p className="text-sm text-brand-gray-600 line-clamp-2 mt-1">
+                <CardContent className="p-4 sm:p-6 bg-white">
+                  <h4 className="font-semibold text-brand-charcoal mobile-text-base">{treatment.name}</h4>
+                  <p className="mobile-text-sm text-brand-gray-600 line-clamp-2 mt-2">
                     {treatment.description}
                   </p>
-                  <div className="mt-3 flex items-center justify-between">
-                    <span className="text-sm font-medium text-brand-charcoal">{treatment.price}</span>
-                    <Link to="/treatments" className="text-brand-slate-blue text-sm hover:text-brand-slate-blue-light hover:underline transition-colors">View details</Link>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="mobile-text-sm font-semibold text-brand-charcoal">{treatment.price}</span>
+                    <Link to="/treatments" className="text-brand-slate-blue mobile-text-sm hover:text-brand-slate-blue-light hover:underline transition-colors font-medium">View details</Link>
                   </div>
                 </CardContent>
               </Card>

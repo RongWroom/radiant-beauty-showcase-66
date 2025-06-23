@@ -84,13 +84,13 @@
 }
 
 @layer components {
-  /* MOBILE-FIRST BUTTON SYSTEM */
+  /* MOBILE-FIRST BUTTON SYSTEM - IMPROVED */
   .btn {
-    @apply inline-flex items-center justify-center rounded-lg px-4 py-3 sm:px-6 md:px-8 text-sm sm:text-base font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-[44px] min-w-[44px];
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-4 sm:px-8 md:px-10 text-base sm:text-lg font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-[56px] min-w-[120px] shadow-sm hover:shadow-md;
   }
   
   .btn-primary {
-    @apply bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light hover:shadow-lg font-medium;
+    @apply bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light hover:shadow-lg font-semibold;
   }
   
   .btn-secondary {
@@ -98,51 +98,64 @@
   }
   
   .btn-accent {
-    @apply bg-brand-silver text-brand-charcoal hover:bg-brand-silver-light hover:shadow-lg font-medium;
+    @apply bg-brand-silver text-brand-charcoal hover:bg-brand-silver-light hover:shadow-lg font-semibold;
   }
   
-  /* MOBILE-FIRST LAYOUT SYSTEM */
+  /* MOBILE-FIRST LAYOUT SYSTEM - IMPROVED */
   .section {
-    @apply py-12 sm:py-16 md:py-20 lg:py-28;
+    @apply py-16 sm:py-20 md:py-24 lg:py-28;
   }
   
   .container-custom {
     @apply px-4 sm:px-6 md:px-8 max-w-7xl mx-auto;
   }
   
+  /* MOBILE-OPTIMIZED SPACING SYSTEM */
+  .mobile-spacing-sm {
+    @apply space-y-4 sm:space-y-6;
+  }
+  
+  .mobile-spacing-md {
+    @apply space-y-6 sm:space-y-8 md:space-y-10;
+  }
+  
+  .mobile-spacing-lg {
+    @apply space-y-8 sm:space-y-12 md:space-y-16;
+  }
+  
   /* MOBILE-OPTIMIZED CARD SYSTEM */
   .card-clean {
-    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-lg transition-all duration-300 p-4 sm:p-6;
+    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-lg transition-all duration-300 p-6 sm:p-8 rounded-xl;
   }
   
   .card-featured {
-    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-gray-200 hover:border-brand-silver p-4 sm:p-6;
+    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-gray-200 hover:border-brand-silver p-6 sm:p-8 rounded-xl;
   }
   
   .card-product {
-    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-md transition-all duration-300 p-3 sm:p-4;
+    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-md transition-all duration-300 p-4 sm:p-6 rounded-xl;
   }
   
-  /* MOBILE-FIRST TEXT HIERARCHY */
+  /* MOBILE-FIRST TEXT HIERARCHY - IMPROVED */
   .text-hierarchy-primary {
-    @apply text-brand-charcoal font-serif;
+    @apply text-brand-charcoal font-serif leading-tight;
   }
   
   .text-hierarchy-secondary {
-    @apply text-brand-gray-600;
+    @apply text-brand-gray-600 leading-relaxed;
   }
   
   .text-hierarchy-accent {
-    @apply text-brand-slate-blue;
+    @apply text-brand-slate-blue font-medium;
   }
   
   /* TEXT ON DARK BACKGROUNDS */
   .text-on-dark-primary {
-    @apply text-white font-serif;
+    @apply text-white font-serif leading-tight;
   }
   
   .text-on-dark-secondary {
-    @apply text-white/90;
+    @apply text-white/90 leading-relaxed;
   }
   
   /* MOBILE-OPTIMIZED BACKGROUND SYSTEM */
@@ -158,32 +171,40 @@
   
   /* MOBILE-FRIENDLY BADGE SYSTEM */
   .badge-featured {
-    @apply bg-brand-slate-blue text-white font-medium px-3 py-1 text-xs sm:text-sm rounded-full;
+    @apply bg-brand-slate-blue text-white font-medium px-4 py-2 text-sm sm:text-base rounded-full;
   }
   
   .badge-accent {
-    @apply bg-brand-silver text-brand-charcoal font-medium px-3 py-1 text-xs sm:text-sm rounded-full;
+    @apply bg-brand-silver text-brand-charcoal font-medium px-4 py-2 text-sm sm:text-base rounded-full;
   }
   
-  /* MOBILE TOUCH UTILITIES */
+  /* MOBILE TOUCH UTILITIES - IMPROVED */
   .touch-target {
-    @apply min-h-[44px] min-w-[44px];
+    @apply min-h-[56px] min-w-[56px];
   }
   
   .mobile-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
   }
   
   .mobile-text-sm {
-    @apply text-sm sm:text-base;
+    @apply text-sm sm:text-base leading-relaxed;
   }
   
   .mobile-text-base {
-    @apply text-base sm:text-lg;
+    @apply text-base sm:text-lg leading-relaxed;
   }
   
   .mobile-text-lg {
-    @apply text-lg sm:text-xl md:text-2xl;
+    @apply text-lg sm:text-xl md:text-2xl leading-tight;
+  }
+  
+  .mobile-text-xl {
+    @apply text-xl sm:text-2xl md:text-3xl leading-tight;
+  }
+  
+  .mobile-text-2xl {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight;
   }
   
   /* UTILITY CLASSES */

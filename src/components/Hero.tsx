@@ -34,9 +34,7 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 px-4 sm:px-0 justify-center lg:justify-start">
             <Link to="/products" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white mobile-text-base font-semibold py-4 px-8 sm:px-10 shadow-lg hover:shadow-xl transition-all duration-300 min-h-[56px] rounded-lg">
-                SHOP NOW
-              </Button>
+              <Button className="w-full sm:w-auto bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white mobile-text-base font-semibold py-4 px-8 sm:px-10 shadow-lg hover:shadow-xl transition-all duration-300 min-h-[56px] rounded-lg">OUR PRODUCTS</Button>
             </Link>
             <Link to="/treatments" className="w-full sm:w-auto">
               <Button variant="outline" className="w-full sm:w-auto border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-gradient-to-r hover:from-brand-slate-blue hover:to-brand-slate-blue-light hover:text-white mobile-text-base font-semibold py-4 px-8 sm:px-10 transition-all duration-300 min-h-[56px] rounded-lg">

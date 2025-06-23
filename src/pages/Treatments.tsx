@@ -90,13 +90,10 @@ const Treatments = () => {
                   <div className="rounded-full bg-brand-silver p-4 mb-4">
                     <Droplet className="w-8 h-8 text-brand-charcoal" />
                   </div>
-                  <h3 className="font-serif text-xl mb-2 text-white">Facial Treatments</h3>
-                  <p className="mb-4 text-brand-silver">
-                    Revitalize and nourish your skin with our specialized facial treatments
+                  <h3 className="font-serif text-xl mb-3 text-white">Facial Treatments</h3>
+                  <p className="text-brand-silver leading-relaxed">
+                    Comprehensive facial care including deep cleansing, hydrating facials, exfoliation treatments, and customized mask applications. Perfect for maintaining healthy, glowing skin and addressing specific skin concerns.
                   </p>
-                  <Link to="/contact" className="mt-auto">
-                    <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Facials</Button>
-                  </Link>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
@@ -104,13 +101,10 @@ const Treatments = () => {
                   <div className="rounded-full bg-brand-silver p-4 mb-4">
                     <Syringe className="w-8 h-8 text-brand-charcoal" />
                   </div>
-                  <h3 className="font-serif text-xl mb-2 text-white">Anti-Aging Solutions</h3>
-                  <p className="mb-4 text-brand-silver">
-                    Turn back the clock with our effective anti-aging treatments
+                  <h3 className="font-serif text-xl mb-3 text-white">Anti-Aging Solutions</h3>
+                  <p className="text-brand-silver leading-relaxed">
+                    Advanced treatments targeting fine lines, wrinkles, and age spots. Includes collagen-boosting therapies, peptide treatments, and non-invasive procedures designed to restore youthful radiance and firmness.
                   </p>
-                  <Link to="/contact" className="mt-auto">
-                    <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Anti-Aging</Button>
-                  </Link>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow">
@@ -118,13 +112,10 @@ const Treatments = () => {
                   <div className="rounded-full bg-brand-silver p-4 mb-4">
                     <Droplet className="w-8 h-8 text-brand-charcoal" />
                   </div>
-                  <h3 className="font-serif text-xl mb-2 text-white">Skin Rejuvenation</h3>
-                  <p className="mb-4 text-brand-silver">
-                    Refresh and renew your skin with our rejuvenating treatments
+                  <h3 className="font-serif text-xl mb-3 text-white">Skin Rejuvenation</h3>
+                  <p className="text-brand-silver leading-relaxed">
+                    Revitalizing treatments that promote cellular renewal and improve skin texture. Features resurfacing treatments, brightening therapies, and specialized procedures for enhanced skin clarity and tone.
                   </p>
-                  <Link to="/contact" className="mt-auto">
-                    <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-brand-slate-blue">Explore Rejuvenation</Button>
-                  </Link>
                 </CardContent>
               </Card>
             </div>
@@ -190,7 +181,7 @@ const Treatments = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </div>
         )}
 
         {/* Booking Section */}

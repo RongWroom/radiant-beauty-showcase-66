@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star } from 'lucide-react';
-import { Treatment } from '@/hooks/useTr```eatments';
+import { Treatment } from '@/hooks/useTreatments';
 
 interface TreatmentCardProps {
   treatment: Treatment;

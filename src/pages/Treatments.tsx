@@ -66,7 +66,7 @@ const Treatments = () => {
               </div>
               <p className="text-lg mb-6 font-medium text-brand-charcoal">
                 Discover our range of <span className="px-2 py-0.5 rounded bg-brand-silver/60 text-brand-charcoal font-semibold">professional</span> treatments tailored to your unique skin needs.
-                Each treatment is performed by our expert estheticians using premium products.
+                Each treatment is performed by our expert aestheticians using premium products.
               </p>
               <div className="flex justify-center space-x-4">
                 <Link to="/contact">
@@ -85,36 +85,36 @@ const Treatments = () => {
           <div className="container-custom">
             <h2 className="text-2xl md:text-3xl font-serif mb-7 text-brand-charcoal font-bold">Treatment Categories</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 flex flex-col items-center text-center bg-brand-slate-blue text-white">
+              <Card className="hover:shadow-lg transition-shadow h-full">
+                <CardContent className="p-6 flex flex-col items-center text-center bg-brand-slate-blue text-white h-full">
                   <div className="rounded-full bg-brand-silver p-4 mb-4">
                     <Droplet className="w-8 h-8 text-brand-charcoal" />
                   </div>
                   <h3 className="font-serif text-xl mb-3 text-white">Facial Treatments</h3>
                   <p className="text-brand-silver leading-relaxed">
-                    Comprehensive facial care including deep cleansing, hydrating facials, exfoliation treatments, and customized mask applications. Perfect for maintaining healthy, glowing skin and addressing specific skin concerns.
+                    Comprehensive facial care including deep cleansing, hydrating facials, exfoliation treatments, and customised mask applications. Perfect for maintaining healthy, glowing skin and addressing specific skin concerns.
                   </p>
                 </CardContent>
               </Card>
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 flex flex-col items-center text-center bg-brand-slate-blue text-white">
+              <Card className="hover:shadow-lg transition-shadow h-full">
+                <CardContent className="p-6 flex flex-col items-center text-center bg-brand-slate-blue text-white h-full">
                   <div className="rounded-full bg-brand-silver p-4 mb-4">
                     <Syringe className="w-8 h-8 text-brand-charcoal" />
                   </div>
-                  <h3 className="font-serif text-xl mb-3 text-white">Anti-Aging Solutions</h3>
+                  <h3 className="font-serif text-xl mb-3 text-white">Anti-Ageing Solutions</h3>
                   <p className="text-brand-silver leading-relaxed">
                     Advanced treatments targeting fine lines, wrinkles, and age spots. Includes collagen-boosting therapies, peptide treatments, and non-invasive procedures designed to restore youthful radiance and firmness.
                   </p>
                 </CardContent>
               </Card>
-              <Card className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 flex flex-col items-center text-center bg-brand-slate-blue text-white">
+              <Card className="hover:shadow-lg transition-shadow h-full">
+                <CardContent className="p-6 flex flex-col items-center text-center bg-brand-slate-blue text-white h-full">
                   <div className="rounded-full bg-brand-silver p-4 mb-4">
                     <Droplet className="w-8 h-8 text-brand-charcoal" />
                   </div>
                   <h3 className="font-serif text-xl mb-3 text-white">Skin Rejuvenation</h3>
                   <p className="text-brand-silver leading-relaxed">
-                    Revitalizing treatments that promote cellular renewal and improve skin texture. Features resurfacing treatments, brightening therapies, and specialized procedures for enhanced skin clarity and tone.
+                    Revitalising treatments that promote cellular renewal and improve skin texture. Features resurfacing treatments, brightening therapies, and specialised procedures for enhanced skin clarity and tone.
                   </p>
                 </CardContent>
               </Card>

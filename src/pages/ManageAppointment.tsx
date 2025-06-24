@@ -73,26 +73,8 @@ const ManageAppointment = () => {
         return;
       }
 
-      // Check if profiles is valid before using it
-      const profilesData = data.profiles;
-      const isValidProfiles = profilesData && 
-        typeof profilesData === 'object' && 
-        profilesData !== null && 
-        !('error' in profilesData);
-
-      // Safely transform the data to match our interface
-      const appointmentData: AppointmentData = {
-        id: data.id,
-        appointment_date: data.appointment_date,
-        appointment_time: data.appointment_time,
-        status: data.status,
-        notes: data.notes,
-        admin_notes: data.admin_notes,
-        treatments: data.treatments,
-        profiles: isValidProfiles ? profilesData : null
-      };
-
-      setAppointment(appointmentData);
+      // Simply assign the data as received from Supabase
+      setAppointment(data as AppointmentData);
       setAdminNotes(data.admin_notes || '');
     } catch (error) {
       console.error('Error:', error);
@@ -208,9 +190,10 @@ const ManageAppointment = () => {
     );
   }
 
-  const customerName = appointment.profiles 
-    ? `${appointment.profiles.first_name || ''} ${appointment.profiles.last_name || ''}`.trim() || 'Unknown Customer'
-    : 'Unknown Customer';
+  // Use optional chaining for safe data access
+  const customerName = appointment.profiles?.first_name && appointment.profiles?.last_name
+    ? `${appointment.profiles.first_name} ${appointment.profiles.last_name}`.trim()
+    : appointment.profiles?.first_name || appointment.profiles?.last_name || 'Unknown Customer';
   
   const customerEmail = appointment.profiles?.email || 'No email available';
   const treatmentName = appointment.treatments?.name || 'Unknown Treatment';

@@ -44,9 +44,29 @@ const Products = () => {
     }
   };
 
+  // Debug: Log product data when it changes
+  React.useEffect(() => {
+    if (products.length > 0) {
+      console.log('Products loaded:', products.length);
+      console.log('Sample product image URLs:', products.slice(0, 3).map(p => ({
+        name: p.name,
+        image_url: p.image_url
+      })));
+    }
+  }, [products]);
+
   // On each page, feature the first product with 'featured', if none, pick first.
   const featuredProduct = products.find(p => p.featured) || products[0] || null;
   const remainingProducts = products.filter(p => p.id !== featuredProduct?.id);
+
+  const handleImageError = (imageUrl: string | null, productName: string) => {
+    console.error(`Image failed to load for ${productName}:`, imageUrl);
+    console.log('Attempting to access URL:', imageUrl);
+  };
+
+  const handleImageLoad = (imageUrl: string | null, productName: string) => {
+    console.log(`Image loaded successfully for ${productName}:`, imageUrl);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -128,11 +148,8 @@ const Products = () => {
                             src={featuredProduct.image_url || '/placeholder.svg'} 
                             alt={featuredProduct.name} 
                             className="w-full h-full object-cover"
-                            onError={(e) => {
-                              console.error('Image failed to load:', featuredProduct.image_url);
-                              e.currentTarget.src = '/placeholder.svg';
-                            }}
-                            onLoad={() => console.log('Image loaded successfully:', featuredProduct.image_url)}
+                            onError={() => handleImageError(featuredProduct.image_url, featuredProduct.name)}
+                            onLoad={() => handleImageLoad(featuredProduct.image_url, featuredProduct.name)}
                           />
                           <div className="absolute top-4 left-4">
                             <Badge className="badge-featured">
@@ -168,11 +185,8 @@ const Products = () => {
                               src={product.image_url || '/placeholder.svg'} 
                               alt={product.name} 
                               className="w-full h-full object-cover"
-                              onError={(e) => {
-                                console.error('Image failed to load:', product.image_url);
-                                e.currentTarget.src = '/placeholder.svg';
-                              }}
-                              onLoad={() => console.log('Image loaded successfully:', product.image_url)}
+                              onError={() => handleImageError(product.image_url, product.name)}
+                              onLoad={() => handleImageLoad(product.image_url, product.name)}
                             />
                           </div>
                           <CardContent className="p-4 bg-white/90">

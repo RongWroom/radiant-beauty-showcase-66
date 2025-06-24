@@ -21,12 +21,12 @@ interface AppointmentData {
     name: string;
     duration_minutes: number;
     price: number;
-  };
+  } | null;
   profiles: {
     first_name: string | null;
     last_name: string | null;
     email: string | null;
-  };
+  } | null;
 }
 
 const ManageAppointment = () => {
@@ -73,7 +73,7 @@ const ManageAppointment = () => {
         return;
       }
 
-      setAppointment(data);
+      setAppointment(data as AppointmentData);
       setAdminNotes(data.admin_notes || '');
     } catch (error) {
       console.error('Error:', error);
@@ -104,7 +104,11 @@ const ManageAppointment = () => {
 
       if (error) throw error;
 
-      setAppointment(prev => prev ? { ...prev, status: newStatus, admin_notes: adminNotes.trim() || null } : null);
+      setAppointment(prev => prev ? { 
+        ...prev, 
+        status: newStatus, 
+        admin_notes: adminNotes.trim() || null 
+      } : null);
       
       toast({
         title: "Success",
@@ -137,7 +141,10 @@ const ManageAppointment = () => {
 
       if (error) throw error;
 
-      setAppointment(prev => prev ? { ...prev, admin_notes: adminNotes.trim() || null } : null);
+      setAppointment(prev => prev ? { 
+        ...prev, 
+        admin_notes: adminNotes.trim() || null 
+      } : null);
       
       toast({
         title: "Notes saved",
@@ -182,7 +189,15 @@ const ManageAppointment = () => {
     );
   }
 
-  const customerName = `${appointment.profiles.first_name || ''} ${appointment.profiles.last_name || ''}`.trim() || 'Unknown Customer';
+  const customerName = appointment.profiles 
+    ? `${appointment.profiles.first_name || ''} ${appointment.profiles.last_name || ''}`.trim() || 'Unknown Customer'
+    : 'Unknown Customer';
+  
+  const customerEmail = appointment.profiles?.email || 'No email available';
+  const treatmentName = appointment.treatments?.name || 'Unknown Treatment';
+  const treatmentDuration = appointment.treatments?.duration_minutes || 0;
+  const treatmentPrice = appointment.treatments?.price || 0;
+  
   const formattedDate = format(new Date(appointment.appointment_date), 'EEEE, MMMM d, yyyy');
   const formattedTime = format(new Date(`2000-01-01T${appointment.appointment_time}`), 'h:mm a');
 
@@ -223,7 +238,7 @@ const ManageAppointment = () => {
                 </h3>
                 <div className="bg-muted p-4 rounded-lg space-y-2">
                   <p><strong>Name:</strong> {customerName}</p>
-                  <p><strong>Email:</strong> {appointment.profiles.email}</p>
+                  <p><strong>Email:</strong> {customerEmail}</p>
                 </div>
               </div>
 
@@ -231,7 +246,7 @@ const ManageAppointment = () => {
               <div className="space-y-4">
                 <h3 className="font-semibold text-lg">Appointment Details</h3>
                 <div className="bg-muted p-4 rounded-lg space-y-2">
-                  <p><strong>Treatment:</strong> {appointment.treatments.name}</p>
+                  <p><strong>Treatment:</strong> {treatmentName}</p>
                   <div className="flex items-center gap-2">
                     <CalendarDays className="h-4 w-4" />
                     <span>{formattedDate}</span>
@@ -240,8 +255,8 @@ const ManageAppointment = () => {
                     <Clock className="h-4 w-4" />
                     <span>{formattedTime}</span>
                   </div>
-                  <p><strong>Duration:</strong> {appointment.treatments.duration_minutes} minutes</p>
-                  <p><strong>Price:</strong> £{appointment.treatments.price}</p>
+                  <p><strong>Duration:</strong> {treatmentDuration} minutes</p>
+                  <p><strong>Price:</strong> £{treatmentPrice}</p>
                   <div className="flex items-center gap-2">
                     {getStatusIcon(appointment.status)}
                     <span className={`font-semibold ${getStatusColor(appointment.status)}`}>

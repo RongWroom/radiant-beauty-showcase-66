@@ -128,30 +128,30 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-brand-silver/20">
-        <h1 className="text-3xl md:text-4xl font-serif mb-2 text-brand-charcoal">{product.name}</h1>
-        <p className="text-brand-gray-600 mb-4">{product.description}</p>
-        <div className="text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-black mb-6">
+      <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-brand-silver/20">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif mb-2 text-brand-charcoal leading-tight">{product.name}</h1>
+        <p className="text-brand-gray-600 mb-4 text-sm sm:text-base">{product.description}</p>
+        <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-black mb-6">
           {formatPrice(product.price, product.currency)}
         </div>
       </div>
 
       {/* Quantity & Add to Cart */}
-      <div className="space-y-4 bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-brand-silver/20">
-        <div className="flex items-center gap-4">
-          <label htmlFor="quantity" className="font-medium text-brand-charcoal">Quantity:</label>
-          <div className="flex items-center border border-brand-silver rounded-lg overflow-hidden">
+      <div className="space-y-4 bg-white/60 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-brand-silver/20">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+          <label htmlFor="quantity" className="font-medium text-brand-charcoal text-sm sm:text-base">Quantity:</label>
+          <div className="flex items-center border border-brand-silver rounded-lg overflow-hidden w-fit">
             <button 
               onClick={() => setQuantity(Math.max(1, quantity - 1))} 
-              className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors"
+              className="px-3 py-2 sm:px-4 sm:py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors min-w-[44px] text-lg font-medium"
               disabled={isProcessingPayment}
             >
               -
             </button>
-            <span className="px-4 py-2 border-x border-brand-silver bg-white font-medium">{quantity}</span>
+            <span className="px-3 py-2 sm:px-4 sm:py-2 border-x border-brand-silver bg-white font-medium min-w-[60px] text-center">{quantity}</span>
             <button 
               onClick={() => setQuantity(quantity + 1)} 
-              className="px-3 py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors"
+              className="px-3 py-2 sm:px-4 sm:py-2 hover:bg-brand-slate-blue/10 text-brand-slate-blue transition-colors min-w-[44px] text-lg font-medium"
               disabled={isProcessingPayment}
             >
               +
@@ -159,47 +159,54 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
           </div>
         </div>
 
-        <div className="flex gap-3">
-          <Button 
-            onClick={handleBuyNow}
-            disabled={isProcessingPayment}
-            className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 shadow-lg"
-          >
-            <CreditCard className="mr-2 h-4 w-4" />
-            {isProcessingPayment ? 'Processing...' : 'Buy Now'}
-          </Button>
-          <Button 
-            onClick={handleAddToCart}
-            className="flex-1 bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark shadow-lg"
-            disabled={isProcessingPayment}
-          >
-            <ShoppingCart className="mr-2 h-4 w-4" />
-            Add to Cart
-          </Button>
+        {/* Mobile-first button layout */}
+        <div className="space-y-3">
+          {/* Primary buttons - stacked on mobile, side by side on larger screens */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button 
+              onClick={handleBuyNow}
+              disabled={isProcessingPayment}
+              className="w-full sm:flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 shadow-lg text-sm sm:text-base py-3 sm:py-4 min-h-[48px]"
+            >
+              <CreditCard className="mr-2 h-4 w-4" />
+              {isProcessingPayment ? 'Processing...' : 'Buy Now'}
+            </Button>
+            <Button 
+              onClick={handleAddToCart}
+              className="w-full sm:flex-1 bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark shadow-lg text-sm sm:text-base py-3 sm:py-4 min-h-[48px]"
+              disabled={isProcessingPayment}
+            >
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Add to Cart
+            </Button>
+          </div>
+          
+          {/* Share button - full width on mobile */}
           <Button 
             variant="outline" 
             onClick={handleShare}
-            className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white"
+            className="w-full border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white text-sm sm:text-base py-3 sm:py-4 min-h-[48px]"
             disabled={isProcessingPayment}
           >
-            <Share2 className="h-4 w-4" />
+            <Share2 className="mr-2 h-4 w-4" />
+            Share Product
           </Button>
         </div>
       </div>
 
       {/* Trust Badges */}
-      <div className="grid grid-cols-3 gap-4 pt-6">
-        <div className="text-center bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-brand-silver/20">
-          <Truck className="w-6 h-6 mx-auto mb-2 text-brand-slate-blue" />
-          <p className="text-sm text-brand-gray-600 font-medium">Free Shipping</p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 sm:pt-6">
+        <div className="text-center bg-white/70 backdrop-blur-sm p-3 sm:p-4 rounded-lg border border-brand-silver/20">
+          <Truck className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-brand-slate-blue" />
+          <p className="text-xs sm:text-sm text-brand-gray-600 font-medium">Free Shipping</p>
         </div>
-        <div className="text-center bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-brand-silver/20">
-          <Shield className="w-6 h-6 mx-auto mb-2 text-brand-slate-blue" />
-          <p className="text-sm text-brand-gray-600 font-medium">Secure Payment</p>
+        <div className="text-center bg-white/70 backdrop-blur-sm p-3 sm:p-4 rounded-lg border border-brand-silver/20">
+          <Shield className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-brand-slate-blue" />
+          <p className="text-xs sm:text-sm text-brand-gray-600 font-medium">Secure Payment</p>
         </div>
-        <div className="text-center bg-white/70 backdrop-blur-sm p-4 rounded-lg border border-brand-silver/20">
-          <RotateCcw className="w-6 h-6 mx-auto mb-2 text-brand-slate-blue" />
-          <p className="text-sm text-brand-gray-600 font-medium">30-Day Returns</p>
+        <div className="text-center bg-white/70 backdrop-blur-sm p-3 sm:p-4 rounded-lg border border-brand-silver/20">
+          <RotateCcw className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-brand-slate-blue" />
+          <p className="text-xs sm:text-sm text-brand-gray-600 font-medium">30-Day Returns</p>
         </div>
       </div>
     </div>

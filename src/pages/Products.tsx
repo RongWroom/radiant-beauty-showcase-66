@@ -6,15 +6,18 @@ import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star } from 'lucide-react';
+import { Star, RefreshCw } from 'lucide-react';
 import { Skeleton } from "@/components/ui/skeleton";
-import { usePaginatedProducts } from "@/hooks/usePaginatedProducts";
+import { usePaginatedProducts, useInvalidateProductsCache } from "@/hooks/usePaginatedProducts";
+import { useToast } from "@/components/ui/use-toast";
 
 const PAGE_SIZE = 6;
 
 const Products = () => {
   const [page, setPage] = useState(1);
-  const { products, total, isLoading, isError } = usePaginatedProducts(page, PAGE_SIZE);
+  const { products, total, isLoading, isError, refetch } = usePaginatedProducts(page, PAGE_SIZE);
+  const invalidateCache = useInvalidateProductsCache();
+  const { toast } = useToast();
 
   const pageCount = Math.ceil(total / PAGE_SIZE);
 
@@ -22,6 +25,23 @@ const Products = () => {
     if (price === null) return 'N/A';
     const currencySymbol = currency === 'GBP' ? '£' : (currency === 'USD' ? '$' : '€');
     return `${currencySymbol}${price.toFixed(2)}`;
+  };
+
+  const handleRefresh = async () => {
+    try {
+      invalidateCache();
+      await refetch();
+      toast({
+        title: "Products Refreshed",
+        description: "Product data has been refreshed from the database.",
+      });
+    } catch (error) {
+      toast({
+        title: "Refresh Failed",
+        description: "Failed to refresh product data. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   // On each page, feature the first product with 'featured', if none, pick first.
@@ -36,9 +56,20 @@ const Products = () => {
         <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 md:py-20 animate-fade-in">
           <div className="container-custom relative z-10">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
-                Our Products
-              </h1>
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
+                  Our Products
+                </h1>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleRefresh}
+                  disabled={isLoading}
+                  className="ml-4"
+                >
+                  <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+                </Button>
+              </div>
               {/* Decorative Line */}
               <div className="flex justify-center mb-5">
                 <span className="block h-1 w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
@@ -72,7 +103,13 @@ const Products = () => {
             )}
 
             {isError && (
-              <div className="text-center text-red-500 font-medium">Failed to load products. Please try again later.</div>
+              <div className="text-center">
+                <div className="text-red-500 font-medium mb-4">Failed to load products. Please try again later.</div>
+                <Button onClick={handleRefresh} variant="outline">
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  Retry
+                </Button>
+              </div>
             )}
 
             {!isLoading && !isError && products.length === 0 && (
@@ -87,7 +124,16 @@ const Products = () => {
                     <div className="lg:col-span-1">
                       <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-full border-brand-silver/30">
                         <div className="relative h-96 lg:h-full">
-                          <img src={featuredProduct.image_url || '/placeholder.svg'} alt={featuredProduct.name} className="w-full h-full object-cover" />
+                          <img 
+                            src={featuredProduct.image_url || '/placeholder.svg'} 
+                            alt={featuredProduct.name} 
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              console.error('Image failed to load:', featuredProduct.image_url);
+                              e.currentTarget.src = '/placeholder.svg';
+                            }}
+                            onLoad={() => console.log('Image loaded successfully:', featuredProduct.image_url)}
+                          />
                           <div className="absolute top-4 left-4">
                             <Badge className="badge-featured">
                               <Star className="w-4 h-4 mr-1" />
@@ -118,7 +164,16 @@ const Products = () => {
                       {remainingProducts.map(product => (
                         <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow border-brand-silver/30">
                           <div className="relative h-48">
-                            <img src={product.image_url || '/placeholder.svg'} alt={product.name} className="w-full h-full object-cover" />
+                            <img 
+                              src={product.image_url || '/placeholder.svg'} 
+                              alt={product.name} 
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                console.error('Image failed to load:', product.image_url);
+                                e.currentTarget.src = '/placeholder.svg';
+                              }}
+                              onLoad={() => console.log('Image loaded successfully:', product.image_url)}
+                            />
                           </div>
                           <CardContent className="p-4 bg-white/90">
                             <h3 className="font-serif text-lg font-medium text-brand-charcoal">{product.name}</h3>

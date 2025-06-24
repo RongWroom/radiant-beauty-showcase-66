@@ -52,8 +52,8 @@ const handler = async (req: Request): Promise<Response> => {
       minute: '2-digit'
     });
 
-    // Get the app URL (use localhost for development, production URL for deployment)
-    const appUrl = 'https://stwaestheticclinic.lovable.app';
+    // Use the live domain
+    const appUrl = 'https://www.stwaestheticclinic.co.uk';
     const confirmUrl = `${appUrl}/confirm-appointment?token=${bookingData.confirmationToken}&action=confirm`;
     const cancelUrl = `${appUrl}/confirm-appointment?token=${bookingData.confirmationToken}&action=cancel`;
 

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -73,8 +72,21 @@ const ManageAppointment = () => {
         return;
       }
 
-      // Simply assign the data as received from Supabase
-      setAppointment(data as AppointmentData);
+      // Handle the case where profiles might be an error object or null
+      const appointmentData: AppointmentData = {
+        id: data.id,
+        appointment_date: data.appointment_date,
+        appointment_time: data.appointment_time,
+        status: data.status,
+        notes: data.notes,
+        admin_notes: data.admin_notes,
+        treatments: data.treatments,
+        profiles: data.profiles && typeof data.profiles === 'object' && !('error' in data.profiles) 
+          ? data.profiles 
+          : null
+      };
+
+      setAppointment(appointmentData);
       setAdminNotes(data.admin_notes || '');
     } catch (error) {
       console.error('Error:', error);

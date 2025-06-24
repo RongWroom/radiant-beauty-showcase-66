@@ -63,7 +63,7 @@ const ProductShowcase = () => {
             {/* Treatment Card */}
             <Card className="card-product overflow-hidden border-brand-silver/40 shadow-sm hover:shadow-lg transition-all duration-300">
               <div className="relative h-48 sm:h-56">
-                <img src="/placeholder.svg" alt="Featured treatment" className="w-full h-full object-cover" />
+                <img src="https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Cryo%202.jpeg" alt="Featured treatment" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                   <span className="bg-brand-slate-blue text-white font-semibold px-4 py-2 rounded-full shadow-lg text-sm">
                     Most Popular
@@ -109,7 +109,7 @@ const ProductShowcase = () => {
             {bentoTreatments.slice(1).map((treatment, index) => (
               <Card key={index} className="card-product overflow-hidden border-brand-silver/40 shadow-sm hover:shadow-lg transition-all duration-300">
                 <div className="relative h-48 sm:h-56">
-                  <img src={treatment.image || "/placeholder.svg"} alt={treatment.name} className="w-full h-full object-cover" />
+                  <img src={treatment.image || "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/stw_greeting.jpeg"} alt={treatment.name} className="w-full h-full object-cover" />
                 </div>
                 <CardContent className="p-4 sm:p-6 bg-white">
                   <h4 className="font-semibold text-brand-charcoal mobile-text-base">{treatment.name}</h4>

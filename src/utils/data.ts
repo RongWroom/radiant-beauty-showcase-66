@@ -20,7 +20,7 @@ export const treatments: Treatment[] = [
     name: "Cyrolipolysis (Fat Freeze)",
     description: "Advanced fat freezing technology to eliminate stubborn fat cells permanently",
     price: "£150",
-    image: "/site-images/treatment/Cryo 1.jpeg",
+    image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Cryo%201.jpeg",
     category: "Body Contouring",
     featured: true
   },
@@ -29,7 +29,7 @@ export const treatments: Treatment[] = [
     name: "Ultra 4D HIFU",
     description: "High-Intensity Focused Ultrasound for non-invasive skin tightening and lifting",
     price: "£180",
-    image: "/site-images/treatment/Hifu 1.jpeg",
+    image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Hifu%201.jpeg",
     category: "Anti-Aging"
   },
   {
@@ -37,7 +37,7 @@ export const treatments: Treatment[] = [
     name: "Skin Tightening (Fibroblast)",
     description: "Revolutionary plasma technology for natural skin tightening and rejuvenation",
     price: "£180",
-    image: "/site-images/treatment/STW_Aesthetic_machine.jpeg",
+    image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/STW_Aesthetic_machine.jpeg",
     category: "Skin Tightening"
   },
   {
@@ -45,7 +45,7 @@ export const treatments: Treatment[] = [
     name: "HydraFacial",
     description: "Deep cleansing and hydrating facial treatment for radiant, healthy skin",
     price: "£85",
-    image: "/site-images/treatment/Hydrafacial.jpeg",
+    image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Hydrafacial.jpeg",
     category: "Facial"
   },
   {
@@ -53,7 +53,7 @@ export const treatments: Treatment[] = [
     name: "Laser Hair Removal",
     description: "Permanent hair reduction using advanced laser technology",
     price: "from £20",
-    image: "/site-images/treatment/Laser.jpeg",
+    image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Laser.jpeg",
     category: "Laser Therapy"
   }
 ];

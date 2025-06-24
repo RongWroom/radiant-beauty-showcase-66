@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -75,7 +76,7 @@ export const BannerSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-16 sm:gap-20">
           <div className="lg:w-1/3">
             <div className="relative">
-              <img src="/placeholder.svg" alt="Professional aftercare products" className="w-full h-80 sm:h-96 object-cover rounded-3xl shadow-lg" />
+              <img src="https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/STW_Aesthetic_w_2.jpeg" alt="Professional aftercare products" className="w-full h-80 sm:h-96 object-cover rounded-3xl shadow-lg" />
               <div className="absolute inset-0 bg-white/15 rounded-3xl"></div>
             </div>
           </div>
@@ -95,7 +96,7 @@ export const BannerSection = () => {
         </div>
       </div>
       <div className="absolute top-0 right-0 h-full w-1/4 opacity-10 pointer-events-none" aria-hidden="true">
-        <img src="/placeholder.svg" alt="Decorative leaves" className="h-full object-cover" />
+        <img src="https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/STW_Aesthetic_w_3.jpeg" alt="Decorative leaves" className="h-full object-cover" />
       </div>
     </section>
   );

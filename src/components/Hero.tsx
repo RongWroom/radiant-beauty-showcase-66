@@ -25,21 +25,21 @@ const Hero = () => {
       {/* Subtle gradient overlay to ensure text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
       
-      <div className="container-custom min-h-[85vh] sm:min-h-[90vh] flex flex-col lg:flex-row items-center relative z-10 py-0 my-[10px]">
-        <div className="w-full lg:w-1/2 pt-20 sm:pt-24 lg:pt-0 z-10 mobile-spacing-lg text-center lg:text-left">
-          <div className="mobile-spacing-md">
-            <h1 className="mobile-text-2xl font-serif font-medium text-brand-charcoal px-4 sm:px-0">
-              Professional Aesthetic Treatments at <br />
+      <div className="container-custom min-h-[100vh] sm:min-h-[90vh] flex flex-col lg:flex-row items-center relative z-10 py-8 sm:py-0">
+        <div className="w-full lg:w-1/2 pt-16 sm:pt-24 lg:pt-0 z-10 text-center lg:text-left px-2 sm:px-4 lg:px-0">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-brand-charcoal leading-tight mb-4">
+              Professional Aesthetic Treatments at <br className="hidden sm:block" />
               <span className="text-brand-slate-blue font-semibold">STW Aesthetics</span>
             </h1>
             
             {/* Decorative line */}
-            <div className="flex justify-center lg:justify-start mb-6 sm:mb-8">
-              <span className="block h-1 w-20 sm:w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver" />
+            <div className="flex justify-center lg:justify-start mb-6">
+              <span className="block h-1 w-16 sm:w-20 md:w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver" />
             </div>
           </div>
           
-          <p className="mobile-text-base text-brand-gray-600 max-w-lg mx-auto lg:mx-0 px-4 sm:px-0 mb-8 sm:mb-10">
+          <p className="text-base sm:text-lg text-brand-gray-600 max-w-lg mx-auto lg:mx-0 mb-8 sm:mb-10 leading-relaxed">
             Transform your skin with our{" "}
             <span className="bg-gradient-to-r from-brand-silver/40 to-brand-slate-blue/20 px-2 py-1 rounded font-medium text-brand-charcoal">
               advanced aesthetic treatments
@@ -47,27 +47,27 @@ const Hero = () => {
             including Cryolipolysis, Ultra 4D HIFU, and HydraFacial. Our certified technicians deliver exceptional results with the latest technology.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 px-4 sm:px-0 justify-center lg:justify-start">
-            <Link to="/treatments" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white mobile-text-base font-semibold py-4 px-8 sm:px-10 shadow-lg hover:shadow-xl transition-all duration-300 min-h-[56px] rounded-lg">
+          <div className="flex flex-col gap-4 justify-center lg:justify-start max-w-sm mx-auto lg:max-w-none lg:mx-0">
+            <Link to="/treatments" className="w-full">
+              <Button className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white text-base sm:text-lg font-semibold py-4 px-8 shadow-lg hover:shadow-xl transition-all duration-300 min-h-[56px] rounded-lg">
                 BOOK TREATMENT
               </Button>
             </Link>
-            <Link to="/products" className="w-full sm:w-auto">
-              <Button variant="outline" className="w-full sm:w-auto border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-gradient-to-r hover:from-brand-slate-blue hover:to-brand-slate-blue-light hover:text-white mobile-text-base font-semibold py-4 px-8 sm:px-10 transition-all duration-300 min-h-[56px] rounded-lg">
+            <Link to="/products" className="w-full">
+              <Button variant="outline" className="w-full border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-gradient-to-r hover:from-brand-slate-blue hover:to-brand-slate-blue-light hover:text-white text-base sm:text-lg font-semibold py-4 px-8 transition-all duration-300 min-h-[56px] rounded-lg">
                 AFTERCARE PRODUCTS
               </Button>
             </Link>
           </div>
         </div>
         
-        <div className="w-full lg:w-1/2 mt-12 sm:mt-16 lg:mt-0 relative px-4 sm:px-0">
+        <div className="w-full lg:w-1/2 mt-8 sm:mt-12 lg:mt-0 relative">
           {/* Natural, organic logo presentation */}
-          <div className="relative z-10">
+          <div className="relative z-10 px-4 sm:px-0">
             <img 
               alt="STW Aesthetic Clinic professional treatments" 
               src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png" 
-              className="mx-auto h-[250px] sm:h-[400px] md:h-[500px] lg:h-[600px] w-full max-w-sm sm:max-w-md object-contain drop-shadow-lg" 
+              className="mx-auto h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] w-full max-w-[280px] sm:max-w-sm md:max-w-md object-contain drop-shadow-lg" 
             />
           </div>
         </div>

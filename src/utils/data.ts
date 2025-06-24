@@ -18,42 +18,42 @@ export const treatments: Treatment[] = [
   {
     id: 1,
     name: "Cyrolipolysis (Fat Freeze)",
-    description: "Replenish and revitalize dry skin with our intensive hydrating treatment",
+    description: "Advanced fat freezing technology to eliminate stubborn fat cells permanently",
     price: "£150",
-    image: "/placeholder.svg",
-    category: "Facial",
+    image: "/site-images/treatment/Cryo 1.jpeg",
+    category: "Body Contouring",
     featured: true
   },
   {
     id: 2,
     name: "Ultra 4D HIFU",
-    description: "Reduce fine lines and wrinkles with our advanced anti-aging procedure",
+    description: "High-Intensity Focused Ultrasound for non-invasive skin tightening and lifting",
     price: "£180",
-    image: "/placeholder.svg",
+    image: "/site-images/treatment/Hifu 1.jpeg",
     category: "Anti-Aging"
   },
   {
     id: 3,
     name: "Skin Tightening (Fibroblast)",
-    description: "Clear your skin and prevent future breakouts with our specialized acne treatment",
+    description: "Revolutionary plasma technology for natural skin tightening and rejuvenation",
     price: "£180",
-    image: "/placeholder.svg",
-    category: "Refresh"
+    image: "/site-images/treatment/STW_Aesthetic_machine.jpeg",
+    category: "Skin Tightening"
   },
   {
     id: 4,
     name: "HydraFacial",
-    description: "Exfoliate your skin for a smoother, clearer complexion",
+    description: "Deep cleansing and hydrating facial treatment for radiant, healthy skin",
     price: "£85",
-    image: "/placeholder.svg",
-    category: "Exfoliation"
+    image: "/site-images/treatment/Hydrafacial.jpeg",
+    category: "Facial"
   },
   {
     id: 5,
     name: "Laser Hair Removal",
-    description: "Enhance your skin's natural healing process with targeted light therapy",
+    description: "Permanent hair reduction using advanced laser technology",
     price: "from £20",
-    image: "/placeholder.svg",
+    image: "/site-images/treatment/Laser.jpeg",
     category: "Laser Therapy"
   }
 ];

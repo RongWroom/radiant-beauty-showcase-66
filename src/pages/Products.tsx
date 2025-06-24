@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -47,6 +46,7 @@ const Products = () => {
   // Force refresh cache on mount to get updated image URLs
   React.useEffect(() => {
     invalidateCache();
+    console.log('Cache invalidated on mount to fetch updated image URLs');
   }, [invalidateCache]);
 
   // Debug: Log product data when it changes

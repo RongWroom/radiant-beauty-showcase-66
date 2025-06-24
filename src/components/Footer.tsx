@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-white border-t border-brand-warm-gray-200">
+  return <footer className="bg-white border-t border-brand-warm-gray-200">
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -34,7 +31,7 @@ const Footer = () => {
             <p className="text-hierarchy-secondary mb-4">Get skincare tips and exclusive offers direct to your inbox.</p>
             <div className="flex mb-4">
               <input type="email" placeholder="Your email" className="px-4 py-2 border border-brand-warm-gray-200 rounded-l-md w-full focus:outline-none focus:ring-1 focus:ring-brand-plum text-brand-charcoal" />
-              <Button className="rounded-l-none bg-brand-plum text-white" variant="default">
+              <Button variant="default" className="rounded-l-none bg-brand-plum text-[brand-slate-blue] text-brand-charcoal bg-[brand-light-gray] bg-slate-500 hover:bg-slate-400">
                 Join
               </Button>
             </div>
@@ -55,8 +52,6 @@ const Footer = () => {
           <p>© {new Date().getFullYear()} STW Aesthetic Clinic. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

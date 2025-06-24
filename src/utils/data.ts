@@ -16,8 +16,8 @@ export interface Stat {
 
 export const treatments: Treatment[] = [
   {
-    id: 1,
-    name: "Cyrolipolysis (Fat Freeze)",
+    id: 6,
+    name: "Cryolipolysis (Fat Freeze)",
     description: "Advanced fat freezing technology to eliminate stubborn fat cells permanently",
     price: "£150",
     image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Cryo%201.jpeg",
@@ -25,7 +25,7 @@ export const treatments: Treatment[] = [
     featured: true
   },
   {
-    id: 2,
+    id: 7,
     name: "Ultra 4D HIFU",
     description: "High-Intensity Focused Ultrasound for non-invasive skin tightening and lifting",
     price: "£180",
@@ -33,15 +33,15 @@ export const treatments: Treatment[] = [
     category: "Anti-Aging"
   },
   {
-    id: 3,
-    name: "Skin Tightening (Fibroblast)",
+    id: 8,
+    name: "Fibroblast Plasma Skin Tightening",
     description: "Revolutionary plasma technology for natural skin tightening and rejuvenation",
     price: "£180",
     image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/STW_Aesthetic_machine.jpeg",
     category: "Skin Tightening"
   },
   {
-    id: 4,
+    id: 10,
     name: "HydraFacial",
     description: "Deep cleansing and hydrating facial treatment for radiant, healthy skin",
     price: "£85",
@@ -49,8 +49,8 @@ export const treatments: Treatment[] = [
     category: "Facial"
   },
   {
-    id: 5,
-    name: "Laser Hair Removal",
+    id: 11,
+    name: "Super Hair Removal (SHR)",
     description: "Permanent hair reduction using advanced laser technology",
     price: "from £20",
     image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Laser.jpeg",

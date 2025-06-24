@@ -28,6 +28,14 @@ interface AppointmentData {
   } | null;
 }
 
+// Type guard to check if profiles data is valid
+const isValidProfilesData = (profiles: any): profiles is { first_name: string | null; last_name: string | null; email: string | null } => {
+  return profiles && 
+         typeof profiles === 'object' && 
+         !('error' in profiles) &&
+         ('first_name' in profiles || 'last_name' in profiles || 'email' in profiles);
+};
+
 const ManageAppointment = () => {
   const { token } = useParams<{ token: string }>();
   const [appointment, setAppointment] = useState<AppointmentData | null>(null);
@@ -72,7 +80,7 @@ const ManageAppointment = () => {
         return;
       }
 
-      // Handle the case where profiles might be an error object or null
+      // Create appointment data with proper type checking
       const appointmentData: AppointmentData = {
         id: data.id,
         appointment_date: data.appointment_date,
@@ -81,9 +89,7 @@ const ManageAppointment = () => {
         notes: data.notes,
         admin_notes: data.admin_notes,
         treatments: data.treatments,
-        profiles: data.profiles && typeof data.profiles === 'object' && !('error' in data.profiles) 
-          ? data.profiles 
-          : null
+        profiles: isValidProfilesData(data.profiles) ? data.profiles : null
       };
 
       setAppointment(appointmentData);

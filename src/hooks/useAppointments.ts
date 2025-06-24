@@ -108,3 +108,36 @@ export function useUpdateAppointment() {
     },
   });
 }
+
+export function useRescheduleAppointment() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      appointmentDate,
+      appointmentTime,
+    }: {
+      id: string;
+      appointmentDate: string;
+      appointmentTime: string;
+    }) => {
+      const { data, error } = await supabase
+        .from("appointments")
+        .update({
+          appointment_date: appointmentDate,
+          appointment_time: appointmentTime,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["appointments"] });
+    },
+  });
+}

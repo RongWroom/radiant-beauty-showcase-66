@@ -162,6 +162,11 @@ const handler = async (req: Request): Promise<Response> => {
     const declineUrl = `${baseUrl}/confirm-appointment?token=${confirmationToken}&action=decline`;
     const manageUrl = `https://stwaestheticclinic.co.uk/manage/${confirmationToken}`;
 
+    // Convert ICS content to base64 using TextEncoder (Deno-compatible)
+    const encoder = new TextEncoder();
+    const icsBytes = encoder.encode(icsContent);
+    const icsBase64 = btoa(String.fromCharCode(...icsBytes));
+
     // Send notification email to clinic using verified domain
     const clinicEmailResponse = await resend.emails.send({
       from: "STW Aesthetic Clinic <noreply@stwaestheticclinic.co.uk>",
@@ -229,7 +234,7 @@ const handler = async (req: Request): Promise<Response> => {
       attachments: [
         {
           filename: `appointment-${appointmentId}.ics`,
-          content: Buffer.from(icsContent).toString('base64'),
+          content: icsBase64,
           content_type: 'text/calendar',
         },
       ],

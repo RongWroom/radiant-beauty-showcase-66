@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -33,7 +32,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
     setSelectedTime(time);
   };
 
-  const sendBookingNotification = async () => {
+  const sendBookingNotification = async (appointmentId: string, confirmationToken: string) => {
     if (!user || !treatment || !selectedDate || !selectedTime) return;
 
     try {
@@ -61,6 +60,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
           treatmentPrice: treatment.price,
           treatmentDuration: treatment.duration_minutes,
           treatmentCategory: treatment.category,
+          confirmationToken,
+          appointmentId,
         },
       });
 
@@ -90,15 +91,15 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
 
     try {
       // Create the appointment first
-      await createAppointment.mutateAsync({
+      const appointmentData = await createAppointment.mutateAsync({
         treatment_id: treatmentId,
         appointment_date: format(selectedDate, 'yyyy-MM-dd'),
         appointment_time: selectedTime,
         notes: notes.trim() || undefined,
       });
 
-      // Send notification email (don't await to avoid blocking)
-      sendBookingNotification();
+      // Send notification email with appointment ID and confirmation token
+      sendBookingNotification(appointmentData.id, appointmentData.confirmation_token);
 
       toast({
         title: "Appointment booked successfully!",

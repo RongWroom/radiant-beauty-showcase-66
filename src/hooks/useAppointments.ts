@@ -11,6 +11,9 @@ export type Appointment = {
   appointment_time: string;
   status: 'pending' | 'confirmed' | 'completed' | 'cancelled' | 'no_show';
   notes: string | null;
+  admin_notes: string | null;
+  confirmation_token: string | null;
+  confirmed_by_admin_at: string | null;
   created_at: string;
   updated_at: string;
   treatments?: {

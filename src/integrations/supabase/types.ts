@@ -11,8 +11,11 @@ export type Database = {
     Tables: {
       appointments: {
         Row: {
+          admin_notes: string | null
           appointment_date: string
           appointment_time: string
+          confirmation_token: string | null
+          confirmed_by_admin_at: string | null
           created_at: string
           id: string
           notes: string | null
@@ -22,8 +25,11 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          admin_notes?: string | null
           appointment_date: string
           appointment_time: string
+          confirmation_token?: string | null
+          confirmed_by_admin_at?: string | null
           created_at?: string
           id?: string
           notes?: string | null
@@ -33,8 +39,11 @@ export type Database = {
           user_id: string
         }
         Update: {
+          admin_notes?: string | null
           appointment_date?: string
           appointment_time?: string
+          confirmation_token?: string | null
+          confirmed_by_admin_at?: string | null
           created_at?: string
           id?: string
           notes?: string | null

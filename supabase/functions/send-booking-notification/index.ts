@@ -20,6 +20,8 @@ interface BookingNotificationRequest {
   treatmentPrice: number;
   treatmentDuration: number;
   treatmentCategory?: string;
+  confirmationToken: string;
+  appointmentId: string;
 }
 
 // Consent form mapping
@@ -63,6 +65,46 @@ function getConsentFormUrl(treatmentName: string, treatmentCategory?: string): s
   return CONSENT_FORM_MAPPING['skin'];
 }
 
+function generateICSFile(
+  treatmentName: string,
+  appointmentDate: string,
+  appointmentTime: string,
+  customerName: string,
+  customerEmail: string,
+  treatmentDuration: number,
+  notes?: string
+): string {
+  const startDateTime = new Date(`${appointmentDate}T${appointmentTime}`);
+  const endDateTime = new Date(startDateTime.getTime() + treatmentDuration * 60000);
+  
+  const formatDate = (date: Date) => {
+    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  };
+
+  const icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//STW Aesthetic Clinic//Booking System//EN',
+    'BEGIN:VEVENT',
+    `UID:appointment-${Date.now()}@stwaestheticclinic.co.uk`,
+    `DTSTART:${formatDate(startDateTime)}`,
+    `DTEND:${formatDate(endDateTime)}`,
+    `SUMMARY:${treatmentName} - ${customerName}`,
+    `DESCRIPTION:Treatment: ${treatmentName}\\nCustomer: ${customerName}\\nEmail: ${customerEmail}${notes ? `\\nNotes: ${notes}` : ''}`,
+    `LOCATION:STW Aesthetic Clinic`,
+    'STATUS:TENTATIVE',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT15M',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Appointment reminder',
+    'END:VALARM',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  return icsContent;
+}
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -80,6 +122,8 @@ const handler = async (req: Request): Promise<Response> => {
       treatmentPrice,
       treatmentDuration,
       treatmentCategory,
+      confirmationToken,
+      appointmentId,
     }: BookingNotificationRequest = await req.json();
 
     console.log("Processing booking notification for:", customerEmail);
@@ -100,6 +144,23 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Get the appropriate consent form URL
     const consentFormUrl = getConsentFormUrl(treatmentName, treatmentCategory);
+
+    // Generate ICS calendar file
+    const icsContent = generateICSFile(
+      treatmentName,
+      appointmentDate,
+      appointmentTime,
+      customerName,
+      customerEmail,
+      treatmentDuration,
+      notes
+    );
+
+    // Base URL for confirmation actions
+    const baseUrl = "https://siojarsutauhnuiwrmkd.supabase.co/functions/v1";
+    const confirmUrl = `${baseUrl}/confirm-appointment?token=${confirmationToken}&action=confirm`;
+    const declineUrl = `${baseUrl}/confirm-appointment?token=${confirmationToken}&action=decline`;
+    const manageUrl = `https://stwaestheticclinic.co.uk/manage/${confirmationToken}`;
 
     // Send notification email to clinic using verified domain
     const clinicEmailResponse = await resend.emails.send({
@@ -128,10 +189,33 @@ const handler = async (req: Request): Promise<Response> => {
             ${notes ? `<p><strong>Notes:</strong> ${notes}</p>` : ''}
           </div>
 
-          <div style="background-color: #e8f4fd; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <p style="margin: 0; color: #2563eb;">
-              <strong>Consent form automatically sent to customer:</strong> 
-              <a href="${consentFormUrl}" style="color: #2563eb;">View Form</a>
+          <div style="background-color: #e8f4fd; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
+            <h3 style="color: #2563eb; margin-top: 0;">Quick Actions</h3>
+            <p style="margin-bottom: 20px;">Click a button below to confirm or decline this appointment:</p>
+            
+            <a href="${confirmUrl}" 
+               style="display: inline-block; background-color: #10b981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 0 10px;">
+              ✓ Confirm Appointment
+            </a>
+            
+            <a href="${declineUrl}" 
+               style="display: inline-block; background-color: #ef4444; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 0 10px;">
+              ✗ Decline Appointment
+            </a>
+          </div>
+
+          <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #856404;">
+              <strong>📅 Calendar Integration:</strong> 
+              <br>The calendar invite is attached to this email. Accept the invite to automatically confirm the appointment.
+            </p>
+          </div>
+
+          <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #666;">
+              <strong>Need to make changes?</strong> 
+              <br><a href="${manageUrl}" style="color: #8B5A97;">Click here to manage this appointment</a>
+              <br><small>You can reschedule, add notes, or make other changes.</small>
             </p>
           </div>
 
@@ -142,6 +226,13 @@ const handler = async (req: Request): Promise<Response> => {
           </div>
         </div>
       `,
+      attachments: [
+        {
+          filename: `appointment-${appointmentId}.ics`,
+          content: Buffer.from(icsContent).toString('base64'),
+          content_type: 'text/calendar',
+        },
+      ],
     });
 
     console.log("Clinic email response:", clinicEmailResponse);
@@ -181,6 +272,13 @@ const handler = async (req: Request): Promise<Response> => {
             
             <p style="font-size: 14px; color: #666; margin-top: 15px;">
               Please complete this form at least 24 hours before your appointment. You'll need to provide some medical history and sign the consent digitally.
+            </p>
+          </div>
+
+          <div style="background-color: #e8f4fd; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #2563eb;">
+              <strong>📋 Appointment Status:</strong> 
+              <br>Your appointment is currently <strong>pending confirmation</strong> by our clinic staff. You'll receive another email once it's confirmed.
             </p>
           </div>
 

@@ -26,8 +26,14 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!token || !action) {
       return new Response(
-        `<html><body><h1>Invalid Request</h1><p>Missing required parameters.</p></body></html>`,
-        { status: 400, headers: { 'Content-Type': 'text/html', ...corsHeaders } }
+        JSON.stringify({ error: "Missing required parameters" }),
+        { 
+          status: 400, 
+          headers: { 
+            'Content-Type': 'application/json', 
+            ...corsHeaders 
+          } 
+        }
       );
     }
 
@@ -48,8 +54,14 @@ const handler = async (req: Request): Promise<Response> => {
     if (fetchError || !appointment) {
       console.error('Appointment not found:', fetchError);
       return new Response(
-        `<html><body><h1>Appointment Not Found</h1><p>The appointment link may be expired or invalid.</p></body></html>`,
-        { status: 404, headers: { 'Content-Type': 'text/html', ...corsHeaders } }
+        JSON.stringify({ error: "Appointment not found" }),
+        { 
+          status: 404, 
+          headers: { 
+            'Content-Type': 'application/json', 
+            ...corsHeaders 
+          } 
+        }
       );
     }
 
@@ -69,8 +81,14 @@ const handler = async (req: Request): Promise<Response> => {
     if (updateError) {
       console.error('Error updating appointment:', updateError);
       return new Response(
-        `<html><body><h1>Error</h1><p>Failed to update appointment status.</p></body></html>`,
-        { status: 500, headers: { 'Content-Type': 'text/html', ...corsHeaders } }
+        JSON.stringify({ error: "Failed to update appointment" }),
+        { 
+          status: 500, 
+          headers: { 
+            'Content-Type': 'application/json', 
+            ...corsHeaders 
+          } 
+        }
       );
     }
 
@@ -156,67 +174,40 @@ const handler = async (req: Request): Promise<Response> => {
       }
     }
 
-    // Return success page
+    // Return JSON response instead of HTML
     const actionText = action === 'confirm' ? 'confirmed' : 'declined';
-    const statusColor = action === 'confirm' ? '#10b981' : '#ef4444';
-    const statusIcon = action === 'confirm' ? '✅' : '❌';
-
+    
     return new Response(
-      `<html>
-        <head>
-          <title>Appointment ${actionText.charAt(0).toUpperCase() + actionText.slice(1)}</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <style>
-            body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f8f9fa; }
-            .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; }
-            .status { color: ${statusColor}; font-size: 48px; margin-bottom: 20px; }
-            h1 { color: #333; margin-bottom: 20px; }
-            .details { background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left; }
-            .button { display: inline-block; background-color: #8B5A97; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
-          </style>
-        </head>
-        <body>
-          <div class="card">
-            <div class="status">${statusIcon}</div>
-            <h1>Appointment ${actionText.charAt(0).toUpperCase() + actionText.slice(1)}</h1>
-            
-            <div class="details">
-              <h3>Appointment Details</h3>
-              <p><strong>Customer:</strong> ${customerName}</p>
-              <p><strong>Treatment:</strong> ${appointment.treatments?.name}</p>
-              <p><strong>Date:</strong> ${formattedDate}</p>
-              <p><strong>Time:</strong> ${formattedTime}</p>
-              <p><strong>Status:</strong> ${newStatus.toUpperCase()}</p>
-            </div>
-            
-            ${action === 'confirm' ? 
-              '<p>The customer has been notified of the confirmation via email.</p>' : 
-              '<p>The appointment has been declined and the customer will be notified.</p>'
-            }
-            
-            <p style="color: #666; font-size: 14px; margin-top: 30px;">
-              You can close this window now.
-            </p>
-          </div>
-        </body>
-      </html>`,
-      { 
+      JSON.stringify({
+        success: true,
+        message: `Appointment ${actionText} successfully`,
+        appointment: {
+          id: appointment.id,
+          customer: customerName,
+          treatment: appointment.treatments?.name,
+          date: formattedDate,
+          time: formattedTime,
+          status: newStatus
+        },
+        emailSent: action === 'confirm' && customerEmail ? true : false
+      }),
+      {
         status: 200,
-        headers: { 
-          'Content-Type': 'text/html',
-          ...corsHeaders 
-        } 
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsHeaders
+        }
       }
     );
 
   } catch (error: any) {
     console.error("Error in confirm-appointment function:", error);
     return new Response(
-      `<html><body><h1>Error</h1><p>An unexpected error occurred: ${error.message}</p></body></html>`,
+      JSON.stringify({ error: `An unexpected error occurred: ${error.message}` }),
       { 
         status: 500,
         headers: { 
-          'Content-Type': 'text/html',
+          'Content-Type': 'application/json',
           ...corsHeaders 
         } 
       }

@@ -18,6 +18,7 @@ import Treatments from "./pages/Treatments";
 import TreatmentDetail from "./pages/TreatmentDetail";
 import BookAppointment from "./pages/BookAppointment";
 import ManageAppointment from "./pages/ManageAppointment";
+import ConfirmAppointment from "./pages/ConfirmAppointment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import NotFound from "./pages/NotFound";
 
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/treatments/:id/book" element={<BookAppointment />} />
                 <Route path="/book/:id" element={<BookAppointment />} />
                 <Route path="/manage/:token" element={<ManageAppointment />} />
+                <Route path="/confirm-appointment" element={<ConfirmAppointment />} />
                 <Route path="/payment-success" element={<PaymentSuccess />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

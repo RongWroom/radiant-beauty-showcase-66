@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -59,7 +60,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
           notes: notes.trim() || undefined,
           treatmentPrice: treatment.price,
           treatmentDuration: treatment.duration_minutes,
-          treatmentCategory: treatment.category, // Added this line
+          treatmentCategory: treatment.category,
         },
       });
 
@@ -105,13 +106,27 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
       });
 
       onSuccess?.();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error booking appointment:', error);
-      toast({
-        title: "Booking failed",
-        description: "There was an error booking your appointment. Please try again.",
-        variant: "destructive"
-      });
+      
+      // Handle specific error cases
+      if (error?.message?.includes('duplicate key value violates unique constraint') || 
+          error?.code === '23505' || 
+          error?.status === 409) {
+        toast({
+          title: "Time slot unavailable",
+          description: "This time slot has already been booked. Please select a different time.",
+          variant: "destructive"
+        });
+        // Reset the selected time to force user to pick a new slot
+        setSelectedTime(undefined);
+      } else {
+        toast({
+          title: "Booking failed",
+          description: "There was an error booking your appointment. Please try again.",
+          variant: "destructive"
+        });
+      }
     }
   };
 

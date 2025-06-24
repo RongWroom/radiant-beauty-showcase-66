@@ -44,6 +44,11 @@ const Products = () => {
     }
   };
 
+  // Force refresh cache on mount to get updated image URLs
+  React.useEffect(() => {
+    invalidateCache();
+  }, [invalidateCache]);
+
   // Debug: Log product data when it changes
   React.useEffect(() => {
     if (products.length > 0) {

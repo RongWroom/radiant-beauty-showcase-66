@@ -81,7 +81,7 @@ const ManageAppointment = () => {
         notes: data.notes,
         admin_notes: data.admin_notes,
         treatments: data.treatments,
-        profiles: data.profiles && typeof data.profiles === 'object' && !('error' in data.profiles) 
+        profiles: data.profiles && typeof data.profiles === 'object' && data.profiles !== null && !('error' in data.profiles) 
           ? data.profiles 
           : null
       };

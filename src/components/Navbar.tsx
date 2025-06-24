@@ -32,9 +32,9 @@ const Navbar = () => {
             <div className="hidden md:flex space-x-6 lg:space-x-8">
               <Link to="/" className={`${isActive('/')} transition-colors text-base lg:text-lg`}>Home</Link>
               <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-base lg:text-lg`}>Treatments</Link>
-              <Link to="/products" className={`${isActive('/products')} transition-colors text-base lg:text-lg`}>Products</Link>
               <Link to="/about" className={`${isActive('/about')} transition-colors text-base lg:text-lg`}>About</Link>
               <Link to="/contact" className={`${isActive('/contact')} transition-colors text-base lg:text-lg`}>Contact</Link>
+              <Link to="/products" className={`${isActive('/products')} transition-colors text-base lg:text-lg`}>Aftercare</Link>
             </div>
           </div>
           
@@ -118,14 +118,14 @@ const Navbar = () => {
             <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
               Treatments
             </Link>
-            <Link to="/products" className={`${isActive('/products')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
-              Products
-            </Link>
             <Link to="/about" className={`${isActive('/about')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
               About
             </Link>
             <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
               Contact
+            </Link>
+            <Link to="/products" className={`${isActive('/products')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
+              Aftercare Products
             </Link>
 
             {user && (

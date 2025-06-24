@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -11,18 +10,18 @@ export const FeaturedSection = () => {
         <div className="flex flex-col lg:flex-row gap-16 sm:gap-20 lg:gap-24 items-center mb-20 sm:mb-24 lg:mb-32">
           <div className="lg:w-1/2 mobile-spacing-lg text-center lg:text-left">
             <h2 className="mobile-text-2xl font-serif font-semibold text-hierarchy-primary">
-              Essential for Radiant Skin
+              Professional Treatment Excellence
             </h2>
-            <p className="text-hierarchy-secondary mobile-text-base">Our skilled practitioners will tailor a treatment plan to address your specific beauty goals, ensuring the best results to enhance your natural beauty.</p>
+            <p className="text-hierarchy-secondary mobile-text-base">Our expert practitioners use cutting-edge technology to deliver personalized aesthetic treatments. Each procedure is tailored to your specific needs, ensuring optimal results and your complete satisfaction.</p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-6">
-              <Link to="/about" className="w-full sm:w-auto">
+              <Link to="/treatments" className="w-full sm:w-auto">
                 <Button className="w-full sm:w-auto mobile-text-base py-4 px-8 min-h-[56px] rounded-lg font-semibold" variant="default">
-                  LEARN MORE
+                  VIEW TREATMENTS
                 </Button>
               </Link>
               <Link to="/contact" className="w-full sm:w-auto">
                 <Button className="w-full sm:w-auto mobile-text-base py-4 px-8 min-h-[56px] rounded-lg font-semibold" variant="secondary">
-                  BOOK NOW
+                  BOOK CONSULTATION
                 </Button>
               </Link>
             </div>
@@ -35,7 +34,7 @@ export const FeaturedSection = () => {
         </div>
         
         <div className="text-center mb-16 sm:mb-20">
-          <h2 className="mobile-text-2xl font-serif text-hierarchy-primary max-w-5xl mx-auto">Best-selling treatments for a vibrant, healthy glow of your skin.</h2>
+          <h2 className="mobile-text-2xl font-serif text-hierarchy-primary max-w-5xl mx-auto">Our most popular treatments for visible, lasting results.</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
@@ -52,7 +51,7 @@ export const FeaturedSection = () => {
                   <span className="font-bold mobile-text-lg text-brand-slate-blue">{treatment.price}</span>
                   <Link to={`/treatments/${treatment.id}`}>
                     <Button className="py-3 px-6 min-h-[48px] font-semibold" variant="secondary">
-                      Read More
+                      Book Now
                     </Button>
                   </Link>
                 </div>
@@ -76,20 +75,20 @@ export const BannerSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-16 sm:gap-20">
           <div className="lg:w-1/3">
             <div className="relative">
-              <img src="/placeholder.svg" alt="Skincare serum" className="w-full h-80 sm:h-96 object-cover rounded-3xl shadow-lg" />
+              <img src="/placeholder.svg" alt="Professional aftercare products" className="w-full h-80 sm:h-96 object-cover rounded-3xl shadow-lg" />
               <div className="absolute inset-0 bg-white/15 rounded-3xl"></div>
             </div>
           </div>
           <div className="lg:w-2/3 mobile-spacing-lg text-center lg:text-left">
             <h2 className="mobile-text-2xl font-serif font-semibold text-brand-charcoal">
-              Skin Care Meets Nature
+              Professional Post-Treatment Care
             </h2>
             <p className="mobile-text-base max-w-2xl text-hierarchy-secondary my-0">
-              Unlock the secret to your inner beauty and energy with our natural skincare products
+              Maximize your treatment results with our carefully selected professional skincare products, designed to complement and enhance your aesthetic treatments.
             </p>
             <Link to="/products">
               <Button className="shadow-lg px-10 py-4 mobile-text-base font-semibold min-h-[56px] rounded-lg my-[10px]" variant="default">
-                LEARN MORE
+                VIEW AFTERCARE
               </Button>
             </Link>
           </div>
@@ -116,7 +115,7 @@ export const ProductGrid = () => {
                 <span className="font-bold text-brand-sage">{treatment.price}</span>
                 <Link to={`/treatments/${treatment.id}`}>
                   <Button variant="outline" size="sm" className="text-xs px-3 py-2 border-brand-sage text-brand-sage">
-                    Read More
+                    Book Now
                   </Button>
                 </Link>
               </div>

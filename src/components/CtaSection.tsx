@@ -11,7 +11,7 @@ const CtaSection = () => {
           Ready to Transform Your Skin?
         </h2>
         <p className="mobile-text-base text-white/90 max-w-2xl mx-auto">
-          Book your consultation today and discover personalized treatments designed to help you achieve your best skin yet.
+          Book your professional aesthetic treatment consultation today and discover how our expert technicians can help you achieve your beauty goals with proven results.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
           <Link to="/contact" className="w-full sm:w-auto">
@@ -19,7 +19,7 @@ const CtaSection = () => {
               variant="accent"
               className="w-full sm:w-auto mobile-text-base px-8 py-4 font-semibold min-h-[56px] rounded-lg"
             >
-              Book Consultation
+              Book Treatment Consultation
             </Button>
           </Link>
           <Link to="/treatments" className="w-full sm:w-auto">
@@ -27,7 +27,7 @@ const CtaSection = () => {
               className="w-full sm:w-auto bg-white text-brand-slate-blue mobile-text-base px-8 py-4 font-semibold min-h-[56px] rounded-lg"
               variant="secondary"
             >
-              View Treatments
+              Explore All Treatments
             </Button>
           </Link>
         </div>

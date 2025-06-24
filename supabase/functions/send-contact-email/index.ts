@@ -29,10 +29,11 @@ const handler = async (req: Request): Promise<Response> => {
     const { firstName, lastName, email, phone, service, message }: ContactFormRequest = await req.json();
 
     console.log("Processing contact form submission for:", email);
+    console.log("Form data:", { firstName, lastName, phone, service });
 
-    // Send confirmation email to customer
+    // Send confirmation email to customer using your verified domain
     const customerEmailResponse = await resend.emails.send({
-      from: "STW Aesthetic Clinic <onboarding@resend.dev>",
+      from: "STW Aesthetic Clinic <noreply@stwaestheticclinic.co.uk>",
       to: [email],
       subject: "Thank you for contacting STW Aesthetic Clinic",
       html: `
@@ -78,9 +79,11 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    // Send notification email to clinic
+    console.log("Customer email response:", customerEmailResponse);
+
+    // Send notification email to clinic using your verified domain
     const clinicEmailResponse = await resend.emails.send({
-      from: "STW Aesthetic Clinic <onboarding@resend.dev>",
+      from: "STW Aesthetic Clinic <noreply@stwaestheticclinic.co.uk>",
       to: ["sharon@stwaestheticclinic.co.uk"],
       subject: "New Contact Form Submission",
       html: `
@@ -103,13 +106,38 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Customer email sent:", customerEmailResponse);
-    console.log("Clinic email sent:", clinicEmailResponse);
+    console.log("Clinic email response:", clinicEmailResponse);
+
+    // Check for errors in either email
+    if (customerEmailResponse.error) {
+      console.error("Customer email error:", customerEmailResponse.error);
+    }
+    
+    if (clinicEmailResponse.error) {
+      console.error("Clinic email error:", clinicEmailResponse.error);
+    }
+
+    // If both emails have errors, return error response
+    if (customerEmailResponse.error && clinicEmailResponse.error) {
+      return new Response(JSON.stringify({ 
+        error: "Failed to send emails",
+        customerError: customerEmailResponse.error,
+        clinicError: clinicEmailResponse.error
+      }), {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+          ...corsHeaders,
+        },
+      });
+    }
 
     return new Response(JSON.stringify({ 
       success: true, 
       customerEmailId: customerEmailResponse.data?.id,
-      clinicEmailId: clinicEmailResponse.data?.id 
+      clinicEmailId: clinicEmailResponse.data?.id,
+      customerEmailError: customerEmailResponse.error || null,
+      clinicEmailError: clinicEmailResponse.error || null
     }), {
       status: 200,
       headers: {

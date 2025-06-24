@@ -82,7 +82,8 @@ const handler = async (req: Request): Promise<Response> => {
       treatmentCategory,
     }: BookingNotificationRequest = await req.json();
 
-    console.log("Sending booking notification and consent form emails...");
+    console.log("Processing booking notification for:", customerEmail);
+    console.log("Booking data:", { customerName, treatmentName, appointmentDate, appointmentTime });
 
     // Format the date and time for display
     const formattedDate = new Date(appointmentDate).toLocaleDateString('en-GB', {
@@ -100,9 +101,9 @@ const handler = async (req: Request): Promise<Response> => {
     // Get the appropriate consent form URL
     const consentFormUrl = getConsentFormUrl(treatmentName, treatmentCategory);
 
-    // Send notification email to clinic
+    // Send notification email to clinic using verified domain
     const clinicEmailResponse = await resend.emails.send({
-      from: "STW Clinic Bookings <onboarding@resend.dev>",
+      from: "STW Aesthetic Clinic <noreply@stwaestheticclinic.co.uk>",
       to: ["sharon@stwaestheticclinic.co.uk"],
       subject: `New Appointment Booking - ${treatmentName}`,
       html: `
@@ -143,9 +144,11 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    // Send consent form email to customer
+    console.log("Clinic email response:", clinicEmailResponse);
+
+    // Send consent form email to customer using verified domain
     const customerEmailResponse = await resend.emails.send({
-      from: "STW Aesthetic Clinic <onboarding@resend.dev>",
+      from: "STW Aesthetic Clinic <noreply@stwaestheticclinic.co.uk>",
       to: [customerEmail],
       subject: `Appointment Confirmed - Consent Form Required`,
       html: `
@@ -200,13 +203,38 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Clinic email sent:", clinicEmailResponse);
-    console.log("Customer email sent:", customerEmailResponse);
+    console.log("Customer email response:", customerEmailResponse);
+
+    // Check for errors in either email
+    if (customerEmailResponse.error) {
+      console.error("Customer email error:", customerEmailResponse.error);
+    }
+    
+    if (clinicEmailResponse.error) {
+      console.error("Clinic email error:", clinicEmailResponse.error);
+    }
+
+    // If both emails have errors, return error response
+    if (customerEmailResponse.error && clinicEmailResponse.error) {
+      return new Response(JSON.stringify({ 
+        error: "Failed to send booking emails",
+        customerError: customerEmailResponse.error,
+        clinicError: clinicEmailResponse.error
+      }), {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+          ...corsHeaders,
+        },
+      });
+    }
 
     return new Response(JSON.stringify({ 
       success: true, 
-      clinicEmailResponse, 
-      customerEmailResponse,
+      clinicEmailId: clinicEmailResponse.data?.id,
+      customerEmailId: customerEmailResponse.data?.id,
+      clinicEmailError: clinicEmailResponse.error || null,
+      customerEmailError: customerEmailResponse.error || null,
       consentFormUrl 
     }), {
       status: 200,

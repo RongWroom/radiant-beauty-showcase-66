@@ -43,6 +43,7 @@ function App() {
                 <Route path="/account" element={<Account />} />
                 <Route path="/treatments" element={<Treatments />} />
                 <Route path="/treatments/:id" element={<TreatmentDetail />} />
+                <Route path="/treatments/:id/book" element={<BookAppointment />} />
                 <Route path="/book/:id" element={<BookAppointment />} />
                 <Route path="/manage/:token" element={<ManageAppointment />} />
                 <Route path="/payment-success" element={<PaymentSuccess />} />

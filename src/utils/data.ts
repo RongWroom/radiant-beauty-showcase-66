@@ -1,4 +1,3 @@
-
 export interface Treatment {
   id: number;
   name: string;
@@ -20,7 +19,7 @@ export const treatments: Treatment[] = [
     name: "Cryolipolysis (Fat Freeze)",
     description: "Advanced fat freezing technology to eliminate stubborn fat cells permanently",
     price: "£150",
-    image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Cryo%201.jpeg",
+    image: "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Cryo%202.jpeg",
     category: "Body Contouring",
     featured: true
   },

@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
 const Hero = () => {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-white to-brand-light-gray/30">
+  return <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-white to-brand-light-gray/30">
       {/* Enhanced organic background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-16 h-16 sm:w-32 sm:h-32 bg-brand-slate-blue rounded-full blur-2xl sm:blur-3xl"></div>
@@ -15,20 +12,16 @@ const Hero = () => {
       
       {/* Flowing organic beauty background - pink blossom petals */}
       <div className="absolute inset-0 opacity-20">
-        <img 
-          src="/lovable-uploads/72ed3b10-bdb8-421e-95eb-1645b48a2b97.png" 
-          alt="" 
-          className="w-full h-full object-cover mix-blend-soft-light"
-        />
+        <img src="/lovable-uploads/72ed3b10-bdb8-421e-95eb-1645b48a2b97.png" alt="" className="w-full h-full object-cover mix-blend-soft-light" />
       </div>
       
       {/* Subtle gradient overlay to ensure text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
       
       <div className="container-custom min-h-[100vh] sm:min-h-[90vh] flex flex-col lg:flex-row items-center relative z-10 py-8 sm:py-0">
-        <div className="w-full lg:w-1/2 pt-16 sm:pt-24 lg:pt-0 z-10 text-center lg:text-left px-2 sm:px-4 lg:px-0">
+        <div className="w-full lg:w-1/2 pt-16 sm:pt-24 lg:pt-0 z-10 text-center lg:text-left px-2 sm:px-4 lg:px-0 py-[30px]">
           <div className="mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-brand-charcoal leading-tight mb-4">
+            <h1 className="sm:text-3xl md:text-4xl lg:text-5xl font-serif text-brand-charcoal leading-tight mb-4 font-medium text-3xl">
               Professional Aesthetic Treatments at <br className="hidden sm:block" />
               <span className="text-brand-slate-blue font-semibold">STW Aesthetics</span>
             </h1>
@@ -64,19 +57,13 @@ const Hero = () => {
         <div className="w-full lg:w-1/2 mt-8 sm:mt-12 lg:mt-0 relative">
           {/* Natural, organic logo presentation */}
           <div className="relative z-10 px-4 sm:px-0">
-            <img 
-              alt="STW Aesthetic Clinic professional treatments" 
-              src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png" 
-              className="mx-auto h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] w-full max-w-[280px] sm:max-w-sm md:max-w-md object-contain drop-shadow-lg" 
-            />
+            <img alt="STW Aesthetic Clinic professional treatments" src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png" className="mx-auto h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] w-full max-w-[280px] sm:max-w-sm md:max-w-md object-contain drop-shadow-lg" />
           </div>
         </div>
       </div>
       
       {/* Enhanced organic gradient overlays */}
       <div className="absolute bottom-0 left-0 w-full h-8 sm:h-16 bg-gradient-to-t from-brand-off-white/80 to-transparent"></div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;

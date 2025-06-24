@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -73,7 +72,19 @@ const ManageAppointment = () => {
         return;
       }
 
-      setAppointment(data as AppointmentData);
+      // Safely transform the data to match our interface
+      const appointmentData: AppointmentData = {
+        id: data.id,
+        appointment_date: data.appointment_date,
+        appointment_time: data.appointment_time,
+        status: data.status,
+        notes: data.notes,
+        admin_notes: data.admin_notes,
+        treatments: data.treatments,
+        profiles: data.profiles
+      };
+
+      setAppointment(appointmentData);
       setAdminNotes(data.admin_notes || '');
     } catch (error) {
       console.error('Error:', error);

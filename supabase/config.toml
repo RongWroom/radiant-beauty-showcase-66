@@ -1,1 +1,5 @@
+
 project_id = "siojarsutauhnuiwrmkd"
+
+[functions.confirm-appointment]
+verify_jwt = false

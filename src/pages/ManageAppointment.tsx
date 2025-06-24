@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -72,6 +73,13 @@ const ManageAppointment = () => {
         return;
       }
 
+      // Check if profiles is valid before using it
+      const profilesData = data.profiles;
+      const isValidProfiles = profilesData && 
+        typeof profilesData === 'object' && 
+        profilesData !== null && 
+        !('error' in profilesData);
+
       // Safely transform the data to match our interface
       const appointmentData: AppointmentData = {
         id: data.id,
@@ -81,9 +89,7 @@ const ManageAppointment = () => {
         notes: data.notes,
         admin_notes: data.admin_notes,
         treatments: data.treatments,
-        profiles: data.profiles && typeof data.profiles === 'object' && data.profiles !== null && !('error' in data.profiles) 
-          ? data.profiles 
-          : null
+        profiles: isValidProfiles ? profilesData : null
       };
 
       setAppointment(appointmentData);

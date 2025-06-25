@@ -26,7 +26,7 @@ const Navbar = () => {
       <nav className="bg-white py-4 sm:py-6 sticky top-0 z-50 shadow-sm border-b border-brand-gray-200">
         <div className="container-custom flex justify-between items-center">
           <div className="flex items-center space-x-8 sm:space-x-12">
-            <Link to="/" className="text-2xl sm:text-3xl font-serif font-bold text-hierarchy-primary" onClick={close}>
+            <Link to="/" className="text-1xl sm:text-32xl font-serif font-bold text-hierarchy-primary" onClick={close}>
               STW
             </Link>
             <div className="hidden md:flex space-x-6 lg:space-x-8">

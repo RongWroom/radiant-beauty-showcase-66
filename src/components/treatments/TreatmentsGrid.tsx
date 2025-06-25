@@ -29,9 +29,9 @@ const TreatmentsGrid = ({ treatments }: TreatmentsGridProps) => {
           </p>
         </div>
         
-        {/* Tablet-optimized layout */}
+        {/* Mobile-first layout with better tablet handling */}
         <div className="space-y-6">
-          {/* Featured Treatment - Full width on mobile, optimized for tablet */}
+          {/* Featured Treatment - Full width on mobile/tablet, left column on desktop */}
           <div className="xl:hidden">
             <TreatmentCard treatment={featuredTreatment} isFeatured={true} />
           </div>
@@ -53,8 +53,8 @@ const TreatmentsGrid = ({ treatments }: TreatmentsGridProps) => {
             </div>
           </div>
           
-          {/* Mobile and tablet grid - 2 columns on tablet instead of 3 */}
-          <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {/* Mobile and tablet grid for remaining treatments */}
+          <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {remainingTreatments.map(treatment => (
               <TreatmentCard key={treatment.id} treatment={treatment} />
             ))}

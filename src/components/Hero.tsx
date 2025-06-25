@@ -79,9 +79,7 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
 
       {/* Right Column: pixel accents only */}
       <div className="w-full lg:w-1/2 relative">
-        <div className="absolute top-12 left-12 w-16 h-16 bg-brand-silver/20" style={{
-        clipPath: 'polygon(0 0, 100% 0, 0 100%)'
-      }} />
+        
         
         {/* No image element here—background covers full area */}
       </div>

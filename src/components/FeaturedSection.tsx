@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { featuredTreatments, treatments } from '../utils/data';
 
 export const FeaturedSection = () => {
@@ -38,7 +38,8 @@ export const FeaturedSection = () => {
           <h2 className="mobile-text-2xl font-serif text-hierarchy-primary max-w-5xl mx-auto">Our most popular treatments for visible, lasting results.</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+        {/* Desktop Layout - 3 column grid */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 sm:gap-10">
           {featuredTreatments.map(treatment => (
             <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
               <div className="relative overflow-hidden">
@@ -59,6 +60,62 @@ export const FeaturedSection = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mobile and Tablet Layout - Responsive grid and horizontal scroll */}
+        <div className="lg:hidden">
+          {/* Mobile: Single column */}
+          <div className="md:hidden grid grid-cols-1 gap-8">
+            {featuredTreatments.map(treatment => (
+              <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
+                <div className="relative overflow-hidden">
+                  <img src={treatment.image} alt={treatment.name} className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-serif font-semibold mb-4 text-hierarchy-primary">{treatment.name}</h3>
+                  <p className="text-hierarchy-secondary mb-6 text-sm">{treatment.description}</p>
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-lg text-brand-slate-blue">{treatment.price}</span>
+                    <Link to={`/treatments/${treatment.id}`}>
+                      <Button className="py-3 px-6 min-h-[48px] font-semibold" variant="secondary">
+                        Book Now
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Tablet: Horizontal scroll */}
+          <div className="hidden md:block">
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex w-max space-x-6 p-1">
+                {featuredTreatments.map(treatment => (
+                  <div key={treatment.id} className="w-[320px] flex-shrink-0 card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden">
+                      <img src={treatment.image} alt={treatment.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div className="p-6 flex flex-col h-[200px]">
+                      <h3 className="text-lg font-serif font-semibold mb-3 text-hierarchy-primary">{treatment.name}</h3>
+                      <p className="text-hierarchy-secondary mb-4 text-sm line-clamp-3 flex-grow">{treatment.description}</p>
+                      <div className="flex justify-between items-center mt-auto">
+                        <span className="font-bold text-lg text-brand-slate-blue">{treatment.price}</span>
+                        <Link to={`/treatments/${treatment.id}`}>
+                          <Button className="py-2 px-4 min-h-[40px] font-semibold text-sm" variant="secondary">
+                            Book Now
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          </div>
         </div>
       </div>
     </section>

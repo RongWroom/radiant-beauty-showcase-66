@@ -52,9 +52,9 @@ const Hero = () => (
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 max-w-md">
           {[
-            ['35', 'Treatments'],
-            ['50+', 'Beauticians'],
-            ['98%', 'Satisfaction']
+            ['5', 'Treatments'],
+            ['10+', 'Reviews'],
+            ['100%', 'Satisfaction']
           ].map(([num, label]) => (
             <div key={label} className="space-y-1 text-left">
               <div className="text-3xl font-serif font-bold text-brand-slate-blue">{num}</div>

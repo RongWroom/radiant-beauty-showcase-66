@@ -18,7 +18,7 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
     </div>
 
     {/* Content */}
-    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start py-24 gap-12 px-4 sm:px-6 lg:px-8">
+    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start gap-12 px-4 sm:px-6 lg:px-8 py-0">
       {/* Left Column (always left-aligned) */}
       <div className="w-full lg:w-1/2 space-y-6 flex flex-col items-start">
         {/* Reviews badge */}

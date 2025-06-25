@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ContactFaq from '@/components/contact/ContactFaq';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
@@ -278,6 +278,9 @@ const Contact = () => {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <ContactFaq />
       </main>
       <Footer />
     </div>

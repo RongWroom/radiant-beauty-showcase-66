@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { treatments } from '../utils/data';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Package, Grid3X3, PackageCheck } from 'lucide-react';
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const categories = [...new Set(treatments.map(item => item.category))].slice(0, 3);
 
@@ -35,7 +35,8 @@ const ProductShowcase = () => {
             Explore Our Special Treatments
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {/* Desktop Layout - Keep existing grid */}
+          <div className="hidden lg:grid lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Feature Card */}
             <Card className="md:col-span-2 bg-gradient-to-br from-brand-silver/20 to-brand-slate-blue/10 card-clean border-brand-silver/40 shadow-sm hover:shadow-md transition-all duration-300">
               <CardContent className="p-6 sm:p-8">
@@ -123,6 +124,115 @@ const ProductShowcase = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Mobile and Tablet Layout - Horizontal Scroll */}
+          <div className="lg:hidden">
+            {/* Feature Card - Full width on mobile/tablet */}
+            <Card className="mb-8 bg-gradient-to-br from-brand-silver/20 to-brand-slate-blue/10 card-clean border-brand-silver/40 shadow-sm hover:shadow-md transition-all duration-300">
+              <CardContent className="p-6 sm:p-8">
+                <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+                  <div className="rounded-full bg-brand-slate-blue p-4 shadow-lg">
+                    <PackageCheck className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg sm:text-xl font-semibold mb-3 text-brand-charcoal">Personalized Solutions</h4>
+                    <p className="text-brand-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
+                      Our treatments are tailored to your unique skin needs and goals. 
+                      Experience personalized care that delivers real results.
+                    </p>
+                    <Link to="/treatments" className="inline-flex items-center text-sm sm:text-base font-semibold text-brand-slate-blue hover:text-brand-slate-blue-light transition-colors hover:underline">
+                      Learn more about our approach
+                      <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Horizontal Scroll for Treatment Cards */}
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex w-max space-x-4 md:space-x-6 p-1">
+                {/* Featured Treatment Card */}
+                <Card className="w-[280px] md:w-[320px] flex-shrink-0 card-product overflow-hidden border-brand-silver/40 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div className="relative aspect-[16/9] w-full">
+                    <img 
+                      src="https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/Cryo%202.jpeg" 
+                      alt="Featured treatment" 
+                      className="w-full h-full object-cover" 
+                    />
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                      <span className="bg-brand-slate-blue text-white font-semibold px-3 py-1.5 rounded-full shadow-lg text-xs sm:text-sm">
+                        Most Popular
+                      </span>
+                    </div>
+                  </div>
+                  <CardContent className="p-4 bg-white flex flex-col h-[140px]">
+                    <h4 className="font-semibold text-brand-charcoal text-sm sm:text-base mb-2">{bentoTreatments[0]?.name || "Chemical Peel"}</h4>
+                    <p className="text-xs sm:text-sm text-brand-gray-600 line-clamp-2 flex-grow">
+                      {bentoTreatments[0]?.description || "Reveal fresh, new skin with our clinical-grade chemical peels"}
+                    </p>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-sm font-semibold text-brand-charcoal">{bentoTreatments[0]?.price || "£120"}</span>
+                      <Link to="/treatments" className="text-brand-slate-blue text-xs sm:text-sm hover:text-brand-slate-blue-light hover:underline transition-colors font-medium">View details</Link>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Quick Links Card */}
+                <Card className="w-[280px] md:w-[320px] flex-shrink-0 bg-gradient-to-br from-brand-slate-blue/10 to-brand-silver/20 card-clean border-brand-silver/40 shadow-sm hover:shadow-md transition-all duration-300">
+                  <CardContent className="p-6 h-full flex flex-col">
+                    <h4 className="font-semibold mb-4 text-brand-charcoal text-sm sm:text-base">Quick Navigation</h4>
+                    <ul className="space-y-3 flex-grow">
+                      <li>
+                        <Link to="/treatments" className="flex items-center text-xs sm:text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
+                          <Package className="mr-2 h-4 w-4" />
+                          <span>Facial Treatments</span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/treatments" className="flex items-center text-xs sm:text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
+                          <Grid3X3 className="mr-2 h-4 w-4" />
+                          <span>Anti-Aging Solutions</span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/treatments" className="flex items-center text-xs sm:text-sm text-brand-gray-600 hover:text-brand-slate-blue transition-colors">
+                          <Package className="mr-2 h-4 w-4" />
+                          <span>Skin Rejuvenation</span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Additional Treatment Cards */}
+                {bentoTreatments.slice(1).map((treatment, index) => (
+                  <Card key={index} className="w-[280px] md:w-[320px] flex-shrink-0 card-product overflow-hidden border-brand-silver/40 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div className="relative aspect-[16/9] w-full">
+                      <img 
+                        src={treatment.image || "https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/stw_greeting.jpeg"} 
+                        alt={treatment.name} 
+                        className="w-full h-full object-cover" 
+                      />
+                    </div>
+                    <CardContent className="p-4 bg-white flex flex-col h-[140px]">
+                      <h4 className="font-semibold text-brand-charcoal text-sm sm:text-base mb-2">{treatment.name}</h4>
+                      <p className="text-xs sm:text-sm text-brand-gray-600 line-clamp-2 flex-grow">
+                        {treatment.description}
+                      </p>
+                      <div className="mt-3 flex items-center justify-between">
+                        <span className="text-sm font-semibold text-brand-charcoal">{treatment.price}</span>
+                        <Link to="/treatments" className="text-brand-slate-blue text-xs sm:text-sm hover:text-brand-slate-blue-light hover:underline transition-colors font-medium">View details</Link>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
           </div>
         </div>
       </div>

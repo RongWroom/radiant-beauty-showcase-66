@@ -1,69 +1,192 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Star, Award, Users, Clock } from 'lucide-react';
+
 const Hero = () => {
-  return <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-white to-brand-light-gray/30">
-      {/* Enhanced organic background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-16 h-16 sm:w-32 sm:h-32 bg-brand-slate-blue rounded-full blur-2xl sm:blur-3xl"></div>
-        <div className="absolute top-20 sm:top-40 right-10 sm:right-20 w-12 h-12 sm:w-24 sm:h-24 bg-brand-silver rounded-full blur-xl sm:blur-2xl"></div>
-        <div className="absolute bottom-10 sm:bottom-20 left-1/4 sm:left-1/3 w-20 h-20 sm:w-40 sm:h-40 bg-brand-slate-blue-light rounded-full blur-2xl sm:blur-3xl"></div>
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-white to-brand-light-gray/30 min-h-screen">
+      {/* Sophisticated background elements */}
+      <div className="absolute inset-0 opacity-8">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-brand-slate-blue/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-40 right-20 w-48 h-48 bg-brand-silver/10 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-brand-slate-blue/3 rounded-full blur-3xl"></div>
       </div>
       
-      {/* Flowing organic beauty background - pink blossom petals */}
+      {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-20">
-        <img src="/lovable-uploads/72ed3b10-bdb8-421e-95eb-1645b48a2b97.png" alt="" className="w-full h-full object-cover mix-blend-soft-light" />
+        <img 
+          src="/lovable-uploads/72ed3b10-bdb8-421e-95eb-1645b48a2b97.png" 
+          alt="" 
+          className="w-full h-full object-cover mix-blend-soft-light" 
+        />
       </div>
       
-      {/* Subtle gradient overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
+      {/* Premium gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/60 to-white/30"></div>
       
-      <div className="container-custom min-h-[100vh] sm:min-h-[90vh] flex flex-col lg:flex-row items-center relative z-10 py-8 sm:py-0">
-        <div className="w-full lg:w-1/2 pt-16 sm:pt-24 lg:pt-0 z-10 text-center lg:text-left px-2 sm:px-4 lg:px-0 py-[30px]">
-          <div className="mb-6 sm:mb-8">
-            <h1 className="sm:text-3xl md:text-4xl lg:text-5xl font-serif text-brand-charcoal leading-tight mb-4 font-medium text-3xl">
-              Professional Aesthetic Treatments at <br className="hidden sm:block" />
-              <span className="text-brand-slate-blue font-semibold">STW Aesthetics</span>
-            </h1>
-            
-            {/* Decorative line */}
-            <div className="flex justify-center lg:justify-start mb-6">
-              <span className="block h-1 w-16 sm:w-20 md:w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver" />
+      <div className="container-custom min-h-screen flex flex-col lg:flex-row items-center relative z-10 py-12 lg:py-0">
+        {/* Left Content - Premium messaging */}
+        <div className="w-full lg:w-1/2 z-10 text-center lg:text-left px-4 lg:px-0 py-8 lg:py-0">
+          {/* Social proof banner */}
+          <div className="inline-flex items-center bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-brand-silver/20 mb-8 animate-fade-in">
+            <div className="flex items-center space-x-2 text-sm font-medium text-brand-charcoal">
+              <div className="flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-brand-slate-blue text-brand-slate-blue" />
+                ))}
+              </div>
+              <span className="text-brand-slate-blue font-semibold">5.0</span>
+              <span className="text-brand-gray-600">• 500+ Transformations</span>
             </div>
           </div>
           
-          <p className="text-base sm:text-lg text-brand-gray-600 max-w-lg mx-auto lg:mx-0 mb-8 sm:mb-10 leading-relaxed">
-            Transform your skin with our{" "}
-            <span className="bg-gradient-to-r from-brand-silver/40 to-brand-slate-blue/20 px-2 py-1 rounded font-medium text-brand-charcoal">
-              advanced aesthetic treatments
-            </span>{" "}
-            including Cryolipolysis, Ultra 4D HIFU, and HydraFacial. Our certified technicians deliver exceptional results with the latest technology.
-          </p>
+          {/* Main headline - psychological impact */}
+          <div className="mb-8">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif text-brand-charcoal leading-tight mb-6 font-medium">
+              Transform Your
+              <br />
+              <span className="relative">
+                <span className="text-brand-slate-blue font-semibold">Natural Beauty</span>
+                <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-brand-slate-blue via-brand-silver to-brand-slate-blue-light rounded-full"></div>
+              </span>
+            </h1>
+            
+            <p className="text-xl sm:text-2xl text-brand-gray-600 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed font-light">
+              Experience the art of{" "}
+              <span className="font-medium text-brand-charcoal bg-gradient-to-r from-brand-silver/30 to-brand-slate-blue/10 px-3 py-1 rounded-md">
+                advanced aesthetic excellence
+              </span>{" "}
+              with treatments that deliver visible, lasting results.
+            </p>
+          </div>
           
-          <div className="flex flex-col gap-4 justify-center lg:justify-start max-w-sm mx-auto lg:max-w-none lg:mx-0">
-            <Link to="/treatments" className="w-full">
-              <Button className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white text-base sm:text-lg font-semibold py-4 px-8 shadow-lg hover:shadow-xl transition-all duration-300 min-h-[56px] rounded-lg">
-                BOOK TREATMENT
+          {/* Credibility indicators */}
+          <div className="grid grid-cols-3 gap-6 mb-10 max-w-lg mx-auto lg:mx-0">
+            <div className="text-center lg:text-left">
+              <div className="text-3xl sm:text-4xl font-serif font-bold text-brand-slate-blue mb-1">500+</div>
+              <div className="text-sm text-brand-gray-600 font-medium">Happy Clients</div>
+            </div>
+            <div className="text-center lg:text-left">
+              <div className="text-3xl sm:text-4xl font-serif font-bold text-brand-slate-blue mb-1">15+</div>
+              <div className="text-sm text-brand-gray-600 font-medium">Years Experience</div>
+            </div>
+            <div className="text-center lg:text-left">
+              <div className="text-3xl sm:text-4xl font-serif font-bold text-brand-slate-blue mb-1">98%</div>
+              <div className="text-sm text-brand-gray-600 font-medium">Satisfaction Rate</div>
+            </div>
+          </div>
+          
+          {/* Premium CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start max-w-md mx-auto lg:max-w-none lg:mx-0 mb-8">
+            <Link to="/treatments" className="flex-1 sm:flex-none">
+              <Button className="w-full sm:w-auto bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white text-lg font-semibold py-6 px-10 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-xl group">
+                <span className="flex items-center justify-center space-x-2">
+                  <span>Start Your Transformation</span>
+                  <Clock className="h-5 w-5 group-hover:rotate-12 transition-transform" />
+                </span>
               </Button>
             </Link>
-            <Link to="/products" className="w-full">
-              <Button variant="outline" className="w-full border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-gradient-to-r hover:from-brand-slate-blue hover:to-brand-slate-blue-light hover:text-white text-base sm:text-lg font-semibold py-4 px-8 transition-all duration-300 min-h-[56px] rounded-lg">
-                AFTERCARE PRODUCTS
+            <Link to="/contact" className="flex-1 sm:flex-none">
+              <Button 
+                variant="outline" 
+                className="w-full sm:w-auto border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-gradient-to-r hover:from-brand-slate-blue hover:to-brand-slate-blue-light hover:text-white text-lg font-semibold py-6 px-10 transition-all duration-300 rounded-xl bg-white/90 backdrop-blur-sm"
+              >
+                Free Consultation
               </Button>
             </Link>
           </div>
+          
+          {/* Trust indicators */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-brand-gray-600">
+            <div className="flex items-center space-x-2">
+              <Award className="h-5 w-5 text-brand-slate-blue" />
+              <span>Certified Practitioners</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Users className="h-5 w-5 text-brand-slate-blue" />
+              <span>Personalized Care</span>
+            </div>
+          </div>
         </div>
         
-        <div className="w-full lg:w-1/2 mt-8 sm:mt-12 lg:mt-0 relative">
-          {/* Natural, organic logo presentation */}
-          <div className="relative z-10 px-4 sm:px-0">
-            <img alt="STW Aesthetic Clinic professional treatments" src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png" className="mx-auto h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] w-full max-w-[280px] sm:max-w-sm md:max-w-md object-contain drop-shadow-lg" />
+        {/* Right Content - Visual element */}
+        <div className="w-full lg:w-1/2 mt-12 lg:mt-0 relative">
+          {/* Premium card layout inspired by reference */}
+          <div className="relative max-w-lg mx-auto">
+            {/* Main treatment card */}
+            <div className="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl p-8 border border-brand-silver/20 relative overflow-hidden">
+              {/* Subtle background pattern */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-slate-blue/5 to-transparent"></div>
+              
+              <div className="relative z-10">
+                {/* Logo/Brand area */}
+                <div className="text-center mb-8">
+                  <img 
+                    alt="STW Aesthetic Clinic professional treatments" 
+                    src="/lovable-uploads/247e14b1-74cd-4e99-9bea-37c3775cb36d.png" 
+                    className="mx-auto h-32 w-auto object-contain mb-4" 
+                  />
+                  <h3 className="text-2xl font-serif font-semibold text-brand-charcoal">Premium Aesthetics</h3>
+                  <p className="text-brand-gray-600 text-sm">Advanced Technology • Expert Care</p>
+                </div>
+                
+                {/* Feature highlights */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-brand-off-white/80 rounded-2xl">
+                    <div>
+                      <div className="font-semibold text-brand-charcoal">HydraFacial MD</div>
+                      <div className="text-sm text-brand-gray-600">Instant Glow • Zero Downtime</div>
+                    </div>
+                    <div className="w-12 h-12 bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light rounded-xl flex items-center justify-center">
+                      <Star className="h-6 w-6 text-white fill-white" />
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between p-4 bg-brand-off-white/80 rounded-2xl">
+                    <div>
+                      <div className="font-semibold text-brand-charcoal">Ultra 4D HIFU</div>
+                      <div className="text-sm text-brand-gray-600">Skin Tightening • Non-Invasive</div>
+                    </div>
+                    <div className="w-12 h-12 bg-gradient-to-br from-brand-silver to-brand-slate-blue-light rounded-xl flex items-center justify-center">
+                      <Award className="h-6 w-6 text-brand-charcoal" />
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between p-4 bg-brand-off-white/80 rounded-2xl">
+                    <div>
+                      <div className="font-semibold text-brand-charcoal">Cryolipolysis</div>
+                      <div className="text-sm text-brand-gray-600">Body Contouring • FDA Approved</div>
+                    </div>
+                    <div className="w-12 h-12 bg-gradient-to-br from-brand-slate-blue to-brand-silver rounded-xl flex items-center justify-center">
+                      <Users className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Bottom CTA */}
+                <div className="mt-6 text-center">
+                  <Link to="/treatments">
+                    <Button className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                      View All Treatments
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            
+            {/* Floating elements for premium feel */}
+            <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-brand-silver to-brand-slate-blue-light rounded-full blur-xl opacity-30"></div>
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-brand-slate-blue to-brand-silver rounded-full blur-2xl opacity-20"></div>
           </div>
         </div>
       </div>
       
-      {/* Enhanced organic gradient overlays */}
-      <div className="absolute bottom-0 left-0 w-full h-8 sm:h-16 bg-gradient-to-t from-brand-off-white/80 to-transparent"></div>
-    </section>;
+      {/* Bottom gradient for seamless transition */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brand-off-white/90 to-transparent"></div>
+    </section>
+  );
 };
+
 export default Hero;

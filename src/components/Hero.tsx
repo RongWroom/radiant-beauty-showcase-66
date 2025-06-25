@@ -24,9 +24,9 @@ const Hero = () => (
     </div>
 
     {/* Content */}
-    <div className="container-custom relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-center py-24 gap-12">
+    <div className="container-custom relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start py-24 gap-12">
       {/* Left text */}
-      <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
+      <div className="w-full lg:w-1/2 text-left space-y-6">
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
           {[...Array(5)].map((_, i) => (
             <Star key={i} className="w-4 h-4 fill-brand-slate-blue text-brand-slate-blue" />

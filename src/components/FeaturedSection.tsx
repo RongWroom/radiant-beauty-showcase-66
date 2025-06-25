@@ -29,7 +29,7 @@ export const FeaturedSection = () => {
           </div>
           <div className="lg:w-1/2">
             <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-brand-gray-200">
-              <iframe width="100%" height="350" src="https://www.youtube.com/embed/BNGa9tXr2No?si=Bc_2U5ZqHnEbfjtj" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="rounded-2xl" />
+              <iframe width="1080" height="720" src="https://www.youtube.com/embed/BNGa9tXr2No?si=Bc_2U5ZqHnEbfjtj" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="rounded-2xl" />
             </div>
           </div>
         </div>

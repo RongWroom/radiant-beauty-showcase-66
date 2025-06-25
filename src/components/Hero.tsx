@@ -25,7 +25,7 @@ const Hero = () => (
     {/* Content */}
     <div className="container-custom relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start py-24 gap-12 px-4 sm:px-6 lg:px-0">
       {/* Left Column (always left-aligned) */}
-      <div className="w-full lg:w-1/2 space-y-6">
+      <div className="w-full lg:w-1/2 space-y-6 text-left">
         {/* Reviews badge */}
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
           {[...Array(5)].map((_, i) => (
@@ -36,7 +36,7 @@ const Hero = () => (
         </div>
 
         {/* Headline */}
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal leading-tight">
+        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal leading-tight text-left">
           Polish Your<br/>
           <span className="relative inline-block">
             <span className="text-brand-slate-blue font-semibold">Natural Beauty</span>
@@ -45,7 +45,7 @@ const Hero = () => (
         </h1>
 
         {/* Subhead */}
-        <p className="max-w-xl text-lg text-brand-gray-600">
+        <p className="max-w-xl text-lg text-brand-gray-600 text-left">
           We specialise in creating timeless radiance—where advanced science meets bespoke care.
         </p>
 
@@ -56,7 +56,7 @@ const Hero = () => (
             ['50+', 'Beauticians'],
             ['98%', 'Satisfaction']
           ].map(([num, label]) => (
-            <div key={label} className="space-y-1">
+            <div key={label} className="space-y-1 text-left">
               <div className="text-3xl font-serif font-bold text-brand-slate-blue">{num}</div>
               <div className="text-sm font-medium text-brand-gray-600">{label}</div>
             </div>

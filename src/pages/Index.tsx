@@ -17,8 +17,8 @@ const Index = () => {
         <InfiniteScrollBanner />
         <FeaturedSection />
         <BannerSection />
-        <CustomerReviews />
         <CtaSection />
+        <CustomerReviews />
       </main>
       <Footer />
     </div>

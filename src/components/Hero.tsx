@@ -23,9 +23,9 @@ const Hero = () => (
     </div>
 
     {/* Content */}
-    <div className="container-custom relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start py-24 gap-12 px-4 sm:px-6 lg:px-0">
+    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start py-24 gap-12 px-4 sm:px-6 lg:px-8">
       {/* Left Column (always left-aligned) */}
-      <div className="w-full lg:w-1/2 space-y-6 text-left">
+      <div className="w-full lg:w-1/2 space-y-6 flex flex-col items-start">
         {/* Reviews badge */}
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
           {[...Array(5)].map((_, i) => (

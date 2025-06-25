@@ -21,7 +21,7 @@ const TreatmentCard = ({ treatment, isFeatured = false }: TreatmentCardProps) =>
   if (isFeatured) {
     return (
       <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full border-brand-silver/30">
-        <div className="relative h-64 sm:h-80 md:h-96 lg:h-full">
+        <div className="relative h-64 sm:h-80 md:h-[400px] lg:h-[450px] xl:h-full">
           <img src={treatment.image_url || '/placeholder.svg'} alt={treatment.name} className="w-full h-full object-cover" />
           <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
             <Badge className="font-medium px-2 sm:px-3 py-1 bg-brand-silver text-brand-charcoal text-xs sm:text-sm">
@@ -29,15 +29,15 @@ const TreatmentCard = ({ treatment, isFeatured = false }: TreatmentCardProps) =>
               Most Popular
             </Badge>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-slate-blue/90 to-transparent p-3 sm:p-4 text-white">
-            <h3 className="font-serif text-lg sm:text-xl font-medium text-white mb-1">{treatment.name}</h3>
-            <p className="text-xs sm:text-sm mt-1 mb-2 line-clamp-2 text-white/90">
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-slate-blue/90 to-transparent p-4 md:p-6 text-white">
+            <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-medium text-white mb-2">{treatment.name}</h3>
+            <p className="text-sm md:text-base mt-1 mb-3 md:mb-4 line-clamp-2 text-white/90">
               {treatment.description}
             </p>
             <div className="flex items-center justify-between mt-2">
-              <span className="font-medium text-white text-sm sm:text-base">{formatPrice(treatment.price, treatment.currency)}</span>
+              <span className="font-medium text-white text-base md:text-lg">{formatPrice(treatment.price, treatment.currency)}</span>
               <Link to={`/treatments/${treatment.id}`}>
-                <Button size="sm" className="bg-white text-brand-slate-blue hover:bg-brand-off-white text-xs sm:text-sm min-h-[36px] px-3 sm:px-4">
+                <Button size="sm" className="bg-white text-brand-slate-blue hover:bg-brand-off-white text-sm md:text-base min-h-[40px] px-4 md:px-6">
                   View Details
                 </Button>
               </Link>
@@ -50,18 +50,18 @@ const TreatmentCard = ({ treatment, isFeatured = false }: TreatmentCardProps) =>
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full border-brand-silver/30">
-      <div className="relative h-40 sm:h-48">
+      <div className="relative h-48 sm:h-56 md:h-64">
         <img src={treatment.image_url || '/placeholder.svg'} alt={treatment.name} className="w-full h-full object-cover" />
       </div>
-      <CardContent className="p-3 sm:p-4 bg-white/90">
-        <h3 className="font-serif text-base sm:text-lg font-medium text-brand-charcoal mb-1">{treatment.name}</h3>
-        <p className="text-xs sm:text-sm text-brand-gray-600 line-clamp-2 mt-1 mb-3">
+      <CardContent className="p-4 md:p-6 bg-white/90">
+        <h3 className="font-serif text-base sm:text-lg md:text-xl font-medium text-brand-charcoal mb-2">{treatment.name}</h3>
+        <p className="text-sm md:text-base text-brand-gray-600 line-clamp-2 mt-1 mb-4">
           {treatment.description}
         </p>
         <div className="flex items-center justify-between mt-4">
-          <span className="text-base sm:text-lg font-medium text-brand-slate-blue">{formatPrice(treatment.price, treatment.currency)}</span>
+          <span className="text-lg md:text-xl font-medium text-brand-slate-blue">{formatPrice(treatment.price, treatment.currency)}</span>
           <Link to={`/treatments/${treatment.id}`}>
-            <Button size="sm" className="text-xs sm:text-sm min-h-[36px] px-3 sm:px-4">
+            <Button size="sm" className="text-sm md:text-base min-h-[40px] px-4 md:px-6">
               View Details
             </Button>
           </Link>

@@ -142,7 +142,7 @@ export const BannerSection = () => {
               Professional Post-Treatment Care
             </h2>
             <p className="mobile-text-base max-w-2xl text-hierarchy-secondary my-0">
-              Maximize your treatment results with our carefully selected professional skincare products, designed to complement and enhance your aesthetic treatments.
+              Maximise your treatment results with our carefully selected professional skincare products, designed to complement and enhance your aesthetic treatments.
             </p>
             <Link to="/products">
               <Button className="shadow-lg px-10 py-4 mobile-text-base font-semibold min-h-[56px] rounded-lg my-[10px]" variant="default">

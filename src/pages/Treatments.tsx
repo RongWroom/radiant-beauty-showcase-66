@@ -44,8 +44,8 @@ const Treatments = () => {
       <Navbar />
       <main className="flex-grow">
         <TreatmentsHero />
-        <TreatmentCategories />
         <TreatmentsGrid treatments={treatments} />
+        <TreatmentCategories />
         <BookingCta />
       </main>
       <Footer />

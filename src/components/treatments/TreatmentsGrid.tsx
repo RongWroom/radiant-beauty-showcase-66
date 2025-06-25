@@ -20,7 +20,14 @@ const TreatmentsGrid = ({ treatments }: TreatmentsGridProps) => {
   return (
     <section className="py-10 sm:py-12 md:py-14 bg-brand-light-gray">
       <div className="container-custom">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-serif mb-6 sm:mb-7 text-brand-charcoal font-bold text-center">All Treatments</h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-serif mb-4 sm:mb-5 text-brand-charcoal font-bold text-center">All Treatments</h2>
+        
+        {/* SEO Paragraph */}
+        <div className="max-w-4xl mx-auto text-center mb-6 sm:mb-7">
+          <p className="text-sm sm:text-base text-brand-gray-600 leading-relaxed">
+            Discover our comprehensive range of professional aesthetic treatments at STW Aesthetic Clinic. From advanced anti-aging solutions like Ultra 4D HIFU and chemical peels to body contouring with Cryolipolysis, our expert practitioners deliver exceptional results using cutting-edge technology. Each treatment is tailored to your unique skin needs, ensuring safe, effective, and lasting improvements to help you achieve your aesthetic goals.
+          </p>
+        </div>
         
         {/* Mobile-first layout */}
         <div className="space-y-6">

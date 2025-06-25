@@ -18,7 +18,7 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
     </div>
 
     {/* Content */}
-    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start gap-12 px-4 sm:px-6 lg:px-8 py-0">
+    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start gap-x-12 px-4 sm:px-6 lg:px-8 py-0">
       {/* Left Column (always left-aligned) */}
       <div className="w-full lg:w-1/2 space-y-6 flex flex-col items-start">
         {/* Reviews badge */}
@@ -39,7 +39,7 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
 
         {/* Subhead */}
         <p className="max-w-xl text-lg text-brand-gray-600 text-left">
-          We specialise in creating timeless radiance—where advanced science meets bespoke care.
+          We specialise in creating timeless radiance <br /> where advanced science meets bespoke care.
         </p>
 
         {/* Stats */}

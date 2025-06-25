@@ -84,8 +84,8 @@ const CustomerReviews = () => {
           <div className="bg-white/95 backdrop-blur-sm px-8 py-7 rounded-xl shadow-sm flex items-center max-w-md hover:shadow-md transition-shadow duration-300 border border-brand-silver/30">
             <img alt="Google Reviews" className="w-12 h-12 mr-5" src="/lovable-uploads/4adcf380-664e-4989-8aae-757c5e1d1a0f.png" />
             <div>
-              <p className="font-medium text-lg md:text-xl text-brand-charcoal">4.9 on Google Reviews</p>
-              <p className="text-brand-gray-600 text-base md:text-lg">Based on 50+ reviews</p>
+              <p className="font-medium text-lg md:text-xl text-brand-charcoal">5.0 on Google Reviews</p>
+              <p className="text-brand-gray-600 text-base md:text-lg">Based on 14 reviews</p>
             </div>
           </div>
         </div>

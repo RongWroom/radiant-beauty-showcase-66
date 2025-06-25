@@ -39,7 +39,7 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
 
         {/* Subhead */}
         <p className="max-w-xl text-lg text-brand-gray-600 text-left">
-          We specialise in creating timeless radiance <br /> where advanced science meets bespoke care.
+          We specialise in creating timeless radiance. <br /> Where advanced science meets bespoke care.
         </p>
 
         {/* Stats */}

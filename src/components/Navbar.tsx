@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="container-custom flex justify-between items-center">
           <div className="flex items-center space-x-8 sm:space-x-12">
             <Link to="/" className="text-2xl sm:text-3xl font-serif font-bold text-hierarchy-primary" onClick={close}>
-              STW Clinic
+              STW
             </Link>
             <div className="hidden md:flex space-x-6 lg:space-x-8">
               <Link to="/" className={`${isActive('/')} transition-colors text-base lg:text-lg`}>Home</Link>

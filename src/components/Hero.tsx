@@ -1,17 +1,12 @@
-import React from 'react'
-import { Button } from '@/components/ui/button'
-import { Link } from 'react-router-dom'
-import { Star, Award, Users, Clock } from 'lucide-react'
-
-const Hero = () => (
-  <section className="relative min-h-screen flex items-center overflow-hidden">
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { Star, Award, Users, Clock } from 'lucide-react';
+const Hero = () => <section className="relative min-h-screen flex items-center overflow-hidden">
     {/* Full-bleed background */}
-    <div
-      className="absolute inset-0 bg-cover bg-center"
-      style={{
-        backgroundImage: "url('https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200')"
-      }}
-    />
+    <div className="absolute inset-0 bg-cover bg-center" style={{
+    backgroundImage: "url('https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200')"
+  }} />
     {/* Overlay for contrast */}
     <div className="absolute inset-0 bg-gradient-to-br from-brand-off-white/80 to-brand-light-gray/60" />
 
@@ -28,16 +23,14 @@ const Hero = () => (
       <div className="w-full lg:w-1/2 space-y-6 flex flex-col items-start">
         {/* Reviews badge */}
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-4 h-4 fill-brand-slate-blue text-brand-slate-blue" />
-          ))}
+          {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-brand-slate-blue text-brand-slate-blue" />)}
           <span className="ml-3 font-semibold text-brand-slate-blue">5.0</span>
           <span className="ml-2 text-brand-gray-600">• 500+ Transformations</span>
         </div>
 
         {/* Headline */}
         <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal leading-tight text-left">
-          Polish Your<br/>
+          Polish Your<br />
           <span className="relative inline-block">
             <span className="text-brand-slate-blue font-semibold">Natural Beauty</span>
             <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-brand-slate-blue via-brand-silver to-brand-slate-blue-light rounded-full"></span>
@@ -51,16 +44,10 @@ const Hero = () => (
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 max-w-md">
-          {[
-            ['5', 'Treatments'],
-            ['10+', 'Reviews'],
-            ['100%', 'Satisfaction']
-          ].map(([num, label]) => (
-            <div key={label} className="space-y-1 text-left">
+          {[['5', 'Treatments'], ['10+', 'Reviews'], ['100%', 'Satisfaction']].map(([num, label]) => <div key={label} className="space-y-1 text-left">
               <div className="text-3xl font-serif font-bold text-brand-slate-blue">{num}</div>
               <div className="text-sm font-medium text-brand-gray-600">{label}</div>
-            </div>
-          ))}
+            </div>)}
         </div>
 
         {/* CTA Buttons */}
@@ -92,12 +79,12 @@ const Hero = () => (
 
       {/* Right Column: pixel accents only */}
       <div className="w-full lg:w-1/2 relative">
-        <div className="absolute top-12 left-12 w-16 h-16 bg-brand-silver/20" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
-        <div className="absolute bottom-12 right-12 w-20 h-20 bg-brand-slate-blue-light/20" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} />
+        <div className="absolute top-12 left-12 w-16 h-16 bg-brand-silver/20" style={{
+        clipPath: 'polygon(0 0, 100% 0, 0 100%)'
+      }} />
+        
         {/* No image element here—background covers full area */}
       </div>
     </div>
-  </section>
-)
-
-export default Hero
+  </section>;
+export default Hero;

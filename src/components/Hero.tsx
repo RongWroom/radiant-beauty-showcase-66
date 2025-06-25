@@ -5,15 +5,14 @@ import { Star, Award, Users, Clock } from 'lucide-react'
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
-    {/* Full-bleed background image */}
+    {/* Full-bleed background */}
     <div
       className="absolute inset-0 bg-cover bg-center"
       style={{
         backgroundImage: "url('https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200')"
       }}
     />
-
-    {/* Overlay filter for readability */}
+    {/* Overlay for contrast */}
     <div className="absolute inset-0 bg-gradient-to-br from-brand-off-white/80 to-brand-light-gray/60" />
 
     {/* Decorative blobs */}
@@ -24,9 +23,10 @@ const Hero = () => (
     </div>
 
     {/* Content */}
-    <div className="container-custom relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start py-24 gap-12">
-      {/* Left text */}
-      <div className="w-full lg:w-1/2 text-left space-y-6">
+    <div className="container-custom relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start py-24 gap-12 px-4 sm:px-6 lg:px-0">
+      {/* Left Column (always left-aligned) */}
+      <div className="w-full lg:w-1/2 space-y-6">
+        {/* Reviews badge */}
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
           {[...Array(5)].map((_, i) => (
             <Star key={i} className="w-4 h-4 fill-brand-slate-blue text-brand-slate-blue" />
@@ -35,6 +35,7 @@ const Hero = () => (
           <span className="ml-2 text-brand-gray-600">• 500+ Transformations</span>
         </div>
 
+        {/* Headline */}
         <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal leading-tight">
           Polish Your<br/>
           <span className="relative inline-block">
@@ -43,11 +44,13 @@ const Hero = () => (
           </span>
         </h1>
 
-        <p className="max-w-xl mx-auto lg:mx-0 text-lg text-brand-gray-600">
+        {/* Subhead */}
+        <p className="max-w-xl text-lg text-brand-gray-600">
           We specialise in creating timeless radiance—where advanced science meets bespoke care.
         </p>
 
-        <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-4 max-w-md">
           {[
             ['35', 'Treatments'],
             ['50+', 'Beauticians'],
@@ -60,7 +63,8 @@ const Hero = () => (
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4">
           <Link to="/treatments" className="w-full sm:w-auto">
             <Button className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition">
               Start Your Transformation <Clock className="inline-block ml-2" />
@@ -73,7 +77,8 @@ const Hero = () => (
           </Link>
         </div>
 
-        <div className="flex flex-wrap gap-6 mt-6 justify-center lg:justify-start text-brand-gray-600">
+        {/* Trust Icons */}
+        <div className="flex flex-wrap gap-6 mt-6 text-brand-gray-600">
           <div className="flex items-center space-x-2">
             <Award className="w-5 h-5 text-brand-slate-blue" />
             <span>Certified Practitioners</span>
@@ -85,9 +90,12 @@ const Hero = () => (
         </div>
       </div>
 
-      {/* Pixel accents (optional) */}
-      <div className="absolute top-12 left-12 w-16 h-16 bg-brand-silver/20" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}></div>
-      <div className="absolute bottom-12 right-12 w-20 h-20 bg-brand-slate-blue-light/20" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }}></div>
+      {/* Right Column: pixel accents only */}
+      <div className="w-full lg:w-1/2 relative">
+        <div className="absolute top-12 left-12 w-16 h-16 bg-brand-silver/20" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
+        <div className="absolute bottom-12 right-12 w-20 h-20 bg-brand-slate-blue-light/20" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} />
+        {/* No image element here—background covers full area */}
+      </div>
     </div>
   </section>
 )

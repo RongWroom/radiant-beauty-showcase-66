@@ -1,3 +1,4 @@
+
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
@@ -104,11 +105,6 @@ export function useUpdateAppointment() {
             name,
             duration_minutes,
             price
-          ),
-          profiles (
-            first_name,
-            last_name,
-            email
           )
         `)
         .single();
@@ -118,15 +114,22 @@ export function useUpdateAppointment() {
       // Send notification if requested and status was updated
       if (sendNotification && updates.status && (updates.status === 'confirmed' || updates.status === 'cancelled')) {
         try {
-          const customerName = data.profiles 
-            ? `${data.profiles.first_name || ''} ${data.profiles.last_name || ''}`.trim()
+          // Get user profile separately
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("first_name, last_name, email")
+            .eq("id", data.user_id)
+            .single();
+
+          const customerName = profile 
+            ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim()
             : 'Customer';
 
           await supabase.functions.invoke('send-appointment-status-notification', {
             body: {
               appointmentId: data.id,
               customerName,
-              customerEmail: data.profiles?.email || '',
+              customerEmail: profile?.email || '',
               treatmentName: data.treatments?.name || 'Treatment',
               appointmentDate: data.appointment_date,
               appointmentTime: data.appointment_time,
@@ -170,17 +173,19 @@ export function useRescheduleAppointment() {
             name,
             duration_minutes,
             price
-          ),
-          profiles (
-            first_name,
-            last_name,
-            email
           )
         `)
         .eq("id", id)
         .single();
 
       if (fetchError) throw fetchError;
+
+      // Get user profile separately
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("first_name, last_name, email")
+        .eq("id", currentAppointment.user_id)
+        .single();
 
       // Update the appointment
       const { data, error } = await supabase
@@ -197,11 +202,6 @@ export function useRescheduleAppointment() {
             name,
             duration_minutes,
             price
-          ),
-          profiles (
-            first_name,
-            last_name,
-            email
           )
         `)
         .single();
@@ -210,15 +210,15 @@ export function useRescheduleAppointment() {
 
       // Send reschedule notification
       try {
-        const customerName = data.profiles 
-          ? `${data.profiles.first_name || ''} ${data.profiles.last_name || ''}`.trim()
+        const customerName = profile 
+          ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim()
           : 'Customer';
 
         await supabase.functions.invoke('send-reschedule-notification', {
           body: {
             appointmentId: data.id,
             customerName,
-            customerEmail: data.profiles?.email || '',
+            customerEmail: profile?.email || '',
             treatmentName: data.treatments?.name || 'Treatment',
             oldAppointmentDate: currentAppointment.appointment_date,
             oldAppointmentTime: currentAppointment.appointment_time,
@@ -259,17 +259,19 @@ export function useCancelAppointment() {
             name,
             duration_minutes,
             price
-          ),
-          profiles (
-            first_name,
-            last_name,
-            email
           )
         `)
         .eq("id", id)
         .single();
 
       if (fetchError) throw fetchError;
+
+      // Get user profile separately
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("first_name, last_name, email")
+        .eq("id", currentAppointment.user_id)
+        .single();
 
       // Update the appointment status
       const { data, error } = await supabase
@@ -287,15 +289,15 @@ export function useCancelAppointment() {
 
       // Send cancellation notification
       try {
-        const customerName = currentAppointment.profiles 
-          ? `${currentAppointment.profiles.first_name || ''} ${currentAppointment.profiles.last_name || ''}`.trim()
+        const customerName = profile 
+          ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim()
           : 'Customer';
 
         await supabase.functions.invoke('send-cancellation-notification', {
           body: {
             appointmentId: data.id,
             customerName,
-            customerEmail: currentAppointment.profiles?.email || '',
+            customerEmail: profile?.email || '',
             treatmentName: currentAppointment.treatments?.name || 'Treatment',
             appointmentDate: currentAppointment.appointment_date,
             appointmentTime: currentAppointment.appointment_time,

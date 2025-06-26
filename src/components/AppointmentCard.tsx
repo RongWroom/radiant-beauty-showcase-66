@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, Clock, MapPin, FileText, Edit, X } from 'lucide-react';
 import { format } from 'date-fns';
-import { useUpdateAppointment, useRescheduleAppointment } from '@/hooks/useAppointments';
+import { useUpdateAppointment, useRescheduleAppointment, useCancelAppointment } from '@/hooks/useAppointments';
 import { useToast } from '@/hooks/use-toast';
 import RescheduleModal from './appointment/RescheduleModal';
 import type { Appointment } from '@/hooks/useAppointments';
@@ -18,6 +17,7 @@ const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointment }) => {
   const [showRescheduleModal, setShowRescheduleModal] = useState(false);
   const updateAppointment = useUpdateAppointment();
   const rescheduleAppointment = useRescheduleAppointment();
+  const cancelAppointment = useCancelAppointment();
   const { toast } = useToast();
 
   const getStatusColor = (status: string) => {
@@ -42,13 +42,12 @@ const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointment }) => {
   const handleCancelAppointment = async () => {
     if (window.confirm('Are you sure you want to cancel this appointment?')) {
       try {
-        await updateAppointment.mutateAsync({
+        await cancelAppointment.mutateAsync({
           id: appointment.id,
-          updates: { status: 'cancelled' }
         });
         toast({
           title: "Appointment cancelled",
-          description: "Your appointment has been cancelled successfully.",
+          description: "Your appointment has been cancelled successfully. You will receive a confirmation email.",
         });
       } catch (error) {
         toast({
@@ -163,7 +162,7 @@ const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointment }) => {
                 variant="outline"
                 size="sm"
                 onClick={() => setShowRescheduleModal(true)}
-                disabled={updateAppointment.isPending || rescheduleAppointment.isPending}
+                disabled={updateAppointment.isPending || rescheduleAppointment.isPending || cancelAppointment.isPending}
                 className="flex items-center gap-2"
               >
                 <Edit className="h-4 w-4" />
@@ -173,7 +172,7 @@ const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointment }) => {
                 variant="outline"
                 size="sm"
                 onClick={handleCancelAppointment}
-                disabled={updateAppointment.isPending || rescheduleAppointment.isPending}
+                disabled={updateAppointment.isPending || rescheduleAppointment.isPending || cancelAppointment.isPending}
                 className="flex items-center gap-2 text-red-600 hover:text-red-700"
               >
                 <X className="h-4 w-4" />

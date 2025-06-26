@@ -2,10 +2,10 @@
 // Mapping of treatment categories/names to consent form URLs
 export const CONSENT_FORM_MAPPING = {
   // Skin treatments - general skin consent form
-  'facial': 'https://forms.gle/VCjJYxR8bfPRqMcP8',
-  'skin': 'https://forms.gle/VCjJYxR8bfPRqMcP8',
-  'chemical peel': 'https://forms.gle/VCjJYxR8bfPRqMcP8',
-  'microneedling': 'https://forms.gle/VCjJYxR8bfPRqMcP8',
+  'facial': 'https://docs.google.com/forms/d/1-wvSmxXx2PSOX7_LuYWfoVkOKMwy6KOJhO69_HsGilU/edit',
+  'skin': 'https://docs.google.com/forms/d/1-wvSmxXx2PSOX7_LuYWfoVkOKMwy6KOJhO69_HsGilU/edit',
+  'chemical peel': 'https://docs.google.com/forms/d/1-wvSmxXx2PSOX7_LuYWfoVkOKMwy6KOJhO69_HsGilU/edit',
+  'microneedling': 'https://docs.google.com/forms/d/1-wvSmxXx2PSOX7_LuYWfoVkOKMwy6KOJhO69_HsGilU/edit',
   
   // Laser hair removal
   'laser hair removal': 'https://docs.google.com/forms/d/156975FgE83Ej2Q6NSAohg5kiKC5Ze64HC1fBeyOgYVY/edit',
@@ -14,11 +14,14 @@ export const CONSENT_FORM_MAPPING = {
   // Cryolipolysis (fat freezing)
   'cryolipolysis': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
   'fat freezing': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
+  'fat freeze': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
   'coolsculpting': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
+  'cryo': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
   
   // HIFU
   'hifu': 'https://docs.google.com/forms/d/1_eQ0FE_9hf2fssq46O0QCJvvuieeHMCT02aHfeGygME/edit',
   'ultrasound': 'https://docs.google.com/forms/d/1_eQ0FE_9hf2fssq46O0QCJvvuieeHMCT02aHfeGygME/edit',
+  'ultra 4d hifu': 'https://docs.google.com/forms/d/1_eQ0FE_9hf2fssq46O0QCJvvuieeHMCT02aHfeGygME/edit',
 };
 
 export function getConsentFormUrl(treatmentName: string, treatmentCategory?: string): string | null {

@@ -22,6 +22,53 @@ interface BookingData {
   appointmentTime: string;
   appointmentId: string;
   confirmationToken: string;
+  notes?: string;
+  treatmentPrice?: number;
+  treatmentDuration?: number;
+  treatmentCategory?: string;
+}
+
+// Consent form mapping
+const CONSENT_FORM_MAPPING: Record<string, string> = {
+  'facial': 'https://docs.google.com/forms/d/1-wvSmxXx2PSOX7_LuYWfoVkOKMwy6KOJhO69_HsGilU/edit',
+  'skin': 'https://docs.google.com/forms/d/1-wvSmxXx2PSOX7_LuYWfoVkOKMwy6KOJhO69_HsGilU/edit',
+  'chemical peel': 'https://docs.google.com/forms/d/1-wvSmxXx2PSOX7_LuYWfoVkOKMwy6KOJhO69_HsGilU/edit',
+  'microneedling': 'https://docs.google.com/forms/d/1-wvSmxXx2PSOX7_LuYWfoVkOKMwy6KOJhO69_HsGilU/edit',
+  'laser hair removal': 'https://docs.google.com/forms/d/156975FgE83Ej2Q6NSAohg5kiKC5Ze64HC1fBeyOgYVY/edit',
+  'laser': 'https://docs.google.com/forms/d/156975FgE83Ej2Q6NSAohg5kiKC5Ze64HC1fBeyOgYVY/edit',
+  'cryolipolysis': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
+  'fat freezing': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
+  'fat freeze': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
+  'cryo': 'https://docs.google.com/forms/d/13xEhxFcSjHG8y_HLdsLCHltOnPIuqAw8shAy4-r8ON4/edit',
+  'hifu': 'https://docs.google.com/forms/d/1_eQ0FE_9hf2fssq46O0QCJvvuieeHMCT02aHfeGygME/edit',
+  'ultrasound': 'https://docs.google.com/forms/d/1_eQ0FE_9hf2fssq46O0QCJvvuieeHMCT02aHfeGygME/edit',
+  'ultra 4d hifu': 'https://docs.google.com/forms/d/1_eQ0FE_9hf2fssq46O0QCJvvuieeHMCT02aHfeGygME/edit',
+};
+
+function getConsentFormUrl(treatmentName: string, treatmentCategory?: string): string | null {
+  const searchTerms = [
+    treatmentName.toLowerCase(),
+    treatmentCategory?.toLowerCase() || ''
+  ];
+
+  // Check for exact matches first
+  for (const term of searchTerms) {
+    if (CONSENT_FORM_MAPPING[term]) {
+      return CONSENT_FORM_MAPPING[term];
+    }
+  }
+
+  // Check for partial matches
+  for (const [key, url] of Object.entries(CONSENT_FORM_MAPPING)) {
+    for (const term of searchTerms) {
+      if (term.includes(key) || key.includes(term)) {
+        return url;
+      }
+    }
+  }
+
+  // Default to skin treatment form
+  return CONSENT_FORM_MAPPING['skin'];
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -39,6 +86,9 @@ const handler = async (req: Request): Promise<Response> => {
       appointmentTime: bookingData.appointmentTime
     });
 
+    // Clean treatment name to remove newlines that cause email errors
+    const cleanTreatmentName = bookingData.treatmentName?.replace(/\n/g, ' ').trim() || 'Treatment';
+
     // Format date and time for display
     const formattedDate = new Date(bookingData.appointmentDate).toLocaleDateString('en-GB', {
       weekday: 'long',
@@ -52,6 +102,9 @@ const handler = async (req: Request): Promise<Response> => {
       minute: '2-digit'
     });
 
+    // Get consent form URL
+    const consentFormUrl = getConsentFormUrl(cleanTreatmentName, bookingData.treatmentCategory);
+
     // Use the live domain
     const appUrl = 'https://www.stwaestheticclinic.co.uk';
     const confirmUrl = `${appUrl}/confirm-appointment?token=${bookingData.confirmationToken}&action=confirm`;
@@ -61,7 +114,7 @@ const handler = async (req: Request): Promise<Response> => {
     const clinicEmailResponse = await resend.emails.send({
       from: "STW Aesthetic Clinic <noreply@stwaestheticclinic.co.uk>",
       to: ["sharon@stwaestheticclinic.co.uk"],
-      subject: `New Appointment Booking - ${bookingData.treatmentName}`,
+      subject: `New Appointment Booking - ${cleanTreatmentName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333; border-bottom: 2px solid #8B5A97; padding-bottom: 10px;">
@@ -72,10 +125,22 @@ const handler = async (req: Request): Promise<Response> => {
             <h3 style="color: #8B5A97; margin-top: 0;">Booking Details</h3>
             <p><strong>Customer:</strong> ${bookingData.customerName}</p>
             <p><strong>Email:</strong> ${bookingData.customerEmail}</p>
-            <p><strong>Treatment:</strong> ${bookingData.treatmentName}</p>
+            <p><strong>Treatment:</strong> ${cleanTreatmentName}</p>
             <p><strong>Date:</strong> ${formattedDate}</p>
             <p><strong>Time:</strong> ${formattedTime}</p>
+            ${bookingData.treatmentPrice ? `<p><strong>Price:</strong> £${bookingData.treatmentPrice}</p>` : ''}
+            ${bookingData.treatmentDuration ? `<p><strong>Duration:</strong> ${bookingData.treatmentDuration} minutes</p>` : ''}
+            ${bookingData.notes ? `<p><strong>Notes:</strong> ${bookingData.notes}</p>` : ''}
           </div>
+
+          ${consentFormUrl ? `
+          <div style="background-color: #e8f4fd; border: 1px solid #3b82f6; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #1e40af;">
+              <strong>📋 Consent Form Required:</strong> 
+              <br><a href="${consentFormUrl}" style="color: #3b82f6; text-decoration: underline;">View Treatment Consent Form</a>
+            </p>
+          </div>
+          ` : ''}
 
           <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #856404;">
@@ -111,7 +176,7 @@ const handler = async (req: Request): Promise<Response> => {
     const customerEmailResponse = await resend.emails.send({
       from: "STW Aesthetic Clinic <noreply@stwaestheticclinic.co.uk>",
       to: [bookingData.customerEmail],
-      subject: `Appointment Request Received - ${bookingData.treatmentName}`,
+      subject: `Appointment Request Received - ${cleanTreatmentName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333; border-bottom: 2px solid #8B5A97; padding-bottom: 10px;">
@@ -124,11 +189,23 @@ const handler = async (req: Request): Promise<Response> => {
 
           <div style="background-color: #f0fdf4; border: 1px solid #10b981; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #10b981; margin-top: 0;">Your Appointment Request</h3>
-            <p><strong>Treatment:</strong> ${bookingData.treatmentName}</p>
+            <p><strong>Treatment:</strong> ${cleanTreatmentName}</p>
             <p><strong>Date:</strong> ${formattedDate}</p>
             <p><strong>Time:</strong> ${formattedTime}</p>
+            ${bookingData.treatmentPrice ? `<p><strong>Price:</strong> £${bookingData.treatmentPrice}</p>` : ''}
+            ${bookingData.treatmentDuration ? `<p><strong>Duration:</strong> ${bookingData.treatmentDuration} minutes</p>` : ''}
             <p><strong>Status:</strong> <span style="color: #f59e0b; font-weight: bold;">PENDING CONFIRMATION</span></p>
           </div>
+
+          ${consentFormUrl ? `
+          <div style="background-color: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #92400e;">
+              <strong>📋 Important - Consent Form Required:</strong> 
+              <br>Please complete your treatment consent form before your appointment:
+              <br><a href="${consentFormUrl}" style="color: #d97706; text-decoration: underline; font-weight: bold;">Complete Consent Form</a>
+            </p>
+          </div>
+          ` : ''}
 
           <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #856404;">
@@ -143,11 +220,12 @@ const handler = async (req: Request): Promise<Response> => {
             <p>• Ensure you can arrive 15 minutes early</p>
             <p>• Bring valid ID</p>
             <p>• Come with a clean face (no makeup for facial treatments)</p>
-            <p>• Complete any required consent forms</p>
+            <p>• Complete your consent form (link above)</p>
+            <p>• Avoid sun exposure 48 hours before laser treatments</p>
           </div>
 
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-            <p>If you have any questions or need to make changes to your appointment, please don't hesitate to contact us.</p>
+            <p>If you have any questions or need to make changes to your appointment, please don't hesitate to contact us at <strong>01207 239983</strong>.</p>
             <p><strong>STW Aesthetic Clinic Team</strong></p>
             <p style="color: #666; font-size: 14px; margin-top: 20px;">
               We look forward to providing you with exceptional care and service.
@@ -163,7 +241,8 @@ const handler = async (req: Request): Promise<Response> => {
       JSON.stringify({ 
         success: true, 
         clinicEmailSent: clinicEmailResponse.data ? true : false,
-        customerEmailSent: customerEmailResponse.data ? true : false
+        customerEmailSent: customerEmailResponse.data ? true : false,
+        consentFormUrl: consentFormUrl
       }),
       {
         status: 200,

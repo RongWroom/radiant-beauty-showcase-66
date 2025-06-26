@@ -190,6 +190,17 @@ const BookingForm: React.FC<BookingFormProps> = ({ treatmentId, onSuccess }) => 
                 />
               </div>
 
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 className="font-semibold text-blue-800 mb-2">📋 Important: Consent Form Required</h4>
+                <p className="text-sm text-blue-700 mb-3">
+                  Before your appointment, you'll need to complete a consent form specific to your treatment. 
+                  This will be included in your booking confirmation email.
+                </p>
+                <p className="text-xs text-blue-600">
+                  The consent form ensures we have all necessary medical information to provide you with safe, effective treatment.
+                </p>
+              </div>
+
               <Button 
                 type="submit" 
                 className="w-full" 

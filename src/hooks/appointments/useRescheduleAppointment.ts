@@ -58,6 +58,8 @@ export function useRescheduleAppointment() {
         appointmentId: data.id,
         userId: data.user_id,
         treatmentName: data.treatments?.name || 'Treatment',
+        appointmentDate: appointmentDate,
+        appointmentTime: appointmentTime,
         oldAppointmentDate: currentAppointment.appointment_date,
         oldAppointmentTime: currentAppointment.appointment_time,
         newAppointmentDate: appointmentDate,

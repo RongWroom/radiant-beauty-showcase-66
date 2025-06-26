@@ -1,0 +1,52 @@
+
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+
+export type Appointment = {
+  id: string;
+  user_id: string;
+  treatment_id: number;
+  appointment_date: string;
+  appointment_time: string;
+  status: 'pending' | 'confirmed' | 'completed' | 'cancelled' | 'no_show';
+  notes: string | null;
+  admin_notes: string | null;
+  confirmation_token: string | null;
+  confirmed_by_admin_at: string | null;
+  created_at: string;
+  updated_at: string;
+  treatments?: {
+    name: string;
+    duration_minutes: number;
+    price: number;
+  };
+};
+
+export function useAppointments() {
+  const { user } = useAuth();
+  
+  return useQuery({
+    queryKey: ["appointments", user?.id],
+    queryFn: async () => {
+      if (!user) throw new Error("User not authenticated");
+      
+      const { data, error } = await supabase
+        .from("appointments")
+        .select(`
+          *,
+          treatments (
+            name,
+            duration_minutes,
+            price
+          )
+        `)
+        .eq("user_id", user.id)
+        .order("appointment_date", { ascending: true });
+
+      if (error) throw error;
+      return data as Appointment[];
+    },
+    enabled: !!user,
+  });
+}

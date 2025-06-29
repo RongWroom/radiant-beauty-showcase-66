@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -11,39 +10,33 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { usePaginatedProducts, useInvalidateProductsCache } from "@/hooks/usePaginatedProducts";
 import { useToast } from "@/components/ui/use-toast";
-
 const PAGE_SIZE = 5; // Reduced from 6 to 5 to show 4 in right column + 1 featured
 
 const Products = () => {
   const [page, setPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const { products, total, isLoading, isError, refetch } = usePaginatedProducts(page, PAGE_SIZE);
+  const {
+    products,
+    total,
+    isLoading,
+    isError,
+    refetch
+  } = usePaginatedProducts(page, PAGE_SIZE);
   const invalidateCache = useInvalidateProductsCache();
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const pageCount = Math.ceil(total / PAGE_SIZE);
 
   // Complete list of categories
-  const allCategories = [
-    'Cleansers',
-    'Serums', 
-    'Moisturizers',
-    'Sun Protection',
-    'Eye Care',
-    'Collections',
-    'Specialty',
-    'Skincare'
-  ];
+  const allCategories = ['Cleansers', 'Serums', 'Moisturizers', 'Sun Protection', 'Eye Care', 'Collections', 'Specialty', 'Skincare'];
   const categories = ['all', ...allCategories];
-  
-  // Filter products by category
-  const filteredProducts = selectedCategory === 'all' 
-    ? products 
-    : products.filter(p => p.category === selectedCategory);
 
+  // Filter products by category
+  const filteredProducts = selectedCategory === 'all' ? products : products.filter(p => p.category === selectedCategory);
   const formatPrice = (price: number | null, currency: string | null) => {
     if (price === null) return 'N/A';
-    const currencySymbol = currency === 'GBP' ? '£' : (currency === 'USD' ? '$' : '€');
+    const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
     return `${currencySymbol}${price.toFixed(2)}`;
   };
 
@@ -72,13 +65,10 @@ const Products = () => {
     console.error(`Image failed to load for ${productName}:`, imageUrl);
     console.log('Attempting to access URL:', imageUrl);
   };
-
   const handleImageLoad = (imageUrl: string | null, productName: string) => {
     console.log(`Image loaded successfully for ${productName}:`, imageUrl);
   };
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -115,18 +105,15 @@ const Products = () => {
                     <SelectValue placeholder="Filter by category" />
                   </SelectTrigger>
                   <SelectContent>
-                    {categories.map(category => (
-                      <SelectItem key={category} value={category}>
+                    {categories.map(category => <SelectItem key={category} value={category}>
                         {category === 'all' ? 'All Categories' : category}
-                      </SelectItem>
-                    ))}
+                      </SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
             </div>
             
-            {isLoading && (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {isLoading && <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-1">
                   <Skeleton className="h-[500px] w-full rounded-lg" />
                 </div>
@@ -135,39 +122,26 @@ const Products = () => {
                     {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-[240px] w-full rounded-lg" />)}
                   </div>
                 </div>
-              </div>
-            )}
+              </div>}
 
-            {isError && (
-              <div className="text-center">
+            {isError && <div className="text-center">
                 <div className="text-red-500 font-medium mb-4">Failed to load products. Please try again later.</div>
                 <Button onClick={refetch} variant="outline">
                   Retry
                 </Button>
-              </div>
-            )}
+              </div>}
 
-            {!isLoading && !isError && filteredProducts.length === 0 && (
-              <div className="text-center text-brand-gray-600">
+            {!isLoading && !isError && filteredProducts.length === 0 && <div className="text-center text-brand-gray-600">
                 {selectedCategory === 'all' ? 'No products have been added yet.' : `No products found in the ${selectedCategory} category.`}
-              </div>
-            )}
+              </div>}
 
-            {!isLoading && !isError && filteredProducts.length > 0 && (
-              <>
+            {!isLoading && !isError && filteredProducts.length > 0 && <>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Featured Product - Takes up left column, same height as 2 normal cards */}
-                  {featuredProduct && (
-                    <div className="lg:col-span-1">
-                      <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[500px] border-brand-silver/30">
-                        <div className="relative h-64 sm:h-80 md:h-[300px]">
-                          <img 
-                            src={featuredProduct.image_url || '/placeholder.svg'} 
-                            alt={featuredProduct.name} 
-                            className="w-full h-full object-cover"
-                            onError={() => handleImageError(featuredProduct.image_url, featuredProduct.name)}
-                            onLoad={() => handleImageLoad(featuredProduct.image_url, featuredProduct.name)}
-                          />
+                  {featuredProduct && <div className="lg:col-span-1">
+                      <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[700px] border-brand-silver/30 my-0">
+                        <div className="relative h-64 sm:h-80 md:h-[350px]">
+                          <img src={featuredProduct.image_url || '/placeholder.svg'} alt={featuredProduct.name} className="w-full h-full object-cover" onError={() => handleImageError(featuredProduct.image_url, featuredProduct.name)} onLoad={() => handleImageLoad(featuredProduct.image_url, featuredProduct.name)} />
                           <div className="absolute top-4 left-4">
                             <Badge className="badge-featured">
                               <Star className="w-4 h-4 mr-1" />
@@ -190,22 +164,14 @@ const Products = () => {
                           </div>
                         </CardContent>
                       </Card>
-                    </div>
-                  )}
+                    </div>}
                   
                   {/* Right Column with 2x2 Grid (4 products) - Each card matches treatment card size */}
                   <div className="lg:col-span-2">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      {remainingProducts.map(product => (
-                        <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[240px] border-brand-silver/30">
+                      {remainingProducts.map(product => <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[350px] border-brand-silver/30">
                           <div className="relative h-48 sm:h-56 md:h-32">
-                            <img 
-                              src={product.image_url || '/placeholder.svg'} 
-                              alt={product.name} 
-                              className="w-full h-full object-cover"
-                              onError={() => handleImageError(product.image_url, product.name)}
-                              onLoad={() => handleImageLoad(product.image_url, product.name)}
-                            />
+                            <img src={product.image_url || '/placeholder.svg'} alt={product.name} className="w-full h-full object-cover" onError={() => handleImageError(product.image_url, product.name)} onLoad={() => handleImageLoad(product.image_url, product.name)} />
                           </div>
                           <CardContent className="p-4 md:p-4 bg-white/90 h-[112px] flex flex-col justify-between">
                             <div>
@@ -221,54 +187,30 @@ const Products = () => {
                               </Link>
                             </div>
                           </CardContent>
-                        </Card>
-                      ))}
+                        </Card>)}
                     </div>
                   </div>
                 </div>
 
                 {/* Pagination Controls */}
-                {pageCount > 1 && (
-                  <div className="flex justify-center mt-12 space-x-1">
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      onClick={() => setPage(page - 1)}
-                      disabled={page === 1}
-                    >
+                {pageCount > 1 && <div className="flex justify-center mt-12 space-x-1">
+                    <Button size="sm" variant="secondary" onClick={() => setPage(page - 1)} disabled={page === 1}>
                       Prev
                     </Button>
-                    {[...Array(pageCount)].map((_, i) => (
-                      <Button
-                        key={i}
-                        size="sm"
-                        variant={page === i + 1 ? "default" : "ghost"}
-                        onClick={() => setPage(i + 1)}
-                        aria-current={page === i + 1}
-                      >
+                    {[...Array(pageCount)].map((_, i) => <Button key={i} size="sm" variant={page === i + 1 ? "default" : "ghost"} onClick={() => setPage(i + 1)} aria-current={page === i + 1}>
                         {i + 1}
-                      </Button>
-                    ))}
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      onClick={() => setPage(page + 1)}
-                      disabled={page === pageCount}
-                    >
+                      </Button>)}
+                    <Button size="sm" variant="secondary" onClick={() => setPage(page + 1)} disabled={page === pageCount}>
                       Next
                     </Button>
-                  </div>
-                )}
-              </>
-            )}
+                  </div>}
+              </>}
           </div>
           {/* Flowing gradient background */}
           <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-brand-slate-blue/5 to-transparent rounded-full blur-3xl"></div>
         </section>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Products;

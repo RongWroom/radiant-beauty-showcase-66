@@ -169,7 +169,7 @@ const Products = () => {
                   {/* Right Column with 2x2 Grid (4 products) - Each card matches treatment card size */}
                   <div className="lg:col-span-2">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      {remainingProducts.map(product => <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[335px] border-brand-silver/30">
+                      {remainingProducts.map(product => <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[350px] border-brand-silver/30">
                           <div className="relative h-48 sm:h-56 md:h-32">
                             <img src={product.image_url || '/placeholder.svg'} alt={product.name} className="w-full h-full object-cover" onError={() => handleImageError(product.image_url, product.name)} onLoad={() => handleImageLoad(product.image_url, product.name)} />
                           </div>

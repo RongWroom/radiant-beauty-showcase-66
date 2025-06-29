@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -5,42 +6,35 @@ import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, RefreshCw } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { Skeleton } from "@/components/ui/skeleton";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { usePaginatedProducts, useInvalidateProductsCache } from "@/hooks/usePaginatedProducts";
 import { useToast } from "@/components/ui/use-toast";
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 5; // Reduced from 6 to 5 to show 4 in right column + 1 featured
 
 const Products = () => {
   const [page, setPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const { products, total, isLoading, isError, refetch } = usePaginatedProducts(page, PAGE_SIZE);
   const invalidateCache = useInvalidateProductsCache();
   const { toast } = useToast();
 
   const pageCount = Math.ceil(total / PAGE_SIZE);
 
+  // Get unique categories from products
+  const categories = ['all', ...Array.from(new Set(products.map(p => p.category).filter(Boolean)))];
+  
+  // Filter products by category
+  const filteredProducts = selectedCategory === 'all' 
+    ? products 
+    : products.filter(p => p.category === selectedCategory);
+
   const formatPrice = (price: number | null, currency: string | null) => {
     if (price === null) return 'N/A';
     const currencySymbol = currency === 'GBP' ? '£' : (currency === 'USD' ? '$' : '€');
     return `${currencySymbol}${price.toFixed(2)}`;
-  };
-
-  const handleRefresh = async () => {
-    try {
-      invalidateCache();
-      await refetch();
-      toast({
-        title: "Products Refreshed",
-        description: "Product data has been refreshed from the database.",
-      });
-    } catch (error) {
-      toast({
-        title: "Refresh Failed",
-        description: "Failed to refresh product data. Please try again.",
-        variant: "destructive",
-      });
-    }
   };
 
   // Force refresh cache on mount to get updated image URLs
@@ -61,8 +55,8 @@ const Products = () => {
   }, [products]);
 
   // On each page, feature the first product with 'featured', if none, pick first.
-  const featuredProduct = products.find(p => p.featured) || products[0] || null;
-  const remainingProducts = products.filter(p => p.id !== featuredProduct?.id);
+  const featuredProduct = filteredProducts.find(p => p.featured) || filteredProducts[0] || null;
+  const remainingProducts = filteredProducts.filter(p => p.id !== featuredProduct?.id).slice(0, 4); // Limit to 4 products
 
   const handleImageError = (imageUrl: string | null, productName: string) => {
     console.error(`Image failed to load for ${productName}:`, imageUrl);
@@ -81,20 +75,9 @@ const Products = () => {
         <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 md:py-20 animate-fade-in">
           <div className="container-custom relative z-10">
             <div className="text-center max-w-3xl mx-auto">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
-                  Our Products
-                </h1>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleRefresh}
-                  disabled={isLoading}
-                  className="ml-4"
-                >
-                  <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
-                </Button>
-              </div>
+              <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
+                Our Products
+              </h1>
               {/* Decorative Line */}
               <div className="flex justify-center mb-5">
                 <span className="block h-1 w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
@@ -112,12 +95,30 @@ const Products = () => {
         {/* Products Grid */}
         <section className="py-16 bg-gradient-to-b from-brand-white to-brand-off-white relative overflow-hidden">
           <div className="container-custom relative z-10">
-            <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center text-brand-charcoal">All Products</h2>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-serif text-brand-charcoal">All Products</h2>
+              
+              {/* Category Filter */}
+              <div className="w-48">
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="border-brand-silver/30">
+                    <SelectValue placeholder="Filter by category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map(category => (
+                      <SelectItem key={category} value={category}>
+                        {category === 'all' ? 'All Categories' : category}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
             
             {isLoading && (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-1">
-                  <Skeleton className="h-[500px] w-full rounded-lg" />
+                  <Skeleton className="h-[400px] w-full rounded-lg" />
                 </div>
                 <div className="lg:col-span-2">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -130,25 +131,26 @@ const Products = () => {
             {isError && (
               <div className="text-center">
                 <div className="text-red-500 font-medium mb-4">Failed to load products. Please try again later.</div>
-                <Button onClick={handleRefresh} variant="outline">
-                  <RefreshCw className="h-4 w-4 mr-2" />
+                <Button onClick={refetch} variant="outline">
                   Retry
                 </Button>
               </div>
             )}
 
-            {!isLoading && !isError && products.length === 0 && (
-              <div className="text-center text-brand-gray-600">No products have been added yet.</div>
+            {!isLoading && !isError && filteredProducts.length === 0 && (
+              <div className="text-center text-brand-gray-600">
+                {selectedCategory === 'all' ? 'No products have been added yet.' : `No products found in the ${selectedCategory} category.`}
+              </div>
             )}
 
-            {!isLoading && !isError && products.length > 0 && (
+            {!isLoading && !isError && filteredProducts.length > 0 && (
               <>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  {/* Featured Product - Large Square on Left */}
+                  {/* Featured Product - Fixed Height (2 cards tall) */}
                   {featuredProduct && (
                     <div className="lg:col-span-1">
-                      <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-full border-brand-silver/30">
-                        <div className="relative h-96 lg:h-full">
+                      <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[400px] border-brand-silver/30">
+                        <div className="relative h-64">
                           <img 
                             src={featuredProduct.image_url || '/placeholder.svg'} 
                             alt={featuredProduct.name} 
@@ -162,30 +164,31 @@ const Products = () => {
                               Featured
                             </Badge>
                           </div>
-                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-slate-blue/90 to-transparent p-4 text-white">
-                            <h3 className="font-serif font-medium text-white">{featuredProduct.name}</h3>
-                            <p className="text-sm mt-1 mb-2 line-clamp-2 text-white/90">
+                        </div>
+                        <CardContent className="p-4 bg-white/90 h-36 flex flex-col justify-between">
+                          <div>
+                            <h3 className="font-serif font-medium text-brand-charcoal text-lg">{featuredProduct.name}</h3>
+                            <p className="text-sm mt-1 mb-2 line-clamp-2 text-brand-gray-600">
                               {featuredProduct.description}
                             </p>
-                            <div className="flex items-center justify-between mt-2">
-                              <span className="text-lg font-medium text-white">{formatPrice(featuredProduct.price, featuredProduct.currency)}</span>
-                              <Link to={`/products/${featuredProduct.id}`}>
-                                <Button size="sm" className="bg-white text-brand-slate-blue hover:bg-brand-off-white">
-                                  View Product
-                                </Button>
-                              </Link>
-                            </div>
                           </div>
-                        </div>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-lg font-medium text-brand-slate-blue">{formatPrice(featuredProduct.price, featuredProduct.currency)}</span>
+                            <Link to={`/products/${featuredProduct.id}`}>
+                              <Button size="sm">View Product</Button>
+                            </Link>
+                          </div>
+                        </CardContent>
                       </Card>
                     </div>
                   )}
-                  {/* Right Column with 2x3 Grid */}
+                  
+                  {/* Right Column with 2x2 Grid (4 products) */}
                   <div className="lg:col-span-2">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       {remainingProducts.map(product => (
-                        <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow border-brand-silver/30">
-                          <div className="relative h-48">
+                        <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[192px] border-brand-silver/30">
+                          <div className="relative h-24">
                             <img 
                               src={product.image_url || '/placeholder.svg'} 
                               alt={product.name} 
@@ -194,15 +197,17 @@ const Products = () => {
                               onLoad={() => handleImageLoad(product.image_url, product.name)}
                             />
                           </div>
-                          <CardContent className="p-4 bg-white/90">
-                            <h3 className="font-serif text-lg font-medium text-brand-charcoal">{product.name}</h3>
-                            <p className="text-sm text-brand-gray-600 line-clamp-2 mt-1 mb-3">
-                              {product.description}
-                            </p>
-                            <div className="flex items-center justify-between mt-4">
-                              <span className="text-lg font-medium text-brand-slate-blue">{formatPrice(product.price, product.currency)}</span>
+                          <CardContent className="p-3 bg-white/90 h-[96px] flex flex-col justify-between">
+                            <div>
+                              <h3 className="font-serif text-sm font-medium text-brand-charcoal">{product.name}</h3>
+                              <p className="text-xs text-brand-gray-600 line-clamp-2 mt-1">
+                                {product.description}
+                              </p>
+                            </div>
+                            <div className="flex items-center justify-between mt-2">
+                              <span className="text-sm font-medium text-brand-slate-blue">{formatPrice(product.price, product.currency)}</span>
                               <Link to={`/products/${product.id}`}>
-                                <Button size="sm">View Product</Button>
+                                <Button size="sm" className="text-xs px-3 py-1">View</Button>
                               </Link>
                             </div>
                           </CardContent>

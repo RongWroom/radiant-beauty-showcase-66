@@ -133,6 +133,7 @@ export type Database = {
       }
       products: {
         Row: {
+          category: string | null
           created_at: string | null
           currency: string | null
           description: string | null
@@ -146,6 +147,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          category?: string | null
           created_at?: string | null
           currency?: string | null
           description?: string | null
@@ -159,6 +161,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          category?: string | null
           created_at?: string | null
           currency?: string | null
           description?: string | null
@@ -313,7 +316,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      keep_alive: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

@@ -10,6 +10,7 @@ export type Product = {
   currency: string | null;
   image_url: string | null;
   featured: boolean | null;
+  category: string | null;
 };
 
 type UsePaginatedProductsResult = {
@@ -39,7 +40,7 @@ export function usePaginatedProducts(page: number, pageSize: number): UsePaginat
       // Get products WITH LIMIT/OFFSET for pagination
       const { data: products, error } = await supabase
         .from("products")
-        .select("id, name, description, price, currency, image_url, featured")
+        .select("id, name, description, price, currency, image_url, featured, category")
         .order("created_at", { ascending: false })
         .range((page - 1) * pageSize, page * pageSize - 1);
 

@@ -149,7 +149,7 @@ const Products = () => {
                             </Badge>
                           </div>
                         </div>
-                        <CardContent className="p-4 md:p-6 bg-white/90 h-[200px] flex flex-col justify-between">
+                        <CardContent className="p-4 md:p-6 bg-white/90 h-[200px] flex flex-col justify-between my-[48px]">
                           <div>
                             <h3 className="font-serif font-medium text-brand-charcoal text-lg md:text-xl">{featuredProduct.name}</h3>
                             <p className="text-sm md:text-base mt-1 mb-2 line-clamp-3 text-brand-gray-600">

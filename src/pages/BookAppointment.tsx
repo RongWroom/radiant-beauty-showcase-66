@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTreatment } from '@/hooks/useTreatments';
@@ -8,16 +7,22 @@ import Footer from '@/components/Footer';
 import BookingForm from '@/components/BookingForm';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-
 const BookAppointment = () => {
-  const { id } = useParams<{ id: string }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const { data: treatment, isLoading } = useTreatment(Number(id));
-
+  const {
+    user
+  } = useAuth();
+  const {
+    data: treatment,
+    isLoading
+  } = useTreatment(Number(id));
   if (!user) {
-    return (
-      <div className="min-h-screen bg-gray-50">
+    return <div className="min-h-screen bg-gray-50">
         <Navbar />
         <div className="container-custom py-12">
           <div className="text-center">
@@ -31,25 +36,19 @@ const BookAppointment = () => {
           </div>
         </div>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
+    return <div className="min-h-screen bg-gray-50">
         <Navbar />
         <div className="container-custom py-12">
           <div className="text-center">Loading...</div>
         </div>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
   if (!treatment) {
-    return (
-      <div className="min-h-screen bg-gray-50">
+    return <div className="min-h-screen bg-gray-50">
         <Navbar />
         <div className="container-custom py-12">
           <div className="text-center">
@@ -60,25 +59,21 @@ const BookAppointment = () => {
           </div>
         </div>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
   const handleBookingSuccess = () => {
-    navigate('/account', { state: { activeTab: 'appointments' } });
+    navigate('/account', {
+      state: {
+        activeTab: 'appointments'
+      }
+    });
   };
-
-  return (
-    <div className="min-h-screen bg-gray-50">
+  return <div className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="container-custom py-12">
         <div className="max-w-4xl mx-auto">
           <div className="mb-6">
-            <Button
-              variant="ghost"
-              onClick={() => navigate(`/treatments/${id}`)}
-              className="mb-4"
-            >
+            <Button variant="ghost" onClick={() => navigate(`/treatments/${id}`)} className="mb-4 text-slate-100 text-base bg-slate-800 hover:bg-slate-700">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Treatment
             </Button>
@@ -88,15 +83,10 @@ const BookAppointment = () => {
             </p>
           </div>
 
-          <BookingForm
-            treatmentId={treatment.id}
-            onSuccess={handleBookingSuccess}
-          />
+          <BookingForm treatmentId={treatment.id} onSuccess={handleBookingSuccess} />
         </div>
       </div>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default BookAppointment;

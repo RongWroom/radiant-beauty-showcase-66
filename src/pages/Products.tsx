@@ -23,8 +23,17 @@ const Products = () => {
 
   const pageCount = Math.ceil(total / PAGE_SIZE);
 
-  // Get unique categories from products, including all possible categories
-  const allCategories = ['Serums', 'Moisturizers', 'Cleansers', 'Skincare'];
+  // Complete list of categories
+  const allCategories = [
+    'Cleansers',
+    'Serums', 
+    'Moisturizers',
+    'Sun Protection',
+    'Eye Care',
+    'Collections',
+    'Specialty',
+    'Skincare'
+  ];
   const categories = ['all', ...allCategories];
   
   // Filter products by category
@@ -119,11 +128,11 @@ const Products = () => {
             {isLoading && (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-1">
-                  <Skeleton className="h-[400px] w-full rounded-lg" />
+                  <Skeleton className="h-[500px] w-full rounded-lg" />
                 </div>
                 <div className="lg:col-span-2">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-72 w-full rounded-lg" />)}
+                    {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-[240px] w-full rounded-lg" />)}
                   </div>
                 </div>
               </div>
@@ -147,11 +156,11 @@ const Products = () => {
             {!isLoading && !isError && filteredProducts.length > 0 && (
               <>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  {/* Featured Product - Takes up left column, height of 2 normal cards */}
+                  {/* Featured Product - Takes up left column, same height as 2 normal cards */}
                   {featuredProduct && (
                     <div className="lg:col-span-1">
-                      <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[400px] border-brand-silver/30">
-                        <div className="relative h-64">
+                      <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[500px] border-brand-silver/30">
+                        <div className="relative h-64 sm:h-80 md:h-[300px]">
                           <img 
                             src={featuredProduct.image_url || '/placeholder.svg'} 
                             alt={featuredProduct.name} 
@@ -166,17 +175,17 @@ const Products = () => {
                             </Badge>
                           </div>
                         </div>
-                        <CardContent className="p-4 bg-white/90 h-36 flex flex-col justify-between">
+                        <CardContent className="p-4 md:p-6 bg-white/90 h-[200px] flex flex-col justify-between">
                           <div>
-                            <h3 className="font-serif font-medium text-brand-charcoal text-lg">{featuredProduct.name}</h3>
-                            <p className="text-sm mt-1 mb-2 line-clamp-2 text-brand-gray-600">
+                            <h3 className="font-serif font-medium text-brand-charcoal text-lg md:text-xl">{featuredProduct.name}</h3>
+                            <p className="text-sm md:text-base mt-1 mb-2 line-clamp-3 text-brand-gray-600">
                               {featuredProduct.description}
                             </p>
                           </div>
-                          <div className="flex items-center justify-between mt-2">
-                            <span className="text-lg font-medium text-brand-slate-blue">{formatPrice(featuredProduct.price, featuredProduct.currency)}</span>
+                          <div className="flex items-center justify-between mt-4">
+                            <span className="text-lg md:text-xl font-medium text-brand-slate-blue">{formatPrice(featuredProduct.price, featuredProduct.currency)}</span>
                             <Link to={`/products/${featuredProduct.id}`}>
-                              <Button size="sm">View Product</Button>
+                              <Button size="sm" className="text-sm md:text-base min-h-[40px] px-4 md:px-6">View Product</Button>
                             </Link>
                           </div>
                         </CardContent>
@@ -184,12 +193,12 @@ const Products = () => {
                     </div>
                   )}
                   
-                  {/* Right Column with 2x2 Grid (4 products) - Each card is 190px high */}
+                  {/* Right Column with 2x2 Grid (4 products) - Each card matches treatment card size */}
                   <div className="lg:col-span-2">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       {remainingProducts.map(product => (
-                        <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[190px] border-brand-silver/30">
-                          <div className="relative h-24">
+                        <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[240px] border-brand-silver/30">
+                          <div className="relative h-48 sm:h-56 md:h-32">
                             <img 
                               src={product.image_url || '/placeholder.svg'} 
                               alt={product.name} 
@@ -198,17 +207,17 @@ const Products = () => {
                               onLoad={() => handleImageLoad(product.image_url, product.name)}
                             />
                           </div>
-                          <CardContent className="p-3 bg-white/90 h-[118px] flex flex-col justify-between">
+                          <CardContent className="p-4 md:p-4 bg-white/90 h-[112px] flex flex-col justify-between">
                             <div>
-                              <h3 className="font-serif text-sm font-medium text-brand-charcoal">{product.name}</h3>
-                              <p className="text-xs text-brand-gray-600 line-clamp-2 mt-1">
+                              <h3 className="font-serif text-sm md:text-base font-medium text-brand-charcoal">{product.name}</h3>
+                              <p className="text-xs md:text-sm text-brand-gray-600 line-clamp-2 mt-1">
                                 {product.description}
                               </p>
                             </div>
                             <div className="flex items-center justify-between mt-2">
-                              <span className="text-sm font-medium text-brand-slate-blue">{formatPrice(product.price, product.currency)}</span>
+                              <span className="text-sm md:text-base font-medium text-brand-slate-blue">{formatPrice(product.price, product.currency)}</span>
                               <Link to={`/products/${product.id}`}>
-                                <Button size="sm" className="text-xs px-3 py-1">View</Button>
+                                <Button size="sm" className="text-xs md:text-sm px-3 py-1 md:px-4 min-h-[32px] md:min-h-[36px]">View</Button>
                               </Link>
                             </div>
                           </CardContent>

@@ -34,7 +34,7 @@ const Navbar = () => {
               <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-base lg:text-lg`}>Treatments</Link>
               <Link to="/about" className={`${isActive('/about')} transition-colors text-base lg:text-lg`}>About</Link>
               <Link to="/contact" className={`${isActive('/contact')} transition-colors text-base lg:text-lg`}>Contact</Link>
-              <Link to="/products" className={`${isActive('/products')} transition-colors text-base lg:text-lg`}>Aftercare</Link>
+              <Link to="/products" className={`${isActive('/products')} transition-colors text-base lg:text-lg`}>Products</Link>
             </div>
           </div>
           

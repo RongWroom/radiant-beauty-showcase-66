@@ -32,7 +32,7 @@ const Navbar = () => {
             <div className="hidden md:flex space-x-6 lg:space-x-8">
               <Link to="/" className={`${isActive('/')} transition-colors text-base lg:text-lg`}>Home</Link>
               <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-base lg:text-lg`}>Treatments</Link>
-              <Link to="/products" className={`${isActive('/products')} transition-colors text-base lg:text-lg`}>Aftercare</Link>
+              <Link to="/products" className={`${isActive('/products')} transition-colors text-base lg:text-lg`}>Products</Link>
               <Link to="/about" className={`${isActive('/about')} transition-colors text-base lg:text-lg`}>About</Link>
               <Link to="/contact" className={`${isActive('/contact')} transition-colors text-base lg:text-lg`}>Contact</Link>
             </div>

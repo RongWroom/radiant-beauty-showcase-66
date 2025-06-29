@@ -23,8 +23,9 @@ const Products = () => {
 
   const pageCount = Math.ceil(total / PAGE_SIZE);
 
-  // Get unique categories from products
-  const categories = ['all', ...Array.from(new Set(products.map(p => p.category).filter(Boolean)))];
+  // Get unique categories from products, including all possible categories
+  const allCategories = ['Serums', 'Moisturizers', 'Cleansers', 'Skincare'];
+  const categories = ['all', ...allCategories];
   
   // Filter products by category
   const filteredProducts = selectedCategory === 'all' 
@@ -146,7 +147,7 @@ const Products = () => {
             {!isLoading && !isError && filteredProducts.length > 0 && (
               <>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  {/* Featured Product - Fixed Height (2 cards tall) */}
+                  {/* Featured Product - Takes up left column, height of 2 normal cards */}
                   {featuredProduct && (
                     <div className="lg:col-span-1">
                       <Card className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[400px] border-brand-silver/30">
@@ -183,11 +184,11 @@ const Products = () => {
                     </div>
                   )}
                   
-                  {/* Right Column with 2x2 Grid (4 products) */}
+                  {/* Right Column with 2x2 Grid (4 products) - Each card is 190px high */}
                   <div className="lg:col-span-2">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       {remainingProducts.map(product => (
-                        <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[192px] border-brand-silver/30">
+                        <Card key={product.id} className="card-product overflow-hidden hover:shadow-lg transition-shadow h-[190px] border-brand-silver/30">
                           <div className="relative h-24">
                             <img 
                               src={product.image_url || '/placeholder.svg'} 
@@ -197,7 +198,7 @@ const Products = () => {
                               onLoad={() => handleImageLoad(product.image_url, product.name)}
                             />
                           </div>
-                          <CardContent className="p-3 bg-white/90 h-[96px] flex flex-col justify-between">
+                          <CardContent className="p-3 bg-white/90 h-[118px] flex flex-col justify-between">
                             <div>
                               <h3 className="font-serif text-sm font-medium text-brand-charcoal">{product.name}</h3>
                               <p className="text-xs text-brand-gray-600 line-clamp-2 mt-1">

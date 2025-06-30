@@ -25,7 +25,7 @@ const Products = () => {
   const invalidateCache = useInvalidateProductsCache();
   const pageCount = Math.ceil(total / PAGE_SIZE);
 
-  // Complete list of categories matching your requirements
+  // Updated categories to match the database
   const allCategories = [
     'Cleansers', 
     'Serums', 

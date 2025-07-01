@@ -1,159 +1,146 @@
 
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { useAppointments } from '@/hooks/useAppointments';
+import { useUserRole } from '@/hooks/useUserRole';
+import { SecurityBanner } from '@/components/security/SecurityBanner';
+import { AdminGuard } from '@/components/security/AdminGuard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import AppointmentCard from '@/components/AppointmentCard';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CalendarDays, Package, User, LogOut } from 'lucide-react';
+import { User, Shield, Settings, LogOut } from 'lucide-react';
 
 const Account = () => {
   const { user, signOut } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { data: appointments = [], isLoading: appointmentsLoading } = useAppointments();
-  
-  // Get active tab from location state or default to 'profile'
-  const [activeTab, setActiveTab] = useState(location.state?.activeTab || 'profile');
-
-  useEffect(() => {
-    if (!user) {
-      navigate('/auth');
-    }
-  }, [user, navigate]);
-
-  const handleSignOut = async () => {
-    await signOut();
-    navigate('/');
-  };
+  const { role, isAdmin, loading } = useUserRole();
 
   if (!user) {
-    return null;
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">Please log in to access your account</h1>
+            <Button onClick={() => window.location.href = '/auth'}>
+              Go to Login
+            </Button>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
   }
 
-  const upcomingAppointments = appointments.filter(apt => 
-    apt.status !== 'cancelled' && apt.status !== 'completed'
-  );
-  
-  const pastAppointments = appointments.filter(apt => 
-    apt.status === 'completed' || apt.status === 'cancelled'
-  );
-
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container-custom py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold">My Account</h1>
-            <p className="text-muted-foreground mt-2">
-              Manage your profile, appointments, and orders
-            </p>
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <SecurityBanner />
+        
+        <div className="max-w-4xl mx-auto space-y-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold">Account Dashboard</h1>
+            <Badge variant={isAdmin ? "destructive" : "secondary"} className="flex items-center gap-1">
+              <Shield className="h-3 w-3" />
+              {role.toUpperCase()}
+            </Badge>
           </div>
 
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="profile" className="flex items-center gap-2">
-                <User className="h-4 w-4" />
-                Profile
-              </TabsTrigger>
-              <TabsTrigger value="appointments" className="flex items-center gap-2">
-                <CalendarDays className="h-4 w-4" />
-                Appointments
-              </TabsTrigger>
-              <TabsTrigger value="orders" className="flex items-center gap-2">
-                <Package className="h-4 w-4" />
-                Orders
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="profile" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Profile Information</CardTitle>
-                  <CardDescription>
-                    Your account details and preferences
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Email</label>
-                    <p className="text-gray-900">{user.email}</p>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Member Since</label>
-                    <p className="text-gray-900">
-                      {new Date(user.created_at).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="pt-4">
-                    <Button
-                      variant="outline"
-                      onClick={handleSignOut}
-                      className="flex items-center gap-2"
-                    >
-                      <LogOut className="h-4 w-4" />
-                      Sign Out
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="appointments" className="space-y-6">
-              <div>
-                <h2 className="text-xl font-semibold mb-4">Upcoming Appointments</h2>
-                {appointmentsLoading ? (
-                  <p className="text-muted-foreground">Loading appointments...</p>
-                ) : upcomingAppointments.length === 0 ? (
-                  <Card>
-                    <CardContent className="text-center py-8">
-                      <CalendarDays className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground mb-4">No upcoming appointments</p>
-                      <Button onClick={() => navigate('/treatments')}>
-                        Book an Appointment
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <div className="grid gap-4">
-                    {upcomingAppointments.map((appointment) => (
-                      <AppointmentCard key={appointment.id} appointment={appointment} />
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {pastAppointments.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <User className="h-5 w-5" />
+                  Profile Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
                 <div>
-                  <h2 className="text-xl font-semibold mb-4">Past Appointments</h2>
-                  <div className="grid gap-4">
-                    {pastAppointments.map((appointment) => (
-                      <AppointmentCard key={appointment.id} appointment={appointment} />
-                    ))}
-                  </div>
+                  <label className="text-sm font-medium text-gray-600">Email</label>
+                  <p className="font-medium">{user.email}</p>
                 </div>
-              )}
-            </TabsContent>
+                <div>
+                  <label className="text-sm font-medium text-gray-600">User ID</label>
+                  <p className="font-mono text-sm text-gray-500">{user.id}</p>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-600">Account Role</label>
+                  <p className="font-medium capitalize">{loading ? 'Loading...' : role}</p>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-600">Member Since</label>
+                  <p className="font-medium">
+                    {new Date(user.created_at).toLocaleDateString()}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-            <TabsContent value="orders" className="space-y-6">
-              <Card>
-                <CardContent className="text-center py-8">
-                  <Package className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground mb-4">No orders yet</p>
-                  <Button onClick={() => navigate('/products')}>
-                    Browse Products
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Settings className="h-5 w-5" />
+                  Account Actions
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start"
+                  onClick={() => window.location.href = '/manage-appointment'}
+                >
+                  Manage Appointments
+                </Button>
+                
+                <AdminGuard>
+                  <Button 
+                    variant="outline" 
+                    className="w-full justify-start"
+                    onClick={() => alert('Admin panel coming soon!')}
+                  >
+                    <Shield className="h-4 w-4 mr-2" />
+                    Admin Panel
                   </Button>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+                </AdminGuard>
+
+                <Button 
+                  variant="destructive" 
+                  className="w-full justify-start"
+                  onClick={signOut}
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Sign Out
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          <AdminGuard fallback={null}>
+            <Card className="border-yellow-200 bg-yellow-50">
+              <CardHeader>
+                <CardTitle className="text-yellow-800">Administrator Access</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-yellow-700 mb-4">
+                  You have administrator privileges. All administrative actions are logged and monitored.
+                </p>
+                <div className="space-y-2">
+                  <Button variant="outline" size="sm">
+                    View Audit Logs
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    Manage Users
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    System Settings
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </AdminGuard>
         </div>
-      </div>
+      </main>
       <Footer />
     </div>
   );

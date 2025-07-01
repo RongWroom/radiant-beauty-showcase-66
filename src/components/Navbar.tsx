@@ -1,160 +1,164 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { User, Menu, X, LogOut } from 'lucide-react';
-import Cart from './Cart';
+import { Menu, X, User, Shield } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { Button } from '@/components/ui/button';
-import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
+import { useUserRole } from '@/hooks/useUserRole';
+import { Badge } from '@/components/ui/badge';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { isOpen, toggle, close } = useMobileNavigation();
   const { user, signOut } = useAuth();
-  
-  const isActive = (path: string) => {
-    return location.pathname === path ? "text-brand-slate-blue font-medium" : "text-brand-charcoal hover:text-brand-slate-blue";
-  };
+  const { isAdmin } = useUserRole();
 
-  const handleSignOut = async () => {
-    await signOut();
-    close();
-  };
+  const navigation = [
+    { name: 'Home', href: '/' },
+    { name: 'Treatments', href: '/treatments' },
+    { name: 'Products', href: '/products' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' }
+  ];
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
-    <>
-      <nav className="bg-white py-4 sm:py-6 sticky top-0 z-50 shadow-sm border-b border-brand-gray-200">
-        <div className="container-custom flex justify-between items-center">
-          <div className="flex items-center space-x-8 sm:space-x-12">
-            <Link to="/" className="text-2xl sm:text-3xl font-serif font-bold text-hierarchy-primary" onClick={close}>
-              STW
-            </Link>
-            <div className="hidden md:flex space-x-6 lg:space-x-8">
-              <Link to="/" className={`${isActive('/')} transition-colors text-base lg:text-lg`}>Home</Link>
-              <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-base lg:text-lg`}>Treatments</Link>
-              <Link to="/products" className={`${isActive('/products')} transition-colors text-base lg:text-lg`}>Products</Link>
-              <Link to="/about" className={`${isActive('/about')} transition-colors text-base lg:text-lg`}>About</Link>
-              <Link to="/contact" className={`${isActive('/contact')} transition-colors text-base lg:text-lg`}>Contact</Link>
+    <nav className="bg-white shadow-lg relative z-50">
+      <div className="container-custom">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-brand-slate-blue rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-sm">STW</span>
             </div>
+            <span className="font-serif text-xl font-bold text-brand-charcoal">
+              STW Aesthetic Clinic
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`font-medium transition-colors ${
+                  isActive(item.href)
+                    ? 'text-brand-slate-blue border-b-2 border-brand-slate-blue'
+                    : 'text-brand-gray-600 hover:text-brand-slate-blue'
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
-          
-          {/* Desktop Icons */}
-          <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
+
+          {/* Auth Section */}
+          <div className="hidden md:flex items-center space-x-4">
             {user ? (
-              <div className="flex items-center space-x-2">
-                <Link 
-                  to="/account" 
-                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center hover:bg-rose-50 rounded-full transition-colors"
+              <div className="flex items-center space-x-3">
+                {isAdmin && (
+                  <Badge variant="destructive" className="flex items-center gap-1">
+                    <Shield className="h-3 w-3" />
+                    ADMIN
+                  </Badge>
+                )}
+                <Link
+                  to="/account"
+                  className="flex items-center space-x-2 text-brand-gray-600 hover:text-brand-slate-blue transition-colors"
                 >
-                  <User className="h-5 w-5 lg:h-6 lg:w-6 text-brand-gray-600 fill-current" />
+                  <User className="h-4 w-4" />
+                  <span>Account</span>
                 </Link>
-                <button 
-                  onClick={handleSignOut}
-                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center hover:bg-rose-50 rounded-full transition-colors"
+                <button
+                  onClick={signOut}
+                  className="text-brand-gray-600 hover:text-brand-slate-blue transition-colors"
                 >
-                  <LogOut className="h-5 w-5 lg:h-6 lg:w-6 text-brand-gray-600" />
+                  Sign Out
                 </button>
               </div>
             ) : (
-              <Link to="/auth">
-                <Button variant="outline" size="sm" className="min-h-[40px]">
-                  Sign In
-                </Button>
-              </Link>
-            )}
-            
-            <Cart />
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <Cart />
-            <button 
-              onClick={toggle}
-              className="w-12 h-12 flex items-center justify-center hover:bg-rose-50 rounded-full transition-colors"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              {isOpen ? (
-                <X className="h-6 w-6 text-brand-gray-600" />
-              ) : (
-                <Menu className="h-6 w-6 text-brand-gray-600" />
-              )}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <div 
-          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40" 
-          onClick={close}
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Mobile Menu */}
-      <div className={`md:hidden fixed top-0 right-0 h-full w-72 sm:w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
-        <div className="p-4 sm:p-6 h-full flex flex-col">
-          <div className="flex justify-between items-center mb-6 sm:mb-8">
-            <Link to="/" className="text-xl sm:text-2xl font-serif font-bold text-hierarchy-primary" onClick={close}>
-              STW Clinic
-            </Link>
-            <button 
-              onClick={close}
-              className="w-12 h-12 flex items-center justify-center hover:bg-rose-50 rounded-full transition-colors"
-              aria-label="Close menu"
-            >
-              <X className="h-6 w-6 text-brand-gray-600" />
-            </button>
-          </div>
-          
-          <div className="flex flex-col space-y-4 sm:space-y-6 flex-grow">
-            <Link to="/" className={`${isActive('/')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
-              Home
-            </Link>
-            <Link to="/treatments" className={`${isActive('/treatments')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
-              Treatments
-            </Link>
-            <Link to="/about" className={`${isActive('/about')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
-              About
-            </Link>
-            <Link to="/contact" className={`${isActive('/contact')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
-              Contact
-            </Link>
-            <Link to="/products" className={`${isActive('/products')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
-              Aftercare Products
-            </Link>
-
-            {user && (
-              <Link to="/account" className={`${isActive('/account')} transition-colors text-lg py-3 px-2 rounded-lg hover:bg-rose-50 touch-target`} onClick={close}>
-                My Account
-              </Link>
-            )}
-          </div>
-
-          <div className="flex items-center justify-center space-x-4 mt-6 pt-6 border-t border-brand-gray-200">
-            {user ? (
-              <button 
-                onClick={handleSignOut}
-                className="flex items-center space-x-2 px-4 py-3 hover:bg-rose-50 rounded-lg transition-colors"
+              <Link
+                to="/auth"
+                className="bg-brand-slate-blue text-white px-4 py-2 rounded-md hover:bg-brand-slate-blue/90 transition-colors"
               >
-                <LogOut className="h-5 w-5 text-brand-gray-600" />
-                <span className="text-brand-gray-600">Sign Out</span>
-              </button>
-            ) : (
-              <Link to="/auth" onClick={close} className="w-full">
-                <Button variant="outline" size="sm" className="w-full min-h-[48px]">
-                  Sign In
-                </Button>
+                Sign In
               </Link>
             )}
           </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-brand-gray-600 hover:text-brand-slate-blue focus:outline-none"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t z-40">
+            <div className="px-4 py-4 space-y-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`block font-medium transition-colors ${
+                    isActive(item.href)
+                      ? 'text-brand-slate-blue'
+                      : 'text-brand-gray-600 hover:text-brand-slate-blue'
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              
+              <div className="pt-4 border-t">
+                {user ? (
+                  <div className="space-y-3">
+                    {isAdmin && (
+                      <Badge variant="destructive" className="flex items-center gap-1 w-fit">
+                        <Shield className="h-3 w-3" />
+                        ADMIN
+                      </Badge>
+                    )}
+                    <Link
+                      to="/account"
+                      className="flex items-center space-x-2 text-brand-gray-600 hover:text-brand-slate-blue transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <User className="h-4 w-4" />
+                      <span>Account</span>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        signOut();
+                        setIsOpen(false);
+                      }}
+                      className="text-brand-gray-600 hover:text-brand-slate-blue transition-colors"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    to="/auth"
+                    className="block bg-brand-slate-blue text-white px-4 py-2 rounded-md hover:bg-brand-slate-blue/90 transition-colors text-center"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Sign In
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </>
+    </nav>
   );
 };
 

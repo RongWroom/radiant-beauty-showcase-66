@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { featuredTreatments, treatments } from '../utils/data';
-
 export const FeaturedSection = () => {
-  return (
-    <section className="section bg-white">
+  return <section className="section bg-white">
       <div className="container-custom">
         <div className="flex flex-col lg:flex-row gap-16 sm:gap-20 lg:gap-24 items-center mb-20 sm:mb-24 lg:mb-32">
           <div className="lg:w-1/2 mobile-spacing-lg text-center lg:text-left">
@@ -35,13 +33,13 @@ export const FeaturedSection = () => {
         </div>
         
         <div className="text-center mb-16 sm:mb-20">
-          <h2 className="mobile-text-2xl font-serif text-hierarchy-primary max-w-5xl mx-auto">Our most popular treatments for visible, lasting results.</h2>
+          <h2 className="mobile-text-2xl font-serif text-hierarchy-primary max-w-5xl mx-auto">Our most popular treatments 
+for visible, lasting results.</h2>
         </div>
         
         {/* Desktop Layout - 3 column grid */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-8 sm:gap-10">
-          {featuredTreatments.map(treatment => (
-            <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
+          {featuredTreatments.map(treatment => <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
               <div className="relative overflow-hidden">
                 <img src={treatment.image} alt={treatment.name} className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -58,16 +56,14 @@ export const FeaturedSection = () => {
                   </Link>
                 </div>
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
 
         {/* Mobile and Tablet Layout - Responsive grid and horizontal scroll */}
         <div className="lg:hidden">
           {/* Mobile: Single column */}
           <div className="md:hidden grid grid-cols-1 gap-8">
-            {featuredTreatments.map(treatment => (
-              <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
+            {featuredTreatments.map(treatment => <div key={treatment.id} className="card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
                 <div className="relative overflow-hidden">
                   <img src={treatment.image} alt={treatment.name} className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300" />
                   <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -84,16 +80,14 @@ export const FeaturedSection = () => {
                     </Link>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
 
           {/* Tablet: Horizontal scroll */}
           <div className="hidden md:block">
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex w-max space-x-6 p-1">
-                {featuredTreatments.map(treatment => (
-                  <div key={treatment.id} className="w-[320px] flex-shrink-0 card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
+                {featuredTreatments.map(treatment => <div key={treatment.id} className="w-[320px] flex-shrink-0 card-featured rounded-3xl overflow-hidden group border border-brand-gray-200">
                     <div className="relative aspect-[16/9] w-full overflow-hidden">
                       <img src={treatment.image} alt={treatment.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                       <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -110,21 +104,17 @@ export const FeaturedSection = () => {
                         </Link>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
               <ScrollBar orientation="horizontal" />
             </ScrollArea>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export const BannerSection = () => {
-  return (
-    <section className="section bg-section-light relative overflow-hidden">
+  return <section className="section bg-section-light relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {/* Subtle blush gradient diagonally from left-bottom to right-top */}
         <div className="w-full h-full bg-gradient-to-tr from-brand-silver-light/30 via-white to-white" />
@@ -155,17 +145,13 @@ export const BannerSection = () => {
       <div className="absolute top-0 right-0 h-full w-1/4 opacity-10 pointer-events-none" aria-hidden="true">
         <img src="https://siojarsutauhnuiwrmkd.supabase.co/storage/v1/object/public/site-images/treatment/STW_Aesthetic_w_3.jpeg" alt="Decorative leaves" className="h-full object-cover" />
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export const ProductGrid = () => {
-  return (
-    <section className="section bg-section-light">
+  return <section className="section bg-section-light">
       <div className="container-custom">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {treatments.map(treatment => (
-            <div key={treatment.id} className="bg-white rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group border border-brand-neutral-200">
+          {treatments.map(treatment => <div key={treatment.id} className="bg-white rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group border border-brand-neutral-200">
               <img src={treatment.image} alt={treatment.name} className="w-full h-48 object-cover rounded-xl mb-6 group-hover:scale-105 transition-transform duration-300" />
               <h3 className="text-lg font-serif font-medium mb-2 text-hierarchy-primary">{treatment.name}</h3>
               <p className="text-hierarchy-secondary text-sm mb-4 line-clamp-2">{treatment.description}</p>
@@ -177,14 +163,11 @@ export const ProductGrid = () => {
                   </Button>
                 </Link>
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default {
   FeaturedSection,
   BannerSection,

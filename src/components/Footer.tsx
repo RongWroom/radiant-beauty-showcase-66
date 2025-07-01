@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, MapPin, Phone, Mail, Clock } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-dark text-white">
+  return <footer className="bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-dark text-white">
       {/* Main Footer Content */}
       <div className="container-custom py-12 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -20,13 +17,7 @@ const Footer = () => {
               Your trusted partner for advanced aesthetic treatments and skincare solutions in Stanley.
             </p>
             <div className="flex items-center space-x-4">
-              <a 
-                href="https://www.facebook.com/STWAestheticClinic" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-300 hover:scale-105"
-                aria-label="Follow us on Facebook"
-              >
+              <a href="https://www.facebook.com/STWAestheticClinic" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-300 hover:scale-105" aria-label="Follow us on Facebook">
                 <Facebook className="h-5 w-5 text-white" />
               </a>
             </div>
@@ -38,42 +29,27 @@ const Footer = () => {
             <div className="w-12 h-0.5 bg-brand-silver rounded-full mb-4"></div>
             <ul className="space-y-3">
               <li>
-                <Link 
-                  to="/" 
-                  className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group"
-                >
+                <Link to="/" className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group">
                   <span className="group-hover:translate-x-1 transition-transform duration-200">Home</span>
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/treatments" 
-                  className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group"
-                >
+                <Link to="/treatments" className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group">
                   <span className="group-hover:translate-x-1 transition-transform duration-200">Treatments</span>
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/products" 
-                  className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group"
-                >
+                <Link to="/products" className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group">
                   <span className="group-hover:translate-x-1 transition-transform duration-200">Products</span>
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/about" 
-                  className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group"
-                >
+                <Link to="/about" className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group">
                   <span className="group-hover:translate-x-1 transition-transform duration-200">About Us</span>
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/contact" 
-                  className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group"
-                >
+                <Link to="/contact" className="text-white/80 hover:text-white transition-colors duration-200 flex items-center group">
                   <span className="group-hover:translate-x-1 transition-transform duration-200">Contact</span>
                 </Link>
               </li>
@@ -95,19 +71,13 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-brand-silver flex-shrink-0" />
-                <a 
-                  href="tel:01207239983" 
-                  className="text-white/80 hover:text-white transition-colors text-sm"
-                >
+                <a href="tel:01207239983" className="text-white/80 hover:text-white transition-colors text-sm">
                   01207 239983
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-brand-silver flex-shrink-0" />
-                <a 
-                  href="mailto:sharon@stwaestheticclinic.co.uk" 
-                  className="text-white/80 hover:text-white transition-colors text-sm break-all"
-                >
+                <a href="mailto:sharon@stwaestheticclinic.co.uk" className="text-white/80 hover:text-white transition-colors text-sm break-all">
                   sharon@stwaestheticclinic.co.uk
                 </a>
               </div>
@@ -123,15 +93,15 @@ const Footer = () => {
                 <Clock className="h-4 w-4 text-brand-silver mt-1 flex-shrink-0" />
                 <div className="text-white/80 text-sm leading-relaxed">
                   <div className="flex justify-between mb-1">
-                    <span>Mon - Fri</span>
+                    <span className="mx-[8px]">Mon - Fri</span>
                     <span>9AM - 5PM</span>
                   </div>
                   <div className="flex justify-between mb-1">
-                    <span>Saturday</span>
+                    <span className="px-0 mx-[8px]">Saturday</span>
                     <span>10AM - 3PM</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Sunday</span>
+                    <span className="mx-[8px]">Sunday</span>
                     <span>Closed</span>
                   </div>
                 </div>
@@ -150,12 +120,7 @@ const Footer = () => {
             </div>
             <div className="text-white/70 text-sm text-center sm:text-right">
               <p>
-                Website: <a 
-                  href="https://stwaestheticclinic.co.uk" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-white transition-colors"
-                >
+                Website: <a href="https://stwaestheticclinic.co.uk" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
                   stwaestheticclinic.co.uk
                 </a>
               </p>
@@ -163,8 +128,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

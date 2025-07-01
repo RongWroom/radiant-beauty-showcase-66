@@ -14,6 +14,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Account from "./pages/Account";
+import CustomerAppointments from "./pages/CustomerAppointments";
 import Treatments from "./pages/Treatments";
 import TreatmentDetail from "./pages/TreatmentDetail";
 import BookAppointment from "./pages/BookAppointment";
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/account" element={<Account />} />
+                <Route path="/account/appointments" element={<CustomerAppointments />} />
                 <Route path="/treatments" element={<Treatments />} />
                 <Route path="/treatments/:id" element={<TreatmentDetail />} />
                 <Route path="/treatments/:id/book" element={<BookAppointment />} />

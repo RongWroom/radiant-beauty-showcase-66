@@ -2,14 +2,13 @@
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUserRole } from '@/hooks/useUserRole';
-import { SecurityBanner } from '@/components/security/SecurityBanner';
 import { AdminGuard } from '@/components/security/AdminGuard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { User, Shield, Settings, LogOut } from 'lucide-react';
+import { User, Shield, Settings, LogOut, Calendar } from 'lucide-react';
 
 const Account = () => {
   const { user, signOut } = useAuth();
@@ -36,7 +35,17 @@ const Account = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow container mx-auto px-4 py-8">
-        <SecurityBanner />
+        {/* Only show security banner for admins */}
+        <AdminGuard fallback={null}>
+          <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div className="flex items-center gap-2 text-yellow-800">
+              <Shield className="h-4 w-4" />
+              <span className="text-sm">
+                Administrator access - All actions are logged and monitored
+              </span>
+            </div>
+          </div>
+        </AdminGuard>
         
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="flex items-center justify-between">
@@ -88,9 +97,10 @@ const Account = () => {
                 <Button 
                   variant="outline" 
                   className="w-full justify-start"
-                  onClick={() => window.location.href = '/manage-appointment'}
+                  onClick={() => window.location.href = '/account/appointments'}
                 >
-                  Manage Appointments
+                  <Calendar className="h-4 w-4 mr-2" />
+                  My Appointments
                 </Button>
                 
                 <AdminGuard>

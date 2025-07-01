@@ -59,7 +59,7 @@ const CustomerReviews = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-10">
-          {visibleReviews.map(review => <div key={review.id} className="bg-white/90 backdrop-blur-sm p-6 md:p-7 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1 border border-brand-silver/30 animate-fade-in">
+          {visibleReviews.map(review => <div key={review.id} className="backdrop-blur-sm p-6 md:p-7 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full group hover:-translate-y-1 border border-brand-silver/30 animate-fade-in bg-slate-200">
               <div className="flex mb-5">
                 {Array.from({
               length: review.stars

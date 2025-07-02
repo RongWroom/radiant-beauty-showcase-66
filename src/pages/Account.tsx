@@ -42,10 +42,12 @@ const Account = () => {
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold">Account Dashboard</h1>
-            <Badge variant={isAdmin ? "destructive" : "secondary"} className="flex items-center gap-1">
-              <Shield className="h-3 w-3" />
-              {role.toUpperCase()}
-            </Badge>
+            {isAdmin && (
+              <Badge variant="destructive" className="flex items-center gap-1">
+                <Shield className="h-3 w-3" />
+                ADMIN
+              </Badge>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -123,20 +125,23 @@ const Account = () => {
           <AdminGuard fallback={null}>
             <Card className="border-yellow-200 bg-yellow-50">
               <CardHeader>
-                <CardTitle className="text-yellow-800">Administrator Access</CardTitle>
+                <CardTitle className="text-yellow-800 flex items-center gap-2">
+                  <Shield className="h-5 w-5" />
+                  Administrator Access
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-yellow-700 mb-4">
-                  You have administrator privileges. All administrative actions are logged and monitored.
+                  You have administrator privileges. All administrative actions are logged and monitored for security purposes.
                 </p>
                 <div className="space-y-2">
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="border-yellow-300 text-yellow-700 hover:bg-yellow-100">
                     View Audit Logs
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="border-yellow-300 text-yellow-700 hover:bg-yellow-100">
                     Manage Users
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="border-yellow-300 text-yellow-700 hover:bg-yellow-100">
                     System Settings
                   </Button>
                 </div>

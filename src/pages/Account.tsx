@@ -3,7 +3,6 @@ import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUserRole } from '@/hooks/useUserRole';
 import { SecurityBanner } from '@/components/security/SecurityBanner';
-import { AdminGuard } from '@/components/security/AdminGuard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -99,7 +98,7 @@ const Account = () => {
                   </Link>
                 </Button>
                 
-                <AdminGuard>
+                {isAdmin && (
                   <Button 
                     variant="outline" 
                     className="w-full justify-start"
@@ -108,7 +107,7 @@ const Account = () => {
                     <Shield className="h-4 w-4 mr-2" />
                     Admin Panel
                   </Button>
-                </AdminGuard>
+                )}
 
                 <Button 
                   variant="destructive" 
@@ -122,7 +121,7 @@ const Account = () => {
             </Card>
           </div>
 
-          <AdminGuard fallback={null}>
+          {isAdmin && (
             <Card className="border-yellow-200 bg-yellow-50">
               <CardHeader>
                 <CardTitle className="text-yellow-800 flex items-center gap-2">
@@ -147,7 +146,7 @@ const Account = () => {
                 </div>
               </CardContent>
             </Card>
-          </AdminGuard>
+          )}
         </div>
       </main>
       <Footer />

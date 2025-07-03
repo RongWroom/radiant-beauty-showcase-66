@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { Link } from 'react-router-dom';
 
 interface FormData {
   firstName: string;
@@ -272,6 +273,20 @@ const Contact = () => {
                         </Button>
                       </div>
                     </form>
+                    
+                    {/* Privacy Notice */}
+                    <div className="text-center mt-6 pt-4 border-t border-brand-gray-200">
+                      <p className="text-xs text-brand-gray-500">
+                        By submitting this form, you agree to our{' '}
+                        <Link to="/privacy" className="text-brand-slate-blue hover:underline">
+                          Privacy Policy
+                        </Link>
+                        {' '}and{' '}
+                        <Link to="/privacy" className="text-brand-slate-blue hover:underline">
+                          Terms of Service
+                        </Link>
+                      </p>
+                    </div>
                   </CardContent>
                 </Card>
               </div>

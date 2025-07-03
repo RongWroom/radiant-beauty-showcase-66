@@ -1,8 +1,11 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, MapPin, Phone, Mail, Clock } from 'lucide-react';
+
 const Footer = () => {
-  return <footer className="bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-dark text-white">
+  return (
+    <footer className="bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-dark text-white">
       {/* Main Footer Content */}
       <div className="container-custom py-12 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -17,7 +20,9 @@ const Footer = () => {
               Your trusted partner for advanced aesthetic treatments and skincare solutions in Stanley.
             </p>
             <div className="flex items-center space-x-4">
-              <a href="https://www.facebook.com/STWAestheticClinic" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-300 hover:scale-105" aria-label="Follow us on Facebook">
+              <a href="https://www.facebook.com/STWAestheticClinic" target="_blank" rel="noopener noreferrer" 
+                 className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-300 hover:scale-105" 
+                 aria-label="Follow us on Facebook">
                 <Facebook className="h-5 w-5 text-white" />
               </a>
             </div>
@@ -117,10 +122,20 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="text-white/70 text-sm text-center sm:text-left">
               <p>© {new Date().getFullYear()} STW Aesthetic Clinic. All rights reserved.</p>
+              <div className="flex flex-wrap justify-center sm:justify-start gap-4 mt-2">
+                <Link to="/privacy" className="text-white/60 hover:text-white/80 transition-colors text-xs">
+                  Privacy Policy
+                </Link>
+                <span className="text-white/40">•</span>
+                <Link to="/privacy" className="text-white/60 hover:text-white/80 transition-colors text-xs">
+                  Terms of Service
+                </Link>
+              </div>
             </div>
             <div className="text-white/70 text-sm text-center sm:text-right">
               <p>
-                Website: <a href="https://stwaestheticclinic.co.uk" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+                Website: <a href="https://stwaestheticclinic.co.uk" target="_blank" rel="noopener noreferrer" 
+                           className="text-white/80 hover:text-white transition-colors">
                   stwaestheticclinic.co.uk
                 </a>
               </p>
@@ -128,6 +143,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

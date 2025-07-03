@@ -25,7 +25,7 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
           {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-brand-slate-blue text-brand-slate-blue" />)}
           <span className="ml-3 font-semibold text-brand-slate-blue">5.0</span>
-          <span className="ml-2 text-brand-gray-600">• 500+ Transformations</span>
+          <span className="ml-2 text-brand-gray-600">• 15+ Years Experience</span>
         </div>
 
         {/* Headline */}

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -7,10 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Heart, Shield, Sparkles, Target, Award, Users, CheckCircle, Star } from 'lucide-react';
-
 const About = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-white">
+  return <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
       <main className="flex-grow">
 
@@ -210,19 +207,19 @@ const About = () => {
           <div className="container-custom">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">500+</div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">200+</div>
                 <div className="text-white/80 font-medium">Happy Clients</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">5+</div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">15+</div>
                 <div className="text-white/80 font-medium">Years Experience</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">15+</div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">5</div>
                 <div className="text-white/80 font-medium">Treatment Types</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">98%</div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">100%</div>
                 <div className="text-white/80 font-medium">Satisfaction Rate</div>
               </div>
             </div>
@@ -258,8 +255,6 @@ const About = () => {
 
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;

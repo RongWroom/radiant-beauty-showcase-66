@@ -24,7 +24,7 @@ const About = () => {
               </div>
               <p className="text-lg mb-6 font-medium text-brand-gray-600">
                 Discover our journey of providing <span className="px-2 py-0.5 rounded bg-brand-slate-blue/10 text-brand-slate-blue font-semibold">exceptional</span> non-surgical beauty treatments 
-                in County Durham with personalized care and professional expertise.
+                in County Durham with personalised care and professional expertise.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/contact">

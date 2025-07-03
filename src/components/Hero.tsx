@@ -68,7 +68,7 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
         <div className="flex flex-wrap gap-6 mt-6 text-brand-gray-600">
           <div className="flex items-center space-x-2">
             <Award className="w-5 h-5 text-brand-slate-blue" />
-            <span>Certified Practitioners</span>
+            <span>Certified Practitioner</span>
           </div>
           <div className="flex items-center space-x-2">
             <Users className="w-5 h-5 text-brand-slate-blue" />

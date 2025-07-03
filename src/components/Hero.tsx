@@ -1,12 +1,15 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Star, Award, Users, Clock } from 'lucide-react';
-const Hero = () => <section className="relative min-h-screen flex items-center overflow-hidden">
+
+const Hero = () => (
+  <section className="relative min-h-screen flex items-center overflow-hidden">
     {/* Full-bleed background */}
     <div className="absolute inset-0 bg-cover bg-center" style={{
-    backgroundImage: "url('https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200')"
-  }} />
+      backgroundImage: "url('https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200')"
+    }} />
     {/* Overlay for contrast */}
     <div className="absolute inset-0 bg-gradient-to-br from-brand-off-white/80 to-brand-light-gray/60" />
 
@@ -19,17 +22,19 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
 
     {/* Content */}
     <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start gap-x-12 px-4 sm:px-6 lg:px-8 py-0">
-      {/* Left Column (always left-aligned) */}
-      <div className="w-full lg:w-1/2 space-y-6 flex flex-col items-start">
+      {/* Left Column (center-aligned on mobile, left-aligned on desktop) */}
+      <div className="w-full lg:w-1/2 space-y-6 flex flex-col items-center lg:items-start">
         {/* Reviews badge */}
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
-          {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-brand-slate-blue text-brand-slate-blue" />)}
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-brand-slate-blue text-brand-slate-blue" />
+          ))}
           <span className="ml-3 font-semibold text-brand-slate-blue">5.0</span>
           <span className="ml-2 text-brand-gray-600">• 15+ Years Experience</span>
         </div>
 
         {/* Headline */}
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal leading-tight text-left">
+        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal leading-tight text-center lg:text-left">
           Polish Your<br />
           <span className="relative inline-block">
             <span className="text-brand-slate-blue font-semibold">Natural Beauty</span>
@@ -38,20 +43,22 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
         </h1>
 
         {/* Subhead */}
-        <p className="max-w-xl text-lg text-brand-gray-600 text-left">
+        <p className="max-w-xl text-lg text-brand-gray-600 text-center lg:text-left">
           We specialise in creating timeless radiance. <br /> Where advanced science meets bespoke care.
         </p>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 max-w-md">
-          {[['5', 'Treatments'], ['10+', 'Reviews'], ['100%', 'Satisfaction']].map(([num, label]) => <div key={label} className="space-y-1 text-left">
+          {[['5', 'Treatments'], ['10+', 'Reviews'], ['100%', 'Satisfaction']].map(([num, label]) => (
+            <div key={label} className="space-y-1 text-center">
               <div className="text-3xl font-serif font-bold text-brand-slate-blue">{num}</div>
               <div className="text-sm font-medium text-brand-gray-600">{label}</div>
-            </div>)}
+            </div>
+          ))}
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start">
           <Link to="/treatments" className="w-full sm:w-auto">
             <Button className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition">
               Start Your Transformation <Clock className="inline-block ml-2" />
@@ -65,7 +72,7 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
         </div>
 
         {/* Trust Icons */}
-        <div className="flex flex-wrap gap-6 mt-6 text-brand-gray-600">
+        <div className="flex flex-wrap gap-6 mt-6 text-brand-gray-600 justify-center lg:justify-start">
           <div className="flex items-center space-x-2">
             <Award className="w-5 h-5 text-brand-slate-blue" />
             <span>Certified Practitioner</span>
@@ -79,10 +86,10 @@ const Hero = () => <section className="relative min-h-screen flex items-center o
 
       {/* Right Column: pixel accents only */}
       <div className="w-full lg:w-1/2 relative">
-        
-        
         {/* No image element here—background covers full area */}
       </div>
     </div>
-  </section>;
+  </section>
+);
+
 export default Hero;

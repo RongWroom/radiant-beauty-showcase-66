@@ -282,7 +282,7 @@ const Contact = () => {
                           Privacy Policy
                         </Link>
                         {' '}and{' '}
-                        <Link to="/privacy" className="text-brand-slate-blue hover:underline">
+                        <Link to="/terms" className="text-brand-slate-blue hover:underline">
                           Terms of Service
                         </Link>
                       </p>

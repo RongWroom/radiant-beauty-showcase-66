@@ -10,7 +10,7 @@ const Privacy = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <SEO 
         title="Privacy Policy - STW Aesthetic Clinic"
-        description="Privacy Policy and Terms of Service for STW Aesthetic Clinic. Learn how we protect and handle your personal information."
+        description="Privacy Policy for STW Aesthetic Clinic. Learn how we protect and handle your personal information."
         url="https://www.stwaestheticclinic.co.uk/privacy"
       />
       <Navbar />
@@ -21,7 +21,7 @@ const Privacy = () => {
           <div className="container-custom relative z-10">
             <div className="text-center max-w-4xl mx-auto">
               <h1 className="text-3xl md:text-5xl font-serif mb-4 font-bold text-brand-charcoal">
-                Privacy Policy & Terms
+                Privacy Policy
               </h1>
               <div className="flex justify-center mb-6">
                 <span className="block h-1 w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
@@ -53,7 +53,6 @@ const Privacy = () => {
               {/* Privacy Policy */}
               <div className="prose prose-lg max-w-none">
                 <div className="bg-gradient-to-r from-brand-slate-blue/10 to-brand-silver/10 p-6 rounded-lg mb-8">
-                  <h2 className="text-3xl font-serif font-bold text-brand-charcoal mb-4">Privacy Policy</h2>
                   <p className="text-lg italic text-brand-gray-600">
                     This Privacy Policy explains how we collect, use, disclose and safeguard your personal information when you visit <strong>stwaestheticclinic.co.uk</strong>, book an appointment or purchase products or services.
                   </p>
@@ -91,7 +90,7 @@ const Privacy = () => {
                           </tr>
                           <tr>
                             <td className="border border-brand-gray-200 px-4 py-3 font-medium">Financial</td>
-                            <td className="border border-brand-gray-200 px-4 py-3">Payment card details, billing history</td>
+                            <td className="border border-brand-gray-200 px-4 py-3">Payment card details (processed by PCI‑compliant provider), billing history</td>
                             <td className="border border-brand-gray-200 px-4 py-3">Processing payments & refunds</td>
                           </tr>
                           <tr className="bg-brand-off-white/30">
@@ -120,28 +119,76 @@ const Privacy = () => {
 
                   <section>
                     <h3 className="text-2xl font-bold text-brand-charcoal mb-4">4. Legal Bases for Processing</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="bg-brand-slate-blue/5 p-4 rounded-lg">
-                        <h4 className="font-semibold text-brand-charcoal mb-2">Contract</h4>
-                        <p className="text-sm text-brand-gray-600">Scheduling & performing treatments, processing payments</p>
-                      </div>
-                      <div className="bg-brand-silver/10 p-4 rounded-lg">
-                        <h4 className="font-semibold text-brand-charcoal mb-2">Consent</h4>
-                        <p className="text-sm text-brand-gray-600">Marketing emails, before/after photos on social media</p>
-                      </div>
-                      <div className="bg-brand-slate-blue/5 p-4 rounded-lg">
-                        <h4 className="font-semibold text-brand-charcoal mb-2">Legal Obligation</h4>
-                        <p className="text-sm text-brand-gray-600">Tax records, insurance compliance, adverse‑event reporting</p>
-                      </div>
-                      <div className="bg-brand-silver/10 p-4 rounded-lg">
-                        <h4 className="font-semibold text-brand-charcoal mb-2">Legitimate Interests</h4>
-                        <p className="text-sm text-brand-gray-600">Reminding you of upcoming appointments, improving website security</p>
-                      </div>
+                    <div className="overflow-x-auto">
+                      <table className="w-full border-collapse border border-brand-gray-200 rounded-lg">
+                        <thead className="bg-brand-slate-blue/10">
+                          <tr>
+                            <th className="border border-brand-gray-200 px-4 py-3 text-left font-semibold text-brand-charcoal">Legal Basis</th>
+                            <th className="border border-brand-gray-200 px-4 py-3 text-left font-semibold text-brand-charcoal">Typical Use</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className="border border-brand-gray-200 px-4 py-3 font-medium">Contract</td>
+                            <td className="border border-brand-gray-200 px-4 py-3">Scheduling & performing treatments, processing payments</td>
+                          </tr>
+                          <tr className="bg-brand-off-white/30">
+                            <td className="border border-brand-gray-200 px-4 py-3 font-medium">Consent</td>
+                            <td className="border border-brand-gray-200 px-4 py-3">Marketing emails, before/after photos on social media</td>
+                          </tr>
+                          <tr>
+                            <td className="border border-brand-gray-200 px-4 py-3 font-medium">Legal Obligation</td>
+                            <td className="border border-brand-gray-200 px-4 py-3">Tax records, insurance compliance, adverse‑event reporting</td>
+                          </tr>
+                          <tr className="bg-brand-off-white/30">
+                            <td className="border border-brand-gray-200 px-4 py-3 font-medium">Legitimate Interests</td>
+                            <td className="border border-brand-gray-200 px-4 py-3">Reminding you of upcoming appointments, improving website security</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </section>
 
                   <section>
-                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">5. Your Rights</h3>
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">5. How We Use Your Data</h3>
+                    <ul className="list-disc list-inside space-y-2 text-brand-gray-600">
+                      <li>Provide, customise and improve our treatments and services</li>
+                      <li>Manage appointments, payments, and client accounts</li>
+                      <li>Respond to enquiries and customer support requests</li>
+                      <li>Send appointment reminders, after‑care instructions and limited promotional messages</li>
+                      <li>Monitor website performance and protect against fraud or misuse</li>
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">6. Sharing Your Data</h3>
+                    <p className="text-brand-gray-600 mb-4">We only share your data when necessary and with safeguards:</p>
+                    <ul className="list-disc list-inside space-y-2 text-brand-gray-600">
+                      <li><strong>Service providers</strong> – secure payment processors, email/SMS reminder platforms, website hosting and IT support</li>
+                      <li><strong>Professional advisers & insurers</strong> – where required for legal advice, defence of claims or insurance cover</li>
+                      <li><strong>Regulators & authorities</strong> – HMRC, the Information Commissioner's Office (ICO) or healthcare regulators if legally obliged</li>
+                      <li><strong>No third‑party sales</strong> – we never sell your personal information</li>
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">7. International Transfers</h3>
+                    <p className="text-brand-gray-600 leading-relaxed">
+                      Where service providers are located outside the UK, we rely on UK adequacy regulations or standard contractual clauses to protect your data.
+                    </p>
+                  </section>
+
+                  <section>
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">8. Data Retention</h3>
+                    <ul className="space-y-2 text-brand-gray-600">
+                      <li><strong>Treatment records:</strong> 7 years (or 7 years after a minor turns 18) in line with insurance and professional guidelines</li>
+                      <li><strong>Marketing data:</strong> until you withdraw consent or 2 years after last interaction</li>
+                      <li><strong>Financial records:</strong> 6 years to satisfy HMRC requirements</li>
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">9. Your Rights</h3>
                     <div className="bg-gradient-to-r from-brand-slate-blue/10 to-brand-silver/10 p-6 rounded-lg">
                       <p className="text-brand-gray-600 mb-4">You may:</p>
                       <ol className="list-decimal list-inside space-y-2 text-brand-gray-600">
@@ -159,56 +206,32 @@ const Privacy = () => {
                   </section>
 
                   <section>
-                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">6. Data Retention</h3>
-                    <ul className="space-y-2 text-brand-gray-600">
-                      <li><strong>Treatment records:</strong> 7 years (or 7 years after a minor turns 18) in line with insurance and professional guidelines</li>
-                      <li><strong>Marketing data:</strong> until you withdraw consent or 2 years after last interaction</li>
-                      <li><strong>Financial records:</strong> 6 years to satisfy HMRC requirements</li>
-                    </ul>
-                  </section>
-                </div>
-
-                {/* Terms of Service */}
-                <div className="mt-16">
-                  <div className="bg-gradient-to-r from-brand-slate-blue/10 to-brand-silver/10 p-6 rounded-lg mb-8">
-                    <h2 className="text-3xl font-serif font-bold text-brand-charcoal mb-4">Terms of Service</h2>
-                    <p className="text-lg italic text-brand-gray-600">
-                      These Terms of Service ("Terms") govern your use of stwaestheticclinic.co.uk and any appointment, product purchase or interaction with STW Aesthetic Clinic.
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">10. Cookies & Similar Technologies</h3>
+                    <p className="text-brand-gray-600 leading-relaxed">
+                      We use essential cookies for site functionality, analytics cookies (e.g., Google Analytics) and marketing cookies (e.g., Facebook Pixel). You can manage non‑essential cookies via our cookie banner.
                     </p>
-                  </div>
+                  </section>
 
-                  <div className="space-y-8">
-                    <section>
-                      <h3 className="text-xl font-bold text-brand-charcoal mb-3">1. Acceptance of Terms</h3>
-                      <p className="text-brand-gray-600">
-                        By accessing our website or booking a service, you agree to be bound by these Terms and our Privacy Policy. If you disagree, please do not use our site or services.
-                      </p>
-                    </section>
+                  <section>
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">11. Children</h3>
+                    <p className="text-brand-gray-600 leading-relaxed">
+                      Our services are not directed at individuals under 18. We only process a minor's data with parental/guardian consent.
+                    </p>
+                  </section>
 
-                    <section>
-                      <h3 className="text-xl font-bold text-brand-charcoal mb-3">2. Bookings & Payments</h3>
-                      <ul className="list-disc list-inside space-y-1 text-brand-gray-600">
-                        <li>Appointments can be booked online, by phone or in person</li>
-                        <li>A deposit may be required; full payment is due on or before the treatment date</li>
-                        <li>Prices are displayed in GBP and may change without notice (unless you have a confirmed booking)</li>
-                      </ul>
-                    </section>
+                  <section>
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">12. Security</h3>
+                    <p className="text-brand-gray-600 leading-relaxed">
+                      We implement SSL/TLS encryption, role‑based access controls, secure cloud storage and regular staff training. However, no transmission is 100% secure.
+                    </p>
+                  </section>
 
-                    <section>
-                      <h3 className="text-xl font-bold text-brand-charcoal mb-3">3. Cancellations & Late Arrivals</h3>
-                      <ul className="list-disc list-inside space-y-1 text-brand-gray-600">
-                        <li><strong>48‑hour notice</strong> is required to cancel or reschedule. Deposits may be forfeited for late cancellations</li>
-                        <li>Arriving more than <strong>15 minutes</strong> late may result in reduced treatment time or rescheduling</li>
-                      </ul>
-                    </section>
-
-                    <section>
-                      <h3 className="text-xl font-bold text-brand-charcoal mb-3">4. Contact Us</h3>
-                      <p className="text-brand-gray-600">
-                        Questions about these Terms? Email <a href="mailto:info@stwaestheticclinic.co.uk" className="text-brand-slate-blue hover:underline font-semibold">info@stwaestheticclinic.co.uk</a>
-                      </p>
-                    </section>
-                  </div>
+                  <section>
+                    <h3 className="text-2xl font-bold text-brand-charcoal mb-4">13. Changes to This Policy</h3>
+                    <p className="text-brand-gray-600 leading-relaxed">
+                      We may update this Privacy Policy periodically. Significant changes will be posted on our website and, where appropriate, notified to you by email.
+                    </p>
+                  </section>
                 </div>
 
                 <div className="mt-12 text-center">

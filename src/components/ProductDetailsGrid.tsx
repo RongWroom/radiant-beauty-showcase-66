@@ -68,7 +68,7 @@ const ProductDetailsGrid = ({ product }: ProductDetailsGridProps) => {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-brand-slate-blue rounded-full"></div>
-                  <p>Follow with moisturizer and SPF</p>
+                  <p>Follow with moisturiser and SPF</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-brand-slate-blue rounded-full"></div>

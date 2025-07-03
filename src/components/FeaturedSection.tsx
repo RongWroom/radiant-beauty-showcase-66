@@ -11,7 +11,7 @@ export const FeaturedSection = () => {
             <h2 className="mobile-text-2xl font-serif font-semibold text-hierarchy-primary">
               Professional Treatment Excellence
             </h2>
-            <p className="text-hierarchy-secondary mobile-text-base">Our expert practitioners use cutting-edge technology to deliver personalized aesthetic treatments. Each procedure is tailored to your specific needs, ensuring optimal results and your complete satisfaction.</p>
+            <p className="text-hierarchy-secondary mobile-text-base">Our expert practitioners use cutting-edge technology to deliver personalised aesthetic treatments. Each procedure is tailored to your specific needs, ensuring optimal results and your complete satisfaction.</p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-6">
               <Link to="/treatments" className="w-full sm:w-auto">
                 <Button className="w-full sm:w-auto mobile-text-base py-4 px-8 min-h-[56px] rounded-lg font-semibold" variant="default">

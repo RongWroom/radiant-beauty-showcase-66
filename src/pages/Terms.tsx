@@ -174,7 +174,7 @@ const Terms = () => {
                   <section>
                     <h3 className="text-2xl font-bold text-brand-charcoal mb-4">16. Contact Us</h3>
                     <p className="text-brand-gray-600 leading-relaxed">
-                      Questions about these Terms? Email <a href="mailto:info@stwaestheticclinic.co.uk" className="text-brand-slate-blue hover:underline font-semibold">info@stwaestheticclinic.co.uk</a> or write to the address at the top of this document.
+                      Questions about these Terms? Email <a href="mailto:sharon@stwaestheticclinic.co.uk" className="text-brand-slate-blue hover:underline font-semibold">info@stwaestheticclinic.co.uk</a> or write to the address at the top of this document.
                     </p>
                   </section>
                 </div>

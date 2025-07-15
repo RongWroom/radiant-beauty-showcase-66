@@ -98,12 +98,12 @@ const Footer = () => {
                 <Clock className="h-4 w-4 text-brand-silver mt-1 flex-shrink-0" />
                 <div className="text-white/80 text-sm leading-relaxed">
                   <div className="flex justify-between mb-1">
-                    <span className="mx-[8px]">Tues - Fri</span>
-                    <span>9AM - 5PM</span>
+                    <span className="mx-[8px]">Tues - Thurs</span>
+                    <span>10AM - 6PM</span>
                   </div>
                   <div className="flex justify-between mb-1">
                     <span className="px-0 mx-[8px]">Saturday</span>
-                    <span>10AM - 3PM</span>
+                    <span>Closed</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="mx-[8px]">Sunday</span>

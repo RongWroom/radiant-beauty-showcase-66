@@ -20,7 +20,7 @@ const Products = () => {
     isLoading,
     isError,
     refetch
-  } = usePaginatedProducts(page, PAGE_SIZE);
+  } = usePaginatedProducts(page, PAGE_SIZE, selectedCategory);
 
   const { data: categories = [], isLoading: categoriesLoading } = useProductCategories();
   
@@ -30,22 +30,10 @@ const Products = () => {
   // Create the full categories list with 'all' option
   const allCategories = ['all', ...categories];
 
-  // Filter products by category with exact matching
-  const filteredProducts = selectedCategory === 'all' 
-    ? products 
-    : products.filter(p => {
-        console.log(`Filtering product: ${p.name}, category: "${p.category}", selected: "${selectedCategory}"`);
-        return p.category === selectedCategory;
-      });
-
-  // Log for debugging
+  // Reset to page 1 when category changes
   React.useEffect(() => {
-    if (selectedCategory !== 'all') {
-      console.log(`Selected category: "${selectedCategory}"`);
-      console.log('Available products:', products.map(p => ({ name: p.name, category: p.category })));
-      console.log('Filtered products:', filteredProducts.map(p => p.name));
-    }
-  }, [selectedCategory, products, filteredProducts]);
+    setPage(1);
+  }, [selectedCategory]);
 
   // Force refresh cache on mount to get updated image URLs
   React.useEffect(() => {
@@ -153,15 +141,15 @@ const Products = () => {
               </div>
             )}
 
-            {!isLoading && !isError && filteredProducts.length === 0 && (
+            {!isLoading && !isError && products.length === 0 && (
               <div className="text-center text-brand-gray-600">
                 {selectedCategory === 'all' ? 'No products have been added yet.' : `No products found in the ${selectedCategory} category.`}
               </div>
             )}
 
-            {!isLoading && !isError && filteredProducts.length > 0 && (
+            {!isLoading && !isError && products.length > 0 && (
               <>
-                <ProductsGrid products={filteredProducts} />
+                <ProductsGrid products={products} />
 
                 {/* Pagination Controls */}
                 {pageCount > 1 && (

@@ -21,27 +21,35 @@ type UsePaginatedProductsResult = {
   refetch: () => Promise<any>;
 };
 
-export function usePaginatedProducts(page: number, pageSize: number): UsePaginatedProductsResult {
+export function usePaginatedProducts(page: number, pageSize: number, categoryFilter?: string): UsePaginatedProductsResult {
   const {
     data,
     isLoading,
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["products", page, pageSize],
+    queryKey: ["products", page, pageSize, categoryFilter],
     queryFn: async () => {
       console.log('Fetching products from database...');
       
-      // Get total count
-      const { count } = await supabase
-        .from("products")
-        .select("*", { count: "exact", head: true });
-
-      // Get products WITH LIMIT/OFFSET for pagination
-      const { data: products, error } = await supabase
+      // Build the query with optional category filter
+      let countQuery = supabase.from("products").select("*", { count: "exact", head: true });
+      let productsQuery = supabase
         .from("products")
         .select("id, name, description, price, currency, image_url, featured, category")
-        .order("created_at", { ascending: false })
+        .order("created_at", { ascending: false });
+
+      // Apply category filter if provided
+      if (categoryFilter && categoryFilter !== 'all') {
+        countQuery = countQuery.eq("category", categoryFilter);
+        productsQuery = productsQuery.eq("category", categoryFilter);
+      }
+
+      // Get total count with filter applied
+      const { count } = await countQuery;
+
+      // Get products with pagination and filter applied
+      const { data: products, error } = await productsQuery
         .range((page - 1) * pageSize, page * pageSize - 1);
 
       if (error) {

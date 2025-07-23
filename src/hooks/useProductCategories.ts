@@ -21,6 +21,7 @@ export function useProductCategories() {
       // Get unique categories and filter out null values
       const uniqueCategories = [...new Set(data.map(item => item.category).filter(Boolean))];
       console.log('Unique categories found:', uniqueCategories);
+      console.log('Raw category data:', data.map(item => item.category));
       
       return uniqueCategories.sort();
     },

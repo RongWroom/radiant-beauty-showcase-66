@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -31,8 +30,22 @@ const Products = () => {
   // Create the full categories list with 'all' option
   const allCategories = ['all', ...categories];
 
-  // Filter products by category
-  const filteredProducts = selectedCategory === 'all' ? products : products.filter(p => p.category === selectedCategory);
+  // Filter products by category with exact matching
+  const filteredProducts = selectedCategory === 'all' 
+    ? products 
+    : products.filter(p => {
+        console.log(`Filtering product: ${p.name}, category: "${p.category}", selected: "${selectedCategory}"`);
+        return p.category === selectedCategory;
+      });
+
+  // Log for debugging
+  React.useEffect(() => {
+    if (selectedCategory !== 'all') {
+      console.log(`Selected category: "${selectedCategory}"`);
+      console.log('Available products:', products.map(p => ({ name: p.name, category: p.category })));
+      console.log('Filtered products:', filteredProducts.map(p => p.name));
+    }
+  }, [selectedCategory, products, filteredProducts]);
 
   // Force refresh cache on mount to get updated image URLs
   React.useEffect(() => {

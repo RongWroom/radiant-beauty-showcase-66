@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { usePaginatedProducts, useInvalidateProductsCache } from "@/hooks/usePaginatedProducts";
+import { useProductCategories } from "@/hooks/useProductCategories";
 import ProductsGrid from '@/components/products/ProductsGrid';
 
 const PAGE_SIZE = 5;
@@ -21,21 +22,14 @@ const Products = () => {
     isError,
     refetch
   } = usePaginatedProducts(page, PAGE_SIZE);
+
+  const { data: categories = [], isLoading: categoriesLoading } = useProductCategories();
   
   const invalidateCache = useInvalidateProductsCache();
   const pageCount = Math.ceil(total / PAGE_SIZE);
 
-  // Updated categories to match the database
-  const allCategories = [
-    'Cleansers', 
-    'Serums', 
-    'Moisturizers', 
-    'Sun Protection', 
-    'Eye Care', 
-    'Collections', 
-    'Specialty'
-  ];
-  const categories = ['all', ...allCategories];
+  // Create the full categories list with 'all' option
+  const allCategories = ['all', ...categories];
 
   // Filter products by category
   const filteredProducts = selectedCategory === 'all' ? products : products.filter(p => p.category === selectedCategory);
@@ -90,12 +84,12 @@ const Products = () => {
               
               {/* Category Filter */}
               <div className="w-48">
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                <Select value={selectedCategory} onValueChange={setSelectedCategory} disabled={categoriesLoading}>
                   <SelectTrigger className="border-brand-silver/30">
-                    <SelectValue placeholder="Filter by category" />
+                    <SelectValue placeholder={categoriesLoading ? "Loading..." : "Filter by category"} />
                   </SelectTrigger>
                   <SelectContent>
-                    {categories.map(category => (
+                    {allCategories.map(category => (
                       <SelectItem key={category} value={category}>
                         {category === 'all' ? 'All Categories' : category}
                       </SelectItem>

@@ -381,6 +381,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_rate_limit: {
+        Args: {
+          identifier: string
+          max_attempts?: number
+          window_minutes?: number
+        }
+        Returns: boolean
+      }
       current_user_role: {
         Args: Record<PropertyKey, never>
         Returns: Database["public"]["Enums"]["app_role"]
@@ -389,12 +397,28 @@ export type Database = {
         Args: { user_id: string }
         Returns: Database["public"]["Enums"]["app_role"]
       }
+      has_role: {
+        Args: {
+          _user_id: string
+          _role: Database["public"]["Enums"]["app_role"]
+        }
+        Returns: boolean
+      }
       is_admin: {
-        Args: { user_id?: string }
+        Args: Record<PropertyKey, never> | { user_id?: string }
         Returns: boolean
       }
       keep_alive: {
         Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      log_security_event: {
+        Args: {
+          action_type: string
+          details?: Json
+          ip_address?: unknown
+          user_agent?: string
+        }
         Returns: undefined
       }
     }

@@ -20,8 +20,8 @@ const LocalBusinessSchema: React.FC = () => {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: '51.5074',
-      longitude: '-0.1278'
+      latitude: '54.868699029740135',
+      longitude: '-1.7004918732064431'
     },
     openingHoursSpecification: [
       {

@@ -1,6 +1,18 @@
 import React from 'react';
+import { Review } from '@/data/reviews';
 
-const LocalBusinessSchema: React.FC = () => {
+interface LocalBusinessSchemaProps {
+  reviews?: Review[];
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+  };
+}
+
+const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({ 
+  reviews = [], 
+  aggregateRating = { ratingValue: 5.0, reviewCount: 14 }
+}) => {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'HealthAndBeautyBusiness',
@@ -52,8 +64,8 @@ const LocalBusinessSchema: React.FC = () => {
       '@type': 'GeoCircle',
       geoMidpoint: {
         '@type': 'GeoCoordinates',
-        latitude: '51.5074',
-        longitude: '-0.1278'
+        latitude: '54.868699029740135',
+        longitude: '-1.7004918732064431'
       },
       geoRadius: '50000'
     },
@@ -62,41 +74,28 @@ const LocalBusinessSchema: React.FC = () => {
     currenciesAccepted: 'GBP',
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '127',
+      ratingValue: aggregateRating.ratingValue.toString(),
+      reviewCount: aggregateRating.reviewCount.toString(),
       bestRating: '5',
       worstRating: '1'
     },
-    review: [
-      {
+    ...(reviews.length > 0 && {
+      review: reviews.slice(0, 5).map(review => ({
         '@type': 'Review',
         author: {
           '@type': 'Person',
-          name: 'Sarah Johnson'
+          name: review.author
         },
         reviewRating: {
           '@type': 'Rating',
-          ratingValue: '5',
-          bestRating: '5'
+          ratingValue: review.rating.toString(),
+          bestRating: '5',
+          worstRating: '1'
         },
-        reviewBody: 'Amazing results with the HIFU treatment. Professional staff and clean facilities.',
-        datePublished: '2024-12-15'
-      },
-      {
-        '@type': 'Review',
-        author: {
-          '@type': 'Person',
-          name: 'Michael Brown'
-        },
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '5',
-          bestRating: '5'
-        },
-        reviewBody: 'Excellent cryolipolysis treatment. Saw results within weeks!',
-        datePublished: '2024-11-28'
-      }
-    ]
+        reviewBody: review.reviewBody,
+        ...(review.datePublished && { datePublished: review.datePublished })
+      }))
+    })
   };
 
   return (

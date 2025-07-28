@@ -1,37 +1,47 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
-const reviews = [{
-  id: 1,
-  name: 'AC Fletcher',
-  stars: 5,
-  text: 'Really good service received from Sharon. Great initial consultation, very informative & detailed to ensure I knew what to expect throughout the laser hair removal treatment. Sharon is always professional, friendly & approachable.'
-}, {
-  id: 2,
-  name: 'Megan Coulson',
-  stars: 5,
-  text: "You won't regret going to Sharon for any treatment. She's friendly, professional and cares about each individual and how the course of treatment is going, and is willing to tailor to your specific needs."
-}, {
-  id: 3,
-  name: 'Tracey Thornton-Clark',
-  stars: 5,
-  text: 'I had the pleasure of experiencing a Hifu facial, Hydrafacial, and laser skin rejuvenation treatment from Sharon, and I must say, the results were absolutely incredible! Sharon is a true magician when it comes to skincare.'
-}, {
-  id: 4,
-  name: 'Leanne Wears',
-  stars: 5,
-  text: "I've been going to STW Aesthetic Clinic for my Hydrofacials and my skin has never been better. I no longer have breakouts or dry patches. Sharon is so lovely and really professional."
-}, {
-  id: 5,
-  name: 'Danielle Cullen',
-  stars: 5,
-  text: 'Great service. Sharon is so professional and friendly. I love the hydrafacial skin treatment and cool sculpting treatment. Fabulous business. Great prices. Highly recommend.'
-}, {
-  id: 6,
-  name: 'Zainab Alfaham',
-  stars: 5,
-  text: 'Had four sessions so far and have already seen a reduction in hair growth. Sharon is very friendly and professional. Will work to your schedule! Happy customer so far!'
-}];
+import { customerReviews } from '@/data/reviews';
+
+// Convert review data format for component use
+const reviews = [
+  {
+    id: 1,
+    name: 'AC Fletcher',
+    stars: 5,
+    text: 'Really good service received from Sharon. Great initial consultation, very informative & detailed to ensure I knew what to expect throughout the laser hair removal treatment. Sharon is always professional, friendly & approachable.'
+  },
+  {
+    id: 2,
+    name: 'Megan Coulson',
+    stars: 5,
+    text: "You won't regret going to Sharon for any treatment. She's friendly, professional and cares about each individual and how the course of treatment is going, and is willing to tailor to your specific needs."
+  },
+  {
+    id: 3,
+    name: 'Tracey Thornton-Clark',
+    stars: 5,
+    text: 'I had the pleasure of experiencing a Hifu facial, Hydrafacial, and laser skin rejuvenation treatment from Sharon, and I must say, the results were absolutely incredible! Sharon is a true magician when it comes to skincare.'
+  },
+  {
+    id: 4,
+    name: 'Leanne Wears',
+    stars: 5,
+    text: "I've been going to STW Aesthetic Clinic for my Hydrofacials and my skin has never been better. I no longer have breakouts or dry patches. Sharon is so lovely and really professional."
+  },
+  {
+    id: 5,
+    name: 'Danielle Cullen',
+    stars: 5,
+    text: 'Great service. Sharon is so professional and friendly. I love the hydrafacial skin treatment and cool sculpting treatment. Fabulous business. Great prices. Highly recommend.'
+  },
+  {
+    id: 6,
+    name: 'Zainab Alfaham',
+    stars: 5,
+    text: 'Had four sessions so far and have already seen a reduction in hair growth. Sharon is very friendly and professional. Will work to your schedule! Happy customer so far!'
+  }
+];
 const DEFAULT_REVIEWS_DESKTOP = 3;
 const DEFAULT_REVIEWS_MOBILE = 1;
 const CustomerReviews = () => {

@@ -45,14 +45,15 @@ const CoreWebVitals = () => {
       document.head.appendChild(link);
     });
 
-    // Performance monitoring
-    if ('web-vital' in window) {
-      import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-        getCLS(console.log);
-        getFID(console.log);
-        getFCP(console.log);
-        getLCP(console.log);
-        getTTFB(console.log);
+    // Performance monitoring  
+    if (typeof window !== 'undefined') {
+      import('web-vitals').then(({ onCLS, onFCP, onLCP, onTTFB }) => {
+        onCLS(console.log);
+        onFCP(console.log);
+        onLCP(console.log);
+        onTTFB(console.log);
+      }).catch(() => {
+        // Fail silently if web-vitals is not available
       });
     }
   }, []);

@@ -8,14 +8,14 @@ const LocalBusinessSchema: React.FC = () => {
     name: 'STW Aesthetic Clinic',
     description: 'Professional aesthetic clinic offering Cryolipolysis fat freezing, Ultra 4D HIFU, HydraFacial, laser hair removal, and fibroblast skin tightening treatments.',
     url: 'https://www.stwaestheticclinic.co.uk',
-    telephone: '+44-1234-567890',
+    telephone: '+44-01207 239983',
     email: 'info@stwaestheticclinic.co.uk',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '123 Beauty Street',
-      addressLocality: 'London',
-      addressRegion: 'London',
-      postalCode: 'SW1A 1AA',
+      streetAddress: 'The Treatment Rooms',
+      addressLocality: 'Stanley',
+      addressRegion: 'Co Durham',
+      postalCode: 'DH9 0TY',
       addressCountry: 'GB'
     },
     geo: {

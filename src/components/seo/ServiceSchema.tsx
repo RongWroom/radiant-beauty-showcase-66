@@ -52,8 +52,8 @@ const ServiceSchema: React.FC<ServiceSchemaProps> = ({ service }) => {
     duration: service.duration ? `PT${service.duration}` : undefined,
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '89',
+      ratingValue: '5.0',
+      reviewCount: '14',
       bestRating: '5',
       worstRating: '1'
     }

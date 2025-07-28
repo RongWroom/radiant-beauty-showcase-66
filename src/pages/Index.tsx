@@ -8,6 +8,7 @@ import CustomerReviews from '@/components/CustomerReviews';
 import CtaSection from '@/components/CtaSection';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
         keywords="aesthetic treatments, cryolipolysis, HIFU, hydrafacial, laser hair removal, fibroblast skin tightening, professional beauty clinic, non-surgical treatments, advanced skincare, STW Aesthetic Clinic"
         url="https://www.stwaestheticclinic.co.uk"
       />
+      <LocalBusinessSchema />
       <div className="min-h-screen flex flex-col bg-white">
         <Navbar />
         <main className="flex-grow">

@@ -36,7 +36,7 @@ const ServiceSchema: React.FC<ServiceSchemaProps> = ({ service }) => {
       '@type': 'HealthAndBeautyBusiness',
       name: 'STW Aesthetic Clinic',
       url: 'https://www.stwaestheticclinic.co.uk',
-      telephone: '+44-1234-567890'
+      telephone: '+44-01207 239983'
     },
     offers: service.price ? {
       '@type': 'Offer',

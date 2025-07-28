@@ -14,17 +14,26 @@ interface ServiceSchemaProps {
 const ServiceSchema: React.FC<ServiceSchemaProps> = ({ service }) => {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'MedicalProcedure',
+    '@type': 'Service',
     '@id': `https://www.stwaestheticclinic.co.uk/treatments/${service.id}#service`,
     name: service.name,
     description: service.description,
-    procedureType: service.category || 'Aesthetic Treatment',
-    bodyLocation: getBodyLocation(service.name),
-    preparation: 'Consultation required before treatment. Avoid sun exposure and certain medications.',
-    followup: 'Follow-up appointment may be recommended. Post-treatment care instructions provided.',
-    howPerformed: 'Performed by qualified aesthetic practitioners using professional equipment.',
+    serviceType: service.category || 'Aesthetic Treatment',
+    areaServed: getBodyLocation(service.name),
+    additionalProperty: [
+      {
+        '@type': 'PropertyValue',
+        name: 'Preparation',
+        value: 'Consultation required before treatment. Avoid sun exposure and certain medications.'
+      },
+      {
+        '@type': 'PropertyValue', 
+        name: 'Aftercare',
+        value: 'Follow-up appointment may be recommended. Post-treatment care instructions provided.'
+      }
+    ],
     provider: {
-      '@type': 'MedicalBusiness',
+      '@type': 'HealthAndBeautyBusiness',
       name: 'STW Aesthetic Clinic',
       url: 'https://www.stwaestheticclinic.co.uk',
       telephone: '+44-1234-567890'

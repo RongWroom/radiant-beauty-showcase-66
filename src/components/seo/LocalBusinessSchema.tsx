@@ -3,7 +3,7 @@ import React from 'react';
 const LocalBusinessSchema: React.FC = () => {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'MedicalBusiness',
+    '@type': 'HealthAndBeautyBusiness',
     '@id': 'https://www.stwaestheticclinic.co.uk#business',
     name: 'STW Aesthetic Clinic',
     description: 'Professional aesthetic clinic offering Cryolipolysis fat freezing, Ultra 4D HIFU, HydraFacial, laser hair removal, and fibroblast skin tightening treatments.',
@@ -42,10 +42,11 @@ const LocalBusinessSchema: React.FC = () => {
       'https://www.instagram.com/stwaestheticclinic',
       'https://www.linkedin.com/company/stwaestheticclinic'
     ],
-    medicalSpecialty: [
-      'Aesthetic Medicine',
-      'Cosmetic Dermatology',
-      'Non-surgical Treatments'
+    serviceType: [
+      'Aesthetic Treatments',
+      'Beauty Therapy',
+      'Non-surgical Cosmetic Procedures',
+      'Skin Care Services'
     ],
     serviceArea: {
       '@type': 'GeoCircle',

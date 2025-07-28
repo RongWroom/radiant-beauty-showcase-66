@@ -3,6 +3,9 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
+import SEOBreadcrumb from '@/components/SEOBreadcrumb';
+import ServiceSchema from '@/components/seo/ServiceSchema';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -54,13 +57,28 @@ const TreatmentDetail = () => {
     ?.filter(t => t.id !== treatment.id && t.category === treatment.category)
     ?.slice(0, 2) || [];
 
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Treatments', href: '/treatments' },
+    { label: treatment.name }
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
+    <>
+      <SEO
+        title={`${treatment.name} | Professional Treatment | STW Aesthetic Clinic`}
+        description={treatment.description}
+        keywords={`${treatment.name}, ${treatment.category}, aesthetic treatment, professional treatment, non-surgical`}
+        url={`https://www.stwaestheticclinic.co.uk/treatments/${treatment.id}`}
+      />
+      <ServiceSchema service={treatment} />
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-brand-slate-blue/10 via-brand-silver/20 to-brand-light-gray py-12">
           <div className="container-custom">
+            <SEOBreadcrumb items={breadcrumbItems} />
             <div className="flex items-center gap-4 mb-6">
               <Link to="/treatments">
                 <Button variant="outline" size="sm" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">
@@ -266,6 +284,7 @@ const TreatmentDetail = () => {
       </main>
       <Footer />
     </div>
+    </>
   );
 };
 

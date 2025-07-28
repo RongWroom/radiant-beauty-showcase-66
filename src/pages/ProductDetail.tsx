@@ -8,6 +8,9 @@ import ProductImage from '@/components/ProductImage';
 import ProductInfo from '@/components/ProductInfo';
 import ProductDetailsGrid from '@/components/ProductDetailsGrid';
 import RelatedProducts from '@/components/RelatedProducts';
+import SEO from '@/components/SEO';
+import SEOBreadcrumb from '@/components/SEOBreadcrumb';
+import ProductSchema from '@/components/seo/ProductSchema';
 import { Button } from "@/components/ui/button";
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -105,27 +108,44 @@ const ProductDetail = () => {
     );
   }
 
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        <ProductDetailHeader featured={product.featured} />
-        
-        {/* Product Details */}
-        <section className="py-12 bg-gradient-to-br from-brand-white via-brand-off-white to-brand-light-gray">
-          <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <ProductImage imageUrl={product.image_url} name={product.name} />
-              <ProductInfo product={product} productId={id!} />
-            </div>
-          </div>
-        </section>
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: product.name }
+  ];
 
-        <ProductDetailsGrid product={product} />
-        <RelatedProducts products={relatedProducts || []} />
-      </main>
-      <Footer />
-    </div>
+  return (
+    <>
+      <SEO
+        title={`${product.name} | STW Aesthetic Clinic`}
+        description={product.description || `Professional beauty product: ${product.name}`}
+        keywords={`${product.name}, beauty product, skincare, ${product.product_benefits?.join(', ') || 'professional skincare'}`}
+        url={`https://www.stwaestheticclinic.co.uk/products/${product.id}`}
+        image={product.image_url || undefined}
+      />
+      <ProductSchema product={product} />
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <ProductDetailHeader featured={product.featured} />
+          
+          {/* Product Details */}
+          <section className="py-12 bg-gradient-to-br from-brand-white via-brand-off-white to-brand-light-gray">
+            <div className="container-custom">
+              <SEOBreadcrumb items={breadcrumbItems} />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <ProductImage imageUrl={product.image_url} name={product.name} />
+                <ProductInfo product={product} productId={id!} />
+              </div>
+            </div>
+          </section>
+
+          <ProductDetailsGrid product={product} />
+          <RelatedProducts products={relatedProducts || []} />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
+import SEOBreadcrumb from '@/components/SEOBreadcrumb';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -53,16 +56,25 @@ const Products = () => {
   }, [products]);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 md:py-20 animate-fade-in">
-          <div className="container-custom relative z-10">
-            <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
-                Our Products
-              </h1>
+    <>
+      <SEO
+        title="Premium Beauty Products | STW Aesthetic Clinic"
+        description="Shop our curated collection of professional-grade beauty products designed to enhance your skincare routine. High-quality products from trusted brands to complement our aesthetic treatments."
+        keywords="beauty products, skincare, professional skincare, beauty shop, aesthetic products, premium cosmetics"
+        url="https://www.stwaestheticclinic.co.uk/products"
+      />
+      <LocalBusinessSchema />
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          {/* Hero Section */}
+          <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 md:py-20 animate-fade-in">
+            <div className="container-custom relative z-10">
+              <SEOBreadcrumb />
+              <div className="text-center max-w-3xl mx-auto">
+                <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
+                  Our Products
+                </h1>
               {/* Decorative Line */}
               <div className="flex justify-center mb-5">
                 <span className="block h-1 w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
@@ -193,6 +205,7 @@ const Products = () => {
       </main>
       <Footer />
     </div>
+    </>
   );
 };
 

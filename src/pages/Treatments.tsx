@@ -6,6 +6,9 @@ import TreatmentsHero from '@/components/treatments/TreatmentsHero';
 import TreatmentCategories from '@/components/treatments/TreatmentCategories';
 import TreatmentsGrid from '@/components/treatments/TreatmentsGrid';
 import BookingCta from '@/components/treatments/BookingCta';
+import SEO from '@/components/SEO';
+import SEOBreadcrumb from '@/components/SEOBreadcrumb';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import { useTreatments } from '@/hooks/useTreatments';
 import { Loader2 } from 'lucide-react';
 
@@ -40,16 +43,28 @@ const Treatments = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        <TreatmentsHero />
-        <TreatmentsGrid treatments={treatments} />
-        <TreatmentCategories />
-        <BookingCta />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <SEO
+        title="Professional Aesthetic Treatments | STW Aesthetic Clinic"
+        description="Discover our range of professional aesthetic treatments including Cryolipolysis fat freezing, Ultra 4D HIFU, HydraFacial, laser hair removal, and fibroblast skin tightening. Expert technicians, proven results."
+        keywords="aesthetic treatments, cryolipolysis, HIFU, hydrafacial, laser hair removal, fibroblast, skin tightening, professional beauty treatments, non-surgical treatments"
+        url="https://www.stwaestheticclinic.co.uk/treatments"
+      />
+      <LocalBusinessSchema />
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <div className="container-custom">
+            <SEOBreadcrumb />
+          </div>
+          <TreatmentsHero />
+          <TreatmentsGrid treatments={treatments} />
+          <TreatmentCategories />
+          <BookingCta />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

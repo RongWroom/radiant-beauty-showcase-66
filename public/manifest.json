@@ -1,0 +1,35 @@
+{
+  "name": "STW Aesthetic Clinic - Professional Beauty Treatments",
+  "short_name": "STW Aesthetic",
+  "description": "Professional aesthetic treatments including Cryolipolysis, Ultra 4D HIFU, HydraFacial, and laser hair removal. Expert technicians, premium results.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6B73FF",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/images/hero-blossom.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/hero-blossom.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "beauty", "lifestyle", "medical"],
+  "prefer_related_applications": false,
+  "dir": "ltr",
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7"
+}

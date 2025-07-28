@@ -12,6 +12,10 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+  'Referrer-Policy': 'strict-origin-when-cross-origin'
 };
 
 interface BookingData {
@@ -77,6 +81,32 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Security: Check content length
+    const contentLength = req.headers.get('content-length');
+    if (contentLength && parseInt(contentLength) > 1024 * 1024) { // 1MB limit
+      return new Response(JSON.stringify({ error: 'Request too large' }), {
+        status: 413,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Security: Rate limiting check
+    const clientIP = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for') || 'unknown';
+    
+    // Server-side rate limiting using the database function
+    const { data: isAllowed } = await supabase.rpc('check_rate_limit', {
+      identifier: `booking_notification_${clientIP}`,
+      max_attempts: 10,
+      window_minutes: 5
+    });
+
+    if (!isAllowed) {
+      return new Response(JSON.stringify({ error: 'Rate limit exceeded' }), {
+        status: 429,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
     const bookingData: BookingData = await req.json();
     console.log('Processing booking notification for:', bookingData.customerEmail);
     console.log('Booking data:', {

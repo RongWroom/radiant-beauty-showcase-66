@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
+import { securityUtils } from '@/utils/securityUtils';
 
 interface AuthContextType {
   user: User | null;
@@ -76,16 +77,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signIn = async (email: string, password: string) => {
     try {
+      // Validate inputs
+      if (!email || !password) {
+        return { error: { message: 'Email and password are required' } };
+      }
+
+      // Rate limiting check
+      const rateLimitKey = `login_${email}`;
+      const isAllowed = await securityUtils.rateLimiter.checkRateLimit(rateLimitKey, 5, 300000); // 5 attempts per 5 minutes
+      
+      if (!isAllowed) {
+        securityUtils.logSecurityEvent('LOGIN_RATE_LIMITED', { email: email.substring(0, 3) + '***' });
+        return { error: { message: 'Too many login attempts. Please try again later.' } };
+      }
+
       console.log('Attempting to sign in:', email);
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password
+        email: securityUtils.validateInput.sanitizeInput(email, 254),
+        password,
       });
+
+      if (error) {
+        securityUtils.logSecurityEvent('LOGIN_FAILED', { 
+          email: email.substring(0, 3) + '***',
+          error: error.message 
+        });
+      } else {
+        securityUtils.logSecurityEvent('LOGIN_SUCCESS', { 
+          email: email.substring(0, 3) + '***'
+        });
+      }
       
       console.log('Sign in response:', { data, error });
       return { error };
     } catch (err) {
       console.error('Sign in error:', err);
+      securityUtils.logSecurityEvent('LOGIN_ERROR', { error: err.message });
       return { error: err };
     }
   };

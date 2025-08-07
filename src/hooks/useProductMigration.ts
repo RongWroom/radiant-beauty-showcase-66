@@ -47,9 +47,9 @@ export function useProductMigration() {
     const variants: any[] = [];
 
     // Enhanced patterns for variant detection
-    const sizePattern = /\s+(15ml|30ml|60ml|120ml|180ml|200ml|\d+ml|\d+g|Travel\s+Size)$/i;
-    const colorPattern = /\s+(Translucent|Beige|Bronze|Ivory|Cream|Deep)$/i;
-    const spfPattern = /\s+SPF\s+(\d+\+?)(?:\s+(Translucent|Beige|Bronze))?$/i;
+    const sizePattern = /\s+(15ML|30ML|15ml|30ml|60ml|120ml|180ml|200ml|\d+ml|\d+g|Travel\s+Size)$/i;
+    const spfTintPattern = /^(Eclipse SPF 50\+|Extreme Protect SPF 40|PerfecTint Powder SPF 40)\s+(Translucent|Beige|Bronze|Ivory|Cream|Deep)$/i;
+    const travelSizePattern = /\s*\(Travel\s+Size\)$/i;
 
     // Group products by base name
     products.forEach(product => {
@@ -57,34 +57,25 @@ export function useProductMigration() {
       let variantType = 'Standard';
       let variantValue = 'Standard';
 
-      // Check for size variants first
-      const sizeMatch = product.name.match(sizePattern);
-      if (sizeMatch) {
-        baseName = product.name.replace(sizePattern, '').trim();
-        variantType = 'size';
-        variantValue = sizeMatch[1];
-      } 
-      // Check for color/shade variants
-      else if (product.name.match(colorPattern)) {
-        const colorMatch = product.name.match(colorPattern);
-        if (colorMatch) {
-          baseName = product.name.replace(colorPattern, '').trim();
-          variantType = 'shade';
-          variantValue = colorMatch[1];
-        }
+      // Check for SPF products with tints first (highest priority)
+      const spfTintMatch = product.name.match(spfTintPattern);
+      if (spfTintMatch) {
+        baseName = spfTintMatch[1];
+        variantType = 'tint';
+        variantValue = spfTintMatch[2];
       }
-      // Handle SPF products with tints
-      else if (product.name.match(spfPattern)) {
-        const spfMatch = product.name.match(spfPattern);
-        if (spfMatch && spfMatch[2]) {
-          baseName = product.name.replace(/\s+(Translucent|Beige|Bronze)$/i, '').trim();
-          variantType = 'tint';
-          variantValue = spfMatch[2];
+      // Check for size variants
+      else if (product.name.match(sizePattern)) {
+        const sizeMatch = product.name.match(sizePattern);
+        if (sizeMatch) {
+          baseName = product.name.replace(sizePattern, '').trim();
+          variantType = 'size';
+          variantValue = sizeMatch[1];
         }
       }
       // Handle Travel Size variants
-      else if (product.name.includes('Travel Size')) {
-        baseName = product.name.replace(/\s*\(Travel\s+Size\)$/i, '').trim();
+      else if (product.name.match(travelSizePattern)) {
+        baseName = product.name.replace(travelSizePattern, '').trim();
         variantType = 'size';
         variantValue = 'Travel Size';
       }

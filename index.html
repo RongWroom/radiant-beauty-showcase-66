@@ -24,13 +24,20 @@
     <meta name="msapplication-TileImage" content="/lovable-uploads/a70b0dcc-6199-428d-bf9c-81df68ecfbc9.png" />
     <link rel="manifest" href="/manifest.json">
     
-    <!-- Preload critical resources for Core Web Vitals -->
-    <link rel="preload" href="/images/hero-blossom.jpg" as="image" type="image/jpeg" fetchpriority="high">
-    <link rel="preload" href="https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200" as="image" type="image/jpeg" fetchpriority="high">
+    <!-- Optimized critical resource loading -->
+    <link rel="preload" href="https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200" as="image" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Critical Google Fonts with optimized loading -->
+    <!-- Critical CSS inline for hero section -->
+    <style>
+      .hero-section { min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+      .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .hero-overlay { position: absolute; inset: 0; }
+      .hero-content { position: relative; z-index: 10; width: 100%; }
+    </style>
+    
+    <!-- Optimized Google Fonts loading -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
     

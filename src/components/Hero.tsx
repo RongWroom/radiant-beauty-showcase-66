@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom';
 import { Star, Award, Users, Clock } from 'lucide-react';
 
 const Hero = () => (
-  <section className="relative min-h-screen flex items-center overflow-hidden">
-    {/* Full-bleed background with optimized LCP image */}
+  <section className="hero-section relative">
+    {/* Optimized LCP image with proper attributes */}
     <img 
       src="https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200"
-      alt="Aesthetic clinic treatment room background"
-      className="absolute inset-0 w-full h-full object-cover"
+      alt="Professional aesthetic clinic treatment room with modern equipment"
+      className="hero-bg"
       fetchPriority="high"
-      width={1200}
-      height={800}
+      width="1200"
+      height="800"
       decoding="async"
     />
     {/* Overlay for contrast */}

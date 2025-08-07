@@ -29,9 +29,24 @@ type ProductInfoProps = {
 const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-  const [selectedSize, setSelectedSize] = useState(
-    product.sizes?.default || { size: "Standard", price: product.price || 0 }
-  );
+  // Debug logging
+  console.log('ProductInfo Debug:', {
+    productName: product.name,
+    hasSizes: !!product.sizes,
+    defaultSize: product.sizes?.default,
+    options: product.sizes?.options,
+    price: product.price
+  });
+
+  const [selectedSize, setSelectedSize] = useState(() => {
+    if (product.sizes?.default) {
+      return product.sizes.default;
+    }
+    if (product.sizes?.options && product.sizes.options.length > 0) {
+      return product.sizes.options[0];
+    }
+    return { size: "Standard", price: product.price || 0 };
+  });
   const { toast } = useToast();
   const { addToCart } = useCart();
 

@@ -34,7 +34,7 @@ export const SecurityBanner = () => {
       <Info className="h-4 w-4" />
       <AlertDescription>
         <span className="text-sm">
-          Your account is secured with industry-standard encryption
+          Your account is secured
         </span>
       </AlertDescription>
     </Alert>

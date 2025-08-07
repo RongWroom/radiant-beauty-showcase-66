@@ -25,12 +25,16 @@ type Product = {
   image_url: string | null;
   featured: boolean | null;
   product_benefits: string[] | null;
+  sizes?: {
+    default: { size: string; price: number };
+    options: { size: string; price: number }[];
+  } | null;
 };
 
 const fetchProduct = async (id: string): Promise<Product | null> => {
   const { data, error } = await supabase
     .from('products')
-    .select('id, name, description, price, currency, image_url, featured, product_benefits')
+    .select('id, name, description, price, currency, image_url, featured, product_benefits, sizes')
     .eq('id', id)
     .maybeSingle();
     
@@ -38,13 +42,13 @@ const fetchProduct = async (id: string): Promise<Product | null> => {
     console.error(`Error fetching product with id ${id}:`, error);
     throw new Error(error.message);
   }
-  return data;
+  return data as Product | null;
 };
 
 const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]> => {
   const { data, error } = await supabase
     .from('products')
-    .select('id, name, description, price, currency, image_url, featured, product_benefits')
+    .select('id, name, description, price, currency, image_url, featured, product_benefits, sizes')
     .neq('id', currentProductId)
     .limit(3);
     
@@ -52,7 +56,7 @@ const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]
     console.error("Error fetching related products:", error);
     throw new Error(error.message);
   }
-  return data || [];
+  return (data || []) as Product[];
 };
 
 const ProductDetail = () => {

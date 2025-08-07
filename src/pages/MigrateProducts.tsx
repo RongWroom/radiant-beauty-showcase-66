@@ -162,9 +162,6 @@ export default function MigrateProductsPage() {
     try {
       setProgress("Processing product variants...");
       const processedProducts = processProductVariants(productsToMigrate);
-      
-      let updated = 0;
-      let inserted = 0;
 
       for (const [index, product] of processedProducts.entries()) {
         setProgress(`Processing ${index + 1}/${processedProducts.length}: ${product.baseName}`);
@@ -172,41 +169,27 @@ export default function MigrateProductsPage() {
         // Migrate image
         const newImageUrl = await migrateProductImage(product.image_url, product.baseName);
         
-        // Check if product exists by name
-        const { data: existingProduct } = await supabase
-          .from('products')
-          .select('id')
-          .eq('name', product.baseName)
-          .maybeSingle();
+        // Update product with migrated image URL
+        product.image_url = newImageUrl;
+      }
 
-        const productData = {
-          name: product.baseName,
-          description: product.description,
-          price: product.price,
-          currency: product.currency,
-          product_benefits: product.product_benefits,
-          image_url: newImageUrl,
-          featured: product.featured,
-          category: product.category,
-          sizes: product.sizes
-        };
+      // Use the secure database function to migrate all products at once
+      setProgress("Saving products to database...");
+      
+      const { data, error } = await supabase.rpc('migrate_product_data', {
+        product_data: processedProducts
+      });
 
-        if (existingProduct) {
-          const { error } = await supabase
-            .from('products')
-            .update(productData)
-            .eq('id', existingProduct.id);
-          
-          if (error) throw error;
-          updated++;
-        } else {
-          const { error } = await supabase
-            .from('products')
-            .insert([{ id: product.id, ...productData }]);
-          
-          if (error) throw error;
-          inserted++;
-        }
+      if (error) {
+        throw error;
+      }
+
+      // Type-safe access to the response data
+      const result = data as { updated: number; inserted: number; errors: any[] };
+      const { updated, inserted, errors } = result;
+      
+      if (errors && errors.length > 0) {
+        console.warn('Some products had errors:', errors);
       }
 
       setProgress(`Complete! Updated ${updated} products, inserted ${inserted} new products`);
@@ -216,7 +199,15 @@ export default function MigrateProductsPage() {
         description: `Updated ${updated} products, inserted ${inserted} new products`,
       });
 
-    } catch (error) {
+      if (errors && errors.length > 0) {
+        toast({
+          title: "Migration Complete with Warnings",
+          description: `Some products had issues. Check console for details.`,
+          variant: "destructive"
+        });
+      }
+
+    } catch (error: any) {
       console.error('Migration error:', error);
       setProgress(`Error: ${error.message}`);
       toast({

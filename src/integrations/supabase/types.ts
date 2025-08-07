@@ -424,6 +424,10 @@ export type Database = {
         }
         Returns: undefined
       }
+      migrate_product_data: {
+        Args: { product_data: Json }
+        Returns: Json
+      }
     }
     Enums: {
       app_role: "customer" | "admin"

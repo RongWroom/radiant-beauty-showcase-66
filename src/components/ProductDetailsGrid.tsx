@@ -17,10 +17,8 @@ type ProductDetailsGridProps = {
 
 const ProductDetailsGrid = ({ product }: ProductDetailsGridProps) => {
   const [expandedSections, setExpandedSections] = useState({
-    description: false,
     benefits: true,
-    ingredients: false,
-    usage: false
+    ingredients: false
   });
 
   const formatPrice = (price: number | null, currency: string | null) => {
@@ -72,27 +70,6 @@ const ProductDetailsGrid = ({ product }: ProductDetailsGridProps) => {
         <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center text-brand-charcoal">Product Information</h2>
         <div className="space-y-6">
           
-          {/* Product Description */}
-          {descriptionSections.main && (
-            <Card className="bg-gradient-to-br from-white to-brand-silver/5 border-brand-silver/30 shadow-lg">
-              <CardContent className="p-6">
-                <button
-                  onClick={() => toggleSection('description')}
-                  className="flex items-center justify-between w-full text-left"
-                >
-                  <h3 className="text-xl font-serif text-brand-charcoal">About This Product</h3>
-                  {expandedSections.description ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
-                </button>
-                {expandedSections.description && (
-                  <div className="mt-4 text-brand-gray-600 leading-relaxed">
-                    {descriptionSections.main.split('\n').map((paragraph, index) => (
-                      paragraph.trim() && <p key={index} className="mb-3">{paragraph.trim()}</p>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
 
           {/* Benefits */}
           {product.product_benefits && product.product_benefits.length > 0 && (
@@ -119,32 +96,6 @@ const ProductDetailsGrid = ({ product }: ProductDetailsGridProps) => {
             </Card>
           )}
 
-          {/* How to Use */}
-          {descriptionSections.howToUse && (
-            <Card className="bg-gradient-to-br from-brand-silver/10 to-white border-brand-silver/30 shadow-lg">
-              <CardContent className="p-6">
-                <button
-                  onClick={() => toggleSection('usage')}
-                  className="flex items-center justify-between w-full text-left"
-                >
-                  <h3 className="text-xl font-serif text-brand-charcoal">How to Use</h3>
-                  {expandedSections.usage ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
-                </button>
-                {expandedSections.usage && (
-                  <div className="mt-4 text-sm text-brand-gray-600 leading-relaxed">
-                    {descriptionSections.howToUse.split('\n').map((line, index) => (
-                      line.trim() && (
-                        <div key={index} className="flex items-start gap-2 mb-2">
-                          <div className="w-1.5 h-1.5 bg-brand-slate-blue rounded-full mt-2 flex-shrink-0"></div>
-                          <p>{line.trim()}</p>
-                        </div>
-                      )
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
 
           {/* Ingredients */}
           {descriptionSections.ingredients && (

@@ -35,7 +35,8 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const { toast } = useToast();
   const { addToCart } = useCart();
 
-  const hasMultipleSizes = product.sizes && product.sizes.options.length > 1;
+  const hasMultipleSizes = product.sizes && product.sizes.options && product.sizes.options.length > 1;
+  const hasSizes = product.sizes && product.sizes.options && product.sizes.options.length > 0;
   
   const getCurrentPrice = () => {
     return product.sizes ? selectedSize.price : (product.price || 0);
@@ -149,7 +150,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif mb-2 text-brand-charcoal leading-tight">{product.name}</h1>
         <p className="text-brand-gray-600 mb-4 text-sm sm:text-base">{product.description}</p>
         
-        {hasMultipleSizes && (
+        {hasSizes && (
           <div className="mb-4 space-y-2">
             <Label htmlFor="size-select" className="text-sm font-medium text-brand-charcoal">
               Size
@@ -161,12 +162,12 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
                 if (option) setSelectedSize(option);
               }}
             >
-              <SelectTrigger id="size-select" className="w-full max-w-xs">
+              <SelectTrigger id="size-select" className="w-full max-w-xs bg-white border-brand-silver">
                 <SelectValue placeholder="Select size" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white border border-brand-silver shadow-lg z-50">
                 {product.sizes?.options.map((option) => (
-                  <SelectItem key={option.size} value={option.size}>
+                  <SelectItem key={option.size} value={option.size} className="hover:bg-brand-slate-blue/10">
                     {option.size} - {formatPrice(option.price, product.currency)}
                   </SelectItem>
                 ))}

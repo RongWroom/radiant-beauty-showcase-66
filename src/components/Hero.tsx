@@ -6,10 +6,16 @@ import { Star, Award, Users, Clock } from 'lucide-react';
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
-    {/* Full-bleed background */}
-    <div className="absolute inset-0 bg-cover bg-center" style={{
-      backgroundImage: "url('https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200')"
-    }} />
+    {/* Full-bleed background with optimized LCP image */}
+    <img 
+      src="https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      alt="Aesthetic clinic treatment room background"
+      className="absolute inset-0 w-full h-full object-cover"
+      fetchPriority="high"
+      width={1200}
+      height={800}
+      decoding="async"
+    />
     {/* Overlay for contrast */}
     <div className="absolute inset-0 bg-gradient-to-br from-brand-off-white/80 to-brand-light-gray/60" />
 

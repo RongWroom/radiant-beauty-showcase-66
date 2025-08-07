@@ -234,8 +234,17 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
           </div>
         )}
         
-        <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-black mb-6">
+        <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-black mb-4">
           {formatPrice(getCurrentPrice(), product.currency)}
+        </div>
+        
+        {/* Klarna Payment Notice */}
+        <div className="bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-200 rounded-lg p-3 mb-6">
+          <div className="flex items-center gap-2">
+            <span className="text-pink-600 font-bold text-sm">💳 Klarna</span>
+            <span className="text-sm text-gray-700">Pay in 3 interest-free instalments</span>
+          </div>
+          <p className="text-xs text-gray-600 mt-1">Split your payment with no hidden fees or interest</p>
         </div>
       </div>
 

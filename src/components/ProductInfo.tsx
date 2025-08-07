@@ -51,7 +51,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const { addToCart } = useCart();
 
   const hasMultipleSizes = product.sizes && product.sizes.options && product.sizes.options.length > 1;
-  const hasSizes = product.sizes && product.sizes.options && product.sizes.options.length > 0;
+  const hasSizes = product.sizes && product.sizes.options && product.sizes.options.length > 1; // Only show if multiple options
   
   const getCurrentPrice = () => {
     if (product.sizes && selectedSize.price !== null) {
@@ -82,6 +82,44 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
       title: "Added to Cart",
       description: `${productName} (${quantity}) has been added to your cart.`,
     });
+  };
+
+  // Generate dynamic description with variant
+  const getDisplayDescription = () => {
+    if (!product.description) return '';
+    
+    if (hasMultipleSizes && selectedSize.size !== 'Standard') {
+      // If the description already contains the size, replace it
+      const sizePattern = /\b\d+\s*(ml|g|oz)\b/gi;
+      if (product.description.match(sizePattern)) {
+        return product.description.replace(sizePattern, selectedSize.size);
+      } else {
+        // If no size in description, add the selected size to the product name context
+        return product.description;
+      }
+    }
+    
+    return product.description;
+  };
+
+  // Generate dynamic product name with variant
+  const getDisplayName = () => {
+    if (!hasMultipleSizes || selectedSize.size === 'Standard') {
+      return product.name;
+    }
+    
+    // Check if size is already in the name
+    const sizePattern = /\b\d+\s*(ml|g|oz)\b/gi;
+    if (product.name.match(sizePattern)) {
+      return product.name.replace(sizePattern, selectedSize.size);
+    } else {
+      // For tint/shade variants, show as "Product Name - Variant"
+      if (['Translucent', 'Beige', 'Bronze', 'Ivory', 'Cream', 'Deep'].some(tint => selectedSize.size.includes(tint))) {
+        return `${product.name} - ${selectedSize.size}`;
+      }
+      // For size variants, append size
+      return `${product.name} ${selectedSize.size}`;
+    }
   };
 
   const handleBuyNow = async () => {
@@ -165,8 +203,8 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   return (
     <div className="space-y-6">
       <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-brand-silver/20">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif mb-2 text-brand-charcoal leading-tight">{product.name}</h1>
-        <p className="text-brand-gray-600 mb-4 text-sm sm:text-base">{product.description}</p>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif mb-2 text-brand-charcoal leading-tight">{getDisplayName()}</h1>
+        <p className="text-brand-gray-600 mb-4 text-sm sm:text-base">{getDisplayDescription()}</p>
         
         {hasSizes && (
           <div className="mb-4 space-y-2">

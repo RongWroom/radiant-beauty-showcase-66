@@ -139,51 +139,33 @@ export function useProductMigration() {
     setIsLoading(true);
     
     try {
+      console.log("Step 1: Processing product variants...");
       const processedProducts = processProductVariants(products);
-      let updated = 0;
-      let inserted = 0;
+      console.log(`Processed ${processedProducts.length} base products from ${products.length} original products`);
 
-      for (const product of processedProducts) {
+      console.log("Step 2: Migrating images...");
+      for (const [index, product] of processedProducts.entries()) {
+        console.log(`Step 3: Processing ${index + 1}/${processedProducts.length}: ${product.baseName}`);
+        
         // Migrate image
         const newImageUrl = await migrateProductImage(product.image_url, product.baseName);
-        
-        // Check if product exists by name (using base name)
-        const { data: existingProduct } = await supabase
-          .from('products')
-          .select('id')
-          .eq('name', product.baseName)
-          .maybeSingle();
+        product.image_url = newImageUrl;
+      }
 
-        const productData = {
-          name: product.baseName,
-          description: product.description,
-          price: product.price,
-          currency: product.currency,
-          product_benefits: product.product_benefits,
-          image_url: newImageUrl,
-          featured: product.featured,
-          category: product.category,
-          sizes: product.sizes
-        };
+      console.log("Step 4: Saving to database...");
+      // Use the secure database function to migrate all products at once
+      const { data, error } = await supabase.rpc('migrate_product_data', {
+        product_data: processedProducts
+      });
 
-        if (existingProduct) {
-          // Update existing product
-          const { error } = await supabase
-            .from('products')
-            .update(productData)
-            .eq('id', existingProduct.id);
-          
-          if (error) throw error;
-          updated++;
-        } else {
-          // Insert new product
-          const { error } = await supabase
-            .from('products')
-            .insert([{ id: product.id, ...productData }]);
-          
-          if (error) throw error;
-          inserted++;
-        }
+      if (error) throw error;
+
+      console.log("Step 5: Migration complete!");
+      const result = data as { updated: number; inserted: number; errors: any[] };
+      const { updated, inserted, errors } = result;
+      
+      if (errors && errors.length > 0) {
+        console.warn('Some products had errors:', errors);
       }
 
       toast({

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useProductMigration } from "@/hooks/useProductMigration";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -355,31 +356,50 @@ const newProductsData = [
 
 export default function ProductMigration() {
   const { migrateProducts, isLoading } = useProductMigration();
+  const [progress, setProgress] = useState<string>("");
 
   const handleMigration = async () => {
     try {
+      setProgress("Starting migration...");
       await migrateProducts(newProductsData);
+      setProgress("Migration completed successfully!");
     } catch (error) {
-      console.error('Migration failed:', error);
+      console.error('Migration error:', error);
+      setProgress(`Migration failed: ${error.message}`);
     }
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle>Product Migration</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-4">
         <Button 
           onClick={handleMigration}
           disabled={isLoading}
           className="w-full"
+          size="lg"
         >
-          {isLoading ? "Migrating..." : "Migrate Products"}
+          {isLoading ? "Migrating..." : "Start Product Migration"}
         </Button>
-        <p className="text-sm text-muted-foreground mt-2">
-          This will migrate product images and update the database with size variants.
-        </p>
+        
+        {progress && (
+          <div className="p-4 bg-muted rounded-lg">
+            <p className="text-sm">{progress}</p>
+          </div>
+        )}
+        
+        <div className="text-sm text-muted-foreground space-y-2">
+          <p>This will migrate all {newProductsData.length} products including variants and consolidate products with size/shade variations.</p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>Download and migrate product images to Supabase storage</li>
+            <li>Combine size variants (e.g., 15ml + 30ml → single product with size options)</li>
+            <li>Group shade variants (e.g., Eclipse SPF Translucent + Beige → single product with tint options)</li>
+            <li>Update existing products and insert new ones</li>
+            <li>Add variant selector functionality to the frontend</li>
+          </ul>
+        </div>
       </CardContent>
     </Card>
   );

@@ -239,7 +239,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
         </div>
         
         {/* Klarna Payment Notice */}
-        <div className="bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-200 rounded-lg p-3 mb-6">
+        <div className="bg-gradient-to-r from-pink-40 to-purple-50 border border-pink-200 rounded-lg p-3 mb-6">
           <div className="flex items-center gap-2">
             <span className="text-pink-600 font-bold text-sm">💳 Klarna</span>
             <span className="text-sm text-gray-700">Pay in 3 interest-free instalments</span>

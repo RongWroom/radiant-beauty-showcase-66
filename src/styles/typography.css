@@ -1,45 +1,43 @@
 
-@layer components {
-  /* MOBILE-FIRST TEXT HIERARCHY */
-  .text-hierarchy-primary {
-    @apply text-brand-charcoal font-serif leading-tight;
-  }
-  
-  .text-hierarchy-secondary {
-    @apply text-brand-gray-600 leading-relaxed;
-  }
-  
-  .text-hierarchy-accent {
-    @apply text-brand-slate-blue font-medium;
-  }
-  
-  /* TEXT ON DARK BACKGROUNDS */
-  .text-on-dark-primary {
-    @apply text-white font-serif leading-tight;
-  }
-  
-  .text-on-dark-secondary {
-    @apply text-white/90 leading-relaxed;
-  }
-  
-  /* MOBILE-OPTIMIZED TEXT SIZING */
-  .mobile-text-sm {
-    @apply text-sm sm:text-base leading-relaxed;
-  }
-  
-  .mobile-text-base {
-    @apply text-base sm:text-lg leading-relaxed;
-  }
-  
-  .mobile-text-lg {
-    @apply text-lg sm:text-xl md:text-2xl leading-tight;
-  }
-  
-  .mobile-text-xl {
-    @apply text-xl sm:text-2xl md:text-3xl leading-tight;
-  }
-  
-  .mobile-text-2xl {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight;
-  }
+/* MOBILE-FIRST TEXT HIERARCHY */
+.text-hierarchy-primary {
+  @apply text-brand-charcoal font-serif leading-tight;
+}
+
+.text-hierarchy-secondary {
+  @apply text-brand-gray-600 leading-relaxed;
+}
+
+.text-hierarchy-accent {
+  @apply text-brand-slate-blue font-medium;
+}
+
+/* TEXT ON DARK BACKGROUNDS */
+.text-on-dark-primary {
+  @apply text-white font-serif leading-tight;
+}
+
+.text-on-dark-secondary {
+  @apply text-white/90 leading-relaxed;
+}
+
+/* MOBILE-OPTIMIZED TEXT SIZING */
+.mobile-text-sm {
+  @apply text-sm sm:text-base leading-relaxed;
+}
+
+.mobile-text-base {
+  @apply text-base sm:text-lg leading-relaxed;
+}
+
+.mobile-text-lg {
+  @apply text-lg sm:text-xl md:text-2xl leading-tight;
+}
+
+.mobile-text-xl {
+  @apply text-xl sm:text-2xl md:text-3xl leading-tight;
+}
+
+.mobile-text-2xl {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight;
 }

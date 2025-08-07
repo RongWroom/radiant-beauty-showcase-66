@@ -1,27 +1,25 @@
 
-@layer utilities {
-  /* Infinite left scroll animation */
-  .animate-scroll-left {
-    animation: scroll-left-infinite 40s linear infinite;
-    will-change: transform;
-  }
-  
-  /* Mobile-specific utilities */
-  .mobile-only {
-    @apply block sm:hidden;
-  }
-  
-  .desktop-only {
-    @apply hidden sm:block;
-  }
-  
-  .safe-area-top {
-    padding-top: env(safe-area-inset-top);
-  }
-  
-  .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
+/* Infinite left scroll animation */
+.animate-scroll-left {
+  animation: scroll-left-infinite 40s linear infinite;
+  will-change: transform;
+}
+
+/* Mobile-specific utilities */
+.mobile-only {
+  @apply block sm:hidden;
+}
+
+.desktop-only {
+  @apply hidden sm:block;
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 @keyframes scroll-left-infinite {

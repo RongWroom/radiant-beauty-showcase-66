@@ -1,15 +1,13 @@
 
-@layer components {
-  /* MOBILE-OPTIMIZED CARD SYSTEM */
-  .card-clean {
-    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-lg transition-all duration-300 p-6 sm:p-8 rounded-xl;
-  }
-  
-  .card-featured {
-    @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-gray-200 hover:border-brand-silver p-6 sm:p-8 rounded-xl;
-  }
-  
-  .card-product {
-    @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-md transition-all duration-300 p-4 sm:p-6 rounded-xl;
-  }
+/* MOBILE-OPTIMIZED CARD SYSTEM */
+.card-clean {
+  @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-lg transition-all duration-300 p-6 sm:p-8 rounded-xl;
+}
+
+.card-featured {
+  @apply bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-gray-200 hover:border-brand-silver p-6 sm:p-8 rounded-xl;
+}
+
+.card-product {
+  @apply bg-white border border-brand-gray-200 hover:border-brand-silver hover:shadow-md transition-all duration-300 p-4 sm:p-6 rounded-xl;
 }

@@ -1,19 +1,17 @@
 
-@layer components {
-  /* MOBILE-FIRST BUTTON SYSTEM */
-  .btn {
-    @apply inline-flex items-center justify-center rounded-[10px] px-7 py-[14px] sm:px-8 md:px-10 text-base sm:text-lg font-montserrat font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-[56px] min-w-[120px] shadow-sm hover:shadow-lg border-2 border-transparent;
-  }
-  
-  .btn-primary {
-    @apply bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light hover:text-white hover:border-brand-slate-blue hover:shadow-lg font-medium;
-  }
-  
-  .btn-secondary {
-    @apply bg-white text-brand-slate-blue border-2 border-brand-slate-blue hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue transition-all duration-300;
-  }
-  
-  .btn-accent {
-    @apply bg-brand-silver text-brand-charcoal hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue hover:shadow-lg font-medium;
-  }
+/* MOBILE-FIRST BUTTON SYSTEM */
+.btn {
+  @apply inline-flex items-center justify-center rounded-[10px] px-7 py-[14px] sm:px-8 md:px-10 text-base sm:text-lg font-montserrat font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-[56px] min-w-[120px] shadow-sm hover:shadow-lg border-2 border-transparent;
+}
+
+.btn-primary {
+  @apply bg-brand-slate-blue text-white hover:bg-brand-slate-blue-light hover:text-white hover:border-brand-slate-blue hover:shadow-lg font-medium;
+}
+
+.btn-secondary {
+  @apply bg-white text-brand-slate-blue border-2 border-brand-slate-blue hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue transition-all duration-300;
+}
+
+.btn-accent {
+  @apply bg-brand-silver text-brand-charcoal hover:bg-brand-slate-blue hover:text-white hover:border-brand-slate-blue hover:shadow-lg font-medium;
 }

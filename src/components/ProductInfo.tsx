@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 import { ShoppingCart, Share2, CreditCard, Truck, Shield, RotateCcw } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
 import { useCart } from '@/contexts/CartContext';
@@ -13,6 +15,10 @@ type Product = {
   price: number | null;
   currency: string | null;
   image_url: string | null;
+  sizes?: {
+    default: { size: string; price: number };
+    options: { size: string; price: number }[];
+  };
 };
 
 type ProductInfoProps = {
@@ -23,8 +29,17 @@ type ProductInfoProps = {
 const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(
+    product.sizes?.default || { size: "Standard", price: product.price || 0 }
+  );
   const { toast } = useToast();
   const { addToCart } = useCart();
+
+  const hasMultipleSizes = product.sizes && product.sizes.options.length > 1;
+  
+  const getCurrentPrice = () => {
+    return product.sizes ? selectedSize.price : (product.price || 0);
+  };
 
   const formatPrice = (price: number | null, currency: string | null) => {
     if (price === null) return 'N/A';
@@ -35,17 +50,18 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const handleAddToCart = () => {
     if (!product) return;
     
+    const productName = hasMultipleSizes ? `${product.name} (${selectedSize.size})` : product.name;
     addToCart({
-      id: productId,
-      name: product.name,
-      price: product.price || 0,
+      id: `${productId}-${selectedSize.size}`,
+      name: productName,
+      price: getCurrentPrice(),
       currency: product.currency || 'GBP',
       image_url: product.image_url || undefined,
     }, quantity);
 
     toast({
       title: "Added to Cart",
-      description: `${product.name} (${quantity}) has been added to your cart.`,
+      description: `${productName} (${quantity}) has been added to your cart.`,
     });
   };
 
@@ -59,7 +75,8 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: { 
           productId: productId,
-          quantity: quantity 
+          quantity: quantity,
+          selectedSize: selectedSize 
         }
       });
 
@@ -131,8 +148,35 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
       <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-brand-silver/20">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif mb-2 text-brand-charcoal leading-tight">{product.name}</h1>
         <p className="text-brand-gray-600 mb-4 text-sm sm:text-base">{product.description}</p>
+        
+        {hasMultipleSizes && (
+          <div className="mb-4 space-y-2">
+            <Label htmlFor="size-select" className="text-sm font-medium text-brand-charcoal">
+              Size
+            </Label>
+            <Select
+              value={selectedSize.size}
+              onValueChange={(size) => {
+                const option = product.sizes?.options.find(opt => opt.size === size);
+                if (option) setSelectedSize(option);
+              }}
+            >
+              <SelectTrigger id="size-select" className="w-full max-w-xs">
+                <SelectValue placeholder="Select size" />
+              </SelectTrigger>
+              <SelectContent>
+                {product.sizes?.options.map((option) => (
+                  <SelectItem key={option.size} value={option.size}>
+                    {option.size} - {formatPrice(option.price, product.currency)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+        
         <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-black mb-6">
-          {formatPrice(product.price, product.currency)}
+          {formatPrice(getCurrentPrice(), product.currency)}
         </div>
       </div>
 

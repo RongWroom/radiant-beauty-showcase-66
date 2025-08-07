@@ -187,6 +187,7 @@ export type Database = {
           name: string
           price: number
           product_benefits: string[] | null
+          sizes: Json | null
           stripe_product_id: string | null
           updated_at: string | null
         }
@@ -201,6 +202,7 @@ export type Database = {
           name: string
           price: number
           product_benefits?: string[] | null
+          sizes?: Json | null
           stripe_product_id?: string | null
           updated_at?: string | null
         }
@@ -215,6 +217,7 @@ export type Database = {
           name?: string
           price?: number
           product_benefits?: string[] | null
+          sizes?: Json | null
           stripe_product_id?: string | null
           updated_at?: string | null
         }

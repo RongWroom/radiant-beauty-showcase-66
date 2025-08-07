@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -8,17 +7,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
+import { Mail, ArrowLeft } from 'lucide-react';
 
 const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [loading, setLoading] = useState(false);
   const [showConfirmationMessage, setShowConfirmationMessage] = useState(false);
+  const [isNewUser, setIsNewUser] = useState(false);
   
-  const { signIn, signUp, user } = useAuth();
+  const { signInWithMagicLink, user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -33,62 +32,56 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      if (isLogin) {
-        const { error } = await signIn(email, password);
-        if (error) {
-          if (error.message.includes('Email not confirmed')) {
-            toast({
-              title: "Please confirm your email",
-              description: "Check your email and click the confirmation link before signing in.",
-              variant: "destructive"
-            });
-          } else if (error.message.includes('Invalid login credentials')) {
-            toast({
-              title: "Invalid credentials",
-              description: "Please check your email and password and try again.",
-              variant: "destructive"
-            });
-          } else {
-            toast({
-              title: "Login failed",
-              description: error.message,
-              variant: "destructive"
-            });
-          }
-        } else {
-          toast({
-            title: "Welcome back!",
-            description: "You have successfully logged in."
-          });
-          navigate('/');
-        }
+      const { error } = await signInWithMagicLink(
+        email, 
+        isNewUser ? firstName : undefined, 
+        isNewUser ? lastName : undefined
+      );
+      
+      if (error) {
+        toast({
+          title: "Failed to send magic link",
+          description: error.message,
+          variant: "destructive"
+        });
       } else {
-        const { error } = await signUp(email, password, firstName, lastName);
-        if (error) {
-          if (error.message.includes('User already registered')) {
-            toast({
-              title: "Account already exists",
-              description: "An account with this email already exists. Please try signing in instead.",
-              variant: "destructive"
-            });
-            setIsLogin(true);
-          } else {
-            toast({
-              title: "Sign up failed",
-              description: error.message,
-              variant: "destructive"
-            });
-          }
-        } else {
-          setShowConfirmationMessage(true);
-          toast({
-            title: "Account created!",
-            description: "Please check your email to verify your account before signing in."
-          });
-        }
+        setShowConfirmationMessage(true);
+        toast({
+          title: "Magic link sent!",
+          description: "Check your email and click the link to sign in."
+        });
       }
     } catch (error) {
       console.error('Auth error:', error);
+      toast({
+        title: "An error occurred",
+        description: "Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendLink = async () => {
+    if (!email) return;
+    
+    setLoading(true);
+    try {
+      const { error } = await signInWithMagicLink(email);
+      if (error) {
+        toast({
+          title: "Failed to resend link",
+          description: error.message,
+          variant: "destructive"
+        });
+      } else {
+        toast({
+          title: "Magic link resent!",
+          description: "Check your email for the new link."
+        });
+      }
+    } catch (error) {
       toast({
         title: "An error occurred",
         description: "Please try again later.",
@@ -106,30 +99,43 @@ const Auth = () => {
         <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">
             <Card>
-              <CardHeader>
-                <CardTitle className="text-center">Check your email</CardTitle>
-                <CardDescription className="text-center">
-                  We've sent a confirmation link to {email}
+              <CardHeader className="text-center">
+                <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                  <Mail className="w-6 h-6 text-green-600" />
+                </div>
+                <CardTitle>Check your email</CardTitle>
+                <CardDescription>
+                  We've sent a magic link to {email}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-gray-600 text-center">
-                  Please click the link in your email to verify your account. 
-                  Once verified, you can return here to sign in.
+                  Click the link in your email to sign in instantly. No password required!
                 </p>
-                <Button 
-                  onClick={() => {
-                    setShowConfirmationMessage(false);
-                    setIsLogin(true);
-                    setEmail('');
-                    setPassword('');
-                    setFirstName('');
-                    setLastName('');
-                  }}
-                  className="w-full"
-                >
-                  Return to Sign In
-                </Button>
+                <div className="space-y-2">
+                  <Button 
+                    onClick={handleResendLink}
+                    variant="outline"
+                    className="w-full"
+                    disabled={loading}
+                  >
+                    {loading ? 'Sending...' : 'Resend Magic Link'}
+                  </Button>
+                  <Button 
+                    onClick={() => {
+                      setShowConfirmationMessage(false);
+                      setEmail('');
+                      setFirstName('');
+                      setLastName('');
+                      setIsNewUser(false);
+                    }}
+                    variant="ghost"
+                    className="w-full"
+                  >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Try Different Email
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -148,23 +154,51 @@ const Auth = () => {
               STW Clinic
             </Link>
             <h2 className="mt-6 text-3xl font-bold text-gray-900">
-              {isLogin ? 'Sign in to your account' : 'Create your account'}
+              Welcome back
             </h2>
+            <p className="mt-2 text-sm text-gray-600">
+              Sign in with just your email - no password needed
+            </p>
           </div>
 
           <Card>
             <CardHeader>
-              <CardTitle>{isLogin ? 'Welcome back' : 'Get started'}</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Mail className="w-5 h-5" />
+                Magic Link Sign In
+              </CardTitle>
               <CardDescription>
-                {isLogin 
-                  ? 'Enter your credentials to access your account' 
-                  : 'Create an account to manage your treatments and orders'
-                }
+                Enter your email and we'll send you a secure link to sign in instantly
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
-                {!isLogin && (
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="newUser"
+                    checked={isNewUser}
+                    onChange={(e) => setIsNewUser(e.target.checked)}
+                    className="rounded border-gray-300"
+                  />
+                  <Label htmlFor="newUser" className="text-sm">
+                    I'm a new user
+                  </Label>
+                </div>
+                
+                {isNewUser && (
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName">First Name</Label>
@@ -173,7 +207,8 @@ const Auth = () => {
                         type="text"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        required={!isLogin}
+                        placeholder="First name"
+                        required={isNewUser}
                       />
                     </div>
                     <div>
@@ -183,60 +218,26 @@ const Auth = () => {
                         type="text"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        required={!isLogin}
+                        placeholder="Last name"
+                        required={isNewUser}
                       />
                     </div>
                   </div>
                 )}
-                
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    minLength={6}
-                  />
-                  {!isLogin && (
-                    <p className="text-xs text-gray-500 mt-1">
-                      Password must be at least 6 characters long
-                    </p>
-                  )}
-                </div>
 
                 <Button 
                   type="submit" 
                   className="w-full" 
                   disabled={loading}
                 >
-                  {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Sign Up')}
+                  {loading ? 'Sending Magic Link...' : 'Send Magic Link'}
                 </Button>
               </form>
 
               <div className="mt-6 text-center">
-                <button
-                  type="button"
-                  onClick={() => setIsLogin(!isLogin)}
-                  className="text-brand-plum hover:text-brand-plum-dark"
-                >
-                  {isLogin 
-                    ? "Don't have an account? Sign up" 
-                    : 'Already have an account? Sign in'
-                  }
-                </button>
+                <p className="text-xs text-gray-500">
+                  By signing in, you agree to our terms of service and privacy policy.
+                </p>
               </div>
             </CardContent>
           </Card>

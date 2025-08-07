@@ -8,8 +8,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string, firstName?: string, lastName?: string) => Promise<{ error: any }>;
-  signIn: (email: string, password: string) => Promise<{ error: any }>;
+  signInWithMagicLink: (email: string, firstName?: string, lastName?: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
 }
 
@@ -50,69 +49,52 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, firstName?: string, lastName?: string) => {
-    try {
-      const redirectUrl = `${window.location.origin}/`;
-      console.log('Signing up with redirect URL:', redirectUrl);
-      
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: redirectUrl,
-          data: {
-            first_name: firstName,
-            last_name: lastName
-          }
-        }
-      });
-      
-      console.log('Sign up response:', { data, error });
-      return { error };
-    } catch (err) {
-      console.error('Sign up error:', err);
-      return { error: err };
-    }
-  };
-
-  const signIn = async (email: string, password: string) => {
+  const signInWithMagicLink = async (email: string, firstName?: string, lastName?: string) => {
     try {
       // Validate inputs
-      if (!email || !password) {
-        return { error: { message: 'Email and password are required' } };
+      if (!email) {
+        return { error: { message: 'Email is required' } };
       }
 
       // Rate limiting check
-      const rateLimitKey = `login_${email}`;
-      const isAllowed = await securityUtils.rateLimiter.checkRateLimit(rateLimitKey, 5, 300000); // 5 attempts per 5 minutes
+      const rateLimitKey = `magic_link_${email}`;
+      const isAllowed = await securityUtils.rateLimiter.checkRateLimit(rateLimitKey, 3, 300000); // 3 attempts per 5 minutes
       
       if (!isAllowed) {
-        securityUtils.logSecurityEvent('LOGIN_RATE_LIMITED', { email: email.substring(0, 3) + '***' });
-        return { error: { message: 'Too many login attempts. Please try again later.' } };
+        securityUtils.logSecurityEvent('MAGIC_LINK_RATE_LIMITED', { email: email.substring(0, 3) + '***' });
+        return { error: { message: 'Too many magic link requests. Please try again later.' } };
       }
 
-      console.log('Attempting to sign in:', email);
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const redirectUrl = `${window.location.origin}/`;
+      console.log('Sending magic link with redirect URL:', redirectUrl);
+      
+      const { data, error } = await supabase.auth.signInWithOtp({
         email: securityUtils.validateInput.sanitizeInput(email, 254),
-        password,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: firstName && lastName ? {
+            first_name: firstName,
+            last_name: lastName
+          } : undefined
+        }
       });
 
       if (error) {
-        securityUtils.logSecurityEvent('LOGIN_FAILED', { 
+        securityUtils.logSecurityEvent('MAGIC_LINK_FAILED', { 
           email: email.substring(0, 3) + '***',
           error: error.message 
         });
       } else {
-        securityUtils.logSecurityEvent('LOGIN_SUCCESS', { 
+        securityUtils.logSecurityEvent('MAGIC_LINK_SENT', { 
           email: email.substring(0, 3) + '***'
         });
       }
       
-      console.log('Sign in response:', { data, error });
+      console.log('Magic link response:', { data, error });
       return { error };
     } catch (err) {
-      console.error('Sign in error:', err);
-      securityUtils.logSecurityEvent('LOGIN_ERROR', { error: err.message });
+      console.error('Magic link error:', err);
+      securityUtils.logSecurityEvent('MAGIC_LINK_ERROR', { error: err.message });
       return { error: err };
     }
   };
@@ -126,8 +108,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     user,
     session,
     loading,
-    signUp,
-    signIn,
+    signInWithMagicLink,
     signOut
   };
 

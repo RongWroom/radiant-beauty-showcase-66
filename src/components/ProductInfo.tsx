@@ -54,11 +54,14 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
   const hasSizes = product.sizes && product.sizes.options && product.sizes.options.length > 0;
   
   const getCurrentPrice = () => {
-    return product.sizes ? selectedSize.price : (product.price || 0);
+    if (product.sizes && selectedSize.price !== null) {
+      return selectedSize.price;
+    }
+    return product.price || 0;
   };
 
   const formatPrice = (price: number | null, currency: string | null) => {
-    if (price === null) return 'N/A';
+    if (price === null || price === undefined) return '£0.00';
     const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
     return `${currencySymbol}${price.toFixed(2)}`;
   };
@@ -168,7 +171,9 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
         {hasSizes && (
           <div className="mb-4 space-y-2">
             <Label htmlFor="size-select" className="text-sm font-medium text-brand-charcoal">
-              Size
+              {product.sizes?.options.some(opt => opt.size.match(/\d+(ml|g)/)) ? 'Size' : 
+               product.sizes?.options.some(opt => ['Translucent', 'Beige', 'Bronze'].includes(opt.size)) ? 'Tint' : 
+               product.sizes?.options.some(opt => ['Ivory', 'Cream', 'Deep'].includes(opt.size)) ? 'Shade' : 'Option'}
             </Label>
             <Select
               value={selectedSize.size}
@@ -178,7 +183,7 @@ const ProductInfo = ({ product, productId }: ProductInfoProps) => {
               }}
             >
               <SelectTrigger id="size-select" className="w-full max-w-xs bg-white border-brand-silver">
-                <SelectValue placeholder="Select size" />
+                <SelectValue placeholder="Select option" />
               </SelectTrigger>
               <SelectContent className="bg-white border border-brand-silver shadow-lg z-50">
                 {product.sizes?.options.map((option) => (

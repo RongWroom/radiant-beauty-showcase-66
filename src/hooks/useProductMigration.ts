@@ -44,23 +44,58 @@ export function useProductMigration() {
 
   const processProductVariants = (products: ProductToMigrate[]) => {
     const productMap = new Map<string, any>();
-    const variants: ProductVariant[] = [];
+    const variants: any[] = [];
 
-    // Group products by base name (remove size info)
+    // Enhanced patterns for variant detection
+    const sizePattern = /\s+(15ml|30ml|60ml|120ml|180ml|200ml|\d+ml|\d+g|Travel\s+Size)$/i;
+    const colorPattern = /\s+(Translucent|Beige|Bronze|Ivory|Cream|Deep)$/i;
+    const spfPattern = /\s+SPF\s+(\d+\+?)(?:\s+(Translucent|Beige|Bronze))?$/i;
+
+    // Group products by base name
     products.forEach(product => {
-      const baseName = product.name
-        .replace(/\s+(15ml|30ml|60ml|120ml|180ml|\d+ml|\d+g)$/i, '')
-        .trim();
-      
-      const sizeMatch = product.name.match(/(\d+(?:ml|g))$/i);
-      const size = sizeMatch ? sizeMatch[1] : 'Standard';
+      let baseName = product.name.trim();
+      let variantType = 'Standard';
+      let variantValue = 'Standard';
+
+      // Check for size variants first
+      const sizeMatch = product.name.match(sizePattern);
+      if (sizeMatch) {
+        baseName = product.name.replace(sizePattern, '').trim();
+        variantType = 'size';
+        variantValue = sizeMatch[1];
+      } 
+      // Check for color/shade variants
+      else if (product.name.match(colorPattern)) {
+        const colorMatch = product.name.match(colorPattern);
+        if (colorMatch) {
+          baseName = product.name.replace(colorPattern, '').trim();
+          variantType = 'shade';
+          variantValue = colorMatch[1];
+        }
+      }
+      // Handle SPF products with tints
+      else if (product.name.match(spfPattern)) {
+        const spfMatch = product.name.match(spfPattern);
+        if (spfMatch && spfMatch[2]) {
+          baseName = product.name.replace(/\s+(Translucent|Beige|Bronze)$/i, '').trim();
+          variantType = 'tint';
+          variantValue = spfMatch[2];
+        }
+      }
+      // Handle Travel Size variants
+      else if (product.name.includes('Travel Size')) {
+        baseName = product.name.replace(/\s*\(Travel\s+Size\)$/i, '').trim();
+        variantType = 'size';
+        variantValue = 'Travel Size';
+      }
 
       if (productMap.has(baseName)) {
         // Add as variant
         variants.push({
           name: product.name,
           baseProduct: baseName,
-          size,
+          variantType,
+          variantValue,
           price: product.price,
           image_url: product.image_url
         });
@@ -70,10 +105,11 @@ export function useProductMigration() {
           ...product,
           baseName,
           originalName: product.name,
-          size,
+          variantType,
+          variantValue,
           sizes: {
-            default: { size, price: product.price },
-            options: [{ size, price: product.price }]
+            default: { size: variantValue, price: product.price },
+            options: [{ size: variantValue, price: product.price }]
           }
         });
       }
@@ -83,10 +119,16 @@ export function useProductMigration() {
     variants.forEach(variant => {
       const baseProduct = productMap.get(variant.baseProduct);
       if (baseProduct) {
-        baseProduct.sizes.options.push({
-          size: variant.size,
-          price: variant.price
-        });
+        // Check if this variant already exists
+        const existingVariant = baseProduct.sizes.options.find(
+          opt => opt.size === variant.variantValue
+        );
+        if (!existingVariant) {
+          baseProduct.sizes.options.push({
+            size: variant.variantValue,
+            price: variant.price
+          });
+        }
       }
     });
 

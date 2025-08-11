@@ -1,5 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { openGlobalCart } from '@/hooks/useCartSheet';
 
 export type CartItem = {
   id: string;
@@ -59,6 +60,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       return [...currentItems, { ...product, quantity }];
     });
+    
+    // Auto-open cart when item is added
+    setTimeout(() => openGlobalCart(), 100);
   };
 
   const removeFromCart = (productId: string) => {

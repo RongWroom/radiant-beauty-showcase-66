@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Gift, Copy, Check, X } from 'lucide-react';
+import { Copy, Check, X } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 interface ProductDiscountPopupProps {
@@ -36,58 +35,54 @@ const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onC
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md border-0 p-0 overflow-hidden">
-        <div className="relative bg-gradient-to-br from-brand-slate-blue/5 via-brand-silver/10 to-brand-slate-blue/10">
+      <DialogContent className="sm:max-w-sm border-0 p-0 overflow-hidden bg-white rounded-2xl shadow-2xl">
+        <div className="relative">
           <Button
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="absolute right-2 top-2 z-10 h-8 w-8 p-0 hover:bg-white/20"
+            className="absolute right-3 top-3 z-10 h-7 w-7 p-0 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full"
           >
             <X className="h-4 w-4" />
           </Button>
           
-          <div className="p-6 text-center">
-            <div className="mb-4">
-              <Gift className="h-16 w-16 mx-auto text-brand-slate-blue" />
+          <div className="p-8 text-center">
+            {/* Header with emoji instead of icon */}
+            <div className="mb-6">
+              <div className="text-5xl mb-3">🎉</div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                Special Offer!
+              </h2>
+              <p className="text-gray-600 text-base">
+                Get <span className="font-bold text-emerald-600">15% OFF</span> your order
+              </p>
             </div>
-            
-            <DialogHeader className="space-y-2 mb-6">
-              <DialogTitle className="text-2xl font-bold text-gray-900">
-                Wait! Don't Miss Out!
-              </DialogTitle>
-              <p className="text-brand-gray-600 text-lg">
-                Get <span className="font-bold text-brand-slate-blue">15% OFF</span> your entire order
-              </p>
-            </DialogHeader>
 
-            <Card className="p-4 bg-white/50 border-2 border-dashed border-brand-slate-blue/30 mb-6">
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-xl font-bold tracking-wider text-gray-900">
-                  {discountCode}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCopyCode}
-                  className="h-8 w-8 p-0"
-                >
-                  {copied ? (
-                    <Check className="h-4 w-4 text-green-600" />
-                  ) : (
-                    <Copy className="h-4 w-4" />
-                  )}
-                </Button>
+            {/* Discount Code Section */}
+            <div className="mb-6">
+              <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl p-4 mb-4">
+                <div className="flex items-center justify-center gap-3">
+                  <span className="text-xl font-mono font-bold text-gray-900 tracking-wider">
+                    {discountCode}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleCopyCode}
+                    className="h-8 w-8 p-0 hover:bg-gray-200 rounded-lg"
+                  >
+                    {copied ? (
+                      <Check className="h-4 w-4 text-emerald-600" />
+                    ) : (
+                      <Copy className="h-4 w-4 text-gray-500" />
+                    )}
+                  </Button>
+                </div>
               </div>
-              <p className="text-sm text-gray-500 mt-1">
-                Click to copy discount code
-              </p>
-            </Card>
-
-            <div className="space-y-3">
+              
               <Button
                 onClick={handleCopyCode}
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 {copied ? (
                   <>
@@ -97,14 +92,14 @@ const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onC
                 ) : (
                   <>
                     <Copy className="mr-2 h-4 w-4" />
-                    Copy Code for Checkout
+                    Copy Code
                   </>
                 )}
               </Button>
             </div>
 
-            <p className="text-xs text-gray-500 mt-4">
-              Copy the code and enter it during Stripe checkout to get 15% off
+            <p className="text-xs text-gray-500">
+              Enter this code at checkout to save 15%
             </p>
           </div>
         </div>

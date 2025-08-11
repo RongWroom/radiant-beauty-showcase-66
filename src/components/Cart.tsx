@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,6 +7,7 @@ import { ShoppingCart, Minus, Plus, X, CreditCard } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from "@/hooks/use-toast";
+import { useCartSheet, setGlobalCartSheetHandler } from '@/hooks/useCartSheet';
 
 const Cart = () => {
   const { 
@@ -19,6 +20,12 @@ const Cart = () => {
   } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const { toast } = useToast();
+  const { isOpen, openCart, closeCart, setIsOpen } = useCartSheet();
+
+  // Register global cart handler
+  useEffect(() => {
+    setGlobalCartSheetHandler({ openCart, closeCart });
+  }, [openCart, closeCart]);
 
   const formatPrice = (price: number, currency: string) => {
     const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
@@ -64,7 +71,7 @@ const Cart = () => {
   };
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <button className="p-3 hover:bg-rose-50 rounded-full transition-colors relative">
           <ShoppingCart className="h-5 w-5 text-brand-warm-gray-600" />

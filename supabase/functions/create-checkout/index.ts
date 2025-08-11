@@ -28,8 +28,25 @@ serve(async (req) => {
     });
 
     // Convert cart items to Stripe line items
-    const lineItems = items.map((item: any) => {
+    const lineItems = items.map((item: any, index: number) => {
+      console.log(`Processing item ${index + 1}:`, JSON.stringify(item));
+      
+      // Validate required fields
+      if (!item.name) {
+        throw new Error(`Item at index ${index} is missing name`);
+      }
+      if (!item.price || isNaN(item.price)) {
+        throw new Error(`Item at index ${index} has invalid price: ${item.price}`);
+      }
+      if (!item.quantity || item.quantity < 1) {
+        throw new Error(`Item at index ${index} has invalid quantity: ${item.quantity}`);
+      }
+      
       const unitAmount = Math.round((item.price || 0) * 100); // Convert to cents
+      
+      if (unitAmount <= 0) {
+        throw new Error(`Item at index ${index} has invalid unit amount: ${unitAmount}`);
+      }
       
       return {
         price_data: {
@@ -74,7 +91,11 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error("Checkout creation error:", error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    console.error("Error stack:", error.stack);
+    return new Response(JSON.stringify({ 
+      error: error.message,
+      details: error.stack 
+    }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
     });

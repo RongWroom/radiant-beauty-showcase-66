@@ -6,12 +6,12 @@ import { Gift, Copy, Check, X } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from "@/hooks/use-toast";
 
-interface ExitIntentDiscountPopupProps {
+interface ProductDiscountPopupProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const ExitIntentDiscountPopup: React.FC<ExitIntentDiscountPopupProps> = ({ isOpen, onClose }) => {
+const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
   const { applyDiscount } = useCart();
   const { toast } = useToast();
@@ -132,4 +132,4 @@ const ExitIntentDiscountPopup: React.FC<ExitIntentDiscountPopupProps> = ({ isOpe
   );
 };
 
-export default ExitIntentDiscountPopup;
+export default ProductDiscountPopup;

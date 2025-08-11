@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,10 +11,12 @@ import RelatedProducts from '@/components/RelatedProducts';
 import SEO from '@/components/SEO';
 import SEOBreadcrumb from '@/components/SEOBreadcrumb';
 import ProductSchema from '@/components/seo/ProductSchema';
+import ProductDiscountPopup from '@/components/ProductDiscountPopup';
 import { Button } from "@/components/ui/button";
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useCart } from '@/contexts/CartContext';
 
 type Product = {
   id: string;
@@ -62,6 +64,9 @@ const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const { items, discount } = useCart();
+  const [showDiscountPopup, setShowDiscountPopup] = useState(false);
+  const [hasShownPopup, setHasShownPopup] = useState(false);
 
   const { data: product, isLoading, isError } = useQuery({
     queryKey: ['product', id],
@@ -74,6 +79,30 @@ const ProductDetail = () => {
     queryFn: () => fetchRelatedProducts(id!),
     enabled: !!id
   });
+
+  // Show discount popup after 5 seconds if user has no items in cart and no discount applied
+  useEffect(() => {
+    // Check if popup has already been shown this session
+    const hasShownPopup = sessionStorage.getItem('discount-popup-shown');
+    if (hasShownPopup) {
+      setHasShownPopup(true);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      if (items.length === 0 && !discount && !hasShownPopup) {
+        setShowDiscountPopup(true);
+        setHasShownPopup(true);
+        sessionStorage.setItem('discount-popup-shown', 'true');
+      }
+    }, 5000); // Show after 5 seconds
+
+    return () => clearTimeout(timer);
+  }, [items.length, discount, hasShownPopup]);
+
+  const hideDiscountPopup = () => {
+    setShowDiscountPopup(false);
+  };
 
   if (isLoading) {
     return (
@@ -150,6 +179,10 @@ const ProductDetail = () => {
         </main>
         <Footer />
       </div>
+      <ProductDiscountPopup 
+        isOpen={showDiscountPopup} 
+        onClose={hideDiscountPopup} 
+      />
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Copy, Check, X } from 'lucide-react';
+import { Copy, Check, Share2, MessageCircle, Mail } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 interface ProductDiscountPopupProps {
@@ -14,6 +14,8 @@ const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onC
   const { toast } = useToast();
 
   const discountCode = "SAVE15";
+  const shareText = `🎉 Get 15% OFF at STW Aesthetic Clinic! Use code ${discountCode} at checkout. Premium skincare and aesthetic treatments.`;
+  const shareUrl = window.location.origin;
 
   const handleCopyCode = async () => {
     try {
@@ -31,6 +33,37 @@ const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onC
         variant: "destructive",
       });
     }
+  };
+
+  const handleShare = (platform: string) => {
+    const encodedText = encodeURIComponent(shareText);
+    const encodedUrl = encodeURIComponent(shareUrl);
+    
+    let shareLink = '';
+    
+    switch (platform) {
+      case 'facebook':
+        shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`;
+        break;
+      case 'twitter':
+        shareLink = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
+        break;
+      case 'whatsapp':
+        shareLink = `https://wa.me/?text=${encodedText}%20${encodedUrl}`;
+        break;
+      case 'email':
+        shareLink = `mailto:?subject=Special Offer - 15% OFF&body=${encodedText}%0A%0A${encodedUrl}`;
+        break;
+      default:
+        return;
+    }
+    
+    window.open(shareLink, '_blank', 'width=600,height=400');
+    
+    toast({
+      title: "Share Link Opened",
+      description: `Sharing discount offer via ${platform}`,
+    });
   };
 
   return (
@@ -87,6 +120,49 @@ const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onC
                   </>
                 )}
               </Button>
+            </div>
+
+            {/* Social Share Section */}
+            <div className="mb-6">
+              <div className="mb-3">
+                <p className="text-sm font-medium text-brand-charcoal mb-3">Share with friends</p>
+                <div className="flex justify-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleShare('facebook')}
+                    className="h-10 w-10 p-0 border-dusty-rose-light hover:bg-dusty-rose-light rounded-lg"
+                  >
+                    <Share2 className="h-4 w-4 text-brand-slate-blue" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleShare('twitter')}
+                    className="h-10 w-10 p-0 border-dusty-rose-light hover:bg-dusty-rose-light rounded-lg"
+                  >
+                    <svg className="h-4 w-4 text-brand-slate-blue" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleShare('whatsapp')}
+                    className="h-10 w-10 p-0 border-dusty-rose-light hover:bg-dusty-rose-light rounded-lg"
+                  >
+                    <MessageCircle className="h-4 w-4 text-brand-slate-blue" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleShare('email')}
+                    className="h-10 w-10 p-0 border-dusty-rose-light hover:bg-dusty-rose-light rounded-lg"
+                  >
+                    <Mail className="h-4 w-4 text-brand-slate-blue" />
+                  </Button>
+                </div>
+              </div>
             </div>
 
             <p className="text-xs text-brand-gray-600">

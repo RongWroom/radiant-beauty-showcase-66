@@ -55,8 +55,8 @@ serve(async (req) => {
       cancel_url: `${req.headers.get("origin")}/products`,
     };
 
-    // Add coupon if provided
-    if (couponCode) {
+    // Add coupon if provided (only for direct API calls, not from our cart)
+    if (couponCode && typeof couponCode === 'string' && couponCode.trim()) {
       console.log(`Applying coupon code: ${couponCode}`);
       sessionConfig.discounts = [{
         coupon: couponCode

@@ -48,7 +48,7 @@ const ExitIntentDiscountPopup: React.FC<ExitIntentDiscountPopupProps> = ({ isOpe
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md border-0 p-0 overflow-hidden">
-        <div className="relative bg-gradient-to-br from-red-50 via-pink-50 to-rose-50">
+        <div className="relative bg-gradient-to-br from-brand-slate-blue/5 via-brand-silver/10 to-brand-slate-blue/10">
           <Button
             variant="ghost"
             size="sm"
@@ -60,19 +60,19 @@ const ExitIntentDiscountPopup: React.FC<ExitIntentDiscountPopupProps> = ({ isOpe
           
           <div className="p-6 text-center">
             <div className="mb-4">
-              <Gift className="h-16 w-16 mx-auto text-red-500" />
+              <Gift className="h-16 w-16 mx-auto text-brand-slate-blue" />
             </div>
             
             <DialogHeader className="space-y-2 mb-6">
               <DialogTitle className="text-2xl font-bold text-gray-900">
                 Wait! Don't Miss Out!
               </DialogTitle>
-              <p className="text-gray-600 text-lg">
-                Get <span className="font-bold text-red-600">15% OFF</span> your entire order
+              <p className="text-brand-gray-600 text-lg">
+                Get <span className="font-bold text-brand-slate-blue">15% OFF</span> your entire order
               </p>
             </DialogHeader>
 
-            <Card className="p-4 bg-white/50 border-2 border-dashed border-red-300 mb-6">
+            <Card className="p-4 bg-white/50 border-2 border-dashed border-brand-slate-blue/30 mb-6">
               <div className="flex items-center justify-center gap-2">
                 <span className="text-xl font-bold tracking-wider text-gray-900">
                   {discountCode}
@@ -98,7 +98,7 @@ const ExitIntentDiscountPopup: React.FC<ExitIntentDiscountPopupProps> = ({ isOpe
             <div className="space-y-3">
               <Button
                 onClick={handleApplyAndShop}
-                className="w-full bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-3"
+                className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-dark hover:to-brand-slate-blue text-white font-semibold py-3"
               >
                 Apply Discount & Continue Shopping
               </Button>

@@ -5,6 +5,7 @@ import { Menu, X, User, Shield } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUserRole } from '@/hooks/useUserRole';
 import { Badge } from '@/components/ui/badge';
+import Cart from '@/components/Cart';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +56,7 @@ const Navbar = () => {
 
           {/* Auth Section */}
           <div className="hidden md:flex items-center space-x-4">
+            <Cart />
             {user ? (
               <div className="flex items-center space-x-3">
                 {isAdmin && (
@@ -117,8 +119,11 @@ const Navbar = () => {
                 </Link>
               ))}
               
-              <div className="pt-4 border-t">
-                {user ? (
+               <div className="pt-4 border-t">
+                 <div className="mb-4">
+                   <Cart />
+                 </div>
+                 {user ? (
                   <div className="space-y-3">
                     {isAdmin && (
                       <Badge variant="destructive" className="flex items-center gap-1 w-fit">

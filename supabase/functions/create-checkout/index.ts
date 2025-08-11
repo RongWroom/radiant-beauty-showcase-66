@@ -50,6 +50,7 @@ serve(async (req) => {
     const sessionConfig: any = {
       line_items: lineItems,
       mode: "payment",
+      allow_promotion_codes: true, // Enable promotion code input
       success_url: `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/products`,
     };

@@ -10,14 +10,24 @@ export type CartItem = {
   image_url?: string;
 };
 
+export type DiscountInfo = {
+  code: string;
+  percentage: number;
+  amount: number;
+};
+
 type CartContextType = {
   items: CartItem[];
+  discount: DiscountInfo | null;
   addToCart: (product: Omit<CartItem, 'quantity'>, quantity?: number) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
+  getDiscountedTotal: () => number;
+  applyDiscount: (code: string, percentage: number) => void;
+  removeDiscount: () => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -32,12 +42,18 @@ export const useCart = () => {
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [discount, setDiscount] = useState<DiscountInfo | null>(null);
 
-  // Load cart from localStorage on mount
+  // Load cart and discount from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem('shopping-cart');
+    const savedDiscount = localStorage.getItem('cart-discount');
+    
     if (savedCart) {
       setItems(JSON.parse(savedCart));
+    }
+    if (savedDiscount) {
+      setDiscount(JSON.parse(savedDiscount));
     }
   }, []);
 
@@ -45,6 +61,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     localStorage.setItem('shopping-cart', JSON.stringify(items));
   }, [items]);
+
+  // Save discount to localStorage whenever discount changes
+  useEffect(() => {
+    if (discount) {
+      localStorage.setItem('cart-discount', JSON.stringify(discount));
+    } else {
+      localStorage.removeItem('cart-discount');
+    }
+  }, [discount]);
 
   const addToCart = (product: Omit<CartItem, 'quantity'>, quantity = 1) => {
     setItems(currentItems => {
@@ -78,6 +103,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const clearCart = () => {
     setItems([]);
+    setDiscount(null);
   };
 
   const getTotalItems = () => {
@@ -88,15 +114,41 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return items.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  const getDiscountedTotal = () => {
+    const total = getTotalPrice();
+    if (discount) {
+      return total - discount.amount;
+    }
+    return total;
+  };
+
+  const applyDiscount = (code: string, percentage: number) => {
+    const total = getTotalPrice();
+    const discountAmount = total * (percentage / 100);
+    setDiscount({
+      code,
+      percentage,
+      amount: discountAmount
+    });
+  };
+
+  const removeDiscount = () => {
+    setDiscount(null);
+  };
+
   return (
     <CartContext.Provider value={{
       items,
+      discount,
       addToCart,
       removeFromCart,
       updateQuantity,
       clearCart,
       getTotalItems,
       getTotalPrice,
+      getDiscountedTotal,
+      applyDiscount,
+      removeDiscount,
     }}>
       {children}
     </CartContext.Provider>

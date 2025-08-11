@@ -3,13 +3,23 @@ import React, { useState } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShoppingCart, Minus, Plus, X, CreditCard } from 'lucide-react';
+import { ShoppingCart, Minus, Plus, X, CreditCard, Tag } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const Cart = () => {
-  const { items, updateQuantity, removeFromCart, clearCart, getTotalItems, getTotalPrice } = useCart();
+  const { 
+    items, 
+    discount, 
+    updateQuantity, 
+    removeFromCart, 
+    clearCart, 
+    getTotalItems, 
+    getTotalPrice, 
+    getDiscountedTotal,
+    removeDiscount 
+  } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const { toast } = useToast();
 
@@ -26,7 +36,10 @@ const Cart = () => {
       console.log('Creating checkout for cart items:', items);
       
       const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { items }
+        body: { 
+          items,
+          couponCode: discount?.code
+        }
       });
 
       if (error) {
@@ -136,11 +149,49 @@ const Cart = () => {
               </div>
               
               <div className="border-t border-brand-silver/30 pt-4 mt-4">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-lg font-medium text-brand-charcoal">Total:</span>
-                  <span className="text-xl font-bold text-brand-slate-blue">
-                    {formatPrice(getTotalPrice(), items[0]?.currency || 'GBP')}
-                  </span>
+                {discount && (
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Tag className="h-4 w-4 text-green-600" />
+                        <span className="text-sm font-medium text-green-800">
+                          {discount.code} (-{discount.percentage}%)
+                        </span>
+                      </div>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={removeDiscount}
+                        className="h-6 w-6 p-0 text-green-600 hover:text-green-800"
+                      >
+                        <X className="h-3 w-3" />
+                      </Button>
+                    </div>
+                    <div className="text-sm text-green-700 mt-1">
+                      Save {formatPrice(discount.amount, items[0]?.currency || 'GBP')}
+                    </div>
+                  </div>
+                )}
+                
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-brand-charcoal">Subtotal:</span>
+                    <span className="text-brand-charcoal">
+                      {formatPrice(getTotalPrice(), items[0]?.currency || 'GBP')}
+                    </span>
+                  </div>
+                  {discount && (
+                    <div className="flex justify-between items-center text-green-600">
+                      <span>Discount ({discount.code}):</span>
+                      <span>-{formatPrice(discount.amount, items[0]?.currency || 'GBP')}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between items-center border-t border-brand-silver/30 pt-2">
+                    <span className="text-lg font-medium text-brand-charcoal">Total:</span>
+                    <span className="text-xl font-bold text-brand-slate-blue">
+                      {formatPrice(getDiscountedTotal(), items[0]?.currency || 'GBP')}
+                    </span>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Button

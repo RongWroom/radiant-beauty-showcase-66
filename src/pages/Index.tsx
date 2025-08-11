@@ -9,6 +9,7 @@ import CtaSection from '@/components/CtaSection';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
+import ExitIntentProvider from '@/components/ExitIntentProvider';
 import { customerReviews, aggregateRating } from '@/data/reviews';
 
 const Index = () => {
@@ -21,18 +22,20 @@ const Index = () => {
         url="https://www.stwaestheticclinic.co.uk"
       />
       <LocalBusinessSchema reviews={customerReviews} aggregateRating={aggregateRating} />
-      <div className="min-h-screen flex flex-col bg-white">
-        <Navbar />
-        <main className="flex-grow">
-          <Hero />
-          <InfiniteScrollBanner />
-          <FeaturedSection />
-          <BannerSection />
-          <CtaSection />
-          <CustomerReviews />
-        </main>
-        <Footer />
-      </div>
+      <ExitIntentProvider>
+        <div className="min-h-screen flex flex-col bg-white">
+          <Navbar />
+          <main className="flex-grow">
+            <Hero />
+            <InfiniteScrollBanner />
+            <FeaturedSection />
+            <BannerSection />
+            <CtaSection />
+            <CustomerReviews />
+          </main>
+          <Footer />
+        </div>
+      </ExitIntentProvider>
     </>
   );
 };

@@ -14,13 +14,13 @@ serve(async (req) => {
   }
 
   try {
-    const { items } = await req.json();
+    const { items, couponCode } = await req.json();
     
     if (!items || !Array.isArray(items) || items.length === 0) {
       throw new Error("Cart items are required");
     }
 
-    console.log(`Creating checkout for ${items.length} items`);
+    console.log(`Creating checkout for ${items.length} items`, couponCode ? `with coupon: ${couponCode}` : '');
 
     // Initialize Stripe
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
@@ -46,13 +46,24 @@ serve(async (req) => {
 
     console.log(`Creating checkout session with ${lineItems.length} line items`);
 
-    // Create checkout session
-    const session = await stripe.checkout.sessions.create({
+    // Create checkout session configuration
+    const sessionConfig: any = {
       line_items: lineItems,
       mode: "payment",
       success_url: `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/products`,
-    });
+    };
+
+    // Add coupon if provided
+    if (couponCode) {
+      console.log(`Applying coupon code: ${couponCode}`);
+      sessionConfig.discounts = [{
+        coupon: couponCode
+      }];
+    }
+
+    // Create checkout session
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     console.log(`Created checkout session: ${session.id}`);
 

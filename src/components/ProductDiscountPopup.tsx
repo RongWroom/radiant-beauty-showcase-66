@@ -3,7 +3,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Gift, Copy, Check, X } from 'lucide-react';
-import { useCart } from '@/contexts/CartContext';
 import { useToast } from "@/hooks/use-toast";
 
 interface ProductDiscountPopupProps {
@@ -13,7 +12,6 @@ interface ProductDiscountPopupProps {
 
 const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
-  const { applyDiscount } = useCart();
   const { toast } = useToast();
 
   const discountCode = "SAVE15";
@@ -24,7 +22,7 @@ const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onC
       setCopied(true);
       toast({
         title: "Code Copied!",
-        description: "Discount code copied to clipboard",
+        description: "Discount code SAVE15 has been copied to your clipboard. Enter it at checkout.",
       });
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
@@ -34,15 +32,6 @@ const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onC
         variant: "destructive",
       });
     }
-  };
-
-  const handleApplyAndShop = () => {
-    applyDiscount(discountCode, 15);
-    toast({
-      title: "Discount Applied!",
-      description: "15% off has been applied to your cart",
-    });
-    onClose();
   };
 
   return (
@@ -97,33 +86,25 @@ const ProductDiscountPopup: React.FC<ProductDiscountPopupProps> = ({ isOpen, onC
 
             <div className="space-y-3">
               <Button
-                onClick={handleApplyAndShop}
-                className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-dark hover:to-brand-slate-blue text-white font-semibold py-3"
-              >
-                Apply Discount & Continue Shopping
-              </Button>
-              
-              <Button
-                variant="outline"
                 onClick={handleCopyCode}
-                className="w-full border-gray-300 hover:bg-gray-50"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3"
               >
                 {copied ? (
                   <>
-                    <Check className="mr-2 h-4 w-4 text-green-600" />
-                    Code Copied!
+                    <Check className="mr-2 h-4 w-4" />
+                    Copied! Use at checkout
                   </>
                 ) : (
                   <>
                     <Copy className="mr-2 h-4 w-4" />
-                    Copy Code Only
+                    Copy Code for Checkout
                   </>
                 )}
               </Button>
             </div>
 
             <p className="text-xs text-gray-500 mt-4">
-              This offer is valid for your current session only
+              Copy the code and enter it during Stripe checkout to get 15% off
             </p>
           </div>
         </div>

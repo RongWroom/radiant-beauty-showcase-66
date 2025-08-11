@@ -64,7 +64,7 @@ const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const { items, discount } = useCart();
+  const { items } = useCart();
   const [showDiscountPopup, setShowDiscountPopup] = useState(false);
   const [hasShownPopup, setHasShownPopup] = useState(false);
 
@@ -90,7 +90,7 @@ const ProductDetail = () => {
     }
 
     const timer = setTimeout(() => {
-      if (items.length === 0 && !discount && !hasShownPopup) {
+      if (items.length === 0 && !hasShownPopup) {
         setShowDiscountPopup(true);
         setHasShownPopup(true);
         sessionStorage.setItem('discount-popup-shown', 'true');
@@ -98,7 +98,7 @@ const ProductDetail = () => {
     }, 5000); // Show after 5 seconds
 
     return () => clearTimeout(timer);
-  }, [items.length, discount, hasShownPopup]);
+  }, [items.length, hasShownPopup]);
 
   const hideDiscountPopup = () => {
     setShowDiscountPopup(false);

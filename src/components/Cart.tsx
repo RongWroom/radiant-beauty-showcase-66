@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShoppingCart, Minus, Plus, X, CreditCard, Tag } from 'lucide-react';
+import { ShoppingCart, Minus, Plus, X, CreditCard } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from "@/hooks/use-toast";
@@ -11,14 +11,11 @@ import { useToast } from "@/hooks/use-toast";
 const Cart = () => {
   const { 
     items, 
-    discount, 
     updateQuantity, 
     removeFromCart, 
     clearCart, 
     getTotalItems, 
-    getTotalPrice, 
-    getDiscountedTotal,
-    removeDiscount 
+    getTotalPrice
   } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const { toast } = useToast();
@@ -37,8 +34,7 @@ const Cart = () => {
       
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { 
-          items,
-          couponCode: discount?.code
+          items
         }
       });
 
@@ -79,7 +75,7 @@ const Cart = () => {
           )}
         </button>
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-lg">
+      <SheetContent className="w-full sm:max-w-lg flex flex-col max-h-screen">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
             <ShoppingCart className="h-5 w-5" />
@@ -87,7 +83,7 @@ const Cart = () => {
           </SheetTitle>
         </SheetHeader>
         
-        <div className="mt-6 flex flex-col h-full">
+        <div className="mt-6 flex flex-col flex-1 min-h-0">
           {items.length === 0 ? (
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
@@ -97,7 +93,7 @@ const Cart = () => {
             </div>
           ) : (
             <>
-              <div className="flex-1 overflow-y-auto space-y-4">
+              <div className="flex-1 overflow-y-auto space-y-4 min-h-0">
                 {items.map((item) => (
                   <Card key={item.id} className="border border-brand-silver/30">
                     <CardContent className="p-4">
@@ -148,48 +144,12 @@ const Cart = () => {
                 ))}
               </div>
               
-              <div className="border-t border-brand-silver/30 pt-4 mt-4">
-                {discount && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Tag className="h-4 w-4 text-green-600" />
-                        <span className="text-sm font-medium text-green-800">
-                          {discount.code} (-{discount.percentage}%)
-                        </span>
-                      </div>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={removeDiscount}
-                        className="h-6 w-6 p-0 text-green-600 hover:text-green-800"
-                      >
-                        <X className="h-3 w-3" />
-                      </Button>
-                    </div>
-                    <div className="text-sm text-green-700 mt-1">
-                      Save {formatPrice(discount.amount, items[0]?.currency || 'GBP')}
-                    </div>
-                  </div>
-                )}
-                
+              <div className="border-t border-brand-silver/30 pt-4 mt-4 flex-shrink-0">
                 <div className="space-y-2 mb-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-brand-charcoal">Subtotal:</span>
-                    <span className="text-brand-charcoal">
-                      {formatPrice(getTotalPrice(), items[0]?.currency || 'GBP')}
-                    </span>
-                  </div>
-                  {discount && (
-                    <div className="flex justify-between items-center text-green-600">
-                      <span>Discount ({discount.code}):</span>
-                      <span>-{formatPrice(discount.amount, items[0]?.currency || 'GBP')}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between items-center border-t border-brand-silver/30 pt-2">
+                  <div className="flex justify-between items-center border-b border-brand-silver/30 pb-2">
                     <span className="text-lg font-medium text-brand-charcoal">Total:</span>
                     <span className="text-xl font-bold text-brand-slate-blue">
-                      {formatPrice(getDiscountedTotal(), items[0]?.currency || 'GBP')}
+                      {formatPrice(getTotalPrice(), items[0]?.currency || 'GBP')}
                     </span>
                   </div>
                 </div>

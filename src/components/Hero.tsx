@@ -27,7 +27,7 @@ const Hero = () => (
     </div>
 
     {/* Content */}
-    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-start gap-x-12 px-4 sm:px-6 lg:px-8 py-0">
+    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-center lg:items-start gap-x-12 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       {/* Left Column (center-aligned on mobile, left-aligned on desktop) */}
       <div className="w-full lg:w-1/2 space-y-6 flex flex-col items-center lg:items-start">
         {/* Reviews badge */}

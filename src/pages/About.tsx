@@ -2,12 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Heart, Shield, Sparkles, Target, Award, Users, CheckCircle, Star } from 'lucide-react';
+
 const About = () => {
-  return <div className="min-h-screen flex flex-col bg-white">
+  return (
+    <>
+      <SEO 
+        title="About STW Aesthetic Clinic - Expert Beauty Practitioners | Stanley, County Durham"
+        description="Learn about STW Aesthetic Clinic's 15+ years of experience in professional beauty treatments. Meet our certified practitioners and discover our commitment to personalized care and natural results."
+        keywords="about STW Aesthetic Clinic, beauty practitioners, aesthetic clinic history, certified technicians, Stanley County Durham, professional beauty treatments, personalized care"
+        url="https://www.stwaestheticclinic.co.uk/about"
+      />
+      <LocalBusinessSchema />
+      <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
       <main className="flex-grow">
 
@@ -255,6 +267,8 @@ const About = () => {
 
       </main>
       <Footer />
-    </div>;
+    </div>
+    </>
+  );
 };
 export default About;

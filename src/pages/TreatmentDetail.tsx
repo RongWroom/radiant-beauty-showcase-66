@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import SEOBreadcrumb from '@/components/SEOBreadcrumb';
 import ServiceSchema from '@/components/seo/ServiceSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -57,28 +58,35 @@ const TreatmentDetail = () => {
     ?.filter(t => t.id !== treatment.id && t.category === treatment.category)
     ?.slice(0, 2) || [];
 
-  const breadcrumbItems = [
+  const pageItems = [
     { label: 'Home', href: '/' },
     { label: 'Treatments', href: '/treatments' },
     { label: treatment.name }
   ];
 
+  const schemaItems = [
+    { name: 'Home', url: 'https://www.stwaestheticclinic.co.uk', position: 1 },
+    { name: 'Treatments', url: 'https://www.stwaestheticclinic.co.uk/treatments', position: 2 },
+    { name: treatment.name, url: `https://www.stwaestheticclinic.co.uk/treatments/${treatment.id}`, position: 3 }
+  ];
+
   return (
     <>
       <SEO
-        title={`${treatment.name} | Professional Treatment | STW Aesthetic Clinic`}
-        description={treatment.description}
-        keywords={`${treatment.name}, ${treatment.category}, aesthetic treatment, professional treatment, non-surgical`}
+        title={`${treatment.name} | Professional Aesthetic Treatment | STW Aesthetic Clinic`}
+        description={`${treatment.description} Professional ${treatment.name} treatment at STW Aesthetic Clinic in Stanley, County Durham. Expert technicians, proven results.`}
+        keywords={`${treatment.name}, ${treatment.category}, aesthetic treatment Stanley, professional treatment, non-surgical, beauty treatment County Durham, STW Aesthetic Clinic`}
         url={`https://www.stwaestheticclinic.co.uk/treatments/${treatment.id}`}
       />
       <ServiceSchema service={treatment} />
+      <BreadcrumbSchema items={schemaItems} />
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-brand-slate-blue/10 via-brand-silver/20 to-brand-light-gray py-12">
           <div className="container-custom">
-            <SEOBreadcrumb items={breadcrumbItems} />
+            <SEOBreadcrumb items={pageItems} />
             <div className="flex items-center gap-4 mb-6">
               <Link to="/treatments">
                 <Button variant="outline" size="sm" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">

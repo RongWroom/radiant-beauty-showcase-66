@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactFaq from '@/components/contact/ContactFaq';
+import SEO from '@/components/SEO';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
@@ -90,7 +92,15 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <SEO 
+        title="Contact STW Aesthetic Clinic - Book Your Consultation | Stanley, County Durham"
+        description="Contact STW Aesthetic Clinic in Stanley, County Durham. Book your free consultation today. Expert aesthetic treatments by certified professionals. Call 01207 239983 or fill out our contact form."
+        keywords="contact STW Aesthetic Clinic, book consultation, Stanley County Durham, aesthetic clinic contact, beauty treatment booking, 01207 239983, The Treatment Rooms Front Street"
+        url="https://www.stwaestheticclinic.co.uk/contact"
+      />
+      <LocalBusinessSchema />
+      <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section - Mobile Optimized */}
@@ -299,6 +309,7 @@ const Contact = () => {
       </main>
       <Footer />
     </div>
+    </>
   );
 };
 

@@ -15,87 +15,130 @@ const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
 }) => {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'HealthAndBeautyBusiness',
+    '@type': 'LocalBusiness',
     '@id': 'https://www.stwaestheticclinic.co.uk#business',
     name: 'STW Aesthetic Clinic',
-    description: 'Professional aesthetic clinic offering Cryolipolysis fat freezing, Ultra 4D HIFU, HydraFacial, laser hair removal, and fibroblast skin tightening treatments.',
+    description: 'Professional aesthetic clinic offering Cryolipolysis fat freezing, Ultra 4D HIFU, HydraFacial, laser hair removal, and fibroblast skin tightening treatments in Stanley, County Durham.',
     url: 'https://www.stwaestheticclinic.co.uk',
-    telephone: '+44-01207 239983',
-    email: 'info@stwaestheticclinic.co.uk',
+    logo: 'https://www.stwaestheticclinic.co.uk/images/hero-blossom.jpg',
+    image: [
+      'https://www.stwaestheticclinic.co.uk/images/hero-blossom.jpg'
+    ],
+    telephone: '+44 1207 239983',
+    email: 'sharon@stwaestheticclinic.co.uk',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'The Treatment Rooms',
+      streetAddress: '110 Front Street',
       addressLocality: 'Stanley',
-      addressRegion: 'Co Durham',
-      postalCode: 'DH9 0TY',
+      addressRegion: 'County Durham',
+      postalCode: 'DH9 0AA',
       addressCountry: 'GB'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: '54.868699029740135',
-      longitude: '-1.7004918732064431'
+      latitude: 54.8693,
+      longitude: -1.6951
     },
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
+        dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday'],
+        opens: '10:00',
         closes: '18:00'
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Saturday',
-        opens: '09:00',
-        closes: '16:00'
       }
     ],
+    priceRange: '£££',
+    currenciesAccepted: 'GBP',
+    paymentAccepted: 'Cash, Credit Card, Debit Card',
+    areaServed: [
+      {
+        '@type': 'Place',
+        name: 'Stanley'
+      },
+      {
+        '@type': 'Place', 
+        name: 'County Durham'
+      },
+      {
+        '@type': 'Place',
+        name: 'Newcastle upon Tyne'
+      },
+      {
+        '@type': 'Place',
+        name: 'Gateshead'
+      }
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Aesthetic Treatments',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Cryolipolysis Fat Freezing',
+            description: 'Non-invasive fat reduction treatment using controlled cooling technology'
+          }
+        },
+        {
+          '@type': 'Offer', 
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Ultra 4D HIFU',
+            description: 'High-intensity focused ultrasound for skin tightening and lifting'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service', 
+            name: 'HydraFacial',
+            description: 'Deep cleansing and hydrating facial treatment'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Laser Hair Removal', 
+            description: 'Professional laser hair removal treatments'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Fibroblast Skin Tightening',
+            description: 'Non-surgical skin tightening treatment'
+          }
+        }
+      ]
+    },
+    aggregateRating: aggregateRating.reviewCount > 0 ? {
+      '@type': 'AggregateRating',
+      ratingValue: aggregateRating.ratingValue,
+      reviewCount: aggregateRating.reviewCount,
+      bestRating: 5,
+      worstRating: 1
+    } : undefined,
+    review: reviews.length > 0 ? reviews.map(review => ({
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: review.author
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.rating,
+        bestRating: 5
+      },
+      reviewBody: review.reviewBody,
+      datePublished: review.datePublished
+    })) : undefined,
     sameAs: [
       'https://www.facebook.com/stwaestheticclinic',
-      'https://www.instagram.com/stwaestheticclinic',
-      'https://www.linkedin.com/company/stwaestheticclinic'
-    ],
-    serviceType: [
-      'Aesthetic Treatments',
-      'Beauty Therapy',
-      'Non-surgical Cosmetic Procedures',
-      'Skin Care Services'
-    ],
-    serviceArea: {
-      '@type': 'GeoCircle',
-      geoMidpoint: {
-        '@type': 'GeoCoordinates',
-        latitude: '54.868699029740135',
-        longitude: '-1.7004918732064431'
-      },
-      geoRadius: '50000'
-    },
-    priceRange: '££',
-    paymentAccepted: ['Cash', 'Credit Card', 'Debit Card', 'Bank Transfer'],
-    currenciesAccepted: 'GBP',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: aggregateRating.ratingValue.toString(),
-      reviewCount: aggregateRating.reviewCount.toString(),
-      bestRating: '5',
-      worstRating: '1'
-    },
-    ...(reviews.length > 0 && {
-      review: reviews.slice(0, 5).map(review => ({
-        '@type': 'Review',
-        author: {
-          '@type': 'Person',
-          name: review.author
-        },
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: review.rating.toString(),
-          bestRating: '5',
-          worstRating: '1'
-        },
-        reviewBody: review.reviewBody,
-        ...(review.datePublished && { datePublished: review.datePublished })
-      }))
-    })
+      'https://www.instagram.com/stwaestheticclinic'
+    ]
   };
 
   return (

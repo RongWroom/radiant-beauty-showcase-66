@@ -11,6 +11,7 @@ import RelatedProducts from '@/components/RelatedProducts';
 import SEO from '@/components/SEO';
 import SEOBreadcrumb from '@/components/SEOBreadcrumb';
 import ProductSchema from '@/components/seo/ProductSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import ProductDiscountPopup from '@/components/ProductDiscountPopup';
 import { Button } from "@/components/ui/button";
 import { useQuery } from '@tanstack/react-query';
@@ -142,22 +143,29 @@ const ProductDetail = () => {
     );
   }
 
-  const breadcrumbItems = [
+  const pageItems = [
     { label: 'Home', href: '/' },
     { label: 'Products', href: '/products' },
     { label: product.name }
   ];
 
+  const schemaItems = [
+    { name: 'Home', url: 'https://www.stwaestheticclinic.co.uk', position: 1 },
+    { name: 'Products', url: 'https://www.stwaestheticclinic.co.uk/products', position: 2 },
+    { name: product.name, url: `https://www.stwaestheticclinic.co.uk/products/${product.id}`, position: 3 }
+  ];
+
   return (
     <>
       <SEO
-        title={`${product.name} | STW Aesthetic Clinic`}
-        description={product.description || `Professional beauty product: ${product.name}`}
-        keywords={`${product.name}, beauty product, skincare, ${product.product_benefits?.join(', ') || 'professional skincare'}`}
+        title={`${product.name} | Professional Beauty Products | STW Aesthetic Clinic`}
+        description={product.description || `Professional beauty product: ${product.name}. High-quality skincare products to complement your aesthetic treatments at STW Aesthetic Clinic.`}
+        keywords={`${product.name}, beauty product, skincare, professional cosmetics, ${product.product_benefits?.join(', ') || 'professional skincare'}, STW Aesthetic Clinic`}
         url={`https://www.stwaestheticclinic.co.uk/products/${product.id}`}
         image={product.image_url || undefined}
       />
       <ProductSchema product={product} />
+      <BreadcrumbSchema items={schemaItems} />
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
@@ -166,7 +174,7 @@ const ProductDetail = () => {
           {/* Product Details */}
           <section className="py-12 bg-gradient-to-br from-brand-white via-brand-off-white to-brand-light-gray">
             <div className="container-custom">
-              <SEOBreadcrumb items={breadcrumbItems} />
+              <SEOBreadcrumb items={pageItems} />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <ProductImage imageUrl={product.image_url} name={product.name} />
                 <ProductInfo product={product} productId={id!} />

@@ -14,7 +14,20 @@
 }
 
 .mobile-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
+  @apply grid grid-cols-1 sm:grid-cols-2 tablet:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 tablet:gap-8;
+}
+
+/* TABLET-OPTIMIZED GRIDS */
+.tablet-grid-2 {
+  @apply grid grid-cols-1 tablet:grid-cols-2 gap-6 tablet:gap-8;
+}
+
+.tablet-grid-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 tablet:grid-cols-3 gap-6 tablet:gap-8;
+}
+
+.tablet-grid-4 {
+  @apply grid grid-cols-2 tablet:grid-cols-4 gap-4 tablet:gap-6;
 }
 
 /* UTILITY CLASSES */

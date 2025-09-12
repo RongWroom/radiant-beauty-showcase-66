@@ -27,9 +27,9 @@ const Hero = () => (
     </div>
 
     {/* Content */}
-    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse lg:flex-row items-center lg:items-start gap-x-12 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-      {/* Left Column (center-aligned on mobile, left-aligned on desktop) */}
-      <div className="w-full lg:w-1/2 space-y-6 flex flex-col items-center lg:items-start">
+    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse tablet:flex-row items-center tablet:items-start gap-x-8 tablet:gap-x-12 px-4 sm:px-6 tablet:px-8 lg:px-8 py-8 sm:py-12 tablet:py-14 lg:py-16">
+      {/* Left Column (center-aligned on mobile, left-aligned on tablet+) */}
+      <div className="w-full tablet:w-1/2 space-y-4 tablet:space-y-6 flex flex-col items-center tablet:items-start">
         {/* Reviews badge */}
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
           {[...Array(5)].map((_, i) => (
@@ -40,7 +40,7 @@ const Hero = () => (
         </div>
 
         {/* Headline */}
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal leading-tight text-center lg:text-left">
+        <h1 className="font-serif text-3xl sm:text-4xl tablet:text-5xl lg:text-6xl text-brand-charcoal leading-tight text-center tablet:text-left">
           Polish Your<br />
           <span className="relative inline-block">
             <span className="text-brand-slate-blue font-semibold">Natural Beauty</span>
@@ -49,49 +49,49 @@ const Hero = () => (
         </h1>
 
         {/* Subhead */}
-        <p className="max-w-xl text-lg text-brand-gray-600 text-center lg:text-left">
-          We specialise in creating timeless radiance. <br /> Where advanced science meets bespoke care.
+        <p className="max-w-xl text-base tablet:text-lg text-brand-gray-600 text-center tablet:text-left">
+          We specialise in creating timeless radiance. <br className="hidden tablet:block" /> Where advanced science meets bespoke care.
         </p>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 max-w-md">
+        <div className="grid grid-cols-3 gap-3 tablet:gap-4 max-w-xs tablet:max-w-md">
           {[['5', 'Treatments'], ['10+', 'Reviews'], ['100%', 'Satisfaction']].map(([num, label]) => (
             <div key={label} className="space-y-1 text-center">
-              <div className="text-3xl font-serif font-bold text-brand-slate-blue">{num}</div>
-              <div className="text-sm font-medium text-brand-gray-600">{label}</div>
+              <div className="text-2xl tablet:text-3xl font-serif font-bold text-brand-slate-blue">{num}</div>
+              <div className="text-xs tablet:text-sm font-medium text-brand-gray-600">{label}</div>
             </div>
           ))}
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start">
+        <div className="flex flex-col sm:flex-row gap-3 tablet:gap-4 w-full sm:w-auto justify-center tablet:justify-start">
           <Link to="/treatments" className="w-full sm:w-auto">
-            <Button className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white py-4 px-8 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition">
-              Start Your Transformation <Clock className="inline-block ml-2" />
+            <Button className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white py-3 tablet:py-4 px-6 tablet:px-8 text-sm tablet:text-base rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition">
+              Start Your Transformation <Clock className="inline-block ml-2 h-4 w-4" />
             </Button>
           </Link>
           <Link to="/contact" className="w-full sm:w-auto">
-            <Button variant="outline" className="w-full border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white py-4 px-8 rounded-xl backdrop-blur-sm transition">
+            <Button variant="outline" className="w-full border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white py-3 tablet:py-4 px-6 tablet:px-8 text-sm tablet:text-base rounded-xl backdrop-blur-sm transition">
               Free Consultation
             </Button>
           </Link>
         </div>
 
         {/* Trust Icons */}
-        <div className="flex flex-wrap gap-6 mt-6 text-brand-gray-600 justify-center lg:justify-start">
+        <div className="flex flex-wrap gap-4 tablet:gap-6 mt-4 tablet:mt-6 text-brand-gray-600 text-sm tablet:text-base justify-center tablet:justify-start">
           <div className="flex items-center space-x-2">
-            <Award className="w-5 h-5 text-brand-slate-blue" />
+            <Award className="w-4 h-4 tablet:w-5 tablet:h-5 text-brand-slate-blue" />
             <span>Certified Practitioner</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Users className="w-5 h-5 text-brand-slate-blue" />
+            <Users className="w-4 h-4 tablet:w-5 tablet:h-5 text-brand-slate-blue" />
             <span>Personalised Care</span>
           </div>
         </div>
       </div>
 
       {/* Right Column: pixel accents only */}
-      <div className="w-full lg:w-1/2 relative">
+      <div className="w-full tablet:w-1/2 relative min-h-[200px] tablet:min-h-[400px]">
         {/* No image element here—background covers full area */}
       </div>
     </div>

@@ -23,21 +23,38 @@
 
 /* MOBILE-OPTIMIZED TEXT SIZING */
 .mobile-text-sm {
-  @apply text-sm sm:text-base leading-relaxed;
+  @apply text-sm sm:text-base tablet:text-base leading-relaxed;
 }
 
 .mobile-text-base {
-  @apply text-base sm:text-lg leading-relaxed;
+  @apply text-base sm:text-lg tablet:text-lg leading-relaxed;
 }
 
 .mobile-text-lg {
-  @apply text-lg sm:text-xl md:text-2xl leading-tight;
+  @apply text-lg sm:text-xl tablet:text-xl md:text-2xl leading-tight;
 }
 
 .mobile-text-xl {
-  @apply text-xl sm:text-2xl md:text-3xl leading-tight;
+  @apply text-xl sm:text-2xl tablet:text-2xl md:text-3xl leading-tight;
 }
 
 .mobile-text-2xl {
-  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight;
+  @apply text-2xl sm:text-3xl tablet:text-4xl md:text-4xl lg:text-5xl leading-tight;
+}
+
+/* TABLET-SPECIFIC TEXT SIZING */
+.tablet-text-sm {
+  @apply text-sm tablet:text-base lg:text-base;
+}
+
+.tablet-text-base {
+  @apply text-base tablet:text-lg lg:text-lg;
+}
+
+.tablet-text-lg {
+  @apply text-lg tablet:text-xl lg:text-2xl;
+}
+
+.tablet-heading {
+  @apply text-2xl tablet:text-3xl lg:text-4xl font-serif leading-tight;
 }

@@ -1,7 +1,7 @@
 
 /* MOBILE-FIRST LAYOUT SYSTEM */
 .section {
-  @apply py-12 sm:py-16 tablet:py-18 lg:py-24 desktop:py-28;
+  @apply py-12 sm:py-16 tablet:py-20 lg:py-24 desktop:py-28;
 }
 
 .container-custom {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Star, Award, Users, Clock } from 'lucide-react';
 
 const Hero = () => (
-  <section className="relative min-h-[60vh] sm:min-h-[65vh] tablet:min-h-[75vh] flex items-start pt-8">
+  <section className="relative tablet:min-h-[75vh] flex items-start">
     {/* Optimized LCP image with proper attributes */}
     <img 
       src="https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -27,7 +27,7 @@ const Hero = () => (
     </div>
 
     {/* Content */}
-    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse tablet:flex-row items-center tablet:items-start gap-x-8 tablet:gap-x-12 px-4 sm:px-6 tablet:px-8 lg:px-8 pt-4 pb-8 sm:pt-6 sm:pb-12 tablet:py-14 lg:py-16">
+    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse tablet:flex-row items-center tablet:items-start gap-x-8 tablet:gap-x-12 px-4 sm:px-6 tablet:px-8 lg:px-8 py-6 sm:py-8 tablet:py-14 lg:py-16">
       {/* Left Column (center-aligned on mobile, left-aligned on tablet+) */}
       <div className="w-full tablet:w-1/2 space-y-4 tablet:space-y-6 flex flex-col items-center tablet:items-start">
         {/* Reviews badge */}

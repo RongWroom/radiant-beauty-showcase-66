@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Star, Award, Users, Clock } from 'lucide-react';
 
 const Hero = () => (
-  <section className="relative min-h-[80vh] sm:min-h-[85vh] tablet:min-h-screen flex items-center">
+  <section className="relative min-h-[60vh] sm:min-h-[65vh] tablet:min-h-[75vh] flex items-start pt-8">
     {/* Optimized LCP image with proper attributes */}
     <img 
       src="https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200"

@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import { Star, Award, Users, Clock } from 'lucide-react';
 
 const Hero = () => (
-  <section className="hero-section relative min-h-screen">
+  <section className="relative tablet:min-h-[75vh] flex items-start">
     {/* Optimized LCP image with proper attributes */}
     <img 
       src="https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200"
       alt="Professional aesthetic clinic treatment room with modern equipment"
-      className="hero-bg absolute inset-0 w-full h-full object-cover"
+      className="absolute inset-0 w-full h-full object-cover"
       fetchPriority="high"
       width="1200"
       height="800"

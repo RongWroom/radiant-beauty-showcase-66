@@ -37,13 +37,13 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden tablet:flex items-center space-x-4 lg:space-x-8">
+          {/* Desktop Navigation - Only show on large screens */}
+          <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-medium transition-colors text-sm lg:text-base px-2 py-1 ${
+                className={`font-medium transition-colors text-base px-2 py-1 ${
                   isActive(item.href)
                     ? 'text-brand-slate-blue border-b-2 border-brand-slate-blue'
                     : 'text-brand-gray-600 hover:text-brand-slate-blue'
@@ -91,7 +91,17 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile menu button */}
+          {/* Tablet menu button - Show on tablet, hide on desktop and mobile */}
+          <div className="hidden tablet:block lg:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-brand-gray-600 hover:text-brand-slate-blue focus:outline-none p-2"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+
+          {/* Mobile menu button - Show only on mobile */}
           <div className="tablet:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -102,9 +112,9 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile & Tablet Navigation Menu */}
         {isOpen && (
-          <div className="tablet:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t z-40">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t z-40">
             <div className="px-4 py-4 space-y-4">
               {navigation.map((item) => (
                 <Link
@@ -121,11 +131,12 @@ const Navbar = () => {
                 </Link>
               ))}
               
-               <div className="pt-4 border-t">
-                 <div className="mb-4">
-                   <Cart />
-                 </div>
-                 {user ? (
+              {/* Show auth/cart only on mobile since tablet has them in header */}
+              <div className="pt-4 border-t tablet:hidden">
+                <div className="mb-4">
+                  <Cart />
+                </div>
+                {user ? (
                   <div className="space-y-3">
                     {isAdmin && (
                       <Badge variant="destructive" className="flex items-center gap-1 w-fit">

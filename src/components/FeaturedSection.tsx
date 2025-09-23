@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { featuredTreatments, treatments } from '../utils/data';
 export const FeaturedSection = () => {
-  return <section className="section bg-white">
-      <div className="container-custom">
-        <div className="flex flex-col lg:flex-row gap-16 sm:gap-20 lg:gap-24 items-center mb-20 sm:mb-24 lg:mb-32">
-          <div className="lg:w-1/2 mobile-spacing-lg text-center lg:text-left">
+  return <section className="py-16 sm:py-20 tablet:py-24 lg:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 tablet:px-8 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-12 sm:gap-16 lg:gap-20 items-center mb-16 sm:mb-20 lg:mb-24">
+          <div className="lg:w-1/2 space-y-6 tablet:space-y-8 text-center lg:text-left">
             <h2 className="mobile-text-2xl font-serif font-semibold text-hierarchy-primary">
               Professional Treatment Excellence
             </h2>

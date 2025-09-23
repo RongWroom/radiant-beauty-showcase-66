@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Star, Award, Users, Clock } from 'lucide-react';
 
 const Hero = () => (
-  <section className="relative tablet:min-h-[75vh] flex items-start">
+  <section className="relative min-h-screen tablet:min-h-[75vh] flex items-center tablet:items-start">
     {/* Optimized LCP image with proper attributes */}
     <img 
       src="https://images.pexels.com/photos/4022219/pexels-photo-4022219.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -27,7 +27,7 @@ const Hero = () => (
     </div>
 
     {/* Content */}
-    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse tablet:flex-row items-center tablet:items-start gap-x-8 tablet:gap-x-12 px-4 sm:px-6 tablet:px-8 lg:px-8 py-6 sm:py-8 tablet:py-14 lg:py-16">
+    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse tablet:flex-row items-center tablet:items-start gap-x-8 tablet:gap-x-12 px-4 sm:px-6 tablet:px-8 lg:px-8 py-8 sm:py-12 tablet:py-14 lg:py-16">
       {/* Left Column (center-aligned on mobile, left-aligned on tablet+) */}
       <div className="w-full tablet:w-1/2 space-y-4 tablet:space-y-6 flex flex-col items-center tablet:items-start">
         {/* Reviews badge */}
@@ -91,7 +91,7 @@ const Hero = () => (
       </div>
 
       {/* Right Column: pixel accents only */}
-      <div className="w-full tablet:w-1/2 relative min-h-[200px] tablet:min-h-[400px]">
+      <div className="w-full tablet:w-1/2 relative tablet:min-h-[400px]">
         {/* No image element here—background covers full area */}
       </div>
     </div>

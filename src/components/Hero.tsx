@@ -27,9 +27,9 @@ const Hero = () => (
     </div>
 
     {/* Content */}
-    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse tablet:flex-row items-center tablet:items-start gap-x-8 tablet:gap-x-12 px-4 sm:px-6 tablet:px-8 lg:px-8 py-8 sm:py-12 tablet:py-14 lg:py-16">
+    <div className="w-full max-w-7xl relative z-10 mx-auto flex flex-col-reverse tablet:flex-row items-center tablet:items-start gap-x-8 tablet:gap-x-12 px-4 sm:px-6 tablet:px-8 lg:px-8 py-12 sm:py-16 tablet:py-14 lg:py-16">
       {/* Left Column (center-aligned on mobile, left-aligned on tablet+) */}
-      <div className="w-full tablet:w-1/2 space-y-4 tablet:space-y-6 flex flex-col items-center tablet:items-start">
+      <div className="w-full tablet:w-1/2 space-y-8 tablet:space-y-6 flex flex-col items-center tablet:items-start">
         {/* Reviews badge */}
         <div className="inline-flex items-center bg-white/70 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
           {[...Array(5)].map((_, i) => (
@@ -78,7 +78,7 @@ const Hero = () => (
         </div>
 
         {/* Trust Icons */}
-        <div className="flex flex-wrap gap-4 tablet:gap-6 mt-4 tablet:mt-6 text-brand-gray-600 text-sm tablet:text-base justify-center tablet:justify-start">
+        <div className="flex flex-wrap gap-6 tablet:gap-6 mt-8 tablet:mt-6 text-brand-gray-600 text-sm tablet:text-base justify-center tablet:justify-start">
           <div className="flex items-center space-x-2">
             <Award className="w-4 h-4 tablet:w-5 tablet:h-5 text-brand-slate-blue" />
             <span>Certified Practitioner</span>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Phone } from 'lucide-react';
 
 const CtaSection = () => {
   return (
@@ -22,10 +23,19 @@ const CtaSection = () => {
               Book Treatment Consultation
             </Button>
           </Link>
+          <a href="tel:01207239983" className="w-full sm:w-auto">
+            <Button 
+              className="w-full sm:w-auto bg-white text-brand-slate-blue mobile-text-base px-8 py-4 font-semibold min-h-[56px] rounded-lg hover:bg-white/90"
+              variant="secondary"
+            >
+              <Phone className="mr-2 h-5 w-5" />
+              Call: 01207 239983
+            </Button>
+          </a>
           <Link to="/treatments" className="w-full sm:w-auto">
             <Button 
-              className="w-full sm:w-auto bg-white text-brand-slate-blue mobile-text-base px-8 py-4 font-semibold min-h-[56px] rounded-lg"
-              variant="secondary"
+              className="w-full sm:w-auto bg-white/80 text-brand-slate-blue mobile-text-base px-8 py-4 font-semibold min-h-[56px] rounded-lg border border-white/50"
+              variant="outline"
             >
               Explore All Treatments
             </Button>

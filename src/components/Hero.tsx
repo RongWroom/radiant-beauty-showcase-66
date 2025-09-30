@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Star, Award, Users, Clock } from 'lucide-react';
+import { Star, Award, Users, Clock, Phone } from 'lucide-react';
 
 const Hero = () => (
   <section className="relative min-h-screen tablet:min-h-[75vh] flex items-center tablet:items-start">
@@ -76,6 +76,14 @@ const Hero = () => (
             </Button>
           </Link>
         </div>
+        
+        {/* Phone Button */}
+        <a href="tel:01207239983" className="w-full sm:w-auto justify-center tablet:justify-start flex">
+          <Button variant="outline" className="w-full sm:w-auto border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white py-3 px-6 text-sm rounded-xl backdrop-blur-sm transition">
+            <Star className="inline-block mr-2 h-4 w-4" />
+            Call: 01207 239983
+          </Button>
+        </a>
 
         {/* Trust Icons */}
         <div className="flex flex-wrap gap-6 tablet:gap-6 mt-8 tablet:mt-6 text-brand-gray-600 text-sm tablet:text-base justify-center tablet:justify-start">

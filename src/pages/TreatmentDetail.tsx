@@ -290,6 +290,25 @@ const TreatmentDetail = () => {
           </section>
         )}
       </main>
+      
+      {/* Mobile Sticky Booking Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-brand-silver/30 shadow-2xl z-50 px-4 py-3">
+        <div className="flex gap-3 max-w-7xl mx-auto">
+          <a href="tel:01207239983" className="flex-1">
+            <Button className="w-full bg-white border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">
+              <Phone className="mr-2 h-4 w-4" />
+              Call
+            </Button>
+          </a>
+          <Link to={`/treatments/${treatment.id}/book`} className="flex-1">
+            <Button className="w-full bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white shadow-lg">
+              <Calendar className="mr-2 h-4 w-4" />
+              Book Now
+            </Button>
+          </Link>
+        </div>
+      </div>
+      
       <Footer />
     </div>
     </>

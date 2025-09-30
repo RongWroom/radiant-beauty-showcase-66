@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, Shield, Phone } from 'lucide-react';
+import { Menu, X, User, Shield } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUserRole } from '@/hooks/useUserRole';
 import { Badge } from '@/components/ui/badge';
@@ -130,14 +130,6 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              
-              {/* Phone button for mobile */}
-              <a href="tel:01207239983" className="block">
-                <div className="bg-brand-slate-blue text-white px-4 py-3 rounded-md hover:bg-brand-slate-blue/90 transition-colors text-center flex items-center justify-center gap-2">
-                  <Phone className="h-4 w-4" />
-                  <span>Call: 01207 239983</span>
-                </div>
-              </a>
               
               {/* Show auth/cart only on mobile since tablet has them in header */}
               <div className="pt-4 border-t tablet:hidden">

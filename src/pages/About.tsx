@@ -8,16 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Heart, Shield, Sparkles, Target, Award, Users, CheckCircle, Star } from 'lucide-react';
-
 const About = () => {
-  return (
-    <>
-      <SEO 
-        title="About STW Aesthetic Clinic - Expert Beauty Practitioners | Stanley, County Durham"
-        description="Learn about STW Aesthetic Clinic's 15+ years of experience in professional beauty treatments. Meet our certified practitioners and discover our commitment to personalized care and natural results."
-        keywords="about STW Aesthetic Clinic, beauty practitioners, aesthetic clinic history, certified technicians, Stanley County Durham, professional beauty treatments, personalized care"
-        url="https://www.stwaestheticclinic.co.uk/about"
-      />
+  return <>
+      <SEO title="About STW Aesthetic Clinic - Expert Beauty Practitioners | Stanley, County Durham" description="Learn about STW Aesthetic Clinic's 15+ years of experience in professional beauty treatments. Meet our certified practitioners and discover our commitment to personalized care and natural results." keywords="about STW Aesthetic Clinic, beauty practitioners, aesthetic clinic history, certified technicians, Stanley County Durham, professional beauty treatments, personalized care" url="https://www.stwaestheticclinic.co.uk/about" />
       <LocalBusinessSchema />
       <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
@@ -57,7 +50,7 @@ const About = () => {
         </section>
 
         {/* Mission Statement - Full Width */}
-        <section className="bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue py-16 md:py-20">
+        <section className="bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue py-16 md:py-20 mx-0">
           <div className="container-custom text-center">
             <div className="max-w-4xl mx-auto">
               <div className="inline-flex items-center justify-center p-3 bg-white/10 rounded-full mb-6">
@@ -66,12 +59,12 @@ const About = () => {
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
                 Our Mission
               </h2>
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8">
+              <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 mx-[24px]">
                 At STW Aesthetic Clinic, your safety and satisfaction are our top priorities.
                 Our experienced and certified technicians will guide you through every step of your treatment,
                 ensuring a seamless and enjoyable experience that enhances your natural beauty.
               </p>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mx-[24px]">
                 <blockquote className="text-2xl font-serif italic text-white">
                   "Enhancing natural beauty through expert care and personalized treatments"
                 </blockquote>
@@ -90,7 +83,7 @@ const About = () => {
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-charcoal mb-6">
                 Our Core Values
               </h2>
-              <p className="text-xl text-brand-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-brand-gray-600 max-w-3xl mx-[24px]">
                 These fundamental principles guide everything we do at STW Aesthetic Clinic
               </p>
             </div>
@@ -101,9 +94,7 @@ const About = () => {
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-light rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Heart className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-brand-charcoal mb-4">
-                    Personalized Care
-                  </h3>
+                  <h3 className="text-2xl font-serif font-bold text-brand-charcoal mb-4">Personalised Care</h3>
                   <p className="text-brand-gray-600 leading-relaxed">
                     Our skilled practitioners will tailor a treatment plan to address your specific beauty goals and individual needs.
                   </p>
@@ -145,7 +136,7 @@ const About = () => {
         <section className="py-20 md:py-28 bg-gradient-to-br from-brand-light-gray via-brand-off-white to-white">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
+              <div className="mx-[24px]">
                 <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-6">
                   <Users className="w-8 h-8 text-brand-slate-blue" />
                 </div>
@@ -192,7 +183,7 @@ const About = () => {
 
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-slate-blue/10 to-brand-silver/10 rounded-3xl transform rotate-3"></div>
-                <div className="relative bg-white rounded-3xl shadow-2xl p-8">
+                <div className="relative bg-white rounded-3xl shadow-2xl p-8 mx-[24px]">
                   <div className="text-center">
                     <div className="flex justify-center mb-6">
                       <Star className="w-8 h-8 text-yellow-500 fill-current" />
@@ -215,7 +206,7 @@ const About = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="py-16 md:py-20 bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue">
+        <section className="py-16 md:py-20 bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue mx-0">
           <div className="container-custom">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
@@ -239,7 +230,7 @@ const About = () => {
         </section>
 
         {/* Final CTA */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-white via-brand-off-white/30 to-white">
+        <section className="py-20 md:py-28 bg-gradient-to-b from-white via-brand-off-white/30 to-white mx-[24px]">
           <div className="container-custom text-center">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-charcoal mb-6">
@@ -268,7 +259,6 @@ const About = () => {
       </main>
       <Footer />
     </div>
-    </>
-  );
+    </>;
 };
 export default About;

@@ -5,7 +5,7 @@
 }
 
 .container-custom {
-  @apply px-6 sm:px-8 tablet:px-12 lg:px-16 max-w-7xl mx-auto;
+  @apply px-8 sm:px-10 tablet:px-12 lg:px-16 max-w-7xl mx-auto;
 }
 
 /* TABLET-OPTIMIZED LAYOUT SYSTEM */

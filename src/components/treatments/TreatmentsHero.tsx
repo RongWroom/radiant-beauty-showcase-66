@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from 'lucide-react';
 const TreatmentsHero = () => {
   return <section className="bg-brand-white py-12 md:py-20 animate-fade-in">
-      <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto">
+      <div className="px-8 sm:px-10 tablet:px-12 lg:px-16 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto px-4">
           <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">Our Beauty Treatments</h1>
           {/* Decorative Silver Line */}
           <div className="flex justify-center mb-5">

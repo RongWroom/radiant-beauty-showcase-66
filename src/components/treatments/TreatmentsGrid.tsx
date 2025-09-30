@@ -19,11 +19,11 @@ const TreatmentsGrid = ({ treatments }: TreatmentsGridProps) => {
 
   return (
     <section className="py-10 sm:py-12 md:py-14 bg-brand-light-gray">
-      <div className="container-custom">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-serif mb-4 sm:mb-5 text-brand-charcoal font-bold text-center">All Treatments</h2>
+      <div className="px-8 sm:px-10 tablet:px-12 lg:px-16 max-w-7xl mx-auto">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-serif mb-4 sm:mb-5 text-brand-charcoal font-bold text-center px-4">All Treatments</h2>
         
         {/* SEO Paragraph */}
-        <div className="max-w-3xl mx-auto text-center mb-8">
+        <div className="max-w-3xl mx-auto text-center mb-8 px-4">
           <p className="text-base text-brand-gray-600 leading-relaxed">
             Professional aesthetic treatments tailored to your unique skin needs. From advanced anti-aging solutions to body contouring, our expert practitioners deliver exceptional results using cutting-edge technology.
           </p>

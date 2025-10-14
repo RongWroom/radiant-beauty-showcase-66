@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import { Card, CardContent } from '@/components/ui/card';
+import CookiePreferences from '@/components/CookiePreferences';
 
 const Privacy = () => {
   return (
@@ -205,11 +206,12 @@ const Privacy = () => {
                     </div>
                   </section>
 
-                  <section>
+                  <section id="cookies">
                     <h3 className="text-2xl font-bold text-brand-charcoal mb-4">10. Cookies & Similar Technologies</h3>
-                    <p className="text-brand-gray-600 leading-relaxed">
-                      We use essential cookies for site functionality, analytics cookies (e.g., Google Analytics) and marketing cookies (e.g., Facebook Pixel). You can manage non‑essential cookies via our cookie banner.
+                    <p className="text-brand-gray-600 leading-relaxed mb-6">
+                      We use essential cookies for site functionality, analytics cookies (e.g., Google Analytics) and marketing cookies (e.g., Facebook Pixel). You can manage non‑essential cookies via our cookie banner or the preferences panel below.
                     </p>
+                    <CookiePreferences />
                   </section>
 
                   <section>

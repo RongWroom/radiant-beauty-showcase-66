@@ -130,6 +130,10 @@ const Footer = () => {
                 <Link to="/terms" className="text-white/60 hover:text-white/80 transition-colors text-xs">
                   Terms of Service
                 </Link>
+                <span className="text-white/40">•</span>
+                <Link to="/privacy#cookies" className="text-white/60 hover:text-white/80 transition-colors text-xs">
+                  Cookie Preferences
+                </Link>
               </div>
             </div>
             <div className="text-white/70 text-sm text-center sm:text-right">

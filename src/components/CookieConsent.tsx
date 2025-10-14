@@ -95,7 +95,7 @@ const CookieConsent = () => {
 
       {/* Preferences Modal */}
       <Dialog open={showPreferences} onOpenChange={setShowPreferences}>
-        <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle className="text-2xl font-serif text-brand-charcoal">
               Cookie Preferences

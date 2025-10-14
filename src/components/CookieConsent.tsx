@@ -57,7 +57,7 @@ const CookieConsent = () => {
                   Cookie Preferences
                 </h3>
                 <p className="text-sm text-brand-gray-600 leading-relaxed">
-                  We use cookies to ensure the best experience on our website. Essential cookies are required for site functionality, while analytics and marketing cookies help us improve our services. You can manage your preferences at any time.{' '}
+                  We use cookies to ensure the best experience on our website. Essential cookies are required for site functionality, whilst analytics and marketing cookies help us improve our services. You can manage your preferences at any time.{' '}
                   <Link to="/privacy" className="text-brand-slate-blue hover:underline font-medium">
                     Learn more
                   </Link>
@@ -163,10 +163,10 @@ const CookieConsent = () => {
                     Marketing Cookies
                   </Label>
                   <p className="text-sm text-brand-gray-600 leading-relaxed">
-                    Used to track visitors across websites to display relevant advertisements and marketing campaigns. These cookies help us measure the effectiveness of our advertising and provide you with more personalized content.
+                    Used to track visitors across websites to display relevant adverts and marketing campaigns. These cookies help us measure the effectiveness of our advertising and provide you with more personalised content.
                   </p>
                   <p className="text-xs text-brand-gray-500 mt-2">
-                    Examples: Facebook Pixel, retargeting ads, conversion tracking
+                    Examples: Facebook Pixel, retargeting adverts, conversion tracking
                   </p>
                 </div>
                 <Switch

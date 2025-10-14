@@ -170,7 +170,7 @@ const CookiePreferences = () => {
                 Marketing Cookies
               </CardTitle>
               <CardDescription className="text-brand-gray-600">
-                These cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for individual users, thereby making them more valuable for publishers and third-party advertisers.
+                These cookies are used to track visitors across websites. The intention is to display adverts that are relevant and engaging for individual users, thereby making them more valuable for publishers and third-party advertisers.
               </CardDescription>
             </div>
             <Switch
@@ -188,8 +188,8 @@ const CookiePreferences = () => {
               <li>Showing you relevant advertisements on other websites</li>
               <li>Measuring the effectiveness of our advertising campaigns</li>
               <li>Building marketing audiences for retargeting</li>
-              <li>Tracking conversion rates from ads to bookings</li>
-              <li>Personalizing marketing content based on interests</li>
+              <li>Tracking conversion rates from adverts to bookings</li>
+              <li>Personalising marketing content based on interests</li>
             </ul>
             <p className="text-xs text-brand-gray-500 mt-3">
               <strong>Tools we use:</strong> Facebook Pixel, Google Ads Conversion Tracking

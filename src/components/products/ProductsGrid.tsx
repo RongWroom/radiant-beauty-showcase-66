@@ -18,7 +18,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 sm:space-y-10">
       {/* Mobile-first layout with better tablet handling */}
       
       {/* Featured Product - Full width on mobile/tablet, left column on desktop */}
@@ -27,7 +27,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
       </div>
       
       {/* Desktop layout */}
-      <div className="hidden xl:grid xl:grid-cols-3 xl:gap-6">
+      <div className="hidden xl:grid xl:grid-cols-3 xl:gap-8">
         {/* Featured Product - Large Square on Left */}
         <div className="xl:col-span-1">
           <ProductCard product={featuredProduct} isFeatured={true} />
@@ -35,7 +35,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
         
         {/* Right Column with 2x2 Grid */}
         <div className="xl:col-span-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {remainingProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -44,7 +44,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
       </div>
       
       {/* Mobile and tablet grid for remaining products */}
-      <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-8">
         {remainingProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

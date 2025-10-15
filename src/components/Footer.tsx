@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-brand-slate-blue to-brand-slate-blue-dark text-white">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 tablet:px-12 lg:px-16 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 tablet:px-10 lg:px-12 py-12 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           
           {/* Brand Section */}
@@ -118,7 +118,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/20">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 tablet:px-12 lg:px-16 py-6">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 tablet:px-10 lg:px-12 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="text-white/70 text-sm text-center sm:text-left">
               <p>© {new Date().getFullYear()} STW Aesthetic Clinic. All rights reserved.</p>

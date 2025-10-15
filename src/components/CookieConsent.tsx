@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCookieConsent } from '@/contexts/CookieContext';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -13,6 +13,11 @@ const CookieConsent = () => {
   const [showPreferences, setShowPreferences] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(consent?.analytics ?? false);
   const [marketingEnabled, setMarketingEnabled] = useState(consent?.marketing ?? false);
+
+  // Sync showBanner with hasConsented to handle async localStorage loading
+  useEffect(() => {
+    setShowBanner(!hasConsented);
+  }, [hasConsented]);
 
   if (!showBanner) return null;
 

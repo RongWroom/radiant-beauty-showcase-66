@@ -44,7 +44,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
       </div>
       
       {/* Mobile and tablet grid for remaining products */}
-      <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {remainingProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

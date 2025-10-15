@@ -136,7 +136,7 @@ const Products = () => {
                     </div>
                   </div>
                 </div>
-                <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[...Array(4)].map((_, i) => (
                     <Skeleton key={i} className="h-[300px] w-full rounded-lg" />
                   ))}

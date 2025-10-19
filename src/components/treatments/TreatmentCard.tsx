@@ -37,7 +37,7 @@ const TreatmentCard = ({ treatment, isFeatured = false }: TreatmentCardProps) =>
             <div className="flex items-center justify-between mt-2">
               <span className="font-medium text-white text-base md:text-lg">{formatPrice(treatment.price, treatment.currency)}</span>
               <Link to={`/treatments/${treatment.id}`}>
-                <Button size="sm" className="bg-white text-brand-slate-blue hover:bg-brand-off-white text-sm md:text-base min-h-[40px] px-4 md:px-6">
+                <Button size="sm" className="bg-white text-brand-slate-blue hover:bg-brand-off-white text-sm md:text-base min-h-[48px] px-4 md:px-6">
                   View Details
                 </Button>
               </Link>
@@ -61,7 +61,7 @@ const TreatmentCard = ({ treatment, isFeatured = false }: TreatmentCardProps) =>
         <div className="flex items-center justify-between mt-4">
           <span className="text-lg md:text-xl font-medium text-brand-slate-blue">{formatPrice(treatment.price, treatment.currency)}</span>
           <Link to={`/treatments/${treatment.id}`}>
-            <Button size="sm" className="text-sm md:text-base min-h-[40px] px-4 md:px-6">
+            <Button size="sm" className="text-sm md:text-base min-h-[48px] px-4 md:px-6">
               View Details
             </Button>
           </Link>

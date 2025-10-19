@@ -30,34 +30,36 @@ const TreatmentsGrid = ({ treatments }: TreatmentsGridProps) => {
         </div>
         
         {/* Mobile-first layout with better tablet handling */}
-        <div className="space-y-8 sm:space-y-10">
-          {/* Featured Treatment - Full width on mobile/tablet, left column on desktop */}
-          <div className="xl:hidden">
-            <TreatmentCard treatment={featuredTreatment} isFeatured={true} />
-          </div>
-          
-          {/* Desktop layout */}
-          <div className="hidden xl:grid xl:grid-cols-3 xl:gap-8">
-            {/* Featured Treatment - Large Square on Left */}
-            <div className="xl:col-span-1">
+        <div className="px-4 sm:px-6 md:px-8">
+          <div className="space-y-8 sm:space-y-10">
+            {/* Featured Treatment - Full width on mobile/tablet, left column on desktop */}
+            <div className="xl:hidden">
               <TreatmentCard treatment={featuredTreatment} isFeatured={true} />
             </div>
             
-            {/* Right Column with 2x2 Grid */}
-            <div className="xl:col-span-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                {remainingTreatments.map(treatment => (
-                  <TreatmentCard key={treatment.id} treatment={treatment} />
-                ))}
+            {/* Desktop layout */}
+            <div className="hidden xl:grid xl:grid-cols-3 xl:gap-8">
+              {/* Featured Treatment - Large Square on Left */}
+              <div className="xl:col-span-1">
+                <TreatmentCard treatment={featuredTreatment} isFeatured={true} />
+              </div>
+              
+              {/* Right Column with 2x2 Grid */}
+              <div className="xl:col-span-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {remainingTreatments.map(treatment => (
+                    <TreatmentCard key={treatment.id} treatment={treatment} />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-          
-          {/* Mobile and tablet grid for remaining treatments */}
-          <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-8">
-            {remainingTreatments.map(treatment => (
-              <TreatmentCard key={treatment.id} treatment={treatment} />
-            ))}
+            
+            {/* Mobile and tablet grid for remaining treatments */}
+            <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-8">
+              {remainingTreatments.map(treatment => (
+                <TreatmentCard key={treatment.id} treatment={treatment} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

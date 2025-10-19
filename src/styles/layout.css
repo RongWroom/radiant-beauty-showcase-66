@@ -53,3 +53,28 @@
 .bg-section-primary {
   @apply bg-brand-slate-blue;
 }
+
+/* PWA-SAFE CONTAINER with notch support */
+.container-pwa {
+  @apply px-6 sm:px-8 tablet:px-10 lg:px-12 max-w-7xl mx-auto;
+  padding-left: max(1.5rem, env(safe-area-inset-left));
+  padding-right: max(1.5rem, env(safe-area-inset-right));
+}
+
+/* MOBILE CARD GRID with proper spacing */
+.mobile-card-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8;
+  padding: 0 1rem;
+}
+
+/* TOUCH TARGET MINIMUM (44x44px iOS, 48x48px Android) */
+.touch-safe {
+  @apply min-h-[48px] min-w-[48px];
+}
+
+/* MOBILE SECTION WRAPPER with breathing room */
+.mobile-section {
+  @apply py-12 sm:py-16 md:py-20;
+  padding-left: max(1.5rem, env(safe-area-inset-left));
+  padding-right: max(1.5rem, env(safe-area-inset-right));
+}

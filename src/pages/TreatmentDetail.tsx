@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -12,33 +11,34 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useTreatment, useTreatments } from '@/hooks/useTreatments';
 import { ArrowLeft, Clock, MapPin, Star, Phone, Calendar, Loader2 } from 'lucide-react';
-
 const TreatmentDetail = () => {
-  const { id } = useParams();
+  const {
+    id
+  } = useParams();
   const treatmentId = parseInt(id || '0');
-  const { data: treatment, isLoading, isError } = useTreatment(treatmentId);
-  const { data: allTreatments } = useTreatments();
-
+  const {
+    data: treatment,
+    isLoading,
+    isError
+  } = useTreatment(treatmentId);
+  const {
+    data: allTreatments
+  } = useTreatments();
   const formatPrice = (price: number, currency: string | null) => {
     const currencySymbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '€';
     return `${currencySymbol}${price.toFixed(0)}`;
   };
-
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow flex items-center justify-center bg-gradient-to-br from-brand-off-white to-brand-light-gray">
           <Loader2 className="h-8 w-8 animate-spin text-brand-slate-blue" />
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
   if (isError || !treatment) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow flex items-center justify-center bg-gradient-to-br from-brand-off-white to-brand-light-gray">
           <div className="text-center">
@@ -49,35 +49,35 @@ const TreatmentDetail = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
 
   // Get related treatments (excluding current one)
-  const relatedTreatments = allTreatments
-    ?.filter(t => t.id !== treatment.id && t.category === treatment.category)
-    ?.slice(0, 2) || [];
-
-  const pageItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Treatments', href: '/treatments' },
-    { label: treatment.name }
-  ];
-
-  const schemaItems = [
-    { name: 'Home', url: 'https://www.stwaestheticclinic.co.uk', position: 1 },
-    { name: 'Treatments', url: 'https://www.stwaestheticclinic.co.uk/treatments', position: 2 },
-    { name: treatment.name, url: `https://www.stwaestheticclinic.co.uk/treatments/${treatment.id}`, position: 3 }
-  ];
-
-  return (
-    <>
-      <SEO
-        title={`${treatment.name} | Professional Aesthetic Treatment | STW Aesthetic Clinic`}
-        description={`${treatment.description} Professional ${treatment.name} treatment at STW Aesthetic Clinic in Stanley, County Durham. Expert technicians, proven results.`}
-        keywords={`${treatment.name}, ${treatment.category}, aesthetic treatment Stanley, professional treatment, non-surgical, beauty treatment County Durham, STW Aesthetic Clinic`}
-        url={`https://www.stwaestheticclinic.co.uk/treatments/${treatment.id}`}
-      />
+  const relatedTreatments = allTreatments?.filter(t => t.id !== treatment.id && t.category === treatment.category)?.slice(0, 2) || [];
+  const pageItems = [{
+    label: 'Home',
+    href: '/'
+  }, {
+    label: 'Treatments',
+    href: '/treatments'
+  }, {
+    label: treatment.name
+  }];
+  const schemaItems = [{
+    name: 'Home',
+    url: 'https://www.stwaestheticclinic.co.uk',
+    position: 1
+  }, {
+    name: 'Treatments',
+    url: 'https://www.stwaestheticclinic.co.uk/treatments',
+    position: 2
+  }, {
+    name: treatment.name,
+    url: `https://www.stwaestheticclinic.co.uk/treatments/${treatment.id}`,
+    position: 3
+  }];
+  return <>
+      <SEO title={`${treatment.name} | Professional Aesthetic Treatment | STW Aesthetic Clinic`} description={`${treatment.description} Professional ${treatment.name} treatment at STW Aesthetic Clinic in Stanley, County Durham. Expert technicians, proven results.`} keywords={`${treatment.name}, ${treatment.category}, aesthetic treatment Stanley, professional treatment, non-surgical, beauty treatment County Durham, STW Aesthetic Clinic`} url={`https://www.stwaestheticclinic.co.uk/treatments/${treatment.id}`} />
       <ServiceSchema service={treatment} />
       <BreadcrumbSchema items={schemaItems} />
       <div className="min-h-screen flex flex-col">
@@ -85,7 +85,7 @@ const TreatmentDetail = () => {
         <main className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-brand-slate-blue/10 via-brand-silver/20 to-brand-light-gray py-12">
-          <div className="container-custom">
+          <div className="container-custom mx-0">
             <SEOBreadcrumb items={pageItems} />
             <div className="flex items-center gap-4 mb-6">
               <Link to="/treatments">
@@ -94,20 +94,18 @@ const TreatmentDetail = () => {
                   Back to Treatments
                 </Button>
               </Link>
-              {treatment.featured && (
-                <Badge className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white shadow-lg">
+              {treatment.featured && <Badge className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light text-white shadow-lg">
                   <Star className="w-4 h-4 mr-1 fill-current" />
                   Most Popular
-                </Badge>
-              )}
+                </Badge>}
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-3xl md:text-5xl font-serif mb-6 text-brand-charcoal">{treatment.name}</h1>
-                <p className="text-lg mb-8 text-brand-gray-600">
+                <h1 className="text-3xl md:text-5xl font-serif mb-6 text-brand-charcoal mx-[12px]">{treatment.name}</h1>
+                <p className="text-lg mb-8 text-brand-gray-600 mx-[12px]">
                   {treatment.description}
                 </p>
-                <div className="flex flex-wrap gap-4 mb-8">
+                <div className="flex flex-wrap gap-4 mb-8 mx-[12px]">
                   <div className="flex items-center gap-2 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-lg border border-brand-silver/30">
                     <Clock className="w-5 h-5 text-brand-slate-blue" />
                     <span className="text-brand-charcoal">{treatment.duration_minutes ? `${treatment.duration_minutes} minutes` : '60-90 minutes'}</span>
@@ -117,7 +115,7 @@ const TreatmentDetail = () => {
                     <span className="text-brand-charcoal">In-clinic treatment</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 mx-[12px]">
                   <span className="text-3xl font-bold bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light bg-clip-text text-transparent">{formatPrice(treatment.price, treatment.currency)}</span>
                   <Link to={`/treatments/${treatment.id}/book`}>
                     <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue-dark text-white shadow-lg">
@@ -177,15 +175,10 @@ const TreatmentDetail = () => {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-serif mb-4 text-white">Key Benefits</h3>
                   <ul className="space-y-3 text-white">
-                    {treatment.benefits && treatment.benefits.length > 0 ? (
-                      treatment.benefits.map((benefit, index) => (
-                        <li key={index} className="flex items-start gap-2">
+                    {treatment.benefits && treatment.benefits.length > 0 ? treatment.benefits.map((benefit, index) => <li key={index} className="flex items-start gap-2">
                           <div className="w-2 h-2 bg-brand-silver rounded-full mt-2 flex-shrink-0"></div>
                           <span className="text-sm">{benefit}</span>
-                        </li>
-                      ))
-                    ) : (
-                      <>
+                        </li>) : <>
                         <li className="flex items-start gap-2">
                           <div className="w-2 h-2 bg-brand-silver rounded-full mt-2 flex-shrink-0"></div>
                           <span className="text-sm">Improves skin texture and tone</span>
@@ -202,8 +195,7 @@ const TreatmentDetail = () => {
                           <div className="w-2 h-2 bg-brand-silver rounded-full mt-2 flex-shrink-0"></div>
                           <span className="text-sm">Long-lasting results</span>
                         </li>
-                      </>
-                    )}
+                      </>}
                   </ul>
                 </CardContent>
               </Card>
@@ -260,13 +252,11 @@ const TreatmentDetail = () => {
         </section>
 
         {/* Related Treatments */}
-        {relatedTreatments.length > 0 && (
-          <section className="py-16 bg-gradient-to-br from-brand-off-white to-brand-light-gray">
+        {relatedTreatments.length > 0 && <section className="py-16 bg-gradient-to-br from-brand-off-white to-brand-light-gray">
             <div className="container-custom">
               <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center text-brand-charcoal">Related Treatments</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                {relatedTreatments.map(relatedTreatment => (
-                  <Card key={relatedTreatment.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-brand-silver/30 bg-gradient-to-br from-white to-brand-silver/5">
+                {relatedTreatments.map(relatedTreatment => <Card key={relatedTreatment.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-brand-silver/30 bg-gradient-to-br from-white to-brand-silver/5">
                     <div className="relative h-48">
                       <img src={relatedTreatment.image_url || '/placeholder.svg'} alt={relatedTreatment.name} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-slate-blue/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
@@ -283,17 +273,13 @@ const TreatmentDetail = () => {
                         </Link>
                       </div>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
             </div>
-          </section>
-        )}
+          </section>}
       </main>
       <Footer />
     </div>
-    </>
-  );
+    </>;
 };
-
 export default TreatmentDetail;

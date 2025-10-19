@@ -67,19 +67,19 @@ const Products = () => {
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
-          {/* Hero Section */}
-          <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 md:py-20 animate-fade-in">
+          {/* Hero Section - Mobile Optimized */}
+          <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 sm:py-16 md:py-20 animate-fade-in">
             <div className="container-custom relative z-10">
               <SEOBreadcrumb />
-              <div className="text-center max-w-3xl mx-auto">
-                <h1 className="text-3xl md:text-5xl font-serif mb-2 font-semibold text-brand-charcoal">
+              <div className="text-center max-w-3xl mx-auto px-4 sm:px-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif mb-4 sm:mb-6 font-semibold text-brand-charcoal">
                   Our Products
                 </h1>
               {/* Decorative Line */}
-              <div className="flex justify-center mb-5">
-                <span className="block h-1 w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
+              <div className="flex justify-center mb-4 sm:mb-6">
+                <span className="block h-0.5 sm:h-1 w-16 sm:w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
               </div>
-              <p className="text-lg mb-6 font-medium text-brand-gray-600">
+              <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 font-medium text-brand-gray-600 leading-relaxed">
                 Discover our range of <span className="px-2 py-0.5 rounded bg-brand-slate-blue/10 text-brand-slate-blue font-semibold">premium</span> skincare products, scientifically formulated 
                 to deliver exceptional results for all skin types.
               </p>
@@ -90,33 +90,35 @@ const Products = () => {
         </section>
 
         {/* Products Section */}
-        <section className="py-10 sm:py-12 md:py-14 bg-brand-light-gray">
+        <section className="py-12 sm:py-16 md:py-20 bg-brand-light-gray">
           <div className="container-custom">
-            <div className="flex justify-between items-center mb-4 sm:mb-5">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif mb-4 sm:mb-5 text-brand-charcoal font-bold">All Products</h2>
-              
-              {/* Category Filter */}
-              <div className="w-48">
-                <Select value={selectedCategory} onValueChange={setSelectedCategory} disabled={categoriesLoading}>
-                  <SelectTrigger className="border-brand-silver/30">
-                    <SelectValue placeholder={categoriesLoading ? "Loading..." : "Filter by category"} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {allCategories.map(category => (
-                      <SelectItem key={category} value={category}>
-                        {category === 'all' ? 'All Categories' : category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            <div className="px-4 sm:px-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-brand-charcoal font-bold">All Products</h2>
+                
+                {/* Category Filter */}
+                <div className="w-full sm:w-auto sm:min-w-[220px]">
+                  <Select value={selectedCategory} onValueChange={setSelectedCategory} disabled={categoriesLoading}>
+                    <SelectTrigger className="border-2 border-brand-gray-200 hover:border-brand-silver focus:ring-2 focus:ring-brand-slate-blue min-h-[48px]">
+                      <SelectValue placeholder={categoriesLoading ? "Loading..." : "All Categories"} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {allCategories.map(category => (
+                        <SelectItem key={category} value={category}>
+                          {category === 'all' ? 'All Categories' : category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-            </div>
 
-            {/* SEO Paragraph */}
-            <div className="max-w-3xl mx-auto text-center mb-8">
-              <p className="text-base text-brand-gray-600 leading-relaxed">
-                Professional skincare products designed to complement your aesthetic treatments. From gentle cleansers to advanced serums, our curated collection delivers clinical-grade results for optimal skin health.
-              </p>
+              {/* SEO Paragraph */}
+              <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
+                <p className="text-base sm:text-lg text-brand-gray-600 leading-relaxed">
+                  Professional skincare products designed to complement your aesthetic treatments. From gentle cleansers to advanced serums, our curated collection delivers clinical-grade results for optimal skin health.
+                </p>
+              </div>
             </div>
             
             {isLoading && (

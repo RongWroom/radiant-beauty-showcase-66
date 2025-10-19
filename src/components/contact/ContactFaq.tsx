@@ -46,30 +46,30 @@ const ContactFaq = () => {
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="container-custom">
-        <div className="text-center mb-8 sm:mb-12">
+        <div className="text-center mb-8 sm:mb-12 px-4 sm:px-6">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-brand-charcoal mb-4 sm:mb-6">
             Frequently Asked Questions
           </h2>
           <div className="flex justify-center mb-4 sm:mb-6">
             <span className="block h-0.5 sm:h-1 w-16 sm:w-24 rounded-full bg-gradient-to-r from-brand-slate-blue to-brand-silver"></span>
           </div>
-          <p className="text-lg sm:text-xl text-brand-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-3xl mx-auto">
             Find answers to common questions about our treatments, booking process, and clinic policies.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="border border-brand-gray-200 rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow"
+                className="border border-brand-gray-200 rounded-lg px-4 sm:px-6 shadow-sm hover:shadow-md transition-shadow"
               >
                 <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-brand-charcoal py-4 hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-brand-gray-600 pb-4 leading-relaxed">
+                <AccordionContent className="text-sm sm:text-base text-brand-gray-600 pb-4 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -77,11 +77,11 @@ const ContactFaq = () => {
           </Accordion>
         </div>
 
-        <div className="text-center mt-8 sm:mt-12">
-          <p className="text-brand-gray-600 mb-4">
+        <div className="text-center mt-8 sm:mt-12 px-4 sm:px-6">
+          <p className="text-sm sm:text-base text-brand-gray-600 mb-3 sm:mb-4">
             Still have questions? We're here to help.
           </p>
-          <p className="text-brand-charcoal font-semibold">
+          <p className="text-sm sm:text-base text-brand-charcoal font-semibold">
             Call us at <a href="tel:01207239983" className="text-brand-slate-blue hover:underline">01207 239983</a> or 
             email <a href="mailto:sharon@stwaestheticclinic.co.uk" className="text-brand-slate-blue hover:underline">sharon@stwaestheticclinic.co.uk</a>
           </p>

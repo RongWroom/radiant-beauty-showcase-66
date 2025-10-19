@@ -57,22 +57,22 @@ const About = () => {
         </section>
 
         {/* Mission Statement - Full Width */}
-        <section className="bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue py-16 md:py-20">
+        <section className="bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue py-12 sm:py-16 md:py-20">
           <div className="container-custom text-center">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6">
               <div className="inline-flex items-center justify-center p-3 bg-white/10 rounded-full mb-6">
                 <Target className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 sm:mb-6">
                 Our Mission
               </h2>
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed mb-6 sm:mb-8">
                 At STW Aesthetic Clinic, your safety and satisfaction are our top priorities.
                 Our experienced and certified technicians will guide you through every step of your treatment,
                 ensuring a seamless and enjoyable experience that enhances your natural beauty.
               </p>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                <blockquote className="text-2xl font-serif italic text-white">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8">
+                <blockquote className="text-lg sm:text-xl md:text-2xl font-serif italic text-white">
                   "Enhancing natural beauty through expert care and personalized treatments"
                 </blockquote>
               </div>
@@ -81,16 +81,16 @@ const About = () => {
         </section>
 
         {/* Core Values Grid */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-white via-brand-off-white/50 to-white">
+        <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-gradient-to-b from-white via-brand-off-white/50 to-white">
           <div className="container-custom">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-6">
-                <Award className="w-8 h-8 text-brand-slate-blue" />
+            <div className="text-center mb-12 sm:mb-16 px-4 sm:px-6">
+              <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-4 sm:mb-6">
+                <Award className="w-6 h-6 sm:w-8 sm:h-8 text-brand-slate-blue" />
               </div>
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-charcoal mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4 sm:mb-6">
                 Our Core Values
               </h2>
-              <p className="text-xl text-brand-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-brand-gray-600 max-w-3xl mx-auto">
                 These fundamental principles guide everything we do at STW Aesthetic Clinic
               </p>
             </div>
@@ -142,17 +142,17 @@ const About = () => {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-brand-light-gray via-brand-off-white to-white">
+        <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-gradient-to-br from-brand-light-gray via-brand-off-white to-white">
           <div className="container-custom">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center px-4 sm:px-6">
               <div>
-                <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-6">
-                  <Users className="w-8 h-8 text-brand-slate-blue" />
+                <div className="inline-flex items-center justify-center p-3 bg-brand-slate-blue/10 rounded-full mb-4 sm:mb-6">
+                  <Users className="w-6 h-6 sm:w-8 sm:h-8 text-brand-slate-blue" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-charcoal mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-brand-charcoal mb-4 sm:mb-6">
                   Why Choose STW Aesthetic Clinic?
                 </h2>
-                <p className="text-lg text-brand-gray-600 mb-8 leading-relaxed">
+                <p className="text-base sm:text-lg text-brand-gray-600 mb-6 sm:mb-8 leading-relaxed">
                   With years of experience and hundreds of satisfied clients, we've built our reputation 
                   on delivering exceptional results in a comfortable, professional environment.
                 </p>
@@ -215,48 +215,48 @@ const About = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="py-16 md:py-20 bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue">
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-brand-slate-blue via-brand-slate-blue-light to-brand-slate-blue">
           <div className="container-custom">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center px-4 sm:px-6">
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">200+</div>
-                <div className="text-white/80 font-medium">Happy Clients</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">200+</div>
+                <div className="text-sm sm:text-base text-white/80 font-medium">Happy Clients</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">15+</div>
-                <div className="text-white/80 font-medium">Years Experience</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">15+</div>
+                <div className="text-sm sm:text-base text-white/80 font-medium">Years Experience</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">5</div>
-                <div className="text-white/80 font-medium">Treatment Types</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">5</div>
+                <div className="text-sm sm:text-base text-white/80 font-medium">Treatment Types</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">100%</div>
-                <div className="text-white/80 font-medium">Satisfaction Rate</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">100%</div>
+                <div className="text-sm sm:text-base text-white/80 font-medium">Satisfaction Rate</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Final CTA */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-white via-brand-off-white/30 to-white">
+        <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-gradient-to-b from-white via-brand-off-white/30 to-white">
           <div className="container-custom text-center">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-charcoal mb-6">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4 sm:mb-6">
                 Ready to Transform Your Look?
               </h2>
-              <p className="text-xl text-brand-gray-600 mb-10 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-brand-gray-600 mb-8 sm:mb-10 leading-relaxed">
                 Join hundreds of satisfied clients who have discovered their confidence with STW Aesthetic Clinic.
                 Book your consultation today and take the first step towards your beauty goals.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/contact">
-                  <Button className="bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white text-lg py-4 px-10 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Button className="w-full sm:w-auto bg-gradient-to-r from-brand-slate-blue to-brand-slate-blue-light hover:from-brand-slate-blue-light hover:to-brand-slate-blue text-white text-base sm:text-lg py-3 sm:py-4 px-8 sm:px-10 shadow-lg hover:shadow-xl transition-all duration-300 min-h-[48px]">
                     Book Your Consultation
                   </Button>
                 </Link>
                 <a href="tel:01207239983">
-                  <Button variant="outline" className="border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white text-lg py-4 px-10 transition-all duration-300">
+                  <Button variant="outline" className="w-full sm:w-auto border-2 border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white text-base sm:text-lg py-3 sm:py-4 px-8 sm:px-10 transition-all duration-300 min-h-[48px]">
                     Call Us Today
                   </Button>
                 </a>

@@ -11,7 +11,7 @@ const TreatmentsHero = () => {
           <div className="flex justify-center mb-5">
             <span className="block h-1 w-24 rounded-full bg-brand-silver"></span>
           </div>
-          <p className="text-lg mb-6 font-medium text-brand-charcoal">
+          <p className="text-lg mb-6 font-medium text-brand-charcoal mx-[12px]">
             Discover our range of <span className="px-2 py-0.5 rounded bg-brand-silver/60 text-brand-charcoal font-semibold">professional</span> treatments tailored to your unique skin needs.
             Each treatment is performed by our expert aestheticians using premium products.
           </p>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,25 +10,23 @@ import SEOBreadcrumb from '@/components/SEOBreadcrumb';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import { useTreatments } from '@/hooks/useTreatments';
 import { Loader2 } from 'lucide-react';
-
 const Treatments = () => {
-  const { data: treatments, isLoading, isError } = useTreatments();
-
+  const {
+    data: treatments,
+    isLoading,
+    isError
+  } = useTreatments();
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow flex items-center justify-center">
           <Loader2 className="h-8 w-8 animate-spin" />
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
   if (isError || !treatments) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
@@ -38,18 +35,10 @@ const Treatments = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <>
-      <SEO
-        title="Professional Aesthetic Treatments | STW Aesthetic Clinic"
-        description="Discover our range of professional aesthetic treatments including Cryolipolysis fat freezing, Ultra 4D HIFU, HydraFacial, laser hair removal, and fibroblast skin tightening. Expert technicians, proven results."
-        keywords="aesthetic treatments, cryolipolysis, HIFU, hydrafacial, laser hair removal, fibroblast, skin tightening, professional beauty treatments, non-surgical treatments"
-        url="https://www.stwaestheticclinic.co.uk/treatments"
-      />
+  return <>
+      <SEO title="Professional Aesthetic Treatments | STW Aesthetic Clinic" description="Discover our range of professional aesthetic treatments including Cryolipolysis fat freezing, Ultra 4D HIFU, HydraFacial, laser hair removal, and fibroblast skin tightening. Expert technicians, proven results." keywords="aesthetic treatments, cryolipolysis, HIFU, hydrafacial, laser hair removal, fibroblast, skin tightening, professional beauty treatments, non-surgical treatments" url="https://www.stwaestheticclinic.co.uk/treatments" />
       <LocalBusinessSchema />
       <div className="min-h-screen flex flex-col">
         <Navbar />
@@ -60,12 +49,10 @@ const Treatments = () => {
           <TreatmentsHero />
           <TreatmentsGrid treatments={treatments} />
           <TreatmentCategories />
-          <BookingCta />
+          <BookingCta className="mx-[12px]" />
         </main>
         <Footer />
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Treatments;

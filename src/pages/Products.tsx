@@ -10,13 +10,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { usePaginatedProducts, useInvalidateProductsCache } from "@/hooks/usePaginatedProducts";
 import { useProductCategories } from "@/hooks/useProductCategories";
 import ProductsGrid from '@/components/products/ProductsGrid';
-
 const PAGE_SIZE = 5;
-
 const Products = () => {
   const [page, setPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  
   const {
     products,
     total,
@@ -24,9 +21,10 @@ const Products = () => {
     isError,
     refetch
   } = usePaginatedProducts(page, PAGE_SIZE, selectedCategory);
-
-  const { data: categories = [], isLoading: categoriesLoading } = useProductCategories();
-  
+  const {
+    data: categories = [],
+    isLoading: categoriesLoading
+  } = useProductCategories();
   const invalidateCache = useInvalidateProductsCache();
   const pageCount = Math.ceil(total / PAGE_SIZE);
 
@@ -54,15 +52,8 @@ const Products = () => {
       })));
     }
   }, [products]);
-
-  return (
-    <>
-      <SEO
-        title="Premium Beauty Products | STW Aesthetic Clinic"
-        description="Shop our curated collection of professional-grade beauty products designed to enhance your skincare routine. High-quality products from trusted brands to complement our aesthetic treatments."
-        keywords="beauty products, skincare, professional skincare, beauty shop, aesthetic products, premium cosmetics"
-        url="https://www.stwaestheticclinic.co.uk/products"
-      />
+  return <>
+      <SEO title="Premium Beauty Products | STW Aesthetic Clinic" description="Shop our curated collection of professional-grade beauty products designed to enhance your skincare routine. High-quality products from trusted brands to complement our aesthetic treatments." keywords="beauty products, skincare, professional skincare, beauty shop, aesthetic products, premium cosmetics" url="https://www.stwaestheticclinic.co.uk/products" />
       <LocalBusinessSchema />
       <div className="min-h-screen flex flex-col">
         <Navbar />
@@ -70,7 +61,7 @@ const Products = () => {
           {/* Hero Section - Mobile Optimized */}
           <section className="relative overflow-hidden bg-gradient-to-br from-brand-off-white via-brand-white to-brand-light-gray py-12 sm:py-16 md:py-20 animate-fade-in">
             <div className="container-custom relative z-10">
-              <SEOBreadcrumb />
+              
               <div className="text-center max-w-3xl mx-auto px-4 sm:px-6">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif mb-4 sm:mb-6 font-semibold text-brand-charcoal">
                   Our Products
@@ -103,11 +94,9 @@ const Products = () => {
                       <SelectValue placeholder={categoriesLoading ? "Loading..." : "All Categories"} />
                     </SelectTrigger>
                     <SelectContent>
-                      {allCategories.map(category => (
-                        <SelectItem key={category} value={category}>
+                      {allCategories.map(category => <SelectItem key={category} value={category}>
                           {category === 'all' ? 'All Categories' : category}
-                        </SelectItem>
-                      ))}
+                        </SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
@@ -121,8 +110,7 @@ const Products = () => {
               </div>
             </div>
             
-            {isLoading && (
-              <div className="space-y-8 sm:space-y-10">
+            {isLoading && <div className="space-y-8 sm:space-y-10">
                 <div className="xl:hidden">
                   <Skeleton className="h-[500px] w-full rounded-lg" />
                 </div>
@@ -132,73 +120,42 @@ const Products = () => {
                   </div>
                   <div className="xl:col-span-2">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                      {[...Array(4)].map((_, i) => (
-                        <Skeleton key={i} className="h-[300px] w-full rounded-lg" />
-                      ))}
+                      {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-[300px] w-full rounded-lg" />)}
                     </div>
                   </div>
                 </div>
                 <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {[...Array(4)].map((_, i) => (
-                    <Skeleton key={i} className="h-[300px] w-full rounded-lg" />
-                  ))}
+                  {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-[300px] w-full rounded-lg" />)}
                 </div>
-              </div>
-            )}
+              </div>}
 
-            {isError && (
-              <div className="text-center">
+            {isError && <div className="text-center">
                 <div className="text-red-500 font-medium mb-4">Failed to load products. Please try again later.</div>
                 <Button onClick={refetch} variant="outline">
                   Retry
                 </Button>
-              </div>
-            )}
+              </div>}
 
-            {!isLoading && !isError && products.length === 0 && (
-              <div className="text-center text-brand-gray-600">
+            {!isLoading && !isError && products.length === 0 && <div className="text-center text-brand-gray-600">
                 {selectedCategory === 'all' ? 'No products have been added yet.' : `No products found in the ${selectedCategory} category.`}
-              </div>
-            )}
+              </div>}
 
-            {!isLoading && !isError && products.length > 0 && (
-              <>
+            {!isLoading && !isError && products.length > 0 && <>
                 <ProductsGrid products={products} />
 
                 {/* Pagination Controls */}
-                {pageCount > 1 && (
-                  <div className="flex justify-center mt-12 space-x-1">
-                    <Button 
-                      size="sm" 
-                      variant="secondary" 
-                      onClick={() => setPage(page - 1)} 
-                      disabled={page === 1}
-                    >
+                {pageCount > 1 && <div className="flex justify-center mt-12 space-x-1">
+                    <Button size="sm" variant="secondary" onClick={() => setPage(page - 1)} disabled={page === 1}>
                       Prev
                     </Button>
-                    {[...Array(pageCount)].map((_, i) => (
-                      <Button 
-                        key={i} 
-                        size="sm" 
-                        variant={page === i + 1 ? "default" : "ghost"} 
-                        onClick={() => setPage(i + 1)} 
-                        aria-current={page === i + 1}
-                      >
+                    {[...Array(pageCount)].map((_, i) => <Button key={i} size="sm" variant={page === i + 1 ? "default" : "ghost"} onClick={() => setPage(i + 1)} aria-current={page === i + 1}>
                         {i + 1}
-                      </Button>
-                    ))}
-                    <Button 
-                      size="sm" 
-                      variant="secondary" 
-                      onClick={() => setPage(page + 1)} 
-                      disabled={page === pageCount}
-                    >
+                      </Button>)}
+                    <Button size="sm" variant="secondary" onClick={() => setPage(page + 1)} disabled={page === pageCount}>
                       Next
                     </Button>
-                  </div>
-                )}
-              </>
-            )}
+                  </div>}
+              </>}
           </div>
           
           {/* Flowing gradient background */}
@@ -207,8 +164,6 @@ const Products = () => {
       </main>
       <Footer />
     </div>
-    </>
-  );
+    </>;
 };
-
 export default Products;

@@ -65,7 +65,7 @@ const Treatments = () => {
           {/* Category Filter Section */}
           <section className="py-6 bg-brand-off-white">
             <div className="container-custom">
-              <div className="flex justify-center px-4 sm:px-0">
+              <div className="flex justify-center px-4">
                 <div className="w-full sm:w-auto sm:min-w-[280px]">
                   <Select value={selectedCategory} onValueChange={setSelectedCategory} disabled={categoriesLoading}>
                     <SelectTrigger className="border-2 border-brand-gray-200 hover:border-brand-silver focus:ring-2 focus:ring-brand-slate-blue min-h-[48px] bg-white">
@@ -88,7 +88,7 @@ const Treatments = () => {
           {isLoading && (
             <section className="py-10 sm:py-12 md:py-14 bg-brand-light-gray">
               <div className="container-custom">
-                <div className="space-y-8 sm:space-y-10 px-4 sm:px-0">
+                <div className="space-y-8 sm:space-y-10 px-4">
                   <div className="xl:hidden">
                     <Skeleton className="h-[500px] w-full rounded-lg" />
                   </div>
@@ -148,7 +148,7 @@ const Treatments = () => {
               {pageCount > 1 && (
                 <section className="py-8 bg-brand-light-gray">
                   <div className="container-custom">
-                    <div className="flex justify-center items-center flex-wrap gap-2 px-4 sm:px-0">
+                    <div className="flex justify-center items-center flex-wrap gap-2 px-4">
                       <Button 
                         size="sm" 
                         variant="secondary" 

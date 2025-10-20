@@ -83,7 +83,7 @@ const Products = () => {
         {/* Products Section */}
     <section className="py-12 sm:py-16 md:py-20 bg-brand-light-gray">
       <div className="container-custom">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8 px-4 sm:px-0">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8 px-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-brand-charcoal font-bold">All Products</h2>
                 
           {/* Category Filter */}
@@ -102,13 +102,13 @@ const Products = () => {
         </div>
 
         {/* SEO Paragraph */}
-        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10 px-4 sm:px-0">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10 px-4">
           <p className="text-base sm:text-lg text-brand-gray-600 leading-relaxed">
             Professional skincare products designed to complement your aesthetic treatments. From gentle cleansers to advanced serums, our curated collection delivers clinical-grade results for optimal skin health.
           </p>
         </div>
             
-        {isLoading && <div className="space-y-8 sm:space-y-10 px-4 sm:px-0">
+        {isLoading && <div className="space-y-8 sm:space-y-10 px-4">
             <div className="xl:hidden">
               <Skeleton className="h-[500px] w-full rounded-lg" />
             </div>
@@ -142,7 +142,7 @@ const Products = () => {
             <ProductsGrid products={products} />
 
             {/* Pagination Controls */}
-            {pageCount > 1 && <div className="flex justify-center items-center flex-wrap mt-12 gap-2 px-4 sm:px-0">
+            {pageCount > 1 && <div className="flex justify-center items-center flex-wrap mt-12 gap-2 px-4">
                 <Button size="sm" variant="secondary" onClick={() => setPage(page - 1)} disabled={page === 1} className="min-h-[48px]">
                   Prev
                 </Button>

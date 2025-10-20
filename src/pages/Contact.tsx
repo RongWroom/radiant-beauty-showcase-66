@@ -132,13 +132,13 @@ const Contact = () => {
                   <div className="flex justify-center lg:justify-start mb-4 sm:mb-6">
                     <span className="block h-0.5 sm:h-1 w-12 sm:w-16 rounded-full bg-gradient-to-r from-brand-silver to-white"></span>
                   </div>
-                  <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
+                  <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-12 leading-relaxed px-4">
                     We're here to help you on your journey to beautiful, healthy skin. Contact us today to schedule your consultation.
                   </p>
                 </div>
                 
                 <div className="space-y-6 sm:space-y-8">
-                  <div className="flex items-start space-x-3 sm:space-x-4 px-4 sm:px-0">
+                  <div className="flex items-start space-x-3 sm:space-x-4 px-4">
                     <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="text-base sm:text-lg font-semibold text-white mb-2">Location</h3>
@@ -150,7 +150,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3 sm:space-x-4 px-4 sm:px-0">
+                  <div className="flex items-start space-x-3 sm:space-x-4 px-4">
                     <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="text-base sm:text-lg font-semibold text-white mb-2">Phone</h3>
@@ -158,7 +158,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3 sm:space-x-4 px-4 sm:px-0">
+                  <div className="flex items-start space-x-3 sm:space-x-4 px-4">
                     <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="text-base sm:text-lg font-semibold text-white mb-2">Email</h3>
@@ -166,7 +166,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3 sm:space-x-4 px-4 sm:px-0">
+                  <div className="flex items-start space-x-3 sm:space-x-4 px-4">
                     <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-brand-silver mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="text-base sm:text-lg font-semibold text-white mb-2">Hours</h3>

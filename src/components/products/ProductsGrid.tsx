@@ -20,7 +20,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
   return (
     <div className="space-y-8 sm:space-y-10">
       {/* Featured Product - Full width on mobile/tablet with proper spacing */}
-      <div className="xl:hidden px-4 sm:px-0">
+      <div className="xl:hidden px-4">
         <ProductCard product={featuredProduct} isFeatured={true} />
       </div>
       
@@ -42,7 +42,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
       </div>
       
       {/* Mobile and tablet grid for remaining products with proper spacing */}
-      <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-6 px-4 sm:px-0">
+      <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
         {remainingProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

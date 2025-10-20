@@ -175,7 +175,7 @@ const ProductDetail = () => {
           {/* Product Details */}
           <section className="py-12 bg-gradient-to-br from-brand-white via-brand-off-white to-brand-light-gray">
             <div className="container-custom">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 px-4 sm:px-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 px-4">
                 <ProductImage imageUrl={product.image_url} name={product.name} />
                 <ProductInfo product={product} productId={id!} />
               </div>
@@ -183,7 +183,7 @@ const ProductDetail = () => {
           </section>
 
           <section className="py-8 sm:py-10 md:py-12">
-            <div className="container-custom px-4 sm:px-0">
+            <div className="container-custom px-4">
               <ProductDetailsGrid product={product} />
             </div>
           </section>

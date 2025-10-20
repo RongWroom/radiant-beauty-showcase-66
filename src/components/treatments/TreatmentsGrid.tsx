@@ -16,10 +16,10 @@ const TreatmentsGrid = ({
   }
   return <section className="py-10 sm:py-12 md:py-14 bg-brand-light-gray">
       <div className="container-custom">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-serif mb-4 sm:mb-5 text-brand-charcoal font-bold text-center px-4 sm:px-0">All Treatments</h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-serif mb-4 sm:mb-5 text-brand-charcoal font-bold text-center px-4">All Treatments</h2>
         
         {/* SEO Paragraph */}
-        <div className="max-w-3xl mx-auto text-center mb-8 px-4 sm:px-0">
+        <div className="max-w-3xl mx-auto text-center mb-8 px-4">
           <p className="text-base text-brand-gray-600 leading-relaxed">
             Professional aesthetic treatments tailored to your unique skin needs. From advanced anti-aging solutions to body contouring, our expert practitioners deliver exceptional results using cutting-edge technology.
           </p>
@@ -28,7 +28,7 @@ const TreatmentsGrid = ({
         {/* Mobile-first layout with proper spacing */}
         <div className="space-y-8 sm:space-y-10">
           {/* Featured Treatment - Full width on mobile/tablet with proper spacing */}
-          <div className="xl:hidden px-4 sm:px-0">
+          <div className="xl:hidden px-4">
             <TreatmentCard treatment={featuredTreatment} isFeatured={true} />
           </div>
           
@@ -48,7 +48,7 @@ const TreatmentsGrid = ({
           </div>
           
           {/* Mobile and tablet grid for remaining treatments with proper spacing */}
-          <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-6 px-4 sm:px-0">
+          <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
             {remainingTreatments.map(treatment => <TreatmentCard key={treatment.id} treatment={treatment} />)}
           </div>
         </div>

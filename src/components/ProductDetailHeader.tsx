@@ -13,7 +13,7 @@ const ProductDetailHeader = ({ featured }: ProductDetailHeaderProps) => {
   return (
     <section className="bg-gradient-to-r from-brand-slate-blue/5 to-brand-silver/10 py-6">
       <div className="container-custom">
-        <div className="flex items-center gap-4 px-4 sm:px-0">
+        <div className="flex items-center gap-4 px-4">
           <Link to="/products">
             <Button variant="outline" size="sm" className="border-brand-slate-blue text-brand-slate-blue">
               <ArrowLeft className="mr-2 h-4 w-4" />

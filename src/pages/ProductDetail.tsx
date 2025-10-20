@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -18,7 +17,6 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useCart } from '@/contexts/CartContext';
-
 type Product = {
   id: string;
   name: string;
@@ -30,52 +28,61 @@ type Product = {
   product_benefits: string[] | null;
   category: string | null;
   sizes?: {
-    default: { size: string; price: number };
-    options: { size: string; price: number }[];
+    default: {
+      size: string;
+      price: number;
+    };
+    options: {
+      size: string;
+      price: number;
+    }[];
   } | null;
 };
-
 const fetchProduct = async (id: string): Promise<Product | null> => {
-  const { data, error } = await supabase
-    .from('products')
-    .select('id, name, description, price, currency, image_url, featured, product_benefits, category, sizes')
-    .eq('id', id)
-    .maybeSingle();
-    
+  const {
+    data,
+    error
+  } = await supabase.from('products').select('id, name, description, price, currency, image_url, featured, product_benefits, category, sizes').eq('id', id).maybeSingle();
   if (error) {
     console.error(`Error fetching product with id ${id}:`, error);
     throw new Error(error.message);
   }
   return data as Product | null;
 };
-
 const fetchRelatedProducts = async (currentProductId: string): Promise<Product[]> => {
-  const { data, error } = await supabase
-    .from('products')
-    .select('id, name, description, price, currency, image_url, featured, product_benefits, category, sizes')
-    .neq('id', currentProductId)
-    .limit(3);
-    
+  const {
+    data,
+    error
+  } = await supabase.from('products').select('id, name, description, price, currency, image_url, featured, product_benefits, category, sizes').neq('id', currentProductId).limit(3);
   if (error) {
     console.error("Error fetching related products:", error);
     throw new Error(error.message);
   }
   return (data || []) as Product[];
 };
-
 const ProductDetail = () => {
-  const { id } = useParams<{ id: string }>();
-  const { items } = useCart();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
+  const {
+    items
+  } = useCart();
   const [showDiscountPopup, setShowDiscountPopup] = useState(false);
   const [hasShownPopup, setHasShownPopup] = useState(false);
-
-  const { data: product, isLoading, isError } = useQuery({
+  const {
+    data: product,
+    isLoading,
+    isError
+  } = useQuery({
     queryKey: ['product', id],
     queryFn: () => fetchProduct(id!),
     enabled: !!id
   });
-
-  const { data: relatedProducts } = useQuery({
+  const {
+    data: relatedProducts
+  } = useQuery({
     queryKey: ['relatedProducts', id],
     queryFn: () => fetchRelatedProducts(id!),
     enabled: !!id
@@ -89,7 +96,6 @@ const ProductDetail = () => {
       setHasShownPopup(true);
       return;
     }
-
     const timer = setTimeout(() => {
       if (items.length === 0 && !hasShownPopup) {
         setShowDiscountPopup(true);
@@ -100,14 +106,11 @@ const ProductDetail = () => {
 
     return () => clearTimeout(timer);
   }, [items.length, hasShownPopup]);
-
   const hideDiscountPopup = () => {
     setShowDiscountPopup(false);
   };
-
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow container-custom py-12">
           <Skeleton className="h-10 w-48 mb-4" />
@@ -122,13 +125,10 @@ const ProductDetail = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
   if (isError || !product) {
-    return (
-      <div className="min-h-screen flex flex-col">
+    return <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
@@ -139,31 +139,32 @@ const ProductDetail = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
-  const pageItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/products' },
-    { label: product.name }
-  ];
-
-  const schemaItems = [
-    { name: 'Home', url: 'https://www.stwaestheticclinic.co.uk', position: 1 },
-    { name: 'Products', url: 'https://www.stwaestheticclinic.co.uk/products', position: 2 },
-    { name: product.name, url: `https://www.stwaestheticclinic.co.uk/products/${product.id}`, position: 3 }
-  ];
-
-  return (
-    <>
-      <SEO
-        title={`${product.name} | Professional Beauty Products | STW Aesthetic Clinic`}
-        description={product.description || `Professional beauty product: ${product.name}. High-quality skincare products to complement your aesthetic treatments at STW Aesthetic Clinic.`}
-        keywords={`${product.name}, beauty product, skincare, professional cosmetics, ${product.product_benefits?.join(', ') || 'professional skincare'}, STW Aesthetic Clinic`}
-        url={`https://www.stwaestheticclinic.co.uk/products/${product.id}`}
-        image={product.image_url || undefined}
-      />
+  const pageItems = [{
+    label: 'Home',
+    href: '/'
+  }, {
+    label: 'Products',
+    href: '/products'
+  }, {
+    label: product.name
+  }];
+  const schemaItems = [{
+    name: 'Home',
+    url: 'https://www.stwaestheticclinic.co.uk',
+    position: 1
+  }, {
+    name: 'Products',
+    url: 'https://www.stwaestheticclinic.co.uk/products',
+    position: 2
+  }, {
+    name: product.name,
+    url: `https://www.stwaestheticclinic.co.uk/products/${product.id}`,
+    position: 3
+  }];
+  return <>
+      <SEO title={`${product.name} | Professional Beauty Products | STW Aesthetic Clinic`} description={product.description || `Professional beauty product: ${product.name}. High-quality skincare products to complement your aesthetic treatments at STW Aesthetic Clinic.`} keywords={`${product.name}, beauty product, skincare, professional cosmetics, ${product.product_benefits?.join(', ') || 'professional skincare'}, STW Aesthetic Clinic`} url={`https://www.stwaestheticclinic.co.uk/products/${product.id}`} image={product.image_url || undefined} />
       <ProductSchema product={product} />
       <BreadcrumbSchema items={schemaItems} />
       <div className="min-h-screen flex flex-col">
@@ -174,7 +175,7 @@ const ProductDetail = () => {
           {/* Product Details */}
           <section className="py-12 bg-gradient-to-br from-brand-white via-brand-off-white to-brand-light-gray">
             <div className="container-custom">
-              <SEOBreadcrumb items={pageItems} />
+              
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <ProductImage imageUrl={product.image_url} name={product.name} />
                 <ProductInfo product={product} productId={id!} />
@@ -187,12 +188,7 @@ const ProductDetail = () => {
         </main>
         <Footer />
       </div>
-      <ProductDiscountPopup 
-        isOpen={showDiscountPopup} 
-        onClose={hideDiscountPopup} 
-      />
-    </>
-  );
+      <ProductDiscountPopup isOpen={showDiscountPopup} onClose={hideDiscountPopup} />
+    </>;
 };
-
 export default ProductDetail;

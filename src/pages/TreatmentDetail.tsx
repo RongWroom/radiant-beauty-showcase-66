@@ -86,7 +86,7 @@ const TreatmentDetail = () => {
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-brand-slate-blue/10 via-brand-silver/20 to-brand-light-gray py-12">
           <div className="container-custom mx-0">
-            <SEOBreadcrumb items={pageItems} />
+            
             <div className="flex items-center gap-4 mb-6">
               <Link to="/treatments">
                 <Button variant="outline" size="sm" className="border-brand-slate-blue text-brand-slate-blue hover:bg-brand-slate-blue hover:text-white">

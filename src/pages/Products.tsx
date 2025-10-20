@@ -81,86 +81,81 @@ const Products = () => {
         </section>
 
         {/* Products Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-brand-light-gray">
-          <div className="container-custom">
-            <div className="px-4 sm:px-6">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-brand-charcoal font-bold">All Products</h2>
+    <section className="py-12 sm:py-16 md:py-20 bg-brand-light-gray">
+      <div className="container-custom">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8 px-4 sm:px-0">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-brand-charcoal font-bold">All Products</h2>
                 
-                {/* Category Filter */}
-                <div className="w-full sm:w-auto sm:min-w-[220px]">
-                  <Select value={selectedCategory} onValueChange={setSelectedCategory} disabled={categoriesLoading}>
-                    <SelectTrigger className="border-2 border-brand-gray-200 hover:border-brand-silver focus:ring-2 focus:ring-brand-slate-blue min-h-[48px]">
-                      <SelectValue placeholder={categoriesLoading ? "Loading..." : "All Categories"} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {allCategories.map(category => <SelectItem key={category} value={category}>
-                          {category === 'all' ? 'All Categories' : category}
-                        </SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
+          {/* Category Filter */}
+          <div className="w-full sm:w-auto sm:min-w-[220px]">
+            <Select value={selectedCategory} onValueChange={setSelectedCategory} disabled={categoriesLoading}>
+              <SelectTrigger className="border-2 border-brand-gray-200 hover:border-brand-silver focus:ring-2 focus:ring-brand-slate-blue min-h-[48px]">
+                <SelectValue placeholder={categoriesLoading ? "Loading..." : "All Categories"} />
+              </SelectTrigger>
+              <SelectContent>
+                {allCategories.map(category => <SelectItem key={category} value={category}>
+                    {category === 'all' ? 'All Categories' : category}
+                  </SelectItem>)}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
 
-              {/* SEO Paragraph */}
-              <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
-                <p className="text-base sm:text-lg text-brand-gray-600 leading-relaxed">
-                  Professional skincare products designed to complement your aesthetic treatments. From gentle cleansers to advanced serums, our curated collection delivers clinical-grade results for optimal skin health.
-                </p>
-              </div>
-            </div>
+        {/* SEO Paragraph */}
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10 px-4 sm:px-0">
+          <p className="text-base sm:text-lg text-brand-gray-600 leading-relaxed">
+            Professional skincare products designed to complement your aesthetic treatments. From gentle cleansers to advanced serums, our curated collection delivers clinical-grade results for optimal skin health.
+          </p>
+        </div>
             
-            {isLoading && <div className="space-y-8 sm:space-y-10">
-                <div className="xl:hidden">
-                  <Skeleton className="h-[500px] w-full rounded-lg" />
-                </div>
-                <div className="hidden xl:grid xl:grid-cols-3 xl:gap-8">
-                  <div className="xl:col-span-1">
-                    <Skeleton className="h-[500px] w-full rounded-lg" />
-                  </div>
-                  <div className="xl:col-span-2">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                      {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-[300px] w-full rounded-lg" />)}
-                    </div>
-                  </div>
-                </div>
-                <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-8">
+        {isLoading && <div className="space-y-8 sm:space-y-10 px-4 sm:px-0">
+            <div className="xl:hidden">
+              <Skeleton className="h-[500px] w-full rounded-lg" />
+            </div>
+            <div className="hidden xl:grid xl:grid-cols-3 xl:gap-8">
+              <div className="xl:col-span-1">
+                <Skeleton className="h-[500px] w-full rounded-lg" />
+              </div>
+              <div className="xl:col-span-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
                   {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-[300px] w-full rounded-lg" />)}
                 </div>
-              </div>}
+              </div>
+            </div>
+            <div className="xl:hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-[300px] w-full rounded-lg" />)}
+            </div>
+          </div>}
 
-            {isError && <div className="text-center">
-                <div className="text-red-500 font-medium mb-4">Failed to load products. Please try again later.</div>
-                <Button onClick={refetch} variant="outline">
-                  Retry
+        {isError && <div className="text-center px-4">
+            <div className="text-red-500 font-medium mb-4">Failed to load products. Please try again later.</div>
+            <Button onClick={refetch} variant="outline" className="min-h-[48px]">
+              Retry
+            </Button>
+          </div>}
+
+        {!isLoading && !isError && products.length === 0 && <div className="text-center text-brand-gray-600 px-4">
+            {selectedCategory === 'all' ? 'No products have been added yet.' : `No products found in the ${selectedCategory} category.`}
+          </div>}
+
+        {!isLoading && !isError && products.length > 0 && <>
+            <ProductsGrid products={products} />
+
+            {/* Pagination Controls */}
+            {pageCount > 1 && <div className="flex justify-center items-center flex-wrap mt-12 gap-2 px-4 sm:px-0">
+                <Button size="sm" variant="secondary" onClick={() => setPage(page - 1)} disabled={page === 1} className="min-h-[48px]">
+                  Prev
+                </Button>
+                {[...Array(pageCount)].map((_, i) => <Button key={i} size="sm" variant={page === i + 1 ? "default" : "ghost"} onClick={() => setPage(i + 1)} aria-current={page === i + 1} className="min-h-[48px]">
+                    {i + 1}
+                  </Button>)}
+                <Button size="sm" variant="secondary" onClick={() => setPage(page + 1)} disabled={page === pageCount} className="min-h-[48px]">
+                  Next
                 </Button>
               </div>}
-
-            {!isLoading && !isError && products.length === 0 && <div className="text-center text-brand-gray-600">
-                {selectedCategory === 'all' ? 'No products have been added yet.' : `No products found in the ${selectedCategory} category.`}
-              </div>}
-
-            {!isLoading && !isError && products.length > 0 && <>
-                <ProductsGrid products={products} />
-
-                {/* Pagination Controls */}
-                {pageCount > 1 && <div className="flex justify-center mt-12 space-x-1">
-                    <Button size="sm" variant="secondary" onClick={() => setPage(page - 1)} disabled={page === 1}>
-                      Prev
-                    </Button>
-                    {[...Array(pageCount)].map((_, i) => <Button key={i} size="sm" variant={page === i + 1 ? "default" : "ghost"} onClick={() => setPage(i + 1)} aria-current={page === i + 1}>
-                        {i + 1}
-                      </Button>)}
-                    <Button size="sm" variant="secondary" onClick={() => setPage(page + 1)} disabled={page === pageCount}>
-                      Next
-                    </Button>
-                  </div>}
-              </>}
-          </div>
-          
-          {/* Flowing gradient background */}
-          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-brand-slate-blue/5 to-transparent rounded-full blur-3xl"></div>
-        </section>
+          </>}
+      </div>
+    </section>
       </main>
       <Footer />
     </div>

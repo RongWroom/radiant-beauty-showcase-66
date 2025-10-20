@@ -47,9 +47,9 @@ const Treatments = () => {
             
           </div>
           <TreatmentsHero />
-          <TreatmentsGrid treatments={treatments} />
-          <TreatmentCategories />
-          <BookingCta className="mx-[12px]" />
+      <TreatmentsGrid treatments={treatments} />
+      <TreatmentCategories />
+      <BookingCta />
         </main>
         <Footer />
       </div>

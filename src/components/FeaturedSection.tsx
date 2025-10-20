@@ -8,9 +8,7 @@ export const FeaturedSection = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 tablet:px-10 lg:px-12">
         <div className="flex flex-col lg:flex-row gap-12 sm:gap-16 lg:gap-20 items-center mb-16 sm:mb-20 lg:mb-24">
           <div className="lg:w-1/2 space-y-6 tablet:space-y-8 text-center lg:text-left">
-            <h2 className="mobile-text-2xl font-serif font-semibold text-hierarchy-primary">
-              Professional Treatment Excellence
-            </h2>
+            <h2 className="mobile-text-2xl font-serif font-semibold text-hierarchy-primary text-4xl">Professional Beauty Treatment</h2>
             <p className="text-hierarchy-secondary mobile-text-base">Our expert practitioners use cutting-edge technology to deliver personalised aesthetic treatments. Each procedure is tailored to your specific needs, ensuring optimal results and your complete satisfaction.</p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-6">
               <Link to="/treatments" className="w-full sm:w-auto">
@@ -33,7 +31,7 @@ export const FeaturedSection = () => {
         </div>
         
         <div className="text-center mb-16 sm:mb-20">
-          <h2 className="mobile-text-2xl font-serif text-hierarchy-primary max-w-5xl mx-auto">Our most popular treatments 
+          <h2 className="mobile-text-2xl font-serif text-hierarchy-primary max-w-5xl mx-auto text-4xl">Our most popular treatments 
 for visible, lasting results.</h2>
         </div>
         
@@ -128,7 +126,7 @@ export const BannerSection = () => {
             </div>
           </div>
           <div className="lg:w-2/3 mobile-spacing-lg text-center lg:text-left">
-            <h2 className="mobile-text-2xl font-serif font-semibold text-brand-charcoal">
+            <h2 className="mobile-text-2xl font-serif font-semibold text-brand-charcoal text-2xl">
               Professional Post-Treatment Care
             </h2>
             <p className="mobile-text-base max-w-2xl text-hierarchy-secondary my-0">

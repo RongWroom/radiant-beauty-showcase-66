@@ -4,44 +4,37 @@ import { Star } from 'lucide-react';
 import { customerReviews } from '@/data/reviews';
 
 // Convert review data format for component use
-const reviews = [
-  {
-    id: 1,
-    name: 'AC Fletcher',
-    stars: 5,
-    text: 'Really good service received from Sharon. Great initial consultation, very informative & detailed to ensure I knew what to expect throughout the laser hair removal treatment. Sharon is always professional, friendly & approachable.'
-  },
-  {
-    id: 2,
-    name: 'Megan Coulson',
-    stars: 5,
-    text: "You won't regret going to Sharon for any treatment. She's friendly, professional and cares about each individual and how the course of treatment is going, and is willing to tailor to your specific needs."
-  },
-  {
-    id: 3,
-    name: 'Tracey Thornton-Clark',
-    stars: 5,
-    text: 'I had the pleasure of experiencing a Hifu facial, Hydrafacial, and laser skin rejuvenation treatment from Sharon, and I must say, the results were absolutely incredible! Sharon is a true magician when it comes to skincare.'
-  },
-  {
-    id: 4,
-    name: 'Leanne Wears',
-    stars: 5,
-    text: "I've been going to STW Aesthetic Clinic for my Hydrofacials and my skin has never been better. I no longer have breakouts or dry patches. Sharon is so lovely and really professional."
-  },
-  {
-    id: 5,
-    name: 'Danielle Cullen',
-    stars: 5,
-    text: 'Great service. Sharon is so professional and friendly. I love the hydrafacial skin treatment and cool sculpting treatment. Fabulous business. Great prices. Highly recommend.'
-  },
-  {
-    id: 6,
-    name: 'Zainab Alfaham',
-    stars: 5,
-    text: 'Had four sessions so far and have already seen a reduction in hair growth. Sharon is very friendly and professional. Will work to your schedule! Happy customer so far!'
-  }
-];
+const reviews = [{
+  id: 1,
+  name: 'AC Fletcher',
+  stars: 5,
+  text: 'Really good service received from Sharon. Great initial consultation, very informative & detailed to ensure I knew what to expect throughout the laser hair removal treatment. Sharon is always professional, friendly & approachable.'
+}, {
+  id: 2,
+  name: 'Megan Coulson',
+  stars: 5,
+  text: "You won't regret going to Sharon for any treatment. She's friendly, professional and cares about each individual and how the course of treatment is going, and is willing to tailor to your specific needs."
+}, {
+  id: 3,
+  name: 'Tracey Thornton-Clark',
+  stars: 5,
+  text: 'I had the pleasure of experiencing a Hifu facial, Hydrafacial, and laser skin rejuvenation treatment from Sharon, and I must say, the results were absolutely incredible! Sharon is a true magician when it comes to skincare.'
+}, {
+  id: 4,
+  name: 'Leanne Wears',
+  stars: 5,
+  text: "I've been going to STW Aesthetic Clinic for my Hydrofacials and my skin has never been better. I no longer have breakouts or dry patches. Sharon is so lovely and really professional."
+}, {
+  id: 5,
+  name: 'Danielle Cullen',
+  stars: 5,
+  text: 'Great service. Sharon is so professional and friendly. I love the hydrafacial skin treatment and cool sculpting treatment. Fabulous business. Great prices. Highly recommend.'
+}, {
+  id: 6,
+  name: 'Zainab Alfaham',
+  stars: 5,
+  text: 'Had four sessions so far and have already seen a reduction in hair growth. Sharon is very friendly and professional. Will work to your schedule! Happy customer so far!'
+}];
 const DEFAULT_REVIEWS_DESKTOP = 3;
 const DEFAULT_REVIEWS_MOBILE = 1;
 const CustomerReviews = () => {
@@ -62,7 +55,7 @@ const CustomerReviews = () => {
   return <section className="relative overflow-hidden bg-gradient-to-b from-brand-off-white to-brand-white section pb-12">
       <div className="container-custom relative z-10">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-6 text-brand-charcoal">What Our Clients Say</h2>
+          <h2 className="text-3xl md:text-5xl font-serif mb-6 text-brand-charcoal my-[30px] lg:text-6xl">What Our Clients Say</h2>
           <p className="text-brand-gray-600 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
             Don't just take our word for it. Here's what our satisfied clients have to say.
           </p>
